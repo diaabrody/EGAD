@@ -143,6 +143,7 @@ class UserRepository extends BaseRepository
         $user = $this->getById($id);
         $user->first_name = $input['first_name'];
         $user->last_name = $input['last_name'];
+        $user->date_of_birth = $input['date_of_birth'];
         $user->timezone = $input['timezone'];
         $user->avatar_type = $input['avatar_type'];
 
@@ -275,6 +276,7 @@ class UserRepository extends BaseRepository
                 'first_name'  => $nameParts['first_name'],
                 'last_name'  => $nameParts['last_name'],
                 'email' => $user_email,
+                'phone_no' => $data->phone_no,
                 'active' => 1,
                 'confirmed' => 1,
                 'password' => null,

@@ -12,6 +12,16 @@
             <th>{{ __('labels.frontend.user.profile.email') }}</th>
             <td>{{ $logged_in_user->email }}</td>
         </tr>
+
+        <tr>
+            <th>{{ __('Phone Number') }}</th>
+            <td>{{ $logged_in_user->phone_no }}</td>
+        </tr>
+
+        <tr>
+            <th>{{ __('Date Of Birth') }}</th>
+            <td>{{ $logged_in_user->date_of_birth }}</td>
+        </tr>
         <tr>
             <th>{{ __('labels.frontend.user.profile.created_at') }}</th>
             <td>{{ $logged_in_user->created_at->timezone(get_user_timezone()) }} ({{ $logged_in_user->created_at->diffForHumans() }})</td>

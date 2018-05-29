@@ -53,7 +53,6 @@ class User extends Authenticatable
         'date_of_birth',
         'phone_no',
         'home_phone_no',
-        'email',
         'national_id',
         'home_address'
     ];
