@@ -11,8 +11,11 @@ class MapController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Cornford\Googlmapper\Facades\MapperException
      */
-    public function index(){
-        Mapper::map(26.8206, 30.8025)->marker(26.381128999999990000, 30.470085000000040000, ['markers' => [ 'draggable' => true ,'symbol' => 'circle', 'scale' => 1000, 'animation' => 'DROP']]);
+    public function index(Request $request){
+//        dd($request->search);
+        $search = $request->search ? $request->search : 'Alexandria';
+        Mapper::location($search)->map( [ 'zoom' => 15 ,  'marker' => true ]);
+
         return view('frontend.maps.map');
     }
 }
