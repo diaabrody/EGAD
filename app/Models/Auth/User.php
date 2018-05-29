@@ -12,10 +12,8 @@ use App\Models\Auth\Traits\SendUserPasswordReset;
 use App\Models\Auth\Traits\Attribute\UserAttribute;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Auth\Traits\Relationship\UserRelationship;
-use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
-/**
- * @property \Grimzy\LaravelMysqlSpatial\Types\Point $current_location
- */
+
+
 
 /**
  * Class User.
@@ -30,8 +28,7 @@ class User extends Authenticatable
         UserMethod,
         UserRelationship,
         UserScope,
-        Uuid,
-        SpatialTrait;
+        Uuid;
 
     /**
      * The attributes that are mass assignable.
@@ -52,13 +49,9 @@ class User extends Authenticatable
         'timezone',
         'date_of_birth',
         'phone_no',
-        'home_phone_no',
-        'national_id',
-        'home_address'
+        'gender'
     ];
-    protected $spatialFields = [
-        'current_location'
-    ];
+
 
     /**
      * The attributes that should be hidden for arrays.
