@@ -96,6 +96,9 @@ class UserRepository extends BaseRepository
                 'first_name'        => $data['first_name'],
                 'last_name'         => $data['last_name'],
                 'email'             => $data['email'],
+                'phone_no'          => $data['phone_no'],
+                'gender'            => $data['gender'],
+                'date_of_birth'     => $data['date_of_birth'],
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'active'            => 1,
                 'password'          => $data['password'],
@@ -142,6 +145,7 @@ class UserRepository extends BaseRepository
         $user = $this->getById($id);
         $user->first_name = $input['first_name'];
         $user->last_name = $input['last_name'];
+        $user->date_of_birth = $input['date_of_birth'];
         $user->timezone = $input['timezone'];
         $user->avatar_type = $input['avatar_type'];
 
@@ -274,6 +278,7 @@ class UserRepository extends BaseRepository
                 'first_name'  => $nameParts['first_name'],
                 'last_name'  => $nameParts['last_name'],
                 'email' => $user_email,
+                'phone_no' => $data->phone_no,
                 'active' => 1,
                 'confirmed' => 1,
                 'password' => null,

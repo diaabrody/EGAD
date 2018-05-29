@@ -55,6 +55,47 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
+                                    {{ html()->label(__('Phone Number'))->for('phone_no') }}
+
+                                    {{ html()->text('phone_no')
+                                        ->class('form-control')
+                                        ->placeholder(__('Phone Number'))
+                                        ->attribute('maxlength', 191)
+                                        ->required() }}
+                                </div><!--form-group-->
+                            </div><!--col-->
+                        </div><!--row-->
+                        
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                {{ html()->label(__('Date Of Birth'))->for('date_of_birth') }}
+
+                                {{ html()->date('date_of_birth')
+                                    ->class('form-control') }}
+                                </div><!--form-group-->
+                            </div><!--col-->
+                        </div><!--row-->
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                {{ html()->label(__('Gender'))->for('gender') }}
+
+                                    <div>
+                                        <input type="radio" name="gender" value="0"  /> Male
+                                        <input type="radio" name="gender" value="1"  /> Female
+                                    </div> 
+                                </div><!--form-group-->
+                            </div><!--col-->
+                        </div><!--row-->
+
+
+                        
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
                                     {{ html()->label(__('validation.attributes.frontend.password'))->for('password') }}
 
                                     {{ html()->password('password')
