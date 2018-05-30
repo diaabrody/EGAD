@@ -45,7 +45,7 @@ class ReportController extends Controller
      */
     public function create()
     {
-        return view('backend.report.create');
+        return view('backend.reports.create');
     }
 
     /**
@@ -73,7 +73,7 @@ class ReportController extends Controller
             
         ));
 
-        return redirect()->route('admin.report.index')->withFlashSuccess(__('alerts.backend.reports.created'));
+        return redirect()->route('backend.reports.index')->withFlashSuccess(__('alerts.backend.reports.created'));
     }
 
     /**
