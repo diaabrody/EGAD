@@ -26,14 +26,14 @@ class ReportsController extends Controller
     public function index()
     {
         $reports=$this->reportRepository->retriveAll();
-        return view('Frontend.reports.index',[
+        return view('frontend.reports.index',[
             'reports' => $reports
         ]);
     }
     public function show($id)
     {
         $report =$this->reportRepository->findByid($id);
-        return view('Frontend.reports.show',[
+        return view('frontend.reports.show',[
             'report' => $report
         ]);
     }

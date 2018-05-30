@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend\Report;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Report\Report;
 use App\Repositories\Backend\Report\ReportRepository;
 use App\Http\Requests\Backend\Report\StoreReportRequest;
-
 
 
 
@@ -35,7 +35,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.report.index');
     }
 
     /**
@@ -45,7 +45,7 @@ class ReportController extends Controller
      */
     public function create()
     {
-        return view('backend.reports.create');
+        return view('backend.report.create');
     }
 
     /**

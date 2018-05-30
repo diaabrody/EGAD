@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Backend\Auth;
+namespace App\Repositories\Backend\Report;
 
 use App\Models\Auth\User;
 use App\Models\Report\Report;
