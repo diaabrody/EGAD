@@ -17,7 +17,7 @@ class CreateLocationsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('report_id');
             $table->string('name', '255');
-            $table->point('location');
+            $table->point('location')->nullable();
             $table->timestamps();
         });
     }
