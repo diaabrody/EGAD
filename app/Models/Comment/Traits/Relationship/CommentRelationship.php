@@ -11,10 +11,9 @@ trait CommentRelationship
     {
         return $this->belongsTo(User::class,'user_id');
     }
-    public function report()
+    
+    public function commentable()
     {
-        return $this->belongsTo(Report::class,'report_id');
+        return $this->morphTo();
     }
-
-
 }
