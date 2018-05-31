@@ -16,8 +16,7 @@
 <a href="reports/{{ $report->id }}"  name="view" class="btn btn-info"> view</a>
 </td>
 </tr>
-
+@endforeach
 </table>
 </div>
 
-@endforeach

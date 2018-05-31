@@ -1,8 +1,6 @@
-
-        <hr> 
-    </div>
-    <div>
-       
+  
+<div>
+    <hr>   
         <p>الاسم : {{ $report->child->name }}</p>
         <p> السن:{{ $report->child->age }}</p>     
         <p>تاريخ الفقد : {{ $report->child->lost_since }}</p>
@@ -23,7 +21,7 @@
      <br> 
      <input type="submit" class="btn btn-primary" value="ضع تعليقا"/>
 </form>
-
+<hr>  
 <h1>التعليقات</h1>
 @foreach ($report->comments as $comment) 
    {{  $comment->text  }}

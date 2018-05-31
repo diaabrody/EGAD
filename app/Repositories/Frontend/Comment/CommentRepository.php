@@ -28,7 +28,7 @@ class CommentRepository extends BaseRepository
             $comment = parent::create([
                 'user_id'   => $data['user_id'],
                 'commentable_id'  => $data['commentable_id'],
-                'commentable_type'  => 'reports',
+                'commentable_type'  => $data['commentable_type'],
                 'text'   => $data['text'],
                
             ]);
