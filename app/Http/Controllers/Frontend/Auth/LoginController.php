@@ -45,9 +45,33 @@ class LoginController extends Controller
      */
     public function username()
     {
-        return config('access.users.username');
+        //return config('access.users.username');
+        $identity  = request()->get('email');
+        $fieldName = filter_var($identity, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone_no';
+        request()->merge([$fieldName => $identity]);
+        return $fieldName;
+
     }
 
+    /**
+     * Validate the user login.
+     * @param Request $request
+     */
+    protected function validateLogin(Request $request)
+    {
+        $this->validate(
+            $request,
+            [
+                'email' => 'required|string',
+                'password' => 'required|string',
+            ],
+            [
+                'email.required' => 'Email or phone number is required',
+                'password.required' => 'Password is required',
+            ]
+        );
+    }
+    
     /**
      * The user has been authenticated.
      *
