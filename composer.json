@@ -9,6 +9,7 @@
         "appstract/laravel-blade-directives": "^0.4.4",
         "arcanedev/log-viewer": "^4.5",
         "arcanedev/no-captcha": "^5.0",
+        "cornford/googlmapper": "2.*",
         "creativeorange/gravatar": "~1.0",
         "davejamesmiller/laravel-breadcrumbs": "^5.0",
         "doctrine/dbal": "v2.4.2",
@@ -20,7 +21,6 @@
         "laravel/tinker": "^1.0",
         "spatie/laravel-html": "^2.4",
         "spatie/laravel-permission": "^2.5",
-        "cornford/googlmapper": "2.*",
         "webpatser/laravel-uuid": "^3.0"
     },
     "require-dev": {
