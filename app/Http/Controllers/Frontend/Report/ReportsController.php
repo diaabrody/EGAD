@@ -30,6 +30,8 @@ class ReportsController extends Controller
             'reports' => $reports
         ]);
     }
+    
+
     public function show($id)
     {
         $report =$this->reportRepository->findByid($id);
@@ -49,5 +51,7 @@ class ReportsController extends Controller
          ]);
         return redirect ('/reports/'.$id);
     }
+
+    
     
 }
