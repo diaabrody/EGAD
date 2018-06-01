@@ -1,5 +1,10 @@
-  
+@extends('frontend.layouts.app')
+
+@section('title', app_name() . ' | Reports')
+
+@section('content')
 <div>
+<img src="{{ url($report->child->photo) }}" alt="Avatar" style="height:200px">
     <hr>   
         <p>الاسم : {{ $report->child->name }}</p>
         <p> السن:{{ $report->child->age }}</p>     
@@ -28,3 +33,4 @@
    {{  $comment->user->name }}
    <br>
 @endforeach
+@endsection
