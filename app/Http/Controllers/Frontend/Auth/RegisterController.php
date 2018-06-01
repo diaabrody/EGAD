@@ -92,9 +92,9 @@ class RegisterController extends Controller
 
     public function fastregister(FastRegisterRequest $request){
 
-        $user = $this->userRepository->fastcreate($request->only( 'phone_no'));
+        $user = $this->userRepository->fastcreate($request->only('phone_no'));
 
-        return redirect(route('/reports/create'))->withFlashSuccess(
+        return redirect('/report/create')->withFlashSuccess(
                 __('Your password will be sent in SMS') 
         );
 
