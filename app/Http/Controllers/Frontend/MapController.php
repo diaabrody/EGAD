@@ -5,17 +5,31 @@ use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Repositories\Frontend\Location\LocationRepository;
+
 use App\Models\Location;
 
 class MapController extends Controller
 {
+
+    protected $locationRepository;
+
+
+    public function __construct(LocationRepository $location)
+    {
+        $this->locationRepository = $location;
+    }
+
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Cornford\Googlmapper\Facades\MapperException
      */
     public function index(Request $request){
-        $search = $request->search ? $request->search : 'Egypt';
-        $locations = Location::all();
+
+        $search = $request->search ? $request->search : 'Alexandria';
+        $locations =  $this->locationRepository->all();
+
         Mapper::location($search)->map( [ 'clusters' => ['size' => 10, 'center' => true , 'zoom' => 20 ] ,  'marker' => true ]);
 
         foreach($locations as $location)
@@ -36,15 +50,15 @@ class MapController extends Controller
         $lat =  Mapper::location($marker)->getLatitude();
         $lng = Mapper::location($marker)->getLongitude();
 
-        $place = new Location();
 
-        $place->name = $request->marker;
-        $place->report_id = 1;
+        $data = [
+            'name' => $request->marker,
+            'report_id' => 1,
+            'location' => new Point($lat , $lng),
+        ];
 
-        $place->location = new Point($lat, $lng);	// (lat, lng)
-
-        $place->save();
-
+        $this->locationRepository->create($data);
+//
 
         return redirect('/map');
 

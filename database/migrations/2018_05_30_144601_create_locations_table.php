@@ -15,7 +15,6 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('report_id');
             $table->string('name', '255');
             $table->point('location')->nullable();
             $table->timestamps();
