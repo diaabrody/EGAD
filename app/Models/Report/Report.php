@@ -15,6 +15,7 @@ class Report extends Model
         'child_id',
         'reporter_phone_number',
         'type',
+        'location_id'
     ];
 
 

@@ -46,10 +46,12 @@ class ReportRepository extends BaseRepository
 
         return DB::transaction(function () use ($data) {
             $report = parent::create([
-                 'user_id'   => $data['user_id'],
+                'user_id'   => $data['user_id'],
                 'child_id'  => $data['child_id'],
-              //  'location_id'  => $data['location_id'],
-                'reporter_phone_number'   => $data['reporter_phone_number'],
+                'reporter_phone_number'=> $data['reporter_phone_number'],
+                'type' => $data['type'],
+                'location_id'   => $data['location_id']
+
             ]);
             return $report;
         });

@@ -6,7 +6,6 @@ use Grimzy\LaravelMysqlSpatial\Types\Point;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Frontend\Location\LocationRepository;
-
 use App\Models\Location;
 
 class MapController extends Controller
