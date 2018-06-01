@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers\Frontend\Report;
 
+
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\Report\StoreReportChildRequest;
+use App\Repositories\Frontend\Child\ChildRepository;
 use Illuminate\Http\Request;
 use  App\Models\Report\Report;
 use  App\Models\Comment\Comment;
 use App\Repositories\Frontend\Report\ReportRepository;
 use App\Repositories\Frontend\Comment\CommentRepository;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
+use Grimzy\LaravelMysqlSpatial\Types\Point;
+use App\Repositories\Frontend\Location\LocationRepository;
 
 
 
@@ -16,11 +24,17 @@ class ReportsController extends Controller
 
     protected $reportRepository;
     protected $commentRepository;
+    protected $childRepository;
+    protected $locationRepository;
 
-    public function __construct(ReportRepository $reportRepository,CommentRepository $commentRepository)
+
+    public function __construct(ReportRepository $reportRepository,CommentRepository $commentRepository , ChildRepository $childRepository , LocationRepository $location)
     {
         $this->reportRepository = $reportRepository;
         $this->commentRepository = $commentRepository;
+        $this->childRepository = $childRepository;
+        $this->locationRepository = $location;
+
     }
 
     public function index()
@@ -30,6 +44,8 @@ class ReportsController extends Controller
             'reports' => $reports
         ]);
     }
+    
+
     public function show($id)
     {
         $report =$this->reportRepository->findByid($id);
@@ -38,16 +54,78 @@ class ReportsController extends Controller
         ]);
     }
 
-     public function comment(Request $req ,$id)
-    { 
-         $user_id=$this->reportRepository->findByid($id)->user->id;
-         $comment = $this->commentRepository->create([
-            'user_id'=>$user_id,
-            'commentable_id'=>$id,
-            'commentable_type'=>'reports',
-            'text'=>$req->comment,      
-         ]);
-        return redirect ('/reports/'.$id);
+   
+    public function  create()
+    {
+        return view("frontend.reports.create");
+
     }
+
+
+
+    public function  store(StoreReportChildRequest $request)
+    {
+
+
+
+        // insert into child
+
+        //insert photo
+
+        $file=$request->file('photo');
+        $name=$file->getClientOriginalName();
+        $input=$request->all();
+        $input['photo']=time().$name;
+
+        Storage::putFileAs(
+            'public/childs', $request->file('photo'), time().$name
+        );
+
+        //insert other child info
+
+        $child=$this->childRepository->create([
+            'name'=>$request->name,
+            'age'=>$request->age,
+            'gender'=>$request->gender,
+            'special_sign'=>$request->special_sign,
+            'photo'=>$input['photo'],
+
+        ]);
+
+
+
+
+
+        // insert into locations
+
+        $lat =  Mapper::location($input['location'])->getLatitude();
+        $lng = Mapper::location($input['location'])->getLongitude();
+
+
+        $data = [
+            'name' => $input['location'],
+            'location' => new Point($lat , $lng),
+        ];
+
+        $locationobject=$this->locationRepository->create($data);
+
+
+        // insert into reports
+        $this->reportRepository->create([
+            'user_id'=>Auth::user()->id,
+            'child_id'=>$child->id,
+            'reporter_phone_number'=>$input['reporter_phone_number'],
+            'type'=>'normal',
+            'location_id'=>$locationobject->id
+
+
+        ]);
+
+
+        return redirect ('/reports/');
+
+    }
+
+    
     
 }

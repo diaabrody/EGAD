@@ -1,22 +1,19 @@
-<table border="1px" class="table table-hover">
-<tr>
-<th>Report Number</th>
-<th>User Name</th>
-<th>actions</th>
-</tr>
+@extends('frontend.layouts.app')
+
+@section('title', app_name() . ' | Reports')
+
+@section('content')
+<div class="row">
 @foreach ($reports as $report)
-<tr>
-<td>
-{{ $report->id }} 
-</td>
-<td>
-{{ $report->user->name }}
-</td>
-<td>
-<a href="reports/{{ $report->id }}"  name="view" class="btn btn-info"> view</a>
-</td>
-</tr>
-@endforeach
-</table>
+<div class="card" style="width:300px">
+<img src="{{ url($report->child->photo) }}" alt="Avatar" style="height:200px">
+  <div class="container">
+    <b>{{ $report->child->name }}</b>
+    <hr>
+    <a href="reports/{{ $report->id }}"  name="view" > اقرا المزيد</a>
+  </div>
 </div>
+@endforeach
+</div>
+@endsection
 
