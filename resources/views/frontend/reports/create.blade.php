@@ -1,8 +1,11 @@
-<html>
+@extends('frontend.layouts.app')
+
+@section('content')
+
 <form method="post" enctype="multipart/form-data" >
 <div class="form-group">
-<label for="childname">اسم المفقود</label>
-    <input type="text" name="childname" class="form-control">
+<label for="name">اسم المفقود</label>
+    <input type="text" name="name" class="form-control">
 </div>
 
 <div class="form-group">
@@ -14,23 +17,23 @@
 
 </div>
 <div class="form-group">
-    <label for="childimage">صوره المفقود</label>
-    <input type="file" name="childimage" class="form-control">
+    <label for="photo">صوره المفقود</label>
+    <input type="file" name="photo" class="form-control">
 </div>
 
 <div class="form-group">
-    <label for="childage">السن</label>
-    <input type="text" name="childage" class="form-control">
+    <label for="age">السن</label>
+    <input type="number" name="age" class="form-control">
 </div>
 
 <div class="form-group">
-    <label for="childlocation">اين فقد</label>
-    <input type="text" name="childlocation" class="form-control">
+    <label for="name">اين فقد</label>
+    <input type="text" name="name" class="form-control">
 </div>
 
 <div class="form-group">
-    <label for="specialmark">علامات مميزه</label>
-    <textarea  name="specialmark" class="form-control"></textarea>
+    <label for="special_sign">علامات مميزه</label>
+    <textarea  name="special_sign" class="form-control"></textarea>
 </div>
 
 <div class="form-group">
@@ -42,4 +45,4 @@
 
 
 </form>
-</html>
+@stop

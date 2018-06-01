@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Report;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\Frontend\Child\ChildRepository;
 use Illuminate\Http\Request;
 use  App\Models\Report\Report;
 use  App\Models\Comment\Comment;
@@ -16,11 +17,13 @@ class ReportsController extends Controller
 
     protected $reportRepository;
     protected $commentRepository;
+    protected $childRepository;
 
-    public function __construct(ReportRepository $reportRepository,CommentRepository $commentRepository)
+    public function __construct(ReportRepository $reportRepository,CommentRepository $commentRepository , ChildRepository $childRepository)
     {
         $this->reportRepository = $reportRepository;
         $this->commentRepository = $commentRepository;
+        $this->childRepository = $childRepository;
     }
 
     public function index()
@@ -50,6 +53,42 @@ class ReportsController extends Controller
             'text'=>$req->comment,      
          ]);
         return redirect ('/reports/'.$id);
+    }
+
+
+
+
+
+    public function  create()
+    {
+        return view("frontend.reports.create");
+
+    }
+
+
+
+
+
+
+    public function  store(Request $request)
+    {
+
+        // insert into child
+
+
+
+        // insert into locations
+
+
+
+
+
+        // insert into reports
+
+
+
+
+
     }
 
     

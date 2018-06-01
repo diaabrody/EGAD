@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Storage;
 /**
  * Class ChildRepository.
  */
-class ReportRepository extends BaseRepository
+    class ChildRepository extends BaseRepository
 {
     public function model()
     {
@@ -23,5 +23,27 @@ class ReportRepository extends BaseRepository
     }
 
 
+     // this function will use in store function in controller
+        public function create(array $data)
+        {
 
-}
+            return DB::transaction(function () use ($data) {
+                $child = parent::create([
+                    'name'   => $data['name'],
+                    'age'  => $data['age'],
+                    'special_sign'  => $data['special_sign'],
+                    'photo'   => $data['photo'],
+
+                ]);
+                return $child;
+            });
+        }
+
+
+
+
+
+
+
+
+    }
