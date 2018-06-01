@@ -45,7 +45,6 @@ class LoginController extends Controller
      */
     public function username()
     {
-        //return config('access.users.username');
         $identity  = request()->get('email');
         $fieldName = filter_var($identity, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone_no';
         request()->merge([$fieldName => $identity]);
