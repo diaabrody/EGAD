@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Report;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\Report\StoreReportChildRequest;
 use App\Repositories\Frontend\Child\ChildRepository;
 use Illuminate\Http\Request;
 use  App\Models\Report\Report;
@@ -70,7 +71,7 @@ class ReportsController extends Controller
 
 
 
-    public function  store(Request $request)
+    public function  store(StoreReportChildRequest $request)
     {
 
 

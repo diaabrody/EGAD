@@ -24,13 +24,13 @@
 </div>
 
 <div class="form-group">
-    <label for="age">السن</label>
-    <input type="number" name="age" class="form-control">
+    <label for="age">العمر</label>
+    <input type="number" name="age" class="form-control" min="1">
 </div>
 
 <div class="form-group">
-    <label for="name">اين فقد</label>
-    <input type="text" name="name" class="form-control">
+    <label for="location">اين فقد</label>
+    <input type="text" name="location" class="form-control">
 </div>
 
 <div class="form-group">
@@ -39,8 +39,8 @@
 </div>
 
 <div class="form-group">
-    <label for="phonenumber">رقم تليفون المبلغ</label>
-    <input type="text" name="phonenumber" class="form-control">
+    <label for="reporter_phone_number">رقم تليفون المبلغ</label>
+    <input type="text" name="reporter_phone_number" class="form-control">
 </div>
 
 <button type="submit" class="btn btn-success">انشر بلاغ</button>
