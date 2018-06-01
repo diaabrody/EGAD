@@ -7,7 +7,11 @@
     </form>
 </div>
 
-
+@if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+@endif
 <div class="addMarker">
     <form action="map/addmarker" method="post">
         {{csrf_field()}}

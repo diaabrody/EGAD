@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Frontend;
+
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Frontend\Location\LocationRepository;
-
+use Cornford\Googlmapper\Exceptions\MapperSearchResultException;
 use App\Models\Location;
 
 class MapController extends Controller
@@ -25,15 +26,15 @@ class MapController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Cornford\Googlmapper\Facades\MapperException
      */
-    public function index(Request $request){
+    public function index(Request $request)
+    {
 
         $search = $request->search ? $request->search : 'Alexandria';
-        $locations =  $this->locationRepository->all();
+        $locations = $this->locationRepository->all();
 
-        Mapper::location($search)->map( [ 'clusters' => ['size' => 10, 'center' => true , 'zoom' => 20 ] ,  'marker' => true ]);
+        Mapper::location($search)->map(['clusters' => ['size' => 10, 'center' => true, 'zoom' => 20], 'marker' => true]);
 
-        foreach($locations as $location)
-        {
+        foreach ($locations as $location) {
             Mapper::marker($location->location->getLat(), $location->location->getLng(), ['symbol' => 'circle', 'scale' => 1000]);
 
         }
@@ -43,23 +44,27 @@ class MapController extends Controller
     }
 
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
-        $marker =  $request->marker;
+        $marker = $request->marker;
 
-        $lat =  Mapper::location($marker)->getLatitude();
-        $lng = Mapper::location($marker)->getLongitude();
-
+        /** @var Point $lat */
+        /** @var Point $lng */
+        try {
+            $lat = Mapper::location($marker)->getLatitude();
+            $lng = Mapper::location($marker)->getLongitude();
+        } catch (MapperSearchResultException $exception) {
+            return redirect('map')->with('message', $exception->getMessage());
+        }
 
         $data = [
             'name' => $request->marker,
-            'location' => new Point($lat , $lng),
+            'location' => new Point($lat, $lng),
         ];
 
         $this->locationRepository->create($data);
-//
 
-        return redirect('/map');
+        return redirect('map')->with('message', 'Marker Dropped Successfully');
 
     }
 
