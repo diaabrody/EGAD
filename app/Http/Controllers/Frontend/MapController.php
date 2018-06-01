@@ -53,7 +53,6 @@ class MapController extends Controller
 
         $data = [
             'name' => $request->marker,
-            'report_id' => 1,
             'location' => new Point($lat , $lng),
         ];
 
