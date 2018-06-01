@@ -5,6 +5,7 @@ namespace App\Repositories\Frontend\Report;
 use Carbon\Carbon;
 use App\Models\Report\Report;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
@@ -39,14 +40,33 @@ class ReportRepository extends BaseRepository
     }
 
 
+    // this function will use in store function in controller
+    public function create(array $data)
+    {
+
+        return DB::transaction(function () use ($data) {
+            $report = parent::create([
+                 'user_id'   => $data['user_id'],
+                'child_id'  => $data['child_id'],
+              //  'location_id'  => $data['location_id'],
+                'reporter_phone_number'   => $data['reporter_phone_number'],
+            ]);
+            return $report;
+        });
+    }
 
 
-  
 
 
 
 
 
-   
+
+
+
+
+
+
+
 
 }

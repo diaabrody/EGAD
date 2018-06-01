@@ -2,8 +2,10 @@
 
 @section('content')
 
-<form method="post" enctype="multipart/form-data" >
-<div class="form-group">
+<form method="post" enctype="multipart/form-data" action="/report/save" >
+    {{ csrf_field() }}
+
+    <div class="form-group">
 <label for="name">اسم المفقود</label>
     <input type="text" name="name" class="form-control">
 </div>
@@ -11,8 +13,8 @@
 <div class="form-group">
     <label for="gender">نوع</label>
     <select name="gender">
-        <option value="ذكر">ذكر</option>
-        <option value="انثى">انثى</option>
+        <option value="1">ذكر</option>
+        <option value="0">انثى</option>
     </select>
 
 </div>

@@ -9,7 +9,7 @@ use  App\Models\Report\Report;
 use  App\Models\Comment\Comment;
 use App\Repositories\Frontend\Report\ReportRepository;
 use App\Repositories\Frontend\Comment\CommentRepository;
-
+use Illuminate\Support\Facades\Storage;
 
 
 class ReportsController extends Controller
@@ -73,7 +73,33 @@ class ReportsController extends Controller
     public function  store(Request $request)
     {
 
+
+
         // insert into child
+
+        //insert photo
+
+        $file=$request->file('photo');
+        $name=$file->getClientOriginalName();
+        $input=$request->all();
+        $input['photo']=time().$name;
+
+        Storage::putFileAs(
+            'public/childs', $request->file('photo'), time().$name
+        );
+
+        //insert other child info
+
+        $child=$this->childRepository->create([
+            'name'=>$request->name,
+            'age'=>$request->age,
+            'gender'=>$request->gender,
+            'special_sign'=>$request->special_sign,
+            'photo'=>$input['photo'],
+
+        ]);
+
+
 
 
 
@@ -83,11 +109,12 @@ class ReportsController extends Controller
 
 
 
+
         // insert into reports
 
 
 
-
+        return redirect ('/reports/');
 
     }
 

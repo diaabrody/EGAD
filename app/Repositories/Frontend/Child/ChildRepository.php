@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Storage;
 
 
      // this function will use in store function in controller
+        //store new record in database
         public function create(array $data)
         {
 
@@ -31,6 +32,7 @@ use Illuminate\Support\Facades\Storage;
                 $child = parent::create([
                     'name'   => $data['name'],
                     'age'  => $data['age'],
+                    'gender'  => $data['gender'],
                     'special_sign'  => $data['special_sign'],
                     'photo'   => $data['photo'],
 
