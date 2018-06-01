@@ -54,30 +54,12 @@ class ReportsController extends Controller
         ]);
     }
 
-     public function comment(Request $req ,$id)
-    { 
-         $user_id=$this->reportRepository->findByid($id)->user->id;
-         $comment = $this->commentRepository->create([
-            'user_id'=>$user_id,
-            'commentable_id'=>$id,
-            'commentable_type'=>'reports',
-            'text'=>$req->comment,      
-         ]);
-        return redirect ('/reports/'.$id);
-    }
-
-
-
-
-
+   
     public function  create()
     {
         return view("frontend.reports.create");
 
     }
-
-
-
 
 
 

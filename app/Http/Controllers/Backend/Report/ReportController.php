@@ -35,7 +35,9 @@ class ReportController extends Controller
      */
     public function index()
     {
-        return view('backend.report.index');
+        return view('backend.report.index')
+        ->withReports($this->reportRepository->orderBy('id', 'asc')
+        ->paginate(25));
     }
 
     /**
