@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddLocationIdToReportsTable extends Migration
+class AddCityAndAreaToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class AddLocationIdToReportsTable extends Migration
      */
     public function up()
     {
-        Schema::table('reports', function (Blueprint $table) {
-            //
-            $table->integer('location_id')->nullable(false);
-
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('city')->nullable();
+            $table->string('area')->nullable();
         });
     }
 
@@ -27,10 +26,8 @@ class AddLocationIdToReportsTable extends Migration
      */
     public function down()
     {
-        Schema::table('reports', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
-            $table->dropColumn('location_id');
-
         });
     }
 }
