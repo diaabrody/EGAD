@@ -48,6 +48,8 @@ class User extends Authenticatable
         'confirmed',
         'timezone',
         'date_of_birth',
+        'city',
+        'area',
         'phone_no',
         'gender'
     ];

@@ -34,6 +34,8 @@ class RegisterRequest extends FormRequest
             'email'                => ['required', 'string', 'email', 'max:191'],
             'phone_no'             => ['required', 'regex:/(01)[0-9]{9}/', Rule::unique('users')],
             'password'             => 'required|string|min:6|confirmed',
+            'city'                 => 'required|string|max:191',
+            'area'                 => 'required|string|max:191',
             'g-recaptcha-response' => ['required_if:captcha_status,true', new CaptchaRule()],
         ];
     }

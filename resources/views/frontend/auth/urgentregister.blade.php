@@ -13,7 +13,7 @@
                 </div><!--card-header-->
 
                 <div class="card-body">
-                    {{ html()->form('POST', route('frontend.auth.fastregister.post'))->open() }}
+                    {{ html()->form('POST', route('frontend.auth.urgentregister.post'))->open() }}
                         
 
                         <div class="row">

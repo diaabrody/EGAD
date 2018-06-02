@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Frontend\Report;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\Report\StoreReportChildRequest;
-use App\Repositories\Frontend\Child\ChildRepository;
 use Illuminate\Http\Request;
 use  App\Models\Report\Report;
 use  App\Models\Comment\Comment;
@@ -14,14 +13,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
-use App\Repositories\Frontend\Location\LocationRepository;
-use phpDocumentor\Reflection\Types\Null_;
+
 
 
 class ReportsController extends Controller
 {
 
     protected $reportRepository;
+
+
+
+
 
 
     public function __construct(ReportRepository $reportRepository)
@@ -38,7 +40,6 @@ class ReportsController extends Controller
             'reports' => $reports
         ]);
     }
-    
 
     public function show($id)
     {

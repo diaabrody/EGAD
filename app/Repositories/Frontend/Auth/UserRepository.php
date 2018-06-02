@@ -98,7 +98,8 @@ class UserRepository extends BaseRepository
                 'email'             => $data['email'],
                 'phone_no'          => $data['phone_no'],
                 'gender'            => $data['gender'],
-                'date_of_birth'     => $data['date_of_birth'],
+                'city'              => $data['city'],
+                'area'              => $data['area'],
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'active'            => 1,
                 'password'          => $data['password'],
@@ -139,7 +140,7 @@ class UserRepository extends BaseRepository
      * @throws \Exception
      * @throws \Throwable
      */
-    public function fastcreate(array $data)
+    public function urgentcreate(array $data)
     {
         return DB::transaction(function () use ($data) {
             $user = parent::create([

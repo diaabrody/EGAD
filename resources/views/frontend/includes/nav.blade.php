@@ -15,7 +15,7 @@
                     @include('includes.partials.lang')
                 </li>
             @endif
-
+            <li class="nav-item"><a href="/reports" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">All Reports</a></li>
             @auth
                 <li class="nav-item"><a href="{{route('frontend.user.dashboard')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.user.dashboard')) }}">{{ __('navs.frontend.dashboard') }}</a></li>
             @endauth
@@ -25,7 +25,7 @@
 
                 @if (config('access.registration'))
                     <li class="nav-item"><a href="{{route('frontend.auth.register')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.register')) }}">{{ __('navs.frontend.register') }}</a></li>
-                    <li class="nav-item"><a href="{{route('frontend.auth.fastregister')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.register')) }}">{{ __('Report Now') }}</a></li>
+                    <li class="nav-item"><a href="{{route('frontend.auth.urgentregister')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.register')) }}">{{ __('Report Now') }}</a></li>
                 @endif
             @else
                 <li class="nav-item dropdown">

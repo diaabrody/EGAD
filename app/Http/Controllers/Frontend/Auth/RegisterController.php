@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
-use App\Http\Requests\Frontend\Auth\FastRegisterRequest;
 use Illuminate\Http\Request;
 use App\Helpers\Frontend\Auth\Socialite;
 use App\Events\Frontend\Auth\UserRegistered;
@@ -56,11 +55,6 @@ class RegisterController extends Controller
             ->withSocialiteLinks((new Socialite)->getSocialLinks());
     }
 
-    public function showFastRegistrationForm()
-    {
-        return view('frontend.auth.fastregister');
-    }
-
     /**
      * @param RegisterRequest $request
      *
@@ -69,7 +63,7 @@ class RegisterController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        $user = $this->userRepository->create($request->only('first_name', 'last_name', 'email', 'phone_no', 'gender', 'date_of_birth', 'password'));
+        $user = $this->userRepository->create($request->only('first_name', 'last_name', 'email', 'phone_no', 'gender', 'city', 'area', 'password'));
 
         // If the user must confirm their email or their account requires approval,
         // create the account but don't log them in.
@@ -90,13 +84,5 @@ class RegisterController extends Controller
         }
     }
 
-    public function fastregister(FastRegisterRequest $request){
-
-        $user = $this->userRepository->fastcreate($request->only('phone_no'));
-
-        return redirect('/report/create')->withFlashSuccess(
-                __('Your password will be sent in SMS') 
-        );
-
-    }
+   
 }

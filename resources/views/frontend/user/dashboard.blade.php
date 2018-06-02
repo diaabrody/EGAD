@@ -53,7 +53,7 @@
                         </div><!--col-md-4-->
                       
 
-                        <div class="col-md-8 order-2 order-sm-1">
+                        <div class="col-md-6 order-2 order-sm-1">
                            
                             <div class="row">
                                 <div class="col">
@@ -62,17 +62,18 @@
                                         <div class="card-header">
                                             Report
                                         </div><!--card-header-->
-
                                         <div class="card-body">
-                                        <img src="{{ url($report->child->photo) }}" alt="Avatar" style="height:200px">
-                                        <br>
-                                        <b>{{ $report->child->name }}</b>
-                                        <br>
-                                        <a href="reports/{{ $report->id }}"  name="view" > Read More </a>
+                                            <img src="{{ $report->photo }}" alt="Avatar" style="height:200px">
+                                            <br>
+                                            <b>{{ $report->name }}</b>
+                                            <br>
+                                            <a href="reports/{{ $report->id }}"  name="view" > Read More </a>
                                         </div><!--card-body-->
                                     </div><!--card-->
-                                    @endforeach
-                                </div><!--col-md-6-->
+                                @endforeach
+                                
+                                </div><!--col-md-4-->
+                                
                             </div><!--row-->
 
                             <div class="row">

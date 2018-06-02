@@ -47,8 +47,8 @@ Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
         }
 
         // Fast Registration Routes
-        Route::get('register/fast', 'RegisterController@showFastRegistrationForm')->name('fastregister');
-        Route::post('register/fast', 'RegisterController@fastregister')->name('fastregister.post');
+        Route::get('register/urgent', 'UrgentRegisterController@showUrgentRegistrationForm')->name('urgentregister');
+        Route::post('register/urgent', 'UrgentRegisterController@register')->name('urgentregister.post');
 
         // Confirm Account Routes
         Route::get('account/confirm/{token}', 'ConfirmAccountController@confirm')->name('account.confirm');
