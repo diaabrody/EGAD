@@ -46,7 +46,7 @@ class UrgentRegisterController extends Controller
 
     public function register(UrgentRegisterRequest $request){
 
-        event(new Registered( $user = $this->userRepository->fastcreate($request->only('phone_no'))));
+        event(new Registered( $user = $this->userRepository->urgentcreate($request->only('phone_no'))));
 
         $this->guard()->login($user);
        

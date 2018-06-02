@@ -67,15 +67,27 @@
                         </div><!--row-->
                         
                         <div class="row">
-                            <div class="col">
+                            <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                {{ html()->label(__('Date Of Birth'))->for('date_of_birth') }}
+                                    {{ html()->label(__('City'))->for('city') }}
 
-                                {{ html()->date('date_of_birth')
-                                    ->class('form-control') }}
+                                    {{ html()->text('city')
+                                        ->class('form-control')
+                                        ->required() }}
+                                </div><!--col-->
+                            </div><!--row-->
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                {{ html()->label(__('Area'))->for('area') }}
+
+                                {{ html()->text('area')
+                                    ->class('form-control')
+                                    ->required()}}
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->
+                
 
                         <div class="row">
                             <div class="col">
