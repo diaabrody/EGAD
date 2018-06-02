@@ -26,7 +26,8 @@ class EditReportsTable extends Migration
             $table->string('hair_color')->nullable();
             $table->dateTime('lost_since')->nullable();
             $table->dateTime('found_since')->nullable();
-            $table->point('last_seen_at')->nullable();
+            $table->string('last_seen_at')->nullable();
+            $table->point('location')->nullable();            
             $table->dateTime('last_seen_on')->nullable();
             $table->boolean('is_found')->default(false);
         });

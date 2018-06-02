@@ -20,6 +20,27 @@
 
                 <div class="row mt-4 mb-4">
                     <div class="col">
+                            <div class="form-group row">
+                                    {{ html()->label('Report Type')->class('col-md-2 form-control-label')->for('type') }}
+        
+                                    <div class="col-md-10">
+                                            {{ html()->select('type')
+                                            ->options([ "Select Report Type", 'Urgent' => 'Urgent', 'Normal' => 'Normal', 'Child Found'=>'Child Found'])
+                                            ->class('form-control')->required() }}
+        
+                                    </div><!--col-->
+                                </div><!--form-group-->
+                                <div class="form-group row">
+                                        {{ html()->label('Phone Number')->class('col-md-2 form-control-label')->for('reporter_phone_number') }}
+                
+                                            <div class="col-md-10">
+                                                {{ html()->text('reporter_phone_number')
+                                                    ->class('form-control')
+                                                    ->placeholder('Cotact Phone Number')
+                                                    ->attribute('maxlength', 11)
+                                                     }}
+                                            </div><!--col-->
+                                        </div><!--form-group-->
                         <div class="form-group row">
                             {{ html()->label('Name')->class('col-md-2 form-control-label')->for('name') }}
 
@@ -114,6 +135,65 @@
                                                     ->class('form-control')
                                                     
                                                     }}
+                                            </div><!--col-->
+                                        </div><!--form-group-->
+                                        <div class="form-group row">
+                                            {{ html()->label('Lost Since')->class('col-md-2 form-control-label')->for('lost_since') }}
+                
+                                            <div class="col-md-10">
+                                                {{ html()->date('lost_since')
+                                                    ->class('form-control')
+                                                    ->required()
+                                                    
+                                                    }}
+                                            </div><!--col-->
+                                        </div><!--form-group-->
+
+                                        <div class="form-group row">
+                                            {{ html()->label('Found Since')->class('col-md-2 form-control-label')->for('found_since') }}
+                
+                                            <div class="col-md-10">
+                                                {{ html()->date('found_since')
+                                                    ->class('form-control')
+                                                    
+                                    
+                                                    }}
+                                            </div><!--col-->
+                                        </div><!--form-group-->
+
+                                        <div class="form-group row">
+                                            {{ html()->label('Last seen on')->class('col-md-2 form-control-label')->for('last_seen_on') }}
+                
+                                            <div class="col-md-10">
+                                                {{ html()->date('last_seen_on')
+                                                    ->class('form-control')
+                                                    
+                                                    
+                                                    }}
+                                            </div><!--col-->
+                                        </div><!--form-group-->
+
+                                        <div class="form-group row">
+                                                {{ html()->label('Last Seen At')->class('col-md-2 form-control-label')->for('last_seen_at') }}
+                    
+                                                <div class="col-md-10">
+                                                    {{ html()->text('last_seen_at')
+                                                        ->class('form-control')
+                                                        ->required()
+                                                        
+                                                        }}
+                                                </div><!--col-->
+                                            </div><!--form-group-->
+
+                                        <div class="form-group row">
+                                            {{ html()->label('Is Found?')->class('col-md-2 form-control-label')->for('is_found') }}
+            
+                                            <div class="col-md-10">
+                                                <label class="switch switch-3d switch-primary">
+                                                    {{ html()->checkbox('is_found', false, '0')->class('switch-input') }}
+                                                    <span class="switch-label"></span>
+                                                    <span class="switch-handle"></span>
+                                                </label>
                                             </div><!--col-->
                                         </div><!--form-group-->
                             
