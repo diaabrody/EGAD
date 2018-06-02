@@ -33,15 +33,31 @@
     <input type="text" name="location" class="form-control" placeholder="ادخل المنطقه والمحافظه">
 </div>
 
+    @if ($status == "normal" || $status == "quick")
+    <div class="form-group">
+        <label for="lost_since">منذ متي فقد</label>
+        <input type="date"  name="lost_since" class="form-control" placeholder="منذ متي فقد">
+    </div>
+    @else
+        <div class="form-group">
+            <label for="found_since">منذ متي وجد </label>
+            <input type="date"  name="found_since" class="form-control" placeholder="منذ متي وجد">
+        </div>
+    @endif
+
+
 <div class="form-group">
     <label for="special_sign">علامات مميزه</label>
     <textarea  name="special_sign" class="form-control" placeholder="ادخل علامات مميزه"></textarea>
 </div>
 
+
 <div class="form-group">
     <label for="reporter_phone_number">رقم تليفون المبلغ</label>
     <input type="text" name="reporter_phone_number" class="form-control" placeholder="ادخل رقم تليفون المبلغ">
 </div>
+
+    <input type="hidden" value="{{$status}}" name="status">
 
 <button type="submit" class="btn btn-success">انشر بلاغ</button>
 

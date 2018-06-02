@@ -47,22 +47,32 @@ class ReportRepository extends BaseRepository
     }
 
 
+
+
+
     // this function will use in store function in controller
-    public function create(array $data)
-    {
+//    public function create(array $data)
+//    {
+//
+//        return DB::transaction(function () use ($data) {
+//            $report = parent::create([
+//
+//                'name'   => $data['name'],
+//                'age'  => $data['age'],
+//                'gender'  => $data['gender'],
+//                'special_sign'  => $data['special_sign'],
+//                'photo'   => $data['photo'],
+//                'lost_since'   => $data['lost_since'],
+//                'reporter_phone_number'  => $data['reporter_phone_number'],
+//                'user_id'   => $data['user_id'],
+//                'type' => $data['type'],
+//                'found_since' => $data['found_since']
+//
+//            ]);
+//            return $report;
+//        });
+//    }
 
-        return DB::transaction(function () use ($data) {
-            $report = parent::create([
-                'user_id'   => $data['user_id'],
-                'child_id'  => $data['child_id'],
-                'reporter_phone_number'=> $data['reporter_phone_number'],
-                'type' => $data['type'],
-                'location_id'   => $data['location_id']
-
-            ]);
-            return $report;
-        });
-    }
 
 
 
