@@ -6,11 +6,11 @@
 <div class="row">
 @foreach ($reports as $report)
 <div class="card" style="width:300px">
-<img src="{{ url($report->child->photo) }}" alt="Avatar" style="height:200px">
+<img src="{{ $report->photo }}" alt="Avatar" style="height:200px">
   <div class="container">
-    <b>{{ $report->child->name }}</b>
+    <b>{{ $report->name }}</b>
     <hr>
-    <a href="reports/{{ $report->id }}"  name="view" > اقرا المزيد</a>
+    <a href="reports/{{ $report->id }}"  name="view" > Read More</a>
   </div>
 </div>
 @endforeach
