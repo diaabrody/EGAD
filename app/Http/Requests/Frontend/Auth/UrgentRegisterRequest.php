@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 /**
  * Class RegisterRequest.
  */
-class FastRegisterRequest extends FormRequest
+class UrgentRegisterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,7 @@ class FastRegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone_no'             => ['required', 'regex:/(01)[0-9]{9}/', Rule::unique('users')],
+            'phone_no'  => ['required', 'regex:/(01)[0-9]{9}/', Rule::unique('users')],
             
         ];
     }
