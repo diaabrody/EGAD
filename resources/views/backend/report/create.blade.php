@@ -4,7 +4,7 @@
 
 
 @section('content')
-    {{ html()->form('POST', route('admin.report.report.store'))->class('form-horizontal')->open() }}
+    {{ html()->form('POST', route('admin.report.report.store'))->class('form-horizontal')->attribute('enctype', 'multipart/form-data')->open() }}
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -25,7 +25,7 @@
         
                                     <div class="col-md-10">
                                             {{ html()->select('type')
-                                            ->options([ "Select Report Type", 'Urgent' => 'Urgent', 'Normal' => 'Normal', 'Child Found'=>'Child Found'])
+                                            ->options([''=> "Select Report Type", 'Urgent' => 'Urgent', 'Normal' => 'Normal', 'Child Found'=>'Child Found'])
                                             ->class('form-control')->required() }}
         
                                     </div><!--col-->
@@ -86,10 +86,10 @@
                         </div><!--form-group-->
 
                         <div class="form-group row">
-                            {{ html()->label('Special Signs')->class('col-md-2 form-control-label')->for('special_signs') }}
+                            {{ html()->label('Special Sign')->class('col-md-2 form-control-label')->for('special_sign') }}
 
                             <div class="col-md-10">
-                                {{ html()->text('special_signs')
+                                {{ html()->text('special_sign')
                                     ->class('form-control')
                                     ->placeholder('Ex: Birth mark')
                                     }}
@@ -190,7 +190,7 @@
             
                                             <div class="col-md-10">
                                                 <label class="switch switch-3d switch-primary">
-                                                    {{ html()->checkbox('is_found', false, '0')->class('switch-input') }}
+                                                    {{ html()->checkbox('is_found')->class('switch-input') }}
                                                     <span class="switch-label"></span>
                                                     <span class="switch-handle"></span>
                                                 </label>

@@ -26,7 +26,7 @@
                             <th> Type </th>
                             <th> Phone Number </th>
                             <th> created by </th>
-                            <th> Child </th>
+                            <th> Child Name </th>
                             <th> Created at </th>
                             <th> Last Updated  </th>                            
                             <th> Actions </th>
@@ -38,7 +38,7 @@
                                 <td> {{$report->type}}</td>
                                 <td>{{ ucwords($report->reporter_phone_number) }}</td>
                                 <td>{{$report->user->first_name}}</td>   
-                                <td>{{$report->child->name}}</td>   
+                                <td>{{$report->name}}</td>   
                                 <td>{{ $report->created_at }}</td>
                                 <td>{{ $report->updated_at }}</td>
                                 <td>{!! $report->action_buttons !!}</td>

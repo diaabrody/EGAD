@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Backend\Report;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -28,7 +28,9 @@ class StoreReportRequest extends FormRequest
             'reporter_phone_number'=>'required|regex:/(01)[0-9]{9}/',
             'gender'=>'required',
             'photo'=>'mimes:jpeg,png',
-            'type'=> 'required'
+            'type'=> 'required',
+            'last_seen_at'=>'required',
+            'last_seen_on'=>'required',
         ];
     }
 }

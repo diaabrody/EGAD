@@ -8,6 +8,7 @@ use App\Models\Child\Child;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\Input;
 use Carbon\Carbon;
 use Auth;
 
@@ -31,15 +32,16 @@ class ReportRepository extends BaseRepository
      */
     public function create(array $data) : Report
     {
-        $path=Input::file('photo')->store('public');
-
-        $child= DB::transaction(function () use ($data) {
-
-            $child = parent::create([
+        
+        return DB::transaction(function () use ($data) {
+            $Report = parent::create([
+                'user_id' => Auth::user()->id,
+                'reporter_phone_number' => $data['reporter_phone_number'],
+                'type' => $data['type'],
                 'name' => $data['name'],
                 'age' => $data['age'],
                 'gender' => $data['gender'],
-                'photo' => $path,
+                'photo' =>Input::file('photo')->store('public/children'),
                 'special_sign' => $data['special_sign'],
                 'height' => $data['height'],
                 'weight' => $data['weight'],
@@ -48,27 +50,17 @@ class ReportRepository extends BaseRepository
                 'lost_since' => $data['lost_since'],
                 'found_since' => $data['found_since'],
                 'last_seen_at' => $data['last_seen_at'],
-                'lasst_seen_on' => $data['last_seen_on'],
-                'created_at' => \Carbon::now(),
-
-
-            ]);
-
-
-
-        });
-        return DB::transaction(function () use ($data) {
-            $Report = parent::create([
-                'user_id' => Auth::user()->id,
-                'child_id' => $child->id,
-                'reporter_phone_number' => $data['reporter_phone_number'],
-                'type' => $data['type'],
-                'created_at' => \Carbon::now(),
+                'last_seen_on' => $data['last_seen_on'],
+                'is_found' => $data['is_found']
 
             ]);
 
+            
 
 
+            return $Report;
         });
+
+       
     }
 }
