@@ -51,34 +51,29 @@
                                 </div>
                             </div><!--card-->
                         </div><!--col-md-4-->
+                      
 
-                        <div class="col-md-8 order-2 order-sm-1">
+                        <div class="col-md-6 order-2 order-sm-1">
+                           
                             <div class="row">
                                 <div class="col">
+                                @foreach ($reports as $report)
                                     <div class="card mb-4">
                                         <div class="card-header">
-                                            Item
+                                            Report
                                         </div><!--card-header-->
-
                                         <div class="card-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non qui facilis deleniti expedita fuga ipsum numquam aperiam itaque cum maxime.
+                                            <img src="{{ $report->photo }}" alt="Avatar" style="height:200px">
+                                            <br>
+                                            <b>{{ $report->name }}</b>
+                                            <br>
+                                            <a href="reports/{{ $report->id }}"  name="view" > Read More </a>
                                         </div><!--card-body-->
                                     </div><!--card-->
-                                </div><!--col-md-6-->
-                            </div><!--row-->
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card mb-4">
-                                        <div class="card-header">
-                                            Item
-                                        </div><!--card-header-->
-
-                                        <div class="card-body">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non qui facilis deleniti expedita fuga ipsum numquam aperiam itaque cum maxime.
-                                        </div><!--card-body-->
-                                    </div><!--card-->
-                                </div><!--col-md-6-->
+                                @endforeach
+                                
+                                </div><!--col-md-4-->
+                                
                             </div><!--row-->
 
                             <div class="row">

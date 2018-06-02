@@ -56,7 +56,11 @@
                 </div>
             </div><!--col-->
 
-            <!--col-->
+            <div class="col-5">
+                    <div class="float-right">
+                        {!! $reports->render() !!}
+                    </div>
+                </div><!--col-->
         </div><!--row-->
     </div><!--card-body-->
 </div><!--card-->

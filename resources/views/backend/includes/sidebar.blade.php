@@ -38,6 +38,11 @@
                                 {{ __('labels.backend.access.roles.management') }}
                             </a>
                         </li>
+                        <li class="nav-item">
+                                <a class="nav-link {{ active_class(Active::checkUriPattern('admin/report*')) }}" href="{{ route('admin.report.report.index') }}">
+                                    Report Management
+                                </a>
+                            </li>
                     </ul>
                 </li>
             @endif

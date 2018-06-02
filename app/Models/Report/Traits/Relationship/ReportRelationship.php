@@ -12,10 +12,7 @@ trait ReportRelationship
     {
         return $this->belongsTo(User::class,'user_id');
     }
-    public function child()
-    {
-        return $this->belongsTo(Child::class,'child_id');
-    }
+    
     public function comments()
     {
         return $this->morphMany(Comment::class,'commentable');

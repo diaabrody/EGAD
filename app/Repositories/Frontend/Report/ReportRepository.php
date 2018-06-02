@@ -26,8 +26,15 @@ class ReportRepository extends BaseRepository
     public function retriveAll()
     {
          $reports=$this->model->all();
-        return $reports;
+         return $reports;
     }
+    public function retriveUser_reports()
+    {
+         $user= Auth::user(); 
+         $reports=$this->model->Where('user_id','=',$user->id)->get();
+         return $reports;
+    }
+
 
     public function findByid($id)
     {
