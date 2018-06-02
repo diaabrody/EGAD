@@ -18,7 +18,7 @@
         <p> علامة مميزة:{{ $report->child->special_sign }}</p>      
     <hr>    
 </div>
-
+@if (Auth::user())
 <form role="form"  method="post" action="/reports/comment/{{$report->id}}">
      {{ csrf_field() }}
      <label>التعليق:</label>
@@ -26,6 +26,8 @@
      <br> 
      <input type="submit" class="btn btn-primary" value="ضع تعليقا"/>
 </form>
+@endif
+
 <hr>  
 <h1>التعليقات</h1>
 @foreach ($report->comments as $comment) 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend\Report;
 
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\Report\StoreReportChildRequest;
 use App\Repositories\Frontend\Child\ChildRepository;
@@ -9,22 +10,28 @@ use Illuminate\Http\Request;
 use  App\Models\Report\Report;
 use  App\Models\Comment\Comment;
 use App\Repositories\Frontend\Report\ReportRepository;
-use App\Repositories\Frontend\Comment\CommentRepository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
+use Grimzy\LaravelMysqlSpatial\Types\Point;
+use App\Repositories\Frontend\Location\LocationRepository;
+
 
 
 class ReportsController extends Controller
 {
 
     protected $reportRepository;
-    protected $commentRepository;
     protected $childRepository;
+    protected $locationRepository;
 
-    public function __construct(ReportRepository $reportRepository,CommentRepository $commentRepository , ChildRepository $childRepository)
+
+    public function __construct(ReportRepository $reportRepository, ChildRepository $childRepository , LocationRepository $location)
     {
         $this->reportRepository = $reportRepository;
-        $this->commentRepository = $commentRepository;
         $this->childRepository = $childRepository;
+        $this->locationRepository = $location;
+
     }
 
     public function index()
@@ -56,12 +63,8 @@ class ReportsController extends Controller
     public function  store(StoreReportChildRequest $request)
     {
 
-
-
         // insert into child
-
         //insert photo
-
         $file=$request->file('photo');
         $name=$file->getClientOriginalName();
         $input=$request->all();
@@ -81,22 +84,25 @@ class ReportsController extends Controller
             'photo'=>$input['photo'],
 
         ]);
-
-
-
-
-
         // insert into locations
 
-
-
-
-
+        $lat =  Mapper::location($input['location'])->getLatitude();
+        $lng = Mapper::location($input['location'])->getLongitude();
+        $data = [
+            'name' => $input['location'],
+            'location' => new Point($lat , $lng),
+        ];
+        $locationobject=$this->locationRepository->create($data);
 
         // insert into reports
+        $this->reportRepository->create([
+            'user_id'=>Auth::user()->id,
+            'child_id'=>$child->id,
+            'reporter_phone_number'=>$input['reporter_phone_number'],
+            'type'=>'normal',
+            'location_id'=>$locationobject->id
 
-
-
+        ]);
         return redirect ('/reports/');
 
     }

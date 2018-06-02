@@ -48,5 +48,9 @@
       "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
       ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue-preprocessor"
     }
+  },
+  "dependencies": {
+    "laravel-echo": "^1.4.0",
+    "pusher-js": "^4.2.2"
   }
 }

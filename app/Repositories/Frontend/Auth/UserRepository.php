@@ -133,6 +133,51 @@ class UserRepository extends BaseRepository
     }
 
     /**
+     * @param array $data
+     *
+     * @return \Illuminate\Database\Eloquent\Model|mixed
+     * @throws \Exception
+     * @throws \Throwable
+     */
+    public function fastcreate(array $data)
+    {
+        return DB::transaction(function () use ($data) {
+            $user = parent::create([
+                'phone_no'          => $data['phone_no'],
+                'confirmation_code' => md5(uniqid(mt_rand(), true)),
+                'active'            => 1,
+                'password'          => '123456',
+                                    // Users do not need to confirm email
+                'confirmed'         => 1,
+            ]);
+
+            if ($user) {
+                /*
+                 * Add the default site role to the new user
+                 */
+                $user->assignRole(config('access.users.default_role'));
+            }
+
+            /*
+             * If users have to confirm their email and this is not a social account,
+             * and the account does not require admin approval
+             * send the confirmation email
+             *
+             * If this is a social account they are confirmed through the social provider by default
+             */
+            if (config('access.users.confirm_email')) {
+                // Pretty much only if account approval is off, confirm email is on, and this isn't a social account.
+                $user->notify(new UserNeedsConfirmation($user->confirmation_code));
+            }
+
+            /*
+             * Return the user object
+             */
+            return $user;
+        });
+    }
+
+    /**
      * @param       $id
      * @param array $input
      * @param bool|UploadedFile  $image

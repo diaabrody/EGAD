@@ -26,8 +26,15 @@ class ReportRepository extends BaseRepository
     public function retriveAll()
     {
          $reports=$this->model->all();
-        return $reports;
+         return $reports;
     }
+    public function retriveUser_reports()
+    {
+         $user= Auth::user(); 
+         $reports=$this->model->Where('user_id','=',$user->id)->get();
+         return $reports;
+    }
+
 
     public function findByid($id)
     {
@@ -46,10 +53,12 @@ class ReportRepository extends BaseRepository
 
         return DB::transaction(function () use ($data) {
             $report = parent::create([
-                 'user_id'   => $data['user_id'],
+                'user_id'   => $data['user_id'],
                 'child_id'  => $data['child_id'],
-              //  'location_id'  => $data['location_id'],
-                'reporter_phone_number'   => $data['reporter_phone_number'],
+                'reporter_phone_number'=> $data['reporter_phone_number'],
+                'type' => $data['type'],
+                'location_id'   => $data['location_id']
+
             ]);
             return $report;
         });
