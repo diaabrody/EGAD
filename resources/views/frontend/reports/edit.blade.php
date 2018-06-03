@@ -47,7 +47,7 @@
 
         <div class="form-group">
             <label for="location">اين فقد</label>
-            <input type="text" name="location" class="form-control" placeholder="ادخل المنطقه والمحافظه" >
+            <input type="text" name="location" class="form-control" placeholder="ادخل المنطقه والمحافظه"  value="{{$report->last_seen_at}}">
         </div>
 
         @if ($report->type == "normal" || $report->type  == "quick")
