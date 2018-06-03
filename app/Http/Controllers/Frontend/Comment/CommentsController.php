@@ -10,6 +10,8 @@ use App\Models\Comment\Comment;
 use App\Repositories\Frontend\Report\ReportRepository;
 use App\Repositories\Frontend\Comment\CommentRepository;
 use Illuminate\Support\Facades\Storage;
+use App\Events\CommentsonReport;
+
 
 
 class CommentsController extends Controller
@@ -33,6 +35,10 @@ class CommentsController extends Controller
             'commentable_type'=>'reports',
             'text'=>$req->comment,      
          ]);
+         $comment->save();
+
+        event(new CommentsonReport($comment));
+
         return redirect ('/reports/'.$id);
     }
 }

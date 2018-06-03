@@ -19,7 +19,31 @@
             @auth
                 <li class="nav-item"><a href="{{route('frontend.user.dashboard')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.user.dashboard')) }}">{{ __('navs.frontend.dashboard') }}</a></li>
             @endauth
+            
+            <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="nav-item dropdown dropdown-notifications">
+              <a href="#notifications-panel" class="nav-link dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+                <i data-count="0" class="glyphicon glyphicon-bell notification-icon"></i>
+              </a>
 
+              <div class="dropdown-container">
+                <div class="dropdown-toolbar">
+                  <div class="dropdown-toolbar-actions">
+                    <a href="#">Mark all as read</a>
+                  </div>
+                  <h3 class="dropdown-toolbar-title">Notifications (<span class="notif-count">0</span>)</h3>
+                </div>
+                <ul class="dropdown-menu">
+                </ul>
+                <div class="dropdown-footer text-center">
+                  <a href="#">View All</a>
+                </div>
+              </div>
+            </li>
+           
+          </ul>
+        </div>
             @guest
                 <li class="nav-item"><a href="{{route('frontend.auth.login')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.login')) }}">{{ __('navs.frontend.login') }}</a></li>
 
