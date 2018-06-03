@@ -71,11 +71,13 @@ class ReportController extends Controller
             'lost_since',
             'found_since',
             'last_seen_at',
-            'last_seen_on'
-            
+            'last_seen_on',
+            'type',
+            'reporter_phone_number',
+            'is_found'
         ));
 
-        return redirect()->route('backend.reports.index')->withFlashSuccess(__('alerts.backend.reports.created'));
+        return redirect()->route('admin.report.report.index')->withFlashSuccess('Report Created Succesfuly');
     }
 
     /**

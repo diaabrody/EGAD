@@ -31,11 +31,11 @@ class Report extends Model
         'is_found',
         'reporter_phone_number',
         'type',
-        'location_id'
+        'location'
     ];
 
     protected $spatialFields = [
-        'last_seen_at',        
+        'location'        
     ];
 
 
