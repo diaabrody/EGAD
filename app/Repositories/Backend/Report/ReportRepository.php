@@ -11,6 +11,10 @@ use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\Input;
 use Carbon\Carbon;
 use Auth;
+use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
+use Grimzy\LaravelMysqlSpatial\Types\Point;
+use Cornford\Googlmapper\Exceptions\MapperSearchResultException;
+
 
 class ReportRepository extends BaseRepository
 {
@@ -32,8 +36,20 @@ class ReportRepository extends BaseRepository
      */
     public function create(array $data) : Report
     {
+
+        $marker = $data['last_seen_at'];
+
+        /** @var Point $lat */
+        /** @var Point $lng */
+        try {
+            $lat = Mapper::location($marker)->getLatitude();
+            $lng = Mapper::location($marker)->getLongitude();
+        } catch (MapperSearchResultException $exception) {
+            throw new GeneralException($exception->getMessage());
+        }
         
-        return DB::transaction(function () use ($data) {
+        return DB::transaction(function () use ($data,$lat,$lng) {
+            
             $Report = parent::create([
                 'user_id' => Auth::user()->id,
                 'reporter_phone_number' => $data['reporter_phone_number'],
@@ -51,7 +67,9 @@ class ReportRepository extends BaseRepository
                 'found_since' => $data['found_since'],
                 'last_seen_at' => $data['last_seen_at'],
                 'last_seen_on' => $data['last_seen_on'],
-                'is_found' => $data['is_found']
+                'is_found' => isset($data['is_found']) && $data['is_found'] == '1' ? 1 : 0,
+                'location'=>new Point($lat, $lng),
+                
 
             ]);
 
