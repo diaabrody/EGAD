@@ -64,11 +64,11 @@
       var pusher = new Pusher('aacacc0492d009aa482e', {
         authTransport: 'ajax',
         cluster: 'eu',
-        encrypted: false
+        encrypted: false,
       });
 
       // Subscribe to the channel we specified in our Laravel Event
-      var channel = pusher.subscribe("report_1_4");
+      var channel = pusher.subscribe('report_{{ Auth::user()->id }}');
 
       // Bind a function to a Event (the full Laravel class)
       channel.bind('App\\Events\\CommentsonReport', function(data) {
