@@ -10,6 +10,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\Models\Comment\Comment;
+use  App\Models\Notification\Notification;
 
 class CommentsonReport implements ShouldBroadcast
 
@@ -30,6 +31,11 @@ class CommentsonReport implements ShouldBroadcast
 
         $this->comment = $comment;
         $this->message  = "{$comment->user->name} Commented On your Report";
+        Notification::create([
+          'user_id'=>$comment->user->id,
+          'comment_id'=>$comment->id,
+          'type'=>'Comments',
+        ]);
     }
 
     /**
