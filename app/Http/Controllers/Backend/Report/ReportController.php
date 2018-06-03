@@ -109,7 +109,7 @@ class ReportController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Report $report
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateReportRequest $request, Report $report)
@@ -139,11 +139,13 @@ class ReportController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Report $report
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( Report $report)
     {
-        //
+        $this->reportRepository->deleteById($report->id);
+        return redirect()->route('admin.report.report.index')->withFlashSuccess('Report Deleted Succesfuly');
+        
     }
 }
