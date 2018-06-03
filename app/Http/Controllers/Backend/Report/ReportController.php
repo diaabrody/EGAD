@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Report\Report;
 use App\Repositories\Backend\Report\ReportRepository;
 use App\Http\Requests\Backend\Report\StoreReportRequest;
+use App\Http\Requests\Backend\Report\UpdateReportRequest;
 
 
 
@@ -111,9 +112,28 @@ class ReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateReportRequest $request, Report $report)
     {
-        //
+        $this->reportRepository->update($report,$request->only(
+            'name',
+            'age',
+            'photo',
+            'gender',
+            'special_sign',
+            'height',
+            'weight',
+            'eye_color',
+            'hair_color',
+            'lost_since',
+            'found_since',
+            'last_seen_at',
+            'last_seen_on',
+            'type',
+            'reporter_phone_number',
+            'is_found'
+        ));
+
+        return redirect()->route('admin.report.report.index')->withFlashSuccess('Report Updated Succesfuly');
     }
 
     /**

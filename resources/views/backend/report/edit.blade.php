@@ -81,7 +81,7 @@
                             <div class="col-md-10">
                                 {{ html()->file('photo')
                                     ->class('form-control')
-                                    ->required() }}
+                                     }}
                             </div><!--col-->
                         </div><!--form-group-->
 
@@ -143,7 +143,7 @@
                                             <div class="col-md-10">
                                                 {{ html()->date('lost_since')
                                                     ->class('form-control')
-                                                    ->required()
+                                                    
                                                     
                                                     }}
                                             </div><!--col-->
@@ -179,7 +179,7 @@
                                                 <div class="col-md-10">
                                                     {{ html()->text('last_seen_at')
                                                         ->class('form-control')
-                                                        ->required()
+                                                        
                                                         
                                                         }}
                                                 </div><!--col-->
