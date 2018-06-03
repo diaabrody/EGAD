@@ -97,12 +97,26 @@ class ReportsController extends Controller
         if($request->status == "quick" || $request->status == "normal" )
         {
             $request->found_since = Null;
+            $marker = $request->location;
+
+
+            try {
+                $lat = Mapper::location($marker)->getLatitude();
+                $lng = Mapper::location($marker)->getLongitude();
+            } catch (MapperSearchResultException $exception) {
+                return redirect('map')->with('message', $exception->getMessage());
+            }
+
+
+
 
         }
         else
         {
             $request->lost_since = Null;
 
+            $lat=0;
+            $lng=0;
 
 
         }
@@ -118,7 +132,8 @@ class ReportsController extends Controller
              'reporter_phone_number' => $request->reporter_phone_number,
              'lost_since'   => $request->lost_since,
              'found_since'   => $request->found_since,
-
+             'last_seen_at' => $request->location,
+              'location' => new Point($lat, $lng),
 
         ]);
 
@@ -136,6 +151,8 @@ class ReportsController extends Controller
 
 
 
+
+
     public function  edit($id)
     {
 
@@ -144,6 +161,9 @@ class ReportsController extends Controller
         return view("frontend.reports.edit")->with('report', $report);
 
     }
+
+
+
 
 
     public function update(UpdateReportChildRest  $request , $id)
@@ -168,6 +188,34 @@ class ReportsController extends Controller
 
         }
 
+        if($report->type == "quick" || $report->type == "normal" )
+
+        {
+
+            $marker = $request->location;
+
+
+            try {
+                $lat = Mapper::location($marker)->getLatitude();
+                $lng = Mapper::location($marker)->getLongitude();
+            } catch (MapperSearchResultException $exception) {
+                return redirect('map')->with('message', $exception->getMessage());
+            }
+
+
+
+        }
+
+        else
+        {
+
+            $lat=0;
+            $lng=0;
+
+        }
+
+
+
 
         $this->reportRepository->updateById($id,[
             'name'=>$request->name,
@@ -182,7 +230,8 @@ class ReportsController extends Controller
             'weight'   => $request->weight,
             'eye_color'   => $request->eye_color,
             'hair_color'   => $request->hair_color,
-
+            'last_seen_at' => $request->location,
+            'location' => new Point($lat, $lng),
 
         ]);
 
