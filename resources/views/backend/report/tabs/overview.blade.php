@@ -58,11 +58,7 @@
                 <th>Lost Since</th>
                 <td>{{ $report->lost_since }}</td>
             </tr>
-            <tr>
-                    <th>Lost Since</th>
-                    <td>{{ $report->lost_since }}</td>
-                </tr>
-            <tr>
+           
                     <th>Last Seen On</th>
                     <td>{{ $report->last_seen_on }}</td>
                 </tr>
@@ -70,7 +66,7 @@
 
                 <tr>
                         <th>Last Seen at</th>
-                        <td>{{ $report->last_seen_on }}</td>
+                        <td>{{ $report->last_seen_at }}</td>
              </tr>
              <tr>
                     <th>Found?</th>
