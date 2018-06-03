@@ -6,19 +6,19 @@ use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Frontend\Location\LocationRepository;
+use App\Repositories\Frontend\Report\ReportRepository;
 use Cornford\Googlmapper\Exceptions\MapperSearchResultException;
-use App\Models\Location;
+
 
 class MapController extends Controller
 {
 
-    protected $locationRepository;
+    protected $reportRepository;
 
 
-    public function __construct(LocationRepository $location)
+    public function __construct(ReportRepository $reportRepository)
     {
-        $this->locationRepository = $location;
+        $this->reportRepository = $reportRepository;
     }
 
 
@@ -30,7 +30,7 @@ class MapController extends Controller
     {
 
         $search = $request->search ? $request->search : 'Alexandria';
-        $locations = $this->locationRepository->all();
+        $locations = $this->reportRepository->all();
 
         Mapper::location($search)->map(['clusters' => ['size' => 10, 'center' => true, 'zoom' => 20], 'marker' => true]);
 
@@ -58,11 +58,14 @@ class MapController extends Controller
         }
 
         $data = [
-            'name' => $request->marker,
+            'user_id' => auth()->user()->id,
+            'last_seen_at' => $request->marker,
             'location' => new Point($lat, $lng),
+            'reporter_phone_number'=> 1200000000,
+            'type'=> 'Urgent'
         ];
 
-        $this->locationRepository->create($data);
+        $this->reportRepository->create($data);
 
         return redirect('map')->with('message', 'Marker Dropped Successfully');
 

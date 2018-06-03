@@ -50,6 +50,8 @@ class ReportRepository extends BaseRepository
 
 
 
+
+
     // this function will use in store function in controller
 //    public function create(array $data)
 //    {

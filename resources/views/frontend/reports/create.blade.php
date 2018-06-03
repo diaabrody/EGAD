@@ -1,6 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+    <h1>create report</h1>
 
 <form method="post" enctype="multipart/form-data" action="/report/save" >
     {{ csrf_field() }}
@@ -18,9 +19,14 @@
     </select>
 
 </div>
+
+    <div class="form-control">
+        <img src="" id="image">
+
+    </div>
 <div class="form-group">
     <label for="photo">صوره المفقود</label>
-    <input type="file" name="photo" class="form-control" placeholder="ادخل الصوره">
+    <input type="file" name="photo" class="form-control" placeholder="ادخل الصوره" onchange="readURL(this);">
 </div>
 
 <div class="form-group">
@@ -63,4 +69,24 @@
 
 
 </form>
+
+
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $("#image")
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
+
 @stop
