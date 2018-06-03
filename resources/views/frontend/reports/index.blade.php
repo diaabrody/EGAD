@@ -10,7 +10,7 @@
   <div class="container">
     <b>{{ $report->name }}</b>
     <hr>
-    <a href="reports/{{ $report->id }}"  name="view" > Read More</a>
+    <a href="/reports/{{ $report->id }}"  name="view" > Read More</a>
   </div>
 </div>
 @endforeach
