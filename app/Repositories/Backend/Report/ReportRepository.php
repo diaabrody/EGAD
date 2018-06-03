@@ -47,8 +47,16 @@ class ReportRepository extends BaseRepository
         } catch (MapperSearchResultException $exception) {
             throw new GeneralException($exception->getMessage());
         }
-        
-        return DB::transaction(function () use ($data,$lat,$lng) {
+
+        if (Input::file('photo'))
+        {
+           $path= Input::file('photo')->store('public/children');
+        }
+        else
+        {
+            $path="";
+        }
+        return DB::transaction(function () use ($data,$lat,$lng,$path) {
             
             $Report = parent::create([
                 'user_id' => Auth::user()->id,
@@ -57,7 +65,7 @@ class ReportRepository extends BaseRepository
                 'name' => $data['name'],
                 'age' => $data['age'],
                 'gender' => $data['gender'],
-                'photo' =>Input::file('photo')->store('public/children'),
+                'photo' =>$path,
                 'special_sign' => $data['special_sign'],
                 'height' => $data['height'],
                 'weight' => $data['weight'],

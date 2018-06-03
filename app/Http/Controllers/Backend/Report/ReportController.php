@@ -83,12 +83,13 @@ class ReportController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Report
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Report $report)
     {
-        //
+        return view('backend.report.show')
+        ->withReport($report);
     }
 
     /**
