@@ -35,6 +35,16 @@ class CommentRepository extends BaseRepository
     public function create(array $data) : Comment
     {
         
+        return DB::transaction(function () use ($data) {
+            $comment = parent::create([
+                'user_id'   => Auth::user()->id,
+                'commentable_id'  => $data['commentable_id'],
+                'commentable_type'  => 'report',
+                'text'   => $data['text'],
+               
+            ]);
+            return $comment;
+        });
     }
   
    

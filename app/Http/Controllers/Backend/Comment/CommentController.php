@@ -8,9 +8,28 @@ use App\Models\Comment\Comment;
 use App\Models\Report\Report;
 use App\Models\Auth\User;
 use App\Repositories\Backend\Comment\CommentRepository;
+use App\Repositories\Backend\Report\ReportRepository;
+use App\Http\Requests\Backend\Comment\StoreCommentRequest;
 
 class CommentController extends Controller
 {
+
+
+    /**
+     * @var CommentRepository
+     */
+    protected $commentRepository;
+
+    /**
+     * CommentController constructor.
+     *
+     * @param CommentRepository $commentRepository
+     */
+    public function __construct(CommentRepository $commentRepository)
+    {
+        $this->commentRepository = $commentRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,9 +47,9 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(ReportRepository $reportRepository)
     {
-        //
+        return view('backend.comment.create')->withReports($reportRepository->get(['id']));
     }
 
     /**
@@ -39,9 +58,15 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCommentRequest $request)
     {
-        //
+        $this->commentRepository->create($request->only(
+            'commentable_id',
+            'text'
+            
+        ));
+
+        return redirect()->route('admin.comment.comment.index')->withFlashSuccess('Comment Created Succesfuly');
     }
 
     /**

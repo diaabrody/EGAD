@@ -9,6 +9,6 @@ Route::group([
         'middleware' => 'role:administrator',
     ], function () {
 
-        Route::resource('comment', 'commentController');
+        Route::resource('comment', 'CommentController');
     });
 });

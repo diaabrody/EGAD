@@ -23,8 +23,8 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th> Type </th>
-                            <th> User </th>
+                            <th> Commentable Type </th>
+                            <th> Commented By </th>
                             <th> Comment </th>
                             <th> Actions </th>
                         </tr>
@@ -33,7 +33,7 @@
                         @foreach ($comments as $comment)
                             <tr>
                                 <td> {{$comment->commentable_type}}</td>
-                                <td> {{$comment->commentable_type}}</td>
+                                <td> {{$comment->user->first_name}}</td>
                                 <td> {{$comment->text}}</td>
                                 <td>{!! $comment->action_buttons !!}</td>
                             </tr>
