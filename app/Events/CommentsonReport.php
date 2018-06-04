@@ -19,7 +19,7 @@ class CommentsonReport implements ShouldBroadcast
     
 
     public $comment;
-    public $message;
+
 
     /**
      * Create a new event instance.
@@ -28,12 +28,12 @@ class CommentsonReport implements ShouldBroadcast
      */
     public function __construct(Comment $comment)
     {
-
         $this->comment = $comment;
-        $this->message  = "{$comment->user->name} Commented On your Report";
+
         Notification::create([
-          'user_id'=>$comment->user->id,
+          'user_id'=>$comment->commentable->user_id,
           'comment_id'=>$comment->id,
+          'message'=>"{$comment->user->name} Commented On your Report",
           'type'=>'Comments',
         ]);
     }
@@ -45,6 +45,7 @@ class CommentsonReport implements ShouldBroadcast
      */
     public function broadcastOn()
     {
+       
         return ['report_'.$this->comment->commentable->user_id];
        
     }

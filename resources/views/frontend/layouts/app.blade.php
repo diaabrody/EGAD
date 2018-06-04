@@ -66,13 +66,21 @@
         cluster: 'eu',
         encrypted: false,
       });
-
+     @auth
       // Subscribe to the channel we specified in our Laravel Event
       var channel = pusher.subscribe('report_{{ Auth::user()->id }}');
+      
+      $.each( {!! json_encode(Auth::user()->notification->toArray()) !!}, function(i,data) {
+        DrawHtml(data);
+      }); 
 
-      // Bind a function to a Event (the full Laravel class)
-      channel.bind('App\\Events\\CommentsonReport', function(data) {
-          console.log(data);
+     console.log({!! json_encode(Auth::user()->notification->toArray()) !!});
+
+   channel.bind('App\\Events\\CommentsonReport', function(data) {
+     DrawHtml(data);
+     });
+     function DrawHtml(data) {
+          // Bind a function to a Event (the full Laravel class)
         var existingNotifications = notifications.html();
         var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
         var newNotificationHtml = `
@@ -94,12 +102,14 @@
           </li>
         `;
         notifications.html(newNotificationHtml + existingNotifications);
-
         notificationsCount += 1;
         notificationsCountElem.attr('data-count', notificationsCount);
         notificationsWrapper.find('.notif-count').text(notificationsCount);
         notificationsWrapper.show();
-      });
+     
+   }
+       
+   @endauth
     </script>
     </body>
 </html>

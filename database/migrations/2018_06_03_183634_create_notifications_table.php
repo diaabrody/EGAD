@@ -17,6 +17,7 @@ class CreateNotificationsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('comment_id');
+            $table->text('message');
             $table->string('type');
             $table->timestamps();
         });
