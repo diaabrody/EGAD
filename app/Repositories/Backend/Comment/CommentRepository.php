@@ -47,6 +47,25 @@ class CommentRepository extends BaseRepository
         });
     }
   
-   
+   /**
+     * @param Comment  $comment
+     * @param array $data
+     *
+     * @return Comment
+     * @throws GeneralException
+     * @throws \Exception
+     * @throws \Throwable
+     */
+    public function update(Comment $comment, array $data) : Comment
+    {
+        return DB::transaction(function () use ($comment,$data) {
+            $comment ->update([
+                'commentable_id'  => $data['commentable_id'],
+                'text'   => $data['text'],
+               
+            ]);
+            return $comment;
+        });
+    }
 
 }

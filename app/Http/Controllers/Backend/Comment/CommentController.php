@@ -10,6 +10,8 @@ use App\Models\Auth\User;
 use App\Repositories\Backend\Comment\CommentRepository;
 use App\Repositories\Backend\Report\ReportRepository;
 use App\Http\Requests\Backend\Comment\StoreCommentRequest;
+use App\Http\Requests\Backend\Comment\UpdateCommentRequest;
+
 
 class CommentController extends Controller
 {
@@ -83,24 +85,31 @@ class CommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Comment $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comment $comment,ReportRepository $reportRepository)
     {
-        //
+        return view('backend.comment.edit')
+        ->withComment($comment)->withReports($reportRepository->get(['id']));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Comment $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCommentRequest $request, Comment $comment)
     {
-        //
+        $this->commentRepository->update($comment,$request->only(
+            'commentable_id',
+            'text'
+            
+        ));
+
+        return redirect()->route('admin.comment.comment.index')->withFlashSuccess('Comment updated Succesfuly');
     }
 
     /**

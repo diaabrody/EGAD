@@ -25,6 +25,7 @@
                         <tr>
                             <th> Commentable Type </th>
                             <th> Commented By </th>
+                            <th> Report Id </th>
                             <th> Comment </th>
                             <th> Actions </th>
                         </tr>
@@ -34,6 +35,7 @@
                             <tr>
                                 <td> {{$comment->commentable_type}}</td>
                                 <td> {{$comment->user->first_name}}</td>
+                                <td> {{$comment->commentable_id}}</td>
                                 <td> {{$comment->text}}</td>
                                 <td>{!! $comment->action_buttons !!}</td>
                             </tr>
