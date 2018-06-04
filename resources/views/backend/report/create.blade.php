@@ -81,7 +81,7 @@
                             <div class="col-md-10">
                                 {{ html()->file('photo')
                                     ->class('form-control')
-                                    ->required() }}
+                                     }}
                             </div><!--col-->
                         </div><!--form-group-->
 
