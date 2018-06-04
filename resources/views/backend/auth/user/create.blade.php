@@ -47,7 +47,39 @@
                                     ->required() }}
                             </div><!--col-->
                         </div><!--form-group-->
-
+                        <div class="form-group row">
+                                {{ html()->label('City')->class('col-md-2 form-control-label')->for('city') }}
+        
+                                    <div class="col-md-10">
+                                        {{ html()->text('city')
+                                            ->class('form-control')
+                                            ->placeholder('City')
+                                            ->attribute('maxlength', 191)
+                                            ->required() }}
+                                    </div><!--col-->
+                                </div><!--form-group-->
+                                <div class="form-group row">
+                                        {{ html()->label('Area')->class('col-md-2 form-control-label')->for('area') }}
+                
+                                            <div class="col-md-10">
+                                                {{ html()->text('area')
+                                                    ->class('form-control')
+                                                    ->placeholder('Area')
+                                                    ->attribute('maxlength', 191)
+                                                    ->required() }}
+                                            </div><!--col-->
+                                        </div><!--form-group-->
+                                        <div class="form-group row">
+                                                {{ html()->label('Phone Number')->class('col-md-2 form-control-label')->for('phone_no') }}
+                        
+                                                    <div class="col-md-10">
+                                                        {{ html()->text('phone_no')
+                                                            ->class('form-control')
+                                                            ->placeholder('Phone')
+                                                            ->attribute('maxlength', 11)
+                                                            ->required() }}
+                                                    </div><!--col-->
+                                                </div><!--form-group-->
                         <div class="form-group row">
                             {{ html()->label(__('validation.attributes.backend.access.users.email'))->class('col-md-2 form-control-label')->for('email') }}
 
