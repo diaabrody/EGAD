@@ -1,0 +1,54 @@
+.report-fast {
+	.card {
+		background-color: $primary;
+		border-radius: 0;
+		color: #fff;
+		.card-title {
+			font-size: 20px;
+			margin: 0 auto;
+			padding-top: 20px;
+		}
+		img {
+			width: 302px;
+			margin: 0 auto;
+			padding: 18px;
+		}
+		.card-body {
+			/*text-align: center;*/
+			a {
+			padding: 10px 30px;
+			color: #fff;
+			font-size: 20px;
+			display: block;
+			margin: 0 auto;
+		}
+		}
+	}
+}
+
+.missing-now {
+	h1 {
+		text-align: center;
+		color: $primary;
+		margin-bottom: 25px;
+	}
+	.card {
+		padding: 10px 10px 0 10px;
+		color: $primary;
+		border-radius: 0;
+		text-align: center;
+		.card-body {
+			.card-text {
+			color: $primary;
+			text-align: right;
+			font-size: 14px;
+		}
+		a {
+			color: #fff;
+			text-align: center;
+			font-size: 14px;
+			padding: 5px 20px ;
+		}
+		}
+	}
+}
