@@ -68,7 +68,12 @@
       });
 
       // Subscribe to the channel we specified in our Laravel Event
-      var channel = pusher.subscribe('report_{{ Auth::user()->id }}');
+     @if(Auth::user())
+      {
+          var channel = pusher.subscribe('report_{{ Auth::user()->id }}');
+
+      }
+      @endif
 
       // Bind a function to a Event (the full Laravel class)
       channel.bind('App\\Events\\CommentsonReport', function(data) {
