@@ -89,4 +89,72 @@ class ReportRepository extends BaseRepository
 
        
     }
+
+
+    /**
+     * @param Report  $report
+     * @param array $data
+     *
+     * @return Report
+     * @throws GeneralException
+     * @throws \Exception
+     * @throws \Throwable
+     */
+    public function update(Report $report, array $data) : Report
+    {
+        if($report->last_seen_at != $data['last_seen_at'] )
+        {
+                $marker = $data['last_seen_at'];
+
+            /** @var Point $lat */
+            /** @var Point $lng */
+            try {
+                $lat = Mapper::location($marker)->getLatitude();
+                $lng = Mapper::location($marker)->getLongitude();
+                $report->location=new Point($lat, $lng);
+            } catch (MapperSearchResultException $exception) {
+                throw new GeneralException($exception->getMessage());
+            }
+        }
+        
+        if (Input::file('photo'))
+        {
+           $path= Input::file('photo')->store('public/children');
+        }
+        else
+        {
+            $path=$report->photo;
+        }
+        return DB::transaction(function () use ($report,$data,$path) {
+            
+             $report->update([
+                'reporter_phone_number' => $data['reporter_phone_number'],
+                'type' => $data['type'],
+                'name' => $data['name'],
+                'age' => $data['age'],
+                'gender' => $data['gender'],
+                'photo' =>$path,
+                'special_sign' => $data['special_sign'],
+                'height' => $data['height'],
+                'weight' => $data['weight'],
+                'eye_color' => $data['eye_color'],
+                'hair_color' => $data['hair_color'],
+                'lost_since' => $data['lost_since'],
+                'found_since' => $data['found_since'],
+                'last_seen_at' => $data['last_seen_at'],
+                'last_seen_on' => $data['last_seen_on'],
+                'is_found' => isset($data['is_found']) && $data['is_found'] == '1' ? 1 : 0,
+                
+
+            ]);
+
+            
+
+
+            return $report;
+        });
+
+
+
+    }
 }

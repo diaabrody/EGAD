@@ -21,9 +21,9 @@ use App\Models\Auth\Traits\Relationship\UserRelationship;
 class User extends Authenticatable
 {
     use HasRoles,
-        Notifiable,
         SendUserPasswordReset,
         SoftDeletes,
+        Notifiable,
         UserAttribute,
         UserMethod,
         UserRelationship,
@@ -73,3 +73,5 @@ class User extends Authenticatable
      */
     protected $appends = ['full_name'];
 }
+
+

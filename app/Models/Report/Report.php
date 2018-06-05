@@ -38,5 +38,12 @@ class Report extends Model
         'location'        
     ];
 
+    public function setPhotoAttribute($value)
+    {
+        if($value == "")
+          $this->attributes['photo'] = "/storage/children/default.png";
+        else
+          $this->attributes['photo'] = "/storage".str_replace("public", "", $value);
+    }
 
 }

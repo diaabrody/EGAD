@@ -43,6 +43,11 @@
                                     Report Management
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                    <a class="nav-link {{ active_class(Active::checkUriPattern('admin/comment*')) }}" href="{{ route('admin.comment.comment.index') }}">
+                                        Comment Management
+                                    </a>
+                                </li>
                     </ul>
                 </li>
             @endif

@@ -3,7 +3,7 @@
         <table class="table table-hover">
             <tr>
                 <th>Child's Photo</th>
-                <td><img src="{{ url($report->photo) }}"  /></td>
+                <td><img src="{{ url($report->photo) }}" class="user-profile-image"  /></td>
             </tr>
             <tr>
                     <th>Report Type</th>

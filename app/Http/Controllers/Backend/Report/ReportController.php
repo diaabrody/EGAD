@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Report\Report;
 use App\Repositories\Backend\Report\ReportRepository;
 use App\Http\Requests\Backend\Report\StoreReportRequest;
+use App\Http\Requests\Backend\Report\UpdateReportRequest;
 
 
 
@@ -108,22 +109,43 @@ class ReportController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Report $report
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateReportRequest $request, Report $report)
     {
-        //
+        $this->reportRepository->update($report,$request->only(
+            'name',
+            'age',
+            'photo',
+            'gender',
+            'special_sign',
+            'height',
+            'weight',
+            'eye_color',
+            'hair_color',
+            'lost_since',
+            'found_since',
+            'last_seen_at',
+            'last_seen_on',
+            'type',
+            'reporter_phone_number',
+            'is_found'
+        ));
+
+        return redirect()->route('admin.report.report.index')->withFlashSuccess('Report Updated Succesfuly');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Report $report
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( Report $report)
     {
-        //
+        $this->reportRepository->deleteById($report->id);
+        return redirect()->route('admin.report.report.index')->withFlashSuccess('Report Deleted Succesfuly');
+        
     }
 }
