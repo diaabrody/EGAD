@@ -177,7 +177,7 @@ return [
         App\Providers\ObserverServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Cornford\Googlmapper\MapperServiceProvider::class,
-
+        Thujohn\Twitter\TwitterServiceProvider::class,
 
     ],
 
@@ -235,6 +235,7 @@ return [
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Mapper'    => Cornford\Googlmapper\Facades\MapperFacade::class,
+        'Twitter' => Thujohn\Twitter\Facades\Twitter::class
 
 
     ],

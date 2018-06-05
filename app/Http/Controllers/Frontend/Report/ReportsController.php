@@ -15,12 +15,14 @@ use Illuminate\Support\Facades\Storage;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
 
-
+use App\Classes\Kairos;
 
 class ReportsController extends Controller
 {
 
     protected $reportRepository;
+
+    protected  $Kairosobj;
 
 
 
@@ -30,12 +32,17 @@ class ReportsController extends Controller
     public function __construct(ReportRepository $reportRepository)
     {
         $this->reportRepository = $reportRepository;
+        $Kairos=new Kairos("7952fe76","840445d4dbb091739dbdf9fe85ddf3e4");
+
+        $this->Kairosobj= $Kairos;
+
 
 
     }
 
     public function index()
     {
+
         $reports=$this->reportRepository->retriveAll();
         return view('frontend.reports.index',[
             'reports' => $reports
@@ -119,6 +126,13 @@ class ReportsController extends Controller
             $lng=0;
 
 
+
+
+
+
+
+
+
         }
 
             $this->reportRepository->create([
@@ -136,8 +150,6 @@ class ReportsController extends Controller
               'location' => new Point($lat, $lng),
 
         ]);
-
-
 
 
 
