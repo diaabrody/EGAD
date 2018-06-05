@@ -7,14 +7,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\Report\StoreReportChildRequest;
 use App\Http\Requests\Frontend\Report\UpdateReportChildRest;
 use Illuminate\Http\Request;
-use  App\Models\Report\Report;
-use  App\Models\Comment\Comment;
+use App\Models\Report\Report;
+use App\Models\Comment\Comment;
+use App\Models\Auth\User;
 use App\Repositories\Frontend\Report\ReportRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
-
+use App\Events\SameAreaReport;
 use App\Classes\Kairos;
 
 class ReportsController extends Controller
@@ -82,16 +83,8 @@ class ReportsController extends Controller
     }
 
 
-
-
-
-
-
-
     public function  store(StoreReportChildRequest $request)
     {
-
-
         $file=$request->file('photo');
         $name=$file->getClientOriginalName();
         $input=$request->all();
@@ -99,7 +92,6 @@ class ReportsController extends Controller
         Storage::putFileAs(
             'public/childs', $request->file('photo'), time().$name
         );
-
 
         if($request->status == "quick" || $request->status == "normal" )
         {
@@ -114,9 +106,6 @@ class ReportsController extends Controller
                 return redirect('map')->with('message', $exception->getMessage());
             }
 
-
-
-
         }
         else
         {
@@ -125,17 +114,9 @@ class ReportsController extends Controller
             $lat=0;
             $lng=0;
 
-
-
-
-
-
-
-
-
         }
 
-            $this->reportRepository->create([
+            $report = $this->reportRepository->create([
             'name'=>$request->name,
             'age'=>$request->age,
             'gender'=>$request->gender,
@@ -143,17 +124,18 @@ class ReportsController extends Controller
             'photo'=>$input['photo'],
             'user_id' => Auth::user()->id,
             'type' => $request->status,
-             'reporter_phone_number' => $request->reporter_phone_number,
-             'lost_since'   => $request->lost_since,
-             'found_since'   => $request->found_since,
-             'last_seen_at' => $request->location,
-              'location' => new Point($lat, $lng),
+            'reporter_phone_number' => $request->reporter_phone_number,
+            'lost_since'   => $request->lost_since,
+            'found_since'   => $request->found_since,
+            'last_seen_at' => $request->location,
+            'location' => new Point($lat, $lng),
 
         ]);
 
 
-
-
+        $users = User::where('area', 'like', $report->last_seen_at)-> get();
+        
+        broadcast(new SameAreaReport($users))->toOthers();
 
 
         return redirect ('/reports/');
