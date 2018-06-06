@@ -1,0 +1,22 @@
+#footer {
+    background-color: $primary;
+    padding: 50px;
+    color: #fff;
+    font-size: 18px;
+    li {
+        list-style: none;
+    list-style-type: none;
+    text-align: right;
+    }
+    #footer-logo {
+        border-right: 2px solid #fff;
+        img {
+            width: 150px;
+            display: block;
+            margin: 0 auto;
+        }
+    }
+    #right-border    {
+        border-right: 2px solid #fff;
+    }
+}

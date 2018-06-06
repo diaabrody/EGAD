@@ -10003,6 +10003,10 @@ a.text-dark:focus {
   max-height: 90px;
 }
 
+#logo {
+  width: 90px;
+}
+
 .report-fast .card {
   background-color: #314755;
   border-radius: 0;
@@ -10093,5 +10097,32 @@ a.text-dark:focus {
   color: #314755;
   text-align: center;
   padding: 25px 0;
+}
+
+#footer {
+  background-color: #314755;
+  padding: 50px;
+  color: #fff;
+  font-size: 18px;
+}
+
+#footer li {
+  list-style: none;
+  list-style-type: none;
+  text-align: right;
+}
+
+#footer #footer-logo {
+  border-right: 2px solid #fff;
+}
+
+#footer #footer-logo img {
+  width: 150px;
+  display: block;
+  margin: 0 auto;
+}
+
+#footer #right-border {
+  border-right: 2px solid #fff;
 }
 
