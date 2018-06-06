@@ -68,23 +68,30 @@
         });
         @auth
         // Subscribe to the channel we specified in our Laravel Event
-        var channel = pusher.subscribe('report_{{ Auth::user()->id }}');
+        var commentChannel = pusher.subscribe('report_{{ Auth::user()->id }}');
+        var sameAreaChannel = pusher.subscribe('users.{{ Auth::user()->id }}');
 
+        
         $.each( {!! json_encode(Auth::user()->notification->toArray()) !!}, function(i,data) {
             DrawHtml(data);
-        });
-
-        console.log({!! json_encode(Auth::user()->notification->toArray()) !!});
-
-        channel.bind('App\\Events\\CommentsonReport', function(data) {
+        }); 
+            
+        commentChannel.bind('App\\Events\\CommentsonReport', function(data) {
             DrawHtml(data);
         });
+
+        sameAreaChannel.bind('App\\Events\\SameAreaReport', function(data) {
+            DrawHtml(data);
+        });
+
         function DrawHtml(data) {
             // Bind a function to a Event (the full Laravel class)
             var existingNotifications = notifications.html();
             var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
-            var newNotificationHtml = `
+            console.log(data)
+            var newNotificationHtml = `<a href="/reports/`+data.report_id+`">
           <li class="notification active">
+
               <div class="media">
                 <div class="media-left">
                   <div class="media-object">
@@ -93,13 +100,12 @@
                 </div>
                 <div class="media-body">
                   <strong class="notification-title">`+data.message+`</strong>
-                  <!--p class="notification-desc">Extra description can go here</p-->
                   <div class="notification-meta">
-                    <small class="timestamp">about a minute ago</small>
+                    <small class="timestamp">`+data.created_at+`</small>
                   </div>
                 </div>
               </div>
-          </li>
+          </li></a>
         `;
             notifications.html(newNotificationHtml + existingNotifications);
             notificationsCount += 1;

@@ -3,6 +3,7 @@
 namespace App\Models\Notification\Traits\Relationship;
 
 use  App\Models\Auth\User;
+use  App\Models\Report\Report;
 use  App\Models\Notification\Notification;
 
 trait NotificationRelationship
@@ -12,9 +13,9 @@ trait NotificationRelationship
         return $this->belongsTo(User::class,'user_id');
     }
 
-    public function users()
+    public function report()
     {
-        return $this->belongsToMany(User::class,'user_id');
+        return $this->belongsTo(Report::class,'report_id');
     }
   
 }

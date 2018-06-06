@@ -9,37 +9,34 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use App\Models\Comment\Comment;
 use  App\Models\Notification\Notification;
 
-class CommentsonReport implements ShouldBroadcast
-
+class SameAreaReport
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    
 
-    public $comment;
+    public $user;
     public $message;
-    
-
+    public $report;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Comment $comment)
+    public function __construct($user,$report)
     {
-        $this->comment = $comment;
-       
-        $this->message="{$comment->user->name} Commented On your Report";
-
+        $this->user = $user;
+        $this->report = $report;
+        $this->message = "a child has been lost in your area";
+        
         Notification::create([
-          'user_id'=>$comment->commentable->user_id,
-          'report_id'=>$comment->commentable_id,
-          'message'=>"{$comment->user->name} Commented On your Report",
-          'type'=>'Comments',
-        ]);
+            'user_id'=>$user->id,
+            'report_id'=>$report->id,
+            'message'=>"a child has been lost in your area",
+            'type'=>'same area',
+          ]);
+
     }
 
     /**
@@ -49,9 +46,6 @@ class CommentsonReport implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-       
-        return ['report_'.$this->comment->commentable->user_id];
-       
+        return ['sameArea_'.$this->user->id];
     }
-    
 }
