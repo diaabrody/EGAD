@@ -135,7 +135,10 @@ class ReportsController extends Controller
 
         $users = User::where('area', 'like', $report->last_seen_at)-> get();
         
-        broadcast(new SameAreaReport($users))->toOthers();
+        foreach ($users as $user){
+            event(new SameAreaReport($user));
+        }
+       
 
 
         return redirect ('/reports/');

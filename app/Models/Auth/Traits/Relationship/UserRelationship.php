@@ -51,11 +51,5 @@ trait UserRelationship
     {
         return $this->hasMany(Comment::class);
     }
-
-    public function areanotification()
-    {
-        return $this->belongsToMany(Notification::class);
-    }
     
-
 }

@@ -15,18 +15,21 @@ class SameAreaReport
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $users = [];
+    public $user;
+    public $message;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($users)
+    public function __construct($user)
     {
-        $this->users = $users;
-
+        $this->user = $user;
+        $this->message = "a child has been lost in your area";
+        
         Notification::create([
+            'user_id'=>$user->id,
             'message'=>"a child has been lost in your area",
             'type'=>'same area',
           ]);
@@ -40,12 +43,6 @@ class SameAreaReport
      */
     public function broadcastOn()
     {
-        $channels = [];
-
-        foreach ($this->users as $user) {
-            array_push($channels, new PrivateChannel('users.' . $user->id));
-        }
-
-        return $channels;
+        return ['sameArea_'.$this->user->id];
     }
 }
