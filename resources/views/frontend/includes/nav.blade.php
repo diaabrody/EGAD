@@ -26,7 +26,6 @@
                 </div>
               </div>
             </li>
-<<<<<<< HEAD
             <div id="app">
            <li class="nav-item">
             <ais-index app-id="N02M6ZG9Q3"
@@ -64,9 +63,6 @@
 </div>
             
            </li>
-=======
-
->>>>>>> f2b978d3392ed5b2913521085ec87aad214a2c50
           </ul>
         </div>
         @endauth

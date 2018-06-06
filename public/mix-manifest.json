@@ -1,13 +1,6 @@
 {
-<<<<<<< HEAD
     "/js/frontend.js": "/js/frontend.js?id=f41d5446321a6cb1305b",
-    "/css/frontend.css": "/css/frontend.css?id=66069144b3452b7947b7",
+    "/css/frontend.css": "/css/frontend.css?id=a8e90b03d3ceceb00c76",
     "/css/backend.css": "/css/backend.css?id=b3f0f57653b1b34ea14e",
     "/js/backend.js": "/js/backend.js?id=d5c202ea5984a9ec8562"
-=======
-    "/js/frontend.js": "/js/frontend.js?id=19ae3c1e8e411f4f906f",
-    "/css/frontend.css": "/css/frontend.css?id=a8e90b03d3ceceb00c76",
-    "/css/backend.css": "/css/backend.css?id=ce7c10e1dbab70c86737",
-    "/js/backend.js": "/js/backend.js?id=f0e1a1cfd8773f7092bf"
->>>>>>> f2b978d3392ed5b2913521085ec87aad214a2c50
 }
