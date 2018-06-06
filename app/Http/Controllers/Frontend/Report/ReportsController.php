@@ -91,7 +91,7 @@ class ReportsController extends Controller
     public function  store(StoreReportChildRequest $request)
     {
 
-
+            //save image
         $file=$request->file('photo');
         $name=$file->getClientOriginalName();
         $input=$request->all();
@@ -100,9 +100,20 @@ class ReportsController extends Controller
             'public/childs', $request->file('photo'), time().$name
         );
 
+        $image = $request->file('photo')->path();  // your base64 encoded
+        $base64 = base64_encode(file_get_contents($image));
+
+        $gallery_name = 'new';
+        $argumentArray =  [
+            "image" => $base64 ,
+            "gallery_name" => $gallery_name
+        ];
 
         if($request->status == "quick" || $request->status == "normal" )
         {
+
+            $face_id_person=$this->checkImageByAI($argumentArray);
+
             $request->found_since = Null;
             $marker = $request->location;
 
@@ -116,19 +127,15 @@ class ReportsController extends Controller
 
 
 
-
         }
         else
         {
+
+            $face_id_person=$this->checkImageByAI($argumentArray);
             $request->lost_since = Null;
 
             $lat=0;
             $lng=0;
-
-
-
-
-
 
 
 
@@ -148,10 +155,9 @@ class ReportsController extends Controller
              'found_since'   => $request->found_since,
              'last_seen_at' => $request->location,
               'location' => new Point($lat, $lng),
+              'face_id' =>$face_id_person
 
         ]);
-
-
 
 
 
@@ -204,6 +210,8 @@ class ReportsController extends Controller
 
         {
 
+
+
             $marker = $request->location;
 
 
@@ -254,7 +262,35 @@ class ReportsController extends Controller
 
 
 
+private  function checkImageByAI($argumentArray)
+{
 
+
+    $response   = $this->Kairosobj->recognize($argumentArray);
+    $response = json_decode($response);
+    $image_status=$response->images[0]->transaction->status;
+
+    if($image_status == "success")
+    {
+
+        $face_id= $response->images[0]->candidates[0]->face_id;
+       $report=$this->reportRepository->selectByFaceID($face_id);
+
+    }
+
+    else{
+        $subject_id = time();
+        $argumentArray["subject_id"]=strval($subject_id);
+        $response   = $this->Kairosobj->enroll($argumentArray);
+        $response = json_decode($response);
+        $face_id=$response->face_id;
+
+        return $face_id;
+
+    }
+
+
+}
 
 
     
