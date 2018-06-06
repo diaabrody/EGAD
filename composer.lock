@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6514ea4bee14555ddafba9ed79601394",
-    "content-hash": "1a4a80b46d408c6b9edcd32d9ce5328c",
+    "hash": "7263da1cda3c27fd3a21c6531ce70d6a",
+    "content-hash": "f858796bac7f59897363f569edccce00",
     "packages": [
         {
             "name": "appstract/laravel-blade-directives",
@@ -249,16 +249,16 @@
         },
         {
             "name": "cornford/googlmapper",
-            "version": "v2.31.4",
+            "version": "v2.31.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bradcornford/Googlmapper.git",
-                "reference": "e6acb72b717873e3d97b4cc367bc00bd765ce697"
+                "reference": "ff98e596b5927a93088e89ed90981bf5bdfa82f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bradcornford/Googlmapper/zipball/e6acb72b717873e3d97b4cc367bc00bd765ce697",
-                "reference": "e6acb72b717873e3d97b4cc367bc00bd765ce697",
+                "url": "https://api.github.com/repos/bradcornford/Googlmapper/zipball/ff98e596b5927a93088e89ed90981bf5bdfa82f5",
+                "reference": "ff98e596b5927a93088e89ed90981bf5bdfa82f5",
                 "shasum": ""
             },
             "require": {
@@ -305,7 +305,7 @@
                 "maps",
                 "streetview"
             ],
-            "time": "2018-03-07 10:29:04"
+            "time": "2018-06-05 09:46:32"
         },
         {
             "name": "creativeorange/gravatar",
@@ -3799,7 +3799,7 @@
                 "oauth",
                 "twitter"
             ],
-            "time": "2014-08-06T22:29:35+00:00"
+            "time": "2014-08-06 22:29:35"
         },
         {
             "name": "thujohn/twitter",
@@ -3843,7 +3843,7 @@
                 "laravel5",
                 "twitter"
             ],
-            "time": "2017-04-27T09:00:04+00:00"
+            "time": "2017-04-27 09:00:04"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -5612,16 +5612,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.2.3",
+            "version": "7.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "42bb8f5b2cb36483907a20f45e4cd1665c24d8a7"
+                "reference": "00bc0b93f0ff4f557e9ea766557fde96da9a03dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/42bb8f5b2cb36483907a20f45e4cd1665c24d8a7",
-                "reference": "42bb8f5b2cb36483907a20f45e4cd1665c24d8a7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/00bc0b93f0ff4f557e9ea766557fde96da9a03dd",
+                "reference": "00bc0b93f0ff4f557e9ea766557fde96da9a03dd",
                 "shasum": ""
             },
             "require": {
@@ -5692,7 +5692,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-06-03 06:05:05"
+            "time": "2018-06-05 03:40:05"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
