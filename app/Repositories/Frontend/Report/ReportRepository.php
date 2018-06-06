@@ -49,9 +49,9 @@ class ReportRepository extends BaseRepository
     public function selectByFaceID($face_id)
     {
 
-        $report=$this->model->Where('face_id','=',$face_id)->get();
-        
-        return $report ;
+        $report=$this->model->Where('face_id','=',$face_id)->first();
+            return $report;
+
 
     }
 

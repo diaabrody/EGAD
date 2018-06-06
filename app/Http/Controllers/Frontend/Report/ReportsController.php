@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
+use Illuminate\Http\RedirectResponse;
 
 use App\Classes\Kairos;
 
@@ -23,6 +24,9 @@ class ReportsController extends Controller
     protected $reportRepository;
 
     protected  $Kairosobj;
+
+    protected  $face_id ;
+    protected  $report_id;
 
 
 
@@ -103,7 +107,7 @@ class ReportsController extends Controller
         $image = $request->file('photo')->path();  // your base64 encoded
         $base64 = base64_encode(file_get_contents($image));
 
-        $gallery_name = 'new';
+        $gallery_name = 'anyany';
         $argumentArray =  [
             "image" => $base64 ,
             "gallery_name" => $gallery_name
@@ -131,7 +135,10 @@ class ReportsController extends Controller
         else
         {
 
-            $face_id_person=$this->checkImageByAI($argumentArray);
+            return $this->checkImageByAI($argumentArray);
+        //    return redirect()->route('frontend.report.show', [9]);
+
+
             $request->lost_since = Null;
 
             $lat=0;
@@ -268,13 +275,41 @@ private  function checkImageByAI($argumentArray)
 
     $response   = $this->Kairosobj->recognize($argumentArray);
     $response = json_decode($response);
-    $image_status=$response->images[0]->transaction->status;
+    if(!isset($response->images[0]))
+    {
+        $image_status ="failure";
+    }
+
+    else
+    {
+        $image_status=$response->images[0]->transaction->status;
+
+    }
+
 
     if($image_status == "success")
     {
 
         $face_id= $response->images[0]->candidates[0]->face_id;
        $report=$this->reportRepository->selectByFaceID($face_id);
+        // this case so important
+       if($report->id && $report->user_id != Auth::user()->id)
+       {
+
+           //return redirect('/reports/'.$report->id);
+           return redirect()->route('frontend.report.show', [$report->id]);
+       }
+
+       else
+       {
+           $subject_id = time();
+           $argumentArray["subject_id"]=strval($subject_id);
+           $response   = $this->Kairosobj->enroll($argumentArray);
+           $response = json_decode($response);
+           $this->face_id=$face_id;
+
+
+       }
 
     }
 
@@ -285,7 +320,7 @@ private  function checkImageByAI($argumentArray)
         $response = json_decode($response);
         $face_id=$response->face_id;
 
-        return $face_id;
+        $this->face_id=$face_id;
 
     }
 
