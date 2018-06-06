@@ -24,6 +24,9 @@
         "pusher/pusher-php-server": "~3.0",
         "spatie/laravel-html": "^2.4",
         "spatie/laravel-permission": "^2.5",
+        "stevebauman/location": "^3.0",
+        "thujohn/twitter": "^2.2",
+        "torann/geoip": "^1.0",
         "webpatser/laravel-uuid": "^3.0"
     },
     "require-dev": {
