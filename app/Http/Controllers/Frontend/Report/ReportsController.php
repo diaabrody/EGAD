@@ -136,7 +136,7 @@ class ReportsController extends Controller
         $users = User::where('area', 'like', $report->last_seen_at)-> get();
         
         foreach ($users as $user){
-            event(new SameAreaReport($user));
+            event(new SameAreaReport($user,$report));
         }
        
 

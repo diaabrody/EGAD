@@ -48,7 +48,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="//js.pusher.com/3.1/pusher.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <!--<script type="text/javascript" src="{{asset('js/notifications.js')}}"></script>-->
+
     <script type="text/javascript">
         var notificationsWrapper   = $('.dropdown-notifications');
         var notificationsToggle    = notificationsWrapper.find('a[data-toggle]');
@@ -88,12 +88,10 @@
             // Bind a function to a Event (the full Laravel class)
             var existingNotifications = notifications.html();
             var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
-            console.log(data);
-                       // if(flag){
-            //     data.
-            // }
-            var newNotificationHtml = `
+            console.log(data)
+            var newNotificationHtml = `<a href="/reports/`+data.report_id+`">
           <li class="notification active">
+
               <div class="media">
                 <div class="media-left">
                   <div class="media-object">
@@ -102,13 +100,12 @@
                 </div>
                 <div class="media-body">
                   <strong class="notification-title">`+data.message+`</strong>
-                  <!--p class="notification-desc">Extra description can go here</p-->
                   <div class="notification-meta">
-                    <small class="timestamp">about a minute ago</small>
+                    <small class="timestamp">`+data.created_at+`</small>
                   </div>
                 </div>
               </div>
-          </li>
+          </li></a>
         `;
             notifications.html(newNotificationHtml + existingNotifications);
             notificationsCount += 1;

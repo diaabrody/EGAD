@@ -17,19 +17,22 @@ class SameAreaReport
 
     public $user;
     public $message;
+    public $report;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($user,$report)
     {
         $this->user = $user;
+        $this->report = $report;
         $this->message = "a child has been lost in your area";
         
         Notification::create([
             'user_id'=>$user->id,
+            'report_id'=>$report->id,
             'message'=>"a child has been lost in your area",
             'type'=>'same area',
           ]);
