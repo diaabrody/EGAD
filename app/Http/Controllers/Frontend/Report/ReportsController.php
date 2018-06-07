@@ -53,6 +53,7 @@ class ReportsController extends Controller
 
     public function show($id)
     {
+        
         $report =$this->reportRepository->findByid($id);
         return view('frontend.reports.show',[
             'report' => $report

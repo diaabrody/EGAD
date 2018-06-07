@@ -4,6 +4,7 @@
 
 @section('content')
 <div>
+    
 <img src="{{ $report->photo }}" alt="Avatar" style="height:200px">
     <hr>   
         <p>Name: {{ $report->name }}</p>
