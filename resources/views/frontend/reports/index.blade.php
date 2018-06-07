@@ -3,17 +3,25 @@
 @section('title', app_name() . ' | Reports')
 
 @section('content')
+<div class="all-missing">
+<h1>كل المفقودين</h1>
 <div class="row">
+
 @foreach ($reports as $report)
-<div class="card" style="width:300px">
-<img src="{{ $report->photo }}" alt="Avatar" style="height:200px">
-  <div class="container">
-    <b>{{ $report->name }}</b>
-    <hr>
-    <a href="/reports/{{ $report->id }}"  name="view" > Read More</a>
-  </div>
-</div>
+
+
+<div class="col-lg-4 col-md-12 col-sm-6 mb-5">
+                        <div class="card">
+                          <img class="card-img-top" src="{{ $report->photo }}" alt="Card image cap">
+                          <div class="card-body">
+                            <p class="card-text">الإسم: {{ $report->name }}</p>
+                            <p class="card-text">السن: {{ $report->age }}</p>
+                            <a href="/reports/{{ $report->id }}" class="btn btn-secondary">المزيد</a>
+                          </div>
+                        </div>
+            </div>
 @endforeach
+</div>
 </div>
 @endsection
 

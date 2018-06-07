@@ -14,8 +14,8 @@
 <div class="form-group">
     <label for="gender">نوع</label>
     <select name="gender">
-        <option value="1">ذكر</option>
-        <option value="0">انثى</option>
+        <option value="0">ذكر</option>
+        <option value="1">انثى</option>
     </select>
 
 </div>

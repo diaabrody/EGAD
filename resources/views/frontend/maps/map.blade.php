@@ -22,7 +22,7 @@
 </div>
 
 
-<div style="margin: auto; width: 1228px; height: 500px;">
+<div style="margin: auto; width: auto; height: 500px;">
     {!! Mapper::render() !!}
 </div>
 @endsection

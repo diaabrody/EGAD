@@ -1,0 +1,55 @@
+.details-card {
+    margin: 0 auto;
+    .card {
+        // height: 500px;
+        background-color: $primary;
+        .card-text {
+            text-align: right;
+            color: #fff;
+            font-size: 18px;
+            line-height: 30px;
+            
+        }
+        .center-btn-parent {
+            text-align: center;
+            a {
+                // float: right;
+                // display: block;
+                // margin: 0 auto;
+                color: #fff;
+                padding: 10px 50px;
+                font-size: 18px;
+                text-align: center;
+            }
+        }
+        img {
+            max-height: 400px;
+        }
+            
+        
+    }
+}
+
+.comments {
+    margin: 0 auto;
+    label {
+        float: right;
+        color: $primary;
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+    input {
+        color: #fff;
+        padding: 5px 10px;
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    hr {
+        margin-bottom: 20px;
+    }
+    h1 {
+        font-size: 24px;
+        color: $primary;
+        margin-bottom: 20px;
+    }
+}

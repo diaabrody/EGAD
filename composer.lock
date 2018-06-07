@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "7263da1cda3c27fd3a21c6531ce70d6a",
-    "content-hash": "f858796bac7f59897363f569edccce00",
+    "content-hash": "a8e4b0f2eb0e8f00dfdfe0bc48e299cd",
     "packages": [
         {
             "name": "appstract/laravel-blade-directives",
@@ -361,11 +360,7 @@
                 "maps",
                 "streetview"
             ],
-<<<<<<< HEAD
-            "time": "2018-06-05 09:46:32"
-=======
             "time": "2018-06-05T09:46:32+00:00"
->>>>>>> f2b978d3392ed5b2913521085ec87aad214a2c50
         },
         {
             "name": "creativeorange/gravatar",
@@ -3272,7 +3267,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jean-François Simon",
+                    "name": "Jean-FranÃ§ois Simon",
                     "email": "jeanfrancois.simon@sensiolabs.com"
                 },
                 {
@@ -4077,7 +4072,7 @@
                 "oauth",
                 "twitter"
             ],
-            "time": "2014-08-06 22:29:35"
+            "time": "2014-08-06T22:29:35+00:00"
         },
         {
             "name": "thujohn/twitter",
@@ -4121,7 +4116,7 @@
                 "laravel5",
                 "twitter"
             ],
-            "time": "2017-04-27 09:00:04"
+            "time": "2017-04-27T09:00:04+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -4941,7 +4936,7 @@
             ],
             "authors": [
                 {
-                    "name": "Dariusz Rumiński",
+                    "name": "Dariusz RumiÅ„ski",
                     "email": "dariusz.ruminski@gmail.com"
                 },
                 {
@@ -4991,7 +4986,7 @@
             ],
             "authors": [
                 {
-                    "name": "François Zaninotto"
+                    "name": "FranÃ§ois Zaninotto"
                 }
             ],
             "description": "Faker is a PHP library that generates fake data for you.",
@@ -5208,7 +5203,7 @@
             ],
             "authors": [
                 {
-                    "name": "Pádraic Brady",
+                    "name": "PÃ¡draic Brady",
                     "email": "padraic.brady@gmail.com",
                     "homepage": "http://blog.astrumfutura.com"
                 },
@@ -6043,11 +6038,7 @@
                 "testing",
                 "xunit"
             ],
-<<<<<<< HEAD
-            "time": "2018-06-05 03:40:05"
-=======
             "time": "2018-06-05T03:40:05+00:00"
->>>>>>> f2b978d3392ed5b2913521085ec87aad214a2c50
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

@@ -37,7 +37,7 @@
             @yield('content')
         </div><!-- container -->
     </div><!-- #app -->
-
+    @include('frontend.includes.footer')
     <!-- Scripts -->
     @stack('before-scripts')
     {!! script(mix('js/frontend.js')) !!}
@@ -117,5 +117,6 @@
 
         @endauth
     </script>
+    
     </body>
     </html>

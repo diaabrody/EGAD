@@ -3,36 +3,55 @@
 @section('title', app_name() . ' | Reports')
 
 @section('content')
-<div>
-<img src="{{ $report->photo }}" alt="Avatar" style="height:200px">
-    <hr>   
-        <p>Name: {{ $report->name }}</p>
-        <p> Age:{{ $report->age }}</p>     
-        <p> Lost Since : {{ $report->lost_since }}</p>
-        <p>Last Seen At :{{ $report->last_seen_at }}</p>     
-        <p>Last Seen On : {{ $report->last_seen_on }}</p>
-        <p> Weight:{{ $report->weight }}</p>     
-        <p>Height : {{ $report->height }}</p>
-        <p> The Color Of Eye:{{ $report->eye_color }}</p>     
-        <p> The Color Of Hair  : {{ $report->hair_color }}</p>
-        <p> Special Sign:{{ $report->special_sign }}</p>      
-    <hr>    
+<div class="row mb-5">
+    <div class="col-sm-10 details-card">
+    <div class="card ">
+  <div class="card-body">
+  <div class="row">
+  <div class="col-lg-8">
+    <p class="card-text">اللإسم: {{ $report->name }}</p>
+    <p class="card-text">السن: {{ $report->age }}</p>
+    <p class="card-text">فقد منذ: {{ $report->lost_since }}</p>
+    <p class="card-text">شوهد اخر مرة في: {{ $report->last_seen_at }}</p>
+    <p class="card-text">الطول: {{ $report->height }}</p>
+    <p class="card-text">الوزن: {{ $report->weight }}</p>
+    <p class="card-text">لون العين: {{ $report->eye_color }}</p>
+    <p class="card-text">لون الشعر: {{ $report->hair_color }}</p>
+    <p class="card-text">علامات مميزة: {{ $report->special_sign }}</p>
+    <div class="center-btn-parent">
+        <a href="#" class="btn btn-secondary">للتواصل مع الأهل</a>
+    </div>
+    </div>
+          <img src="{{ $report->photo }}" alt="avatar" class="img-fluid mb-3">
+  </div>
+    
+     
+  </div>
 </div>
-@if (Auth::user())
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-10 comments">
+    @if (Auth::user())
 <form role="form"  method="post" action="/reports/comment/{{$report->id}}">
      {{ csrf_field() }}
-     <label>Comment:</label>
-     <input type="text" name="comment" class="form-control" placeholder="Write Comment">
+     <label>إكتب تعليق:</label>
+     <textarea type="text" name="comment" class="form-control" rows="5" placeholder="إكتب تعليقك هنا"></textarea>
      <br> 
-     <input type="submit" class="btn btn-primary" value="Write Comment"/>
+     <input type="submit" class="btn btn-secondary" value="إرسال التعليق"/>
 </form>
 @endif
 
 <hr>  
-<h1>Comments</h1>
+<h1>التعليقات</h1>
 @foreach ($report->comments as $comment) 
    {{  $comment->text  }}
    {{  $comment->user->name }}
    <br>
 @endforeach
+
+    </div>
+</div>
 @endsection

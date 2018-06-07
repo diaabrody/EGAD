@@ -26,29 +26,3 @@
 	}
 }
 
-.missing-now {
-	h1 {
-		text-align: center;
-		color: $primary;
-		margin-bottom: 25px;
-	}
-	.card {
-		padding: 10px 10px 0 10px;
-		color: $primary;
-		border-radius: 0;
-		text-align: center;
-		.card-body {
-			.card-text {
-			color: $primary;
-			text-align: right;
-			font-size: 14px;
-		}
-		a {
-			color: #fff;
-			text-align: center;
-			font-size: 14px;
-			padding: 5px 20px ;
-		}
-		}
-	}
-}
