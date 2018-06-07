@@ -110,7 +110,7 @@ class ReportsController extends Controller
         $image = $request->file('photo')->path();  // your base64 encoded
         $base64 = base64_encode(file_get_contents($image));
 
-        $gallery_name = 'newbranch4';
+        $gallery_name = 'newbranch6';
         $argumentArray =  [
             "image" => $base64 ,
             "gallery_name" => $gallery_name
@@ -171,8 +171,8 @@ class ReportsController extends Controller
         if(count($this->found_childs) > 0)
         {
             $foundchilds=json_encode($this->found_childs);
-
-        return Redirect::route('frontend.report.founded')->with( ['childs' => $foundchilds] );
+            Session::put('childs', $foundchilds);
+        return Redirect::route('frontend.report.founded');
 
           //  return view("frontend.reports.founded")->with(['childs' => $this->found_childs] );
 
@@ -355,6 +355,8 @@ public function childFound()
 
     $childs=Session::get('childs');
     $childs=json_decode($childs);
+    Session::save();
+
     return view("frontend.reports.founded")->with('childs' , $childs);
   //  return view("frontend.reports.founded");
 
