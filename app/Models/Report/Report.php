@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
 use App\Models\Report\Traits\Relationship\ReportRelationship;
 use App\Models\Report\Traits\Attribute\ReportAttribute;
+use Laravel\Scout\Searchable;
 
 class Report extends Model
 {
     use ReportRelationship;
     use ReportAttribute;
     use SpatialTrait;
+    use Searchable;
 
     protected $fillable = [
         'user_id',

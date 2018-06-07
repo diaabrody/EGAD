@@ -18,6 +18,7 @@ use Grimzy\LaravelMysqlSpatial\Types\Point;
 use App\Events\SameAreaReport;
 use App\Classes\Kairos;
 
+
 class ReportsController extends Controller
 {
 
@@ -52,6 +53,7 @@ class ReportsController extends Controller
 
     public function show($id)
     {
+        
         $report =$this->reportRepository->findByid($id);
         return view('frontend.reports.show',[
             'report' => $report
@@ -85,13 +87,15 @@ class ReportsController extends Controller
 
     public function  store(StoreReportChildRequest $request)
     {
-        $file=$request->file('photo');
-        $name=$file->getClientOriginalName();
+
         $input=$request->all();
-        $input['photo']=time().$name;
-        Storage::putFileAs(
-            'public/childs', $request->file('photo'), time().$name
-        );
+
+        if( $request->file('photo'))
+        {
+          $path = $request->file('photo')->store('public/children');
+        }
+        else
+          $path = "";
 
         if($request->status == "quick" || $request->status == "normal" )
         {
@@ -121,7 +125,7 @@ class ReportsController extends Controller
             'age'=>$request->age,
             'gender'=>$request->gender,
             'special_sign'=>$request->special_sign,
-            'photo'=>$input['photo'],
+            'photo'=>$path,
             'user_id' => Auth::user()->id,
             'type' => $request->status,
             'reporter_phone_number' => $request->reporter_phone_number,
@@ -166,23 +170,15 @@ class ReportsController extends Controller
     public function update(UpdateReportChildRest  $request , $id)
     {
 
-        $file=$request->file('photo');
         $report=$this->reportRepository->findByid($id);
         $input=$request->all();
 
 
-        if($file)
+        if($request->photo)
         {
-            $name=$file->getClientOriginalName();
-            $input['photo']=time().$name;
-            Storage::putFileAs(
-                'public/childs', $request->file('photo'), time().$name
-            );
-        }
-
-        else{
-            $input['photo']=$report->photo;
-
+            $path = $request->file('photo')->store('public/children');
+            $report->photo = $path;
+            $report->save(); 
         }
 
         if($report->type == "quick" || $report->type == "normal" )
@@ -211,26 +207,23 @@ class ReportsController extends Controller
 
         }
 
-
-
-
-        $this->reportRepository->updateById($id,[
-            'name'=>$request->name,
-            'age'=>$request->age,
-            'gender'=>$request->gender,
-            'special_sign'=>$request->special_sign,
-            'photo'=>$input['photo'],
-            'reporter_phone_number' => $request->reporter_phone_number,
-             'lost_since'   => $request->lost_since,
-            'found_since'   => $request->found_since,
-            'height'   => $request->height,
-            'weight'   => $request->weight,
-            'eye_color'   => $request->eye_color,
-            'hair_color'   => $request->hair_color,
-            'last_seen_at' => $request->location,
-            'location' => new Point($lat, $lng),
-
-        ]);
+            $this->reportRepository->updateById($id,[
+                'name'=>$request->name,
+                'age'=>$request->age,
+                'gender'=>$request->gender,
+                'special_sign'=>$request->special_sign,
+                'reporter_phone_number' => $request->reporter_phone_number,
+                 'lost_since'   => $request->lost_since,
+                'found_since'   => $request->found_since,
+                'height'   => $request->height,
+                'weight'   => $request->weight,
+                'eye_color'   => $request->eye_color,
+                'hair_color'   => $request->hair_color,
+                'last_seen_at' => $request->location,
+                'location' => new Point($lat, $lng),
+    
+            ]);
+        
 
         return redirect ('/reports/');
 
