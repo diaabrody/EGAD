@@ -11,6 +11,8 @@ use  App\Models\Report\Report;
 use  App\Models\Comment\Comment;
 use App\Repositories\Frontend\Report\ReportRepository;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
@@ -27,6 +29,7 @@ class ReportsController extends Controller
 
     protected  $face_id ;
     protected  $report_id;
+    protected  $found_childs = [];
 
 
 
@@ -99,15 +102,15 @@ class ReportsController extends Controller
         $file=$request->file('photo');
         $name=$file->getClientOriginalName();
         $input=$request->all();
-        $input['photo']=time().$name;
+       $imagename= time().$name;
         Storage::putFileAs(
-            'public/childs', $request->file('photo'), time().$name
+            'public/childs/', $request->file('photo'), $imagename
         );
 
         $image = $request->file('photo')->path();  // your base64 encoded
         $base64 = base64_encode(file_get_contents($image));
 
-        $gallery_name = 'anyany';
+        $gallery_name = 'newbranch4';
         $argumentArray =  [
             "image" => $base64 ,
             "gallery_name" => $gallery_name
@@ -116,7 +119,7 @@ class ReportsController extends Controller
         if($request->status == "quick" || $request->status == "normal" )
         {
 
-            $face_id_person=$this->checkImageByAI($argumentArray);
+           $this->checkImageByAI($argumentArray);
 
             $request->found_since = Null;
             $marker = $request->location;
@@ -134,9 +137,8 @@ class ReportsController extends Controller
         }
         else
         {
+            $this->checkImageByAI($argumentArray);
 
-            return $this->checkImageByAI($argumentArray);
-        //    return redirect()->route('frontend.report.show', [9]);
 
 
             $request->lost_since = Null;
@@ -146,15 +148,15 @@ class ReportsController extends Controller
 
 
 
-
         }
+
 
             $this->reportRepository->create([
             'name'=>$request->name,
             'age'=>$request->age,
             'gender'=>$request->gender,
             'special_sign'=>$request->special_sign,
-            'photo'=>$input['photo'],
+            'photo'=>$imagename,
             'user_id' => Auth::user()->id,
             'type' => $request->status,
              'reporter_phone_number' => $request->reporter_phone_number,
@@ -162,9 +164,24 @@ class ReportsController extends Controller
              'found_since'   => $request->found_since,
              'last_seen_at' => $request->location,
               'location' => new Point($lat, $lng),
-              'face_id' =>$face_id_person
+              'face_id' =>$this->face_id
 
         ]);
+
+        if(count($this->found_childs) > 0)
+        {
+            $foundchilds=json_encode($this->found_childs);
+
+        return Redirect::route('frontend.report.founded')->with( ['childs' => $foundchilds] );
+
+          //  return view("frontend.reports.founded")->with(['childs' => $this->found_childs] );
+
+
+        }
+
+
+
+
 
 
 
@@ -290,26 +307,31 @@ private  function checkImageByAI($argumentArray)
     if($image_status == "success")
     {
 
-        $face_id= $response->images[0]->candidates[0]->face_id;
-       $report=$this->reportRepository->selectByFaceID($face_id);
-        // this case so important
-       if($report->id && $report->user_id != Auth::user()->id)
+        $candidates= $response->images[0]->candidates;
+
+
+       foreach ($candidates as $candidate)
        {
 
-           //return redirect('/reports/'.$report->id);
-           return redirect()->route('frontend.report.show', [$report->id]);
+           $report_found=$this->reportRepository->selectByFaceID($candidate->face_id);
+
+           if ($report_found && $report_found->id && $report_found->user_id != Auth::user()->id)
+           {
+             //  $this->found_child_id=$report_found->id;
+               array_push($this->found_childs, $report_found);
+
+
+           }
+
        }
 
-       else
-       {
+
            $subject_id = time();
            $argumentArray["subject_id"]=strval($subject_id);
            $response   = $this->Kairosobj->enroll($argumentArray);
            $response = json_decode($response);
-           $this->face_id=$face_id;
+           $this->face_id=$response->face_id;
 
-
-       }
 
     }
 
@@ -318,15 +340,26 @@ private  function checkImageByAI($argumentArray)
         $argumentArray["subject_id"]=strval($subject_id);
         $response   = $this->Kairosobj->enroll($argumentArray);
         $response = json_decode($response);
-        $face_id=$response->face_id;
+        $this->face_id=$response->face_id;
 
-        $this->face_id=$face_id;
 
     }
 
 
 }
 
+
+public function childFound()
+
+{
+
+    $childs=Session::get('childs');
+    $childs=json_decode($childs);
+    return view("frontend.reports.founded")->with('childs' , $childs);
+  //  return view("frontend.reports.founded");
+
+
+}
 
     
     

@@ -1,10 +1,9 @@
-@extends('frontend.layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <h1>create report</h1>
 
 <form method="post" enctype="multipart/form-data" action="/report/save" >
-    {{ csrf_field() }}
+    <?php echo e(csrf_field()); ?>
+
 
     <div class="form-group">
 <label for="name">اسم المفقود</label>
@@ -39,13 +38,13 @@
     <input type="text" name="location" class="form-control" placeholder="ادخل المنطقه والمحافظه">
 </div>
 
-    @if ($status == "normal" || $status == "quick")
+    <?php if($status == "normal" || $status == "quick"): ?>
     <div class="form-group">
         <label for="lost_since">منذ متي فقد</label>
         <input type="date"  name="lost_since" class="form-control" placeholder="منذ متي فقد">
     </div>
 
-    @endif
+    <?php endif; ?>
 
 
 <div class="form-group">
@@ -59,7 +58,7 @@
     <input type="text" name="reporter_phone_number" class="form-control" placeholder="ادخل رقم تليفون المبلغ">
 </div>
 
-    <input type="hidden" value="{{$status}}" name="status">
+    <input type="hidden" value="<?php echo e($status); ?>" name="status">
 
 <button type="submit" class="btn btn-success">انشر بلاغ</button>
 
@@ -85,4 +84,5 @@
     </script>
 
 
-@stop
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

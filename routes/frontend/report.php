@@ -7,6 +7,7 @@ Route::get("/report/create/{status}",'ReportsController@create');
 Route::post("/report/save/" , "ReportsController@store");
 Route::get("/report/{id}/edit" , "ReportsController@edit");
 Route::put("/report/update/{id}" , "ReportsController@update");
+Route::get("/report/childs/found" , "ReportsController@childFound")->name('founded');
 
 
 });
