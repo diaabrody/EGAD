@@ -9,6 +9,7 @@ use App\Models\Report\Report;
 use App\Models\Comment\Comment;
 use App\Repositories\Frontend\Report\ReportRepository;
 use App\Repositories\Frontend\Comment\CommentRepository;
+use App\Http\Requests\Frontend\Comment\StoreComment;
 use Illuminate\Support\Facades\Storage;
 use App\Events\CommentsonReport;
 
@@ -26,7 +27,7 @@ class CommentsController extends Controller
 
     }
 
-     public function create(Request $req ,$id)
+     public function create(StoreComment $req ,$id)
     { 
          
          $comment = $this->commentRepository->create([
