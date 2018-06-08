@@ -30,18 +30,16 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $ip = trim(shell_exec("dig +short myip.opendns.com @resolver1.opendns.com"));
-
-        $loc = geoip()->getLocation($ip);
+        $loc = geoip()->getLocation($request->getClientIp());
 
 
         $search = $request->search ? $request->search : $loc->city;
         $locations = $this->reportRepository->all();
 
-        Mapper::location($search)->map(['clusters' => ['size' => 10, 'center' => true, 'zoom' => 20], 'marker' => true]);
+        Mapper::location($search)->map(['clusters' => ['size' => 10, 'center' => true, 'zoom' => 20], 'marker' => false]);
 
         foreach ($locations as $location) {
-            Mapper::marker($location->location->getLat(), $location->location->getLng(), ['symbol' => 'circle', 'scale' => 1000]);
+            Mapper::marker($location->location->getLat(), $location->location->getLng(), ['symbol' => 'circle', 'scale' => 1000, 'animation'=>'DROP' , 'eventclick'=>'alert("We will redirect you to the report page")']);
 
         }
 

@@ -50,7 +50,7 @@ return [
     | Perform the loading and rendering of Googlmapper map asynchronously.
     |
     */
-    'async' => false,
+    'async' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -213,7 +213,7 @@ return [
         | Display an animation effect for markers. (NONE|DROP|BOUNCE)
         |
         */
-        'animation' => 'NONE',
+        'animation' => 'BOUNCE',
 
     ],
 
