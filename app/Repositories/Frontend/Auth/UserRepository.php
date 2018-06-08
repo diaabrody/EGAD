@@ -215,7 +215,7 @@ class UserRepository extends BaseRepository
             }
         }
 
-        if ($user->canChangeEmail()) {
+        
             //Address is not current address so they need to reconfirm
             if ($user->email != $input['email']) {
                 //Emails have to be unique
@@ -239,7 +239,7 @@ class UserRepository extends BaseRepository
                     'email_changed' => true,
                 ];
             }
-        }
+        
 
         return $user->save();
     }

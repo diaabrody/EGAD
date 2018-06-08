@@ -51,6 +51,20 @@
         </div><!--col-->
     </div><!--row-->
 
+     <div class="row">
+        <div class="col">
+            <div class="form-group">
+                {{ html()->label(__('validation.attributes.frontend.email'))->for('email') }}
+
+                {{ html()->email('email')
+                    ->class('form-control')
+                    ->placeholder(__('validation.attributes.frontend.email'))
+                    ->attribute('maxlength', 191)
+                    ->required() }}
+            </div><!--form-group-->
+        </div><!--col-->
+    </div><!--row-->
+
     <div class="row">
         <div class="col">
             <div class="form-group">
