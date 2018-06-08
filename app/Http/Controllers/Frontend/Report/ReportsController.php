@@ -141,12 +141,17 @@ class ReportsController extends Controller
         
         foreach ($users as $user){
             event(new SameAreaReport($user,$report));
+        } 
+
+        if($request->status == "quick"){
+            auth()->logout();
+
+            return redirect()->route('frontend.auth.login')->withFlashInfo(__('Your report has been published successfully login to complete your profile'));
+        }
+        else{
+            return redirect ('/reports/');
         }
        
-
-
-        return redirect ('/reports/');
-
     }
 
 
