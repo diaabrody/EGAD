@@ -27,7 +27,7 @@ class CommentsController extends Controller
 
     }
 
-     public function create(Request $req ,$id)
+     public function create(StoreComment $req ,$id)
     { 
          
 
@@ -35,16 +35,16 @@ class CommentsController extends Controller
             'user_id'=>Auth::user()->id,
             'commentable_id'=>$id,
             'commentable_type'=>'reports',
-            'text'=>$req->comment,      
+            'text'=>$req->text,      
          ]);
 
          $comment->save();
-         
+
          if(($comment->commentable->user->id) != (Auth::user()->id) ){
              
             event(new CommentsonReport($comment));
          }
-
+         
         return redirect ('/reports/'.$id);
     }
 }

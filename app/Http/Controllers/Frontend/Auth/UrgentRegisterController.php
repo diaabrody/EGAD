@@ -50,7 +50,7 @@ class UrgentRegisterController extends Controller
 
         $this->guard()->login($user);
        
-        return redirect('/report/create')->withFlashSuccess(
+        return redirect('/report/create/quick')->withFlashSuccess(
                 __('Your password will be sent in SMS') 
         );
 
