@@ -40,11 +40,7 @@
         <label for="lost_since">منذ متي فقد</label>
         <input type="date"  name="lost_since" class="form-control" placeholder="منذ متي فقد">
     </div>
-    @else
-        <div class="form-group">
-            <label for="found_since">منذ متي وجد </label>
-            <input type="date"  name="found_since" class="form-control" placeholder="منذ متي وجد">
-        </div>
+
     @endif
 
 

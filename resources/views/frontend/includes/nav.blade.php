@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
-    <a href="{{ route('frontend.index') }}" class="navbar-brand"><img id="nav-logo" src="/images/logo.png" alt="logo"></a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5" style="height: 120px;">
+    <a href="{{ route('frontend.index') }}" class="navbar-brand"><img id="nav-logo" style="width: 90px; margin-top: -55px;" src="{{asset('img/frontend/logo1.png')}}" alt="logo"></a>
 
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('labels.general.toggle_navigation') }}">
         <span class="navbar-toggler-icon"></span>
