@@ -37,7 +37,9 @@ class CommentsonReport implements ShouldBroadcast
         Notification::create([
           'user_id'=>$comment->commentable->user_id,
           'report_id'=>$comment->commentable_id,
+          'photo' =>$comment->user->picture,
           'message'=>"{$comment->user->name} Commented On your Report",
+          'is_seen'=>0,
           'type'=>'Comments',
         ]);
     }

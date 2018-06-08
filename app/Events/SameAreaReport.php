@@ -34,6 +34,8 @@ class SameAreaReport
             'user_id'=>$user->id,
             'report_id'=>$report->id,
             'message'=>"a child has been lost in your area",
+            'photo' =>$report->photo,
+            'is_seen'=>0,
             'type'=>'same area',
           ]);
 
