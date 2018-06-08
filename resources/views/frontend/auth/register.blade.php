@@ -60,7 +60,6 @@
                                     {{ html()->text('phone_no')
                                         ->class('form-control')
                                         ->placeholder(__('Phone Number'))
-                                        ->attribute('maxlength', 191)
                                         ->required() }}
                                 </div><!--form-group-->
                             </div><!--col-->
