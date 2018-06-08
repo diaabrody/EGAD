@@ -13,12 +13,12 @@
               {{-- <img class="card-img-top" src="http://placehold.it/500x500" alt="Card image cap"> --}}
               <img src="images/question.svg">
               <div class="card-body">
-                <a href="#" class="btn btn-secondary">بلاغ سريع</a>
+                <a href="/report/create/quick" class="btn btn-secondary">بلاغ سريع</a>
               </div>
             </div>
     </div>
-    <div class="col-lg-8 col-md-12 col-s-12 missing-now">
-        <h1>المفقودين حالياً</h1>
+    <div class="col-lg-8 col-md-12 col-s-12 all-missing">
+        <h1>المفقودين بالقرب منك</h1>
         <div class="row">
             <div class="col-lg-4 col-md-12 col-sm-6 mb-5">
                         <div class="card">
@@ -55,23 +55,24 @@
 </div>
 
 <div class="row">
-    <div class="col-sm-12 how-to-help">
+    <div class="col-sm-12 how-to-help mb-5">
         <div class="card">
           <div class="card-body">
-            <p class="card-title">كيف تستطيع المساعدة؟</p>
-            <p class="card-text">اذا وجدت طفل تاءه خلال سيرك ف الطريق يمكنك المساعدة عن طريق الابلاغ من هنا </p>
-            <a href="#" class="btn btn-secondary">وجدت مفقود</a>
+            <div class="col-sm-9" id="found-text">
+              <p class="card-title">كيف تستطيع المساعدة؟</p>
+              <p class="card-text">اذا وجدت طفل تائه خلال سيرك في الطريق يمكنك المساعدة عن طريق الابلاغ من هنا </p>
+            </div>
+            <div class="col-sm-3" id="found-btn">
+               <a href="/report/create/found" class="btn btn-secondary">وجدت مفقود</a>
+            </div>
           </div>
         </div>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-lg-6 col-md-12 col-sm-12">
+    <div class="col-12">
         @yield('my-map')
-    </div>
-    <div class="col-lg-6 col-md-12 col-sm-12">
-        @yield('socialmedia-field')
     </div>
 </div>
 <div class="row ">

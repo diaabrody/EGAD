@@ -13,6 +13,10 @@
         <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="/css/bootstrap-notifications.min.css">
+        
+       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>   
+        @yield('meta')
 
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -37,7 +41,7 @@
             @yield('content')
         </div><!-- container -->
     </div><!-- #app -->
-
+    @include('frontend.includes.footer')
     <!-- Scripts -->
     @stack('before-scripts')
     {!! script(mix('js/frontend.js')) !!}
@@ -48,7 +52,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="//js.pusher.com/3.1/pusher.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
     <script type="text/javascript">
         var notificationsWrapper   = $('.dropdown-notifications');
         var notificationsToggle    = notificationsWrapper.find('a[data-toggle]');
@@ -68,23 +71,30 @@
         });
         @auth
         // Subscribe to the channel we specified in our Laravel Event
-        var channel = pusher.subscribe('report_{{ Auth::user()->id }}');
+        var commentChannel = pusher.subscribe('report_{{ Auth::user()->id }}');
+        var sameAreaChannel = pusher.subscribe('users.{{ Auth::user()->id }}');
 
+        
         $.each( {!! json_encode(Auth::user()->notification->toArray()) !!}, function(i,data) {
             DrawHtml(data);
-        });
-
-        console.log({!! json_encode(Auth::user()->notification->toArray()) !!});
-
-        channel.bind('App\\Events\\CommentsonReport', function(data) {
+        }); 
+            
+        commentChannel.bind('App\\Events\\CommentsonReport', function(data) {
             DrawHtml(data);
         });
+
+        sameAreaChannel.bind('App\\Events\\SameAreaReport', function(data) {
+            DrawHtml(data);
+        });
+
         function DrawHtml(data) {
             // Bind a function to a Event (the full Laravel class)
             var existingNotifications = notifications.html();
             var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
-            var newNotificationHtml = `
+            console.log(data)
+            var newNotificationHtml = `<a href="/reports/`+data.report_id+`">
           <li class="notification active">
+
               <div class="media">
                 <div class="media-left">
                   <div class="media-object">
@@ -93,13 +103,12 @@
                 </div>
                 <div class="media-body">
                   <strong class="notification-title">`+data.message+`</strong>
-                  <!--p class="notification-desc">Extra description can go here</p-->
                   <div class="notification-meta">
-                    <small class="timestamp">about a minute ago</small>
+                    <small class="timestamp">`+data.created_at+`</small>
                   </div>
                 </div>
               </div>
-          </li>
+          </li></a>
         `;
             notifications.html(newNotificationHtml + existingNotifications);
             notificationsCount += 1;
@@ -111,5 +120,6 @@
 
         @endauth
     </script>
+    
     </body>
     </html>

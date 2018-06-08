@@ -3,3 +3,33 @@
   margin: 0;
   border-radius: 0;
 }
+
+.all-missing {
+	h1 {
+		text-align: center;
+		color: $primary;
+		margin-bottom: 25px;
+	}
+	.card {
+		padding: 10px 10px 0 10px;
+		color: $primary;
+		border-radius: 0;
+    text-align: center;
+    img {
+      height: 245px;
+    }
+		.card-body {
+			.card-text {
+			color: $primary;
+			text-align: center;
+			font-size: 14px;
+		}
+		a {
+			color: #fff;
+			text-align: center;
+			font-size: 14px;
+			padding: 5px 20px ;
+		}
+		}
+	}
+}

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Frontend;
-
+use Stevebauman\Location\Facades\Location;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
 use App\Http\Controllers\Controller;
@@ -28,8 +28,12 @@ class MapController extends Controller
      */
     public function index(Request $request)
     {
+        $ip = trim(shell_exec("dig +short myip.opendns.com @resolver1.opendns.com"));
 
-        $search = $request->search ? $request->search : 'Alexandria';
+        $loc = geoip()->getLocation($ip);
+
+
+        $search = $request->search ? $request->search : $loc->city;
         $locations = $this->reportRepository->all();
 
         Mapper::location($search)->map(['clusters' => ['size' => 10, 'center' => true, 'zoom' => 20], 'marker' => true]);

@@ -9999,8 +9999,47 @@ a.text-dark:focus {
   border-radius: 0;
 }
 
+.all-missing h1 {
+  text-align: center;
+  color: #314755;
+  margin-bottom: 25px;
+}
+
+.all-missing .card {
+  padding: 10px 10px 0 10px;
+  color: #314755;
+  border-radius: 0;
+  text-align: center;
+}
+
+.all-missing .card img {
+  height: 245px;
+}
+
+.all-missing .card .card-body .card-text {
+  color: #314755;
+  text-align: center;
+  font-size: 14px;
+}
+
+.all-missing .card .card-body a {
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  padding: 5px 20px;
+}
+
 .profile-picture {
   max-height: 90px;
+}
+
+.navbar-brand {
+  padding-top: 10px;
+}
+
+.navbar-brand #nav-logo {
+  width: 70px;
+  margin: 0;
 }
 
 .report-fast .card {
@@ -10033,32 +10072,6 @@ a.text-dark:focus {
   margin: 0 auto;
 }
 
-.missing-now h1 {
-  text-align: center;
-  color: #314755;
-  margin-bottom: 25px;
-}
-
-.missing-now .card {
-  padding: 10px 10px 0 10px;
-  color: #314755;
-  border-radius: 0;
-  text-align: center;
-}
-
-.missing-now .card .card-body .card-text {
-  color: #314755;
-  text-align: right;
-  font-size: 14px;
-}
-
-.missing-now .card .card-body a {
-  color: #fff;
-  text-align: center;
-  font-size: 14px;
-  padding: 5px 20px;
-}
-
 .how-to-help .card {
   background-color: #314755;
 }
@@ -10067,21 +10080,31 @@ a.text-dark:focus {
   color: #fff;
 }
 
-.how-to-help .card .card-body .card-title {
-  font-size: 18px;
-  text-align: right;
-}
-
-.how-to-help .card .card-body .card-text {
-  font-size: 14px;
-  text-align: right;
+.how-to-help .card .card-body #found-text {
   display: inline-block;
   float: right;
 }
 
-.how-to-help .card .card-body a {
+.how-to-help .card .card-body #found-text .card-title {
+  font-size: 18px;
+  text-align: right;
+}
+
+.how-to-help .card .card-body #found-text .card-text {
+  font-size: 14px;
+  text-align: right;
+}
+
+.how-to-help .card .card-body #found-btn {
+  padding-top: 5px;
+}
+
+.how-to-help .card .card-body #found-btn a {
+  clear: both;
   color: #fff;
   font-size: 16px;
+  display: block;
+  padding: 10px 0;
 }
 
 .success-stories {
@@ -10093,5 +10116,95 @@ a.text-dark:focus {
   color: #314755;
   text-align: center;
   padding: 25px 0;
+}
+
+footer {
+  background-color: #314755;
+  padding: 50px 0;
+  text-align: center;
+}
+
+footer #footer-logo {
+  width: 100px;
+}
+
+footer ul {
+  text-align: right;
+  font-size: 18px;
+  padding-right: 0;
+}
+
+footer ul li {
+  list-style-type: none;
+}
+
+footer ul li a {
+  color: #fff;
+}
+
+footer ul li a:link {
+  color: #fff;
+}
+
+footer ul li a:hover {
+  color: #e0b821;
+}
+
+.details-card {
+  margin: 0 auto;
+}
+
+.details-card .card {
+  background-color: #314755;
+}
+
+.details-card .card .card-text {
+  text-align: right;
+  color: #fff;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.details-card .card .center-btn-parent {
+  text-align: center;
+}
+
+.details-card .card .center-btn-parent a {
+  color: #fff;
+  padding: 10px 50px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.details-card .card img {
+  max-height: 400px;
+}
+
+.comments {
+  margin: 0 auto;
+}
+
+.comments label {
+  float: right;
+  color: #314755;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.comments input {
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.comments hr {
+  margin-bottom: 20px;
+}
+
+.comments h1 {
+  font-size: 24px;
+  color: #314755;
+  margin-bottom: 20px;
 }
 

@@ -91,7 +91,7 @@ return [
     |
     */
 
-    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'ar'),
+    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
 
     /*
     |--------------------------------------------------------------------------
@@ -102,7 +102,7 @@ return [
     | by the Carbon library when setting Carbon's localization.
     |
     */
-    'locale_php' => env('APP_LOCALE_PHP', 'ar'),
+    'locale_php' => env('APP_LOCALE_PHP', 'en_US'),
 
     /*
     |--------------------------------------------------------------------------
@@ -178,6 +178,10 @@ return [
         App\Providers\RouteServiceProvider::class,
         Cornford\Googlmapper\MapperServiceProvider::class,
         Thujohn\Twitter\TwitterServiceProvider::class,
+        Stevebauman\Location\LocationServiceProvider::class,
+        \Torann\GeoIP\GeoIPServiceProvider::class,
+
+
 
     ],
 
@@ -235,7 +239,10 @@ return [
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Mapper'    => Cornford\Googlmapper\Facades\MapperFacade::class,
-        'Twitter' => Thujohn\Twitter\Facades\Twitter::class
+        'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
+        'Location' => Stevebauman\Location\Facades\Location::class,
+        'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
+
 
 
     ],

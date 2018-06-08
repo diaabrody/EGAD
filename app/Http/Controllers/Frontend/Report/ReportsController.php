@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Storage;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
 use Illuminate\Http\RedirectResponse;
+use App\Events\SameAreaReport;
+use App\Models\Auth\User;
 
 use App\Classes\Kairos;
 
@@ -70,7 +72,7 @@ class ReportsController extends Controller
 
 
 
-   
+
     public function  create($status)
     {
 
@@ -98,15 +100,8 @@ class ReportsController extends Controller
     public function  store(StoreReportChildRequest $request)
     {
 
-            //save image
-        $file=$request->file('photo');
-        $name=$file->getClientOriginalName();
-        $input=$request->all();
-       $imagename= time().$name;
-        Storage::putFileAs(
-            'public/childs/', $request->file('photo'), $imagename
-        );
-
+        //save image
+        $path = $request->file('photo')->store('public/children');
         $image = $request->file('photo')->path();  // your base64 encoded
         $base64 = base64_encode(file_get_contents($image));
 
@@ -119,7 +114,7 @@ class ReportsController extends Controller
         if($request->status == "quick" || $request->status == "normal" )
         {
 
-           $this->checkImageByAI($argumentArray);
+            $this->checkImageByAI($argumentArray);
 
             $request->found_since = Null;
             $marker = $request->location;
@@ -151,20 +146,20 @@ class ReportsController extends Controller
         }
 
 
-            $this->reportRepository->create([
+      $report_like =  $this->reportRepository->create([
             'name'=>$request->name,
             'age'=>$request->age,
             'gender'=>$request->gender,
             'special_sign'=>$request->special_sign,
-            'photo'=>$imagename,
+            'photo'=>$path,
             'user_id' => Auth::user()->id,
             'type' => $request->status,
-             'reporter_phone_number' => $request->reporter_phone_number,
-             'lost_since'   => $request->lost_since,
-             'found_since'   => $request->found_since,
-             'last_seen_at' => $request->location,
-              'location' => new Point($lat, $lng),
-              'face_id' =>$this->face_id
+            'reporter_phone_number' => $request->reporter_phone_number,
+            'lost_since'   => $request->lost_since,
+            'found_since'   => $request->found_since,
+            'last_seen_at' => $request->location,
+            'location' => new Point($lat, $lng),
+            'face_id' =>$this->face_id
 
         ]);
 
@@ -172,9 +167,9 @@ class ReportsController extends Controller
         {
             $foundchilds=json_encode($this->found_childs);
             Session::put('childs', $foundchilds);
-        return Redirect::route('frontend.report.founded');
+            return Redirect::route('frontend.report.founded');
 
-          //  return view("frontend.reports.founded")->with(['childs' => $this->found_childs] );
+            //  return view("frontend.reports.founded")->with(['childs' => $this->found_childs] );
 
 
         }
@@ -182,7 +177,11 @@ class ReportsController extends Controller
 
 
 
+        $users = User::where('area', 'like', $report_like->last_seen_at)-> get();
 
+        foreach ($users as $user){
+            event(new SameAreaReport($user,$report_like));
+        }
 
 
 
@@ -218,11 +217,8 @@ class ReportsController extends Controller
 
         if($file)
         {
-            $name=$file->getClientOriginalName();
-            $input['photo']=time().$name;
-            Storage::putFileAs(
-                'public/childs', $request->file('photo'), time().$name
-            );
+            $path = $request->file('photo')->store('public/children');
+            $input['photo']=$path;
         }
 
         else{
@@ -268,7 +264,7 @@ class ReportsController extends Controller
             'special_sign'=>$request->special_sign,
             'photo'=>$input['photo'],
             'reporter_phone_number' => $request->reporter_phone_number,
-             'lost_since'   => $request->lost_since,
+            'lost_since'   => $request->lost_since,
             'found_since'   => $request->found_since,
             'height'   => $request->height,
             'weight'   => $request->weight,
@@ -286,83 +282,84 @@ class ReportsController extends Controller
 
 
 
-private  function checkImageByAI($argumentArray)
-{
-
-
-    $response   = $this->Kairosobj->recognize($argumentArray);
-    $response = json_decode($response);
-    if(!isset($response->images[0]))
-    {
-        $image_status ="failure";
-    }
-
-    else
-    {
-        $image_status=$response->images[0]->transaction->status;
-
-    }
-
-
-    if($image_status == "success")
+    private  function checkImageByAI($argumentArray)
     {
 
-        $candidates= $response->images[0]->candidates;
 
-
-       foreach ($candidates as $candidate)
-       {
-
-           $report_found=$this->reportRepository->selectByFaceID($candidate->face_id);
-
-           if ($report_found && $report_found->id && $report_found->user_id != Auth::user()->id)
-           {
-             //  $this->found_child_id=$report_found->id;
-               array_push($this->found_childs, $report_found);
-
-
-           }
-
-       }
-
-
-           $subject_id = time();
-           $argumentArray["subject_id"]=strval($subject_id);
-           $response   = $this->Kairosobj->enroll($argumentArray);
-           $response = json_decode($response);
-           $this->face_id=$response->face_id;
-
-
-    }
-
-    else{
-        $subject_id = time();
-        $argumentArray["subject_id"]=strval($subject_id);
-        $response   = $this->Kairosobj->enroll($argumentArray);
+        $response   = $this->Kairosobj->recognize($argumentArray);
         $response = json_decode($response);
-        $this->face_id=$response->face_id;
+        if(!isset($response->images[0]))
+        {
+            $image_status ="failure";
+        }
+
+        else
+        {
+            $image_status=$response->images[0]->transaction->status;
+
+        }
+
+
+        if($image_status == "success")
+        {
+
+            $candidates= $response->images[0]->candidates;
+
+
+            foreach ($candidates as $candidate)
+            {
+
+                $report_found=$this->reportRepository->selectByFaceID($candidate->face_id);
+
+                if ($report_found && $report_found->id && $report_found->user_id != Auth::user()->id)
+                {
+                    //  $this->found_child_id=$report_found->id;
+                    array_push($this->found_childs, $report_found);
+
+
+                }
+
+            }
+
+
+            $subject_id = time();
+            $argumentArray["subject_id"]=strval($subject_id);
+            $response   = $this->Kairosobj->enroll($argumentArray);
+            $response = json_decode($response);
+            $this->face_id=$response->face_id;
+
+
+        }
+
+        else{
+            $subject_id = time();
+            $argumentArray["subject_id"]=strval($subject_id);
+            $response   = $this->Kairosobj->enroll($argumentArray);
+            $response = json_decode($response);
+            $this->face_id=$response->face_id;
+
+
+        }
 
 
     }
 
 
+    public function childFound()
+
+    {
+
+        $childs=Session::get('childs');
+        $childs=json_decode($childs);
+        Session::save();
+
+        return view("frontend.reports.founded")->with('childs' , $childs);
+        //  return view("frontend.reports.founded");
+
+
+    }
+
+
+
 }
 
-
-public function childFound()
-
-{
-
-    $childs=Session::get('childs');
-    $childs=json_decode($childs);
-    Session::save();
-
-    return view("frontend.reports.founded")->with('childs' , $childs);
-  //  return view("frontend.reports.founded");
-
-
-}
-
-    
-    
-}
