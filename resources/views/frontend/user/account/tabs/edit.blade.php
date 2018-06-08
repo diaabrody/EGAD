@@ -68,6 +68,19 @@
     <div class="row">
         <div class="col">
             <div class="form-group">
+                {{ html()->label(__('Phone Number'))->for('phone_no') }}
+
+                {{ html()->text('phone_no')
+                ->class('form-control')
+                ->placeholder(__('Phone Number'))
+                ->required() }}
+            </div><!--form-group-->
+        </div><!--col-->
+    </div><!--row-->
+
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
                 {{ html()->label(__('Date Of Birth'))->for('date_of_birth') }}
 
                 {{ html()->date('date_of_birth')

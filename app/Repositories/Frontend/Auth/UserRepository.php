@@ -191,6 +191,7 @@ class UserRepository extends BaseRepository
         $user = $this->getById($id);
         $user->first_name = $input['first_name'];
         $user->last_name = $input['last_name'];
+        $user->phone_no = $input['phone_no'];
         $user->date_of_birth = $input['date_of_birth'];
         $user->timezone = $input['timezone'];
         $user->avatar_type = $input['avatar_type'];
