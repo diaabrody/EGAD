@@ -50,11 +50,12 @@
     <script src="//js.pusher.com/3.1/pusher.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript">
-    
+      @auth
+
         var notificationsWrapper   = $('.dropdown-notifications');
         var notificationsToggle    = notificationsWrapper.find('a[data-toggle]');
         var notificationsCountElem = notificationsToggle.find('i[data-count]');
-        var notificationsCount     = parseInt(notificationsCountElem.data('count'));
+        //var notificationsCount     = parseInt(notificationsCountElem.data('count'));
         var notifications          = notificationsWrapper.find('ul.dropdown-menu');
 
         // Enable pusher logging - don't include this in production
@@ -70,9 +71,21 @@
             notificationsCountElem.attr('data-count', notificationsCount);
             notificationsWrapper.find('.notif-count').text(notificationsCount);
             notificationsWrapper.show();
-         }
-        
-        @auth
+        }
+                
+      
+        $(document).ready(function(){
+            $.ajax({
+                type: "GET",
+                url: '/notifications/count' ,
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                    notificationsCount=data.count;
+                    updateNotificationCount();
+                }
+            });
+        });
 
         // Subscribe to the channel we specified in our Laravel Event
         var commentChannel = pusher.subscribe('report_{{ Auth::user()->id }}');
@@ -90,7 +103,7 @@
         sameAreaChannel.bind('App\\Events\\SameAreaReport', function(data) {
             DrawHtml(data);
         });
-        
+
     function myFunction(data){ 
        
            $.ajax({
@@ -100,7 +113,7 @@
                 '_token':'{{csrf_token()}}',
             },
 			success:function(resp){
-                console.log(resp)  
+                
                 notificationsCount=0;
                 updateNotificationCount();
 			}

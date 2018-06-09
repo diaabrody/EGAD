@@ -25,7 +25,13 @@ class NotificationsController extends Controller
          $notification->save();
         }
         return $notifications;
-
     }
+
+    public function count()
+    { 
+        $notifications = Notification :: where('is_seen','=',0)->count();
+        return response()->json(['count' => $notifications]);
+    }
+
 }
 
