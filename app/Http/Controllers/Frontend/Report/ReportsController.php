@@ -21,6 +21,7 @@ use App\Events\SameAreaReport;
 use App\Models\Auth\User;
 
 use App\Classes\Kairos;
+ini_set('max_execution_time', 300);
 
 class ReportsController extends Controller
 {
@@ -32,6 +33,7 @@ class ReportsController extends Controller
     protected  $face_id ;
     protected  $report_id;
     protected  $found_childs = [];
+    protected  $not_contain_face ;
 
 
 
@@ -116,6 +118,11 @@ class ReportsController extends Controller
 
             $this->checkImageByAI($argumentArray);
 
+            if($this->not_contain_face)
+            {
+                return Redirect::back()->withErrors(['msg', 'this image does not have an image']);
+            }
+
             $request->found_since = Null;
             $marker = $request->location;
 
@@ -134,6 +141,10 @@ class ReportsController extends Controller
         {
             $this->checkImageByAI($argumentArray);
 
+            if($this->not_contain_face)
+            {
+                return Redirect::back()->withErrors(['الصوره التي ادخلتها لا تحتوي علي اشخاص']);
+            }
 
 
             $request->lost_since = Null;
@@ -332,11 +343,26 @@ class ReportsController extends Controller
         }
 
         else{
-            $subject_id = time();
-            $argumentArray["subject_id"]=strval($subject_id);
-            $response   = $this->Kairosobj->enroll($argumentArray);
-            $response = json_decode($response);
-            $this->face_id=$response->face_id;
+
+            if($response->Errors[0]->ErrCode == 5002)
+            {
+
+                $this->not_contain_face=true;
+
+
+            }
+            else{
+
+                $subject_id = time();
+                $argumentArray["subject_id"]=strval($subject_id);
+                $response   = $this->Kairosobj->enroll($argumentArray);
+                $response = json_decode($response);
+                $this->face_id=$response->face_id;
+
+            }
+
+
+
 
 
         }
