@@ -181,7 +181,7 @@ class ReportsController extends Controller
 
         foreach ($users as $user){
             if(($user->id) != (Auth::user()->id) ){
-                event(new SameAreaReport($user,$report_like));
+            event(new SameAreaReport($user,$report_like));
             }
         }
 
