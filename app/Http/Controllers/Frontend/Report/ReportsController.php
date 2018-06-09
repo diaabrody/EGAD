@@ -181,7 +181,7 @@ class ReportsController extends Controller
 
         foreach ($users as $user){
             if(($user->id) != (Auth::user()->id) ){
-                event(new SameAreaReport($user,$report_like));
+            event(new SameAreaReport($user,$report_like));
             }
         }
 
@@ -189,7 +189,7 @@ class ReportsController extends Controller
         if($request->status == "quick"){
             auth()->logout();
 
-            return redirect()->route('frontend.auth.login')->withFlashInfo(__('Your report has been published successfully login to complete your profile'));
+            return redirect()->route('frontend.auth.login')->withFlashInfo(__('Your report has been published successfully '));
         }
         else{
             return redirect ('/reports/');

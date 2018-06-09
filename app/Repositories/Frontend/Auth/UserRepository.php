@@ -144,7 +144,9 @@ class UserRepository extends BaseRepository
     {
         return DB::transaction(function () use ($data) {
             $user = parent::create([
+                'first_name'        => 'Guest',
                 'phone_no'          => $data['phone_no'],
+                'email'             => 'guest@ejad.com',
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'active'            => 1,
                 'password'          => '123456',

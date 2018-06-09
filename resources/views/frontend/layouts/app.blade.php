@@ -50,13 +50,13 @@
     <script src="//js.pusher.com/3.1/pusher.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript">
+      @auth
+
         var notificationsWrapper   = $('.dropdown-notifications');
         var notificationsToggle    = notificationsWrapper.find('a[data-toggle]');
         var notificationsCountElem = notificationsToggle.find('i[data-count]');
-        var notificationsCount     = parseInt(notificationsCountElem.data('count'));
+        //var notificationsCount     = parseInt(notificationsCountElem.data('count'));
         var notifications          = notificationsWrapper.find('ul.dropdown-menu');
-
-
 
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole = true;
@@ -66,7 +66,27 @@
             cluster: 'eu',
             encrypted: false,
         });
-        @auth
+
+        function updateNotificationCount(){
+            notificationsCountElem.attr('data-count', notificationsCount);
+            notificationsWrapper.find('.notif-count').text(notificationsCount);
+            notificationsWrapper.show();
+        }
+                
+      
+        $(document).ready(function(){
+            $.ajax({
+                type: "GET",
+                url: '/notifications/count' ,
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                    notificationsCount=data.count;
+                    updateNotificationCount();
+                }
+            });
+        });
+
         // Subscribe to the channel we specified in our Laravel Event
         var commentChannel = pusher.subscribe('report_{{ Auth::user()->id }}');
         var sameAreaChannel = pusher.subscribe('users.{{ Auth::user()->id }}');
@@ -84,18 +104,37 @@
             DrawHtml(data);
         });
 
+    function myFunction(data){ 
+       
+           $.ajax({
+            type: 'post',
+            url: '/notifications/edit',
+			data:{
+                '_token':'{{csrf_token()}}',
+            },
+			success:function(resp){
+                
+                notificationsCount=0;
+                updateNotificationCount();
+			}
+        })        
+
+       } 
+
         function DrawHtml(data) {
             // Bind a function to a Event (the full Laravel class)
             var existingNotifications = notifications.html();
             var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
+           
             console.log(data)
+
             var newNotificationHtml = `<a href="/reports/`+data.report_id+`">
           <li class="notification active">
 
               <div class="media">
                 <div class="media-left">
                   <div class="media-object">
-                    <img src="https://api.adorable.io/avatars/71/`+avatar+`.png" class="img-circle" alt="50x50" style="width: 50px; height: 50px;">
+                    <img src="`+data.photo+`" class="img-circle" alt="50x50" style="width: 50px; height: 50px;">
                   </div>
                 </div>
                 <div class="media-body">
@@ -106,16 +145,13 @@
                 </div>
               </div>
           </li></a>
-        `;
+        `;    
             notifications.html(newNotificationHtml + existingNotifications);
             notificationsCount += 1;
-            notificationsCountElem.attr('data-count', notificationsCount);
-            notificationsWrapper.find('.notif-count').text(notificationsCount);
-            notificationsWrapper.show();
-
+            updateNotificationCount();
         }
-
         @endauth
+
     </script>
     
     </body>
