@@ -51,7 +51,7 @@ class UrgentRegisterController extends Controller
         $this->guard()->login($user);
        
         return redirect('/report/create/quick')->withFlashSuccess(
-                __('Your password is 123456 and you can change it in the next time you login to your profile') 
+                __('Your email is guest@ejad.com and password is 123456 and you can change them in the next time you login to your profile') 
         );
 
     }
