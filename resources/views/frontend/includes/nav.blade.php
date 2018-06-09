@@ -6,24 +6,18 @@
     </button>
     @auth
   <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="nav-item dropdown dropdown-notifications">
-              <a href="#notifications-panel" class="nav-link dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+          <ul class="nav navbar-nav"> 
+            <li class="nav-item dropdown dropdown-notifications" >
+              <a href="#notifications-panel" onclick="myFunction()" class="nav-link dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
                 <i data-count="0" class="glyphicon glyphicon-bell notification-icon"></i>
               </a>
 
               <div class="dropdown-container">
                 <div class="dropdown-toolbar">
-                  <div class="dropdown-toolbar-actions">
-                    <a href="#">Mark all as read</a>
-                  </div>
-                  <h3 class="dropdown-toolbar-title">Notifications (<span class="notif-count">0</span>)</h3>
+                  <h3 class="dropdown-toolbar-title" >Notifications (<span id='number' class="notif-count">0</span>)</h3>
                 </div>
                 <ul class="dropdown-menu">
                 </ul>
-                <div class="dropdown-footer text-center">
-                  <a href="#">View All</a>
-                </div>
               </div>
             </li>
             <div id="app">
