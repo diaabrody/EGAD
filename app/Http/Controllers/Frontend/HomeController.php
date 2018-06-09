@@ -36,10 +36,13 @@ class HomeController extends Controller
         $search = $request->search ? $request->search : $loc->city;
         $locations = $this->reportRepository->all();
 
-        Mapper::location($search)->map(['clusters' => ['size' => 10, 'center' => true, 'zoom' => 20], 'marker' => false]);
+        Mapper::location($search)->map(['clusters' => ['size' => 10, 'center' => true, 'zoom' => 20], 'marker' => true]);
 
         foreach ($locations as $location) {
-            Mapper::marker($location->location->getLat(), $location->location->getLng(), ['symbol' => 'circle', 'scale' => 1000, 'animation'=>'DROP' , 'eventclick'=>'alert("We will redirect you to the report page")']);
+            Mapper::marker($location->location->getLat(), $location->location->getLng(), ['symbol' => 'circle',
+                'scale' => 1000,
+                'animation'=>'DROP',
+                'eventClick'=>'window.location ="reports/' . $location->id . '"' ]);
 
         }
 
