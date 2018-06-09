@@ -3,9 +3,6 @@
 @section('content')
     <h1>create report</h1>
 
-    @if($errors->any())
-        <h4>{{$errors->first()}}</h4>
-    @endif
 
 <form method="post" enctype="multipart/form-data" action="/report/save" >
     {{ csrf_field() }}

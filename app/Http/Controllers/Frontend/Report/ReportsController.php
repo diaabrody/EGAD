@@ -120,7 +120,7 @@ class ReportsController extends Controller
 
             if($this->not_contain_face)
             {
-                return Redirect::back()->withErrors(['msg', 'this image does not have an image']);
+                return Redirect::back()->withErrors(['هذه الصوره لا تحتوي علي اشخاص ']);
             }
 
             $request->found_since = Null;
@@ -344,7 +344,7 @@ class ReportsController extends Controller
 
         else{
 
-            if($response->Errors[0]->ErrCode == 5002)
+            if(isset($response->Errors[0])&&$response->Errors[0]->ErrCode == 5002)
             {
 
                 $this->not_contain_face=true;
