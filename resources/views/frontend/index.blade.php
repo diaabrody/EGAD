@@ -4,6 +4,8 @@
 @section('title', app_name() . ' | '.__('navs.general.home'))
 
 @section('content')
+
+
 <div class="row">
     <div class="col-lg-4 col-md-12 col-sm-12 report-fast mb-3">
             <div class="card">

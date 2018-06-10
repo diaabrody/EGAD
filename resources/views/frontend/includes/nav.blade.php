@@ -26,14 +26,13 @@
                 </div>
               </div>
             </li>
-            <div id="app">
            <li class="nav-item">
-            <ais-index app-id="N02M6ZG9Q3"
+            {{-- <ais-index app-id="N02M6ZG9Q3"
                 api-key="32b6ab474f65d442d7ec4242d1ef410d"
                  index-name="reports"
                     :auto-search="false">
 
-    <ais-search-box  placeholder="Find reports..."></ais-search-box>
+    <ais-search-box style="color:red;" placeholder="Find reports..."></ais-search-box> --}}
 
 {{-- <ais-results >
 <template slot-scope="{ result }">
@@ -45,7 +44,7 @@
 </div>
 </template>
 </ais-results> --}}
-<my-results>
+{{-- <my-results>
     <template slot-scope="{ result }">
         <div>
             <a :href="'/reports/'+ result.id">
@@ -59,8 +58,8 @@
 <ais-no-results></ais-no-results>
 
 
-</ais-index>
-</div>
+</ais-index> --}}
+<input id="search-input" placeholder="Search for products">
             
            </li>
           </ul>
