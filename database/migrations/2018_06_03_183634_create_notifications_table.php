@@ -19,6 +19,8 @@ class CreateNotificationsTable extends Migration
             $table->integer('report_id');
             $table->text('message');
             $table->string('type');
+            $table->string('photo');
+            $table->integer('is_seen');
             $table->timestamps();
         });
     }

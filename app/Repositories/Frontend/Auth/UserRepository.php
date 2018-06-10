@@ -144,7 +144,9 @@ class UserRepository extends BaseRepository
     {
         return DB::transaction(function () use ($data) {
             $user = parent::create([
+                'first_name'        => 'Guest',
                 'phone_no'          => $data['phone_no'],
+                'email'             => 'guest@ejad.com',
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'active'            => 1,
                 'password'          => '123456',
@@ -191,6 +193,7 @@ class UserRepository extends BaseRepository
         $user = $this->getById($id);
         $user->first_name = $input['first_name'];
         $user->last_name = $input['last_name'];
+        $user->phone_no = $input['phone_no'];
         $user->date_of_birth = $input['date_of_birth'];
         $user->timezone = $input['timezone'];
         $user->avatar_type = $input['avatar_type'];
@@ -215,7 +218,7 @@ class UserRepository extends BaseRepository
             }
         }
 
-        if ($user->canChangeEmail()) {
+        
             //Address is not current address so they need to reconfirm
             if ($user->email != $input['email']) {
                 //Emails have to be unique
@@ -239,7 +242,7 @@ class UserRepository extends BaseRepository
                     'email_changed' => true,
                 ];
             }
-        }
+        
 
         return $user->save();
     }

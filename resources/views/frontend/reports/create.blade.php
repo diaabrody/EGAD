@@ -1,14 +1,17 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-    <h1>create report</h1>
+<h1>create report</h1>
+
+
+<div id="loading" style="display: none" ></div>
 
 <form method="post" enctype="multipart/form-data" action="/report/save" >
     {{ csrf_field() }}
 
     <div class="form-group">
-<label for="name">اسم المفقود</label>
-    <input type="text" name="name" class="form-control" placeholder="ادخل اسم المفقود">
+<label for="name"  >اسم المفقود</label>
+    <input type="text" name="name" class="form-control" placeholder="ادخل اسم المفقود" >
 </div>
 
 <div class="form-group">
@@ -32,8 +35,9 @@
 
 <div class="form-group">
     <label for="location">اين فقد</label>
-    <input type="text" name="location" class="form-control" placeholder="ادخل المنطقه والمحافظه">
+    <input type="text" name="location" class="form-control" placeholder="ادخل المنطقه والمحافظه" id="autocomplete"  >
 </div>
+
 
     @if ($status == "normal" || $status == "quick")
     <div class="form-group">
@@ -57,10 +61,19 @@
 
     <input type="hidden" value="{{$status}}" name="status">
 
-<button type="submit" class="btn btn-success">انشر بلاغ</button>
+<button type="submit" class="btn btn-success" id="report-create">انشر بلاغ</button>
 
 
 </form>
+
+
+<script type="text/javascript" src="{{ URL::asset('js/location-spinner.js') }}"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOukh8jofbCBMBKRE6XhSKwTUtmgF7Wp0&libraries=places&callback=initAutocomplete"
+            async defer></script>
+
+<link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
+
 
 
 

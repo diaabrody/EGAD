@@ -51,6 +51,33 @@
         </div><!--col-->
     </div><!--row-->
 
+     <div class="row">
+        <div class="col">
+            <div class="form-group">
+                {{ html()->label(__('validation.attributes.frontend.email'))->for('email') }}
+
+                {{ html()->email('email')
+                    ->class('form-control')
+                    ->placeholder(__('validation.attributes.frontend.email'))
+                    ->attribute('maxlength', 191)
+                    ->required() }}
+            </div><!--form-group-->
+        </div><!--col-->
+    </div><!--row-->
+
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                {{ html()->label(__('Phone Number'))->for('phone_no') }}
+
+                {{ html()->text('phone_no')
+                ->class('form-control')
+                ->placeholder(__('Phone Number'))
+                ->required() }}
+            </div><!--form-group-->
+        </div><!--col-->
+    </div><!--row-->
+
     <div class="row">
         <div class="col">
             <div class="form-group">

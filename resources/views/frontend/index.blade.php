@@ -74,7 +74,9 @@
 
 <div class="row">
     <div class="col-12">
-        @yield('my-map')
+        <div style="margin: auto; width: auto; height: 500px;">
+            {!! Mapper::render() !!}
+        </div>
     </div>
 </div>
 <div class="row ">

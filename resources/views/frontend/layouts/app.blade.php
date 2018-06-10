@@ -18,9 +18,6 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>   
         @yield('meta')
 
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    @yield('meta')
 
     {{-- See https://laravel.com/docs/5.5/blade#stacks for usage --}}
     @stack('before-styles')
@@ -101,13 +98,14 @@ search.start();
     </script>
    
     <script type="text/javascript">
+
+      @auth
+
         var notificationsWrapper   = $('.dropdown-notifications');
         var notificationsToggle    = notificationsWrapper.find('a[data-toggle]');
         var notificationsCountElem = notificationsToggle.find('i[data-count]');
-        var notificationsCount     = parseInt(notificationsCountElem.data('count'));
+        var notificationsCount = {{ $notificationsCount }};
         var notifications          = notificationsWrapper.find('ul.dropdown-menu');
-
-
 
         // Enable pusher logging - don't include this in production
         Pusher.logToConsole = true;
@@ -117,7 +115,16 @@ search.start();
             cluster: 'eu',
             encrypted: false,
         });
-        @auth
+
+        function updateNotificationCount(){
+            notificationsCountElem.attr('data-count', notificationsCount);
+            notificationsWrapper.find('.notif-count').text(notificationsCount);
+            notificationsWrapper.show();
+        }
+                
+      
+
+
         // Subscribe to the channel we specified in our Laravel Event
         var commentChannel = pusher.subscribe('report_{{ Auth::user()->id }}');
         var sameAreaChannel = pusher.subscribe('users.{{ Auth::user()->id }}');
@@ -129,24 +136,43 @@ search.start();
             
         commentChannel.bind('App\\Events\\CommentsonReport', function(data) {
             DrawHtml(data);
+            notificationsCount += 1;
+            updateNotificationCount();
         });
 
         sameAreaChannel.bind('App\\Events\\SameAreaReport', function(data) {
             DrawHtml(data);
+            notificationsCount += 1;
+            updateNotificationCount();
         });
+
+      
+    function myFunction(data){ 
+           $.ajax({
+            type: 'post',
+            url: '/notifications/edit',
+			data:{
+                '_token':'{{csrf_token()}}',
+            },
+			success:function(resp){
+                notificationsCount=0;
+                updateNotificationCount();
+			}
+        });
+       } 
 
         function DrawHtml(data) {
             // Bind a function to a Event (the full Laravel class)
             var existingNotifications = notifications.html();
             var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
-            console.log(data)
+           // console.log(data)
             var newNotificationHtml = `<a href="/reports/`+data.report_id+`">
           <li class="notification active">
 
               <div class="media">
                 <div class="media-left">
                   <div class="media-object">
-                    <img src="https://api.adorable.io/avatars/71/`+avatar+`.png" class="img-circle" alt="50x50" style="width: 50px; height: 50px;">
+                    <img src="`+data.photo+`" class="img-circle" alt="50x50" style="width: 50px; height: 50px;">
                   </div>
                 </div>
                 <div class="media-body">
@@ -157,16 +183,12 @@ search.start();
                 </div>
               </div>
           </li></a>
-        `;
+        `;    
             notifications.html(newNotificationHtml + existingNotifications);
-            notificationsCount += 1;
-            notificationsCountElem.attr('data-count', notificationsCount);
-            notificationsWrapper.find('.notif-count').text(notificationsCount);
-            notificationsWrapper.show();
 
         }
-
         @endauth
+
     </script>
     
     </body>

@@ -5,6 +5,10 @@ namespace App\Providers;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Notification\Notification;
+use Illuminate\Support\Facades\View;
+
 
 /**
  * Class AppServiceProvider.
@@ -58,6 +62,17 @@ class AppServiceProvider extends ServiceProvider
         // Set the default template for Pagination to use the included Bootstrap 4 template
         \Illuminate\Pagination\AbstractPaginator::defaultView('pagination::bootstrap-4');
         \Illuminate\Pagination\AbstractPaginator::defaultSimpleView('pagination::simple-bootstrap-4');
+   
+        view()->composer('*', function ($view) 
+        {
+            $notifications = Notification :: where([
+                ['is_seen','=',0],
+                ['user_id', '=', Auth::user()->id],
+            ])->count();
+    
+            //...with this variable
+            $view->with('notificationsCount', $notifications);    
+        });  
     }
 
     /**

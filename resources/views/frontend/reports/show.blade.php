@@ -38,7 +38,7 @@
 <form role="form"  method="post" action="/reports/comment/{{$report->id}}">
      {{ csrf_field() }}
      <label>إكتب تعليق:</label>
-     <textarea type="text" name="comment" class="form-control" rows="5" placeholder="إكتب تعليقك هنا"></textarea>
+     <textarea type="text" name="text" class="form-control" rows="5" placeholder="إكتب تعليقك هنا"></textarea>
      <br> 
      <input type="submit" class="btn btn-secondary" value="إرسال التعليق"/>
 </form>
@@ -51,7 +51,6 @@
    {{  $comment->user->name }}
    <br>
 @endforeach
-
     </div>
 </div>
 @endsection
