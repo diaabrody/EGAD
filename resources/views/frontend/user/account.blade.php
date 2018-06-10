@@ -4,14 +4,14 @@
     <div class="row justify-content-center align-items-center mb-3">
         <div class="col col-sm-10 align-self-center">
             <div class="card">
-                <div class="card-header">
-                    <strong>
-                        {{ __('navs.frontend.user.account') }}
+                <div class="card-header font-weight-bold">
+                    <strong class="float-right">
+                        {{ __('حسابي') }}
                     </strong>
                 </div>
 
-                <div class="card-body">
-                    <div role="tabpanel">
+                <div class="card-body px-5">
+                    <div role="tabpanel ">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
                                 <a href="#profile" class="nav-link active" aria-controls="profile" role="tab" data-toggle="tab">{{ __('navs.frontend.user.profile') }}</a>

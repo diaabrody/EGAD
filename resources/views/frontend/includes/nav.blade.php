@@ -10,25 +10,24 @@
           <ul class="nav navbar-nav"> 
             <li class="nav-item dropdown dropdown-notifications" >
               <a href="#notifications-panel" onclick="myFunction()" class="nav-link dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
-                <i data-count="0" class="glyphicon glyphicon-bell notification-icon"></i>
+                <i data-count="{{ $notificationsCount }}" class="glyphicon glyphicon-bell notification-icon"></i>
               </a>
 
               <div class="dropdown-container">
                 <div class="dropdown-toolbar">
-                  <h3 class="dropdown-toolbar-title" >Notifications (<span id='number' class="notif-count">0</span>)</h3>
+                  <h3 class="dropdown-toolbar-title" >Notifications (<span id='number' class="notif-count">{{ $notificationsCount }}</span>)</h3>
                 </div>
                 <ul class="dropdown-menu">
                 </ul>
               </div>
             </li>
-            <div id="app">
            <li class="nav-item">
-            <ais-index app-id="N02M6ZG9Q3"
+            {{-- <ais-index app-id="N02M6ZG9Q3"
                 api-key="32b6ab474f65d442d7ec4242d1ef410d"
                  index-name="reports"
                     :auto-search="false">
 
-    <ais-search-box  placeholder="Find reports..."></ais-search-box>
+    <ais-search-box style="color:red;" placeholder="Find reports..."></ais-search-box> --}}
 
 {{-- <ais-results >
 <template slot-scope="{ result }">
@@ -40,7 +39,7 @@
 </div>
 </template>
 </ais-results> --}}
-<my-results>
+{{-- <my-results>
     <template slot-scope="{ result }">
         <div>
             <a :href="'/reports/'+ result.id">
@@ -54,8 +53,8 @@
 <ais-no-results></ais-no-results>
 
 
-</ais-index>
-</div>
+</ais-index> --}}
+<input id="search-input" placeholder="Search for products">
             
            </li>
           </ul>
@@ -72,10 +71,8 @@
             <li class="nav-item"><a href="" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">قصص النجاح</a></li>
 
             <li class="nav-item"><a href="{{route('frontend.contact')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.contact')) }}">إتصل بنا</a></li>
-
-            
-           
-                <li class="nav-item"><a href="{{route('frontend.user.dashboard')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.user.dashboard')) }}">{{ __('navs.frontend.dashboard') }}</a></li>
+       
+            <li class="nav-item"><a href="{{route('frontend.user.dashboard')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.user.dashboard')) }}">{{ __('navs.frontend.dashboard') }}</a></li>
             @endif
             @endauth
             
