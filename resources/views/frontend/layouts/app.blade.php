@@ -29,6 +29,8 @@
         @stack('after-styles')
     </head>
     <body>
+
+    
     <div id="app">
         @include('includes.partials.logged-in-as')
         @include('frontend.includes.nav')
@@ -47,15 +49,65 @@
     @include('includes.partials.ga')
     <script src="//code.jquery.com/jquery.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
     <script src="//js.pusher.com/3.1/pusher.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.js"></script>
+    <script type="text/html" id="hit-template">
+        <div class="hit">
+          <div class="hit-image">
+            <img src="@{{{photo}}}" alt="@{{{name}}}">
+          </div>
+          <div class="hit-content">
+            <h3 class="hit-price">@{{{age}}}</h3>
+            <h2 class="hit-name">@{{{_highlightResult.name.value}}}</h2>
+            <p class="hit-description">@{{{_highlightResult.last_seen_at.value}}}</p>
+          </div>
+        </div>
+      </script>
+    <script>
+        var search = instantsearch({
+        // Replace with your own values
+        appId: 'N02M6ZG9Q3',
+        apiKey: '32b6ab474f65d442d7ec4242d1ef410d', // search only API key, no ADMIN key
+        indexName: 'reports',
+        urlSync: true,
+        searchParameters: {
+            hitsPerPage: 10
+        }
+        });
+
+         search.addWidget(
+        instantsearch.widgets.searchBox({
+            container: '#search-input'
+        })
+        );
+
+        search.addWidget(
+        instantsearch.widgets.hits({
+            container: '#hits',
+            templates: {
+            item: document.getElementById('hit-template').innerHTML,
+            empty: "We didn't find any results for the search "
+            }
+        })
+        );
+        search.addWidget(
+  instantsearch.widgets.pagination({
+    container: '#pagination'
+  })
+);
+search.start();
+    </script>
+   
     <script type="text/javascript">
+
       @auth
 
         var notificationsWrapper   = $('.dropdown-notifications');
         var notificationsToggle    = notificationsWrapper.find('a[data-toggle]');
         var notificationsCountElem = notificationsToggle.find('i[data-count]');
-        //var notificationsCount     = parseInt(notificationsCountElem.data('count'));
+        var notificationsCount = {{ $notificationsCount }};
         var notifications          = notificationsWrapper.find('ul.dropdown-menu');
 
         // Enable pusher logging - don't include this in production
@@ -74,18 +126,7 @@
         }
                 
       
-        $(document).ready(function(){
-            $.ajax({
-                type: "GET",
-                url: '/notifications/count' ,
-                dataType: "json",
-                success: function(data) {
-                    console.log(data);
-                    notificationsCount=data.count;
-                    updateNotificationCount();
-                }
-            });
-        });
+
 
         // Subscribe to the channel we specified in our Laravel Event
         var commentChannel = pusher.subscribe('report_{{ Auth::user()->id }}');
@@ -98,14 +139,18 @@
             
         commentChannel.bind('App\\Events\\CommentsonReport', function(data) {
             DrawHtml(data);
+            notificationsCount += 1;
+            updateNotificationCount();
         });
 
         sameAreaChannel.bind('App\\Events\\SameAreaReport', function(data) {
             DrawHtml(data);
+            notificationsCount += 1;
+            updateNotificationCount();
         });
 
+      
     function myFunction(data){ 
-       
            $.ajax({
             type: 'post',
             url: '/notifications/edit',
@@ -113,21 +158,17 @@
                 '_token':'{{csrf_token()}}',
             },
 			success:function(resp){
-                
                 notificationsCount=0;
                 updateNotificationCount();
 			}
-        })        
-
+        });
        } 
 
         function DrawHtml(data) {
             // Bind a function to a Event (the full Laravel class)
             var existingNotifications = notifications.html();
             var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
-           
-            console.log(data)
-
+           // console.log(data)
             var newNotificationHtml = `<a href="/reports/`+data.report_id+`">
           <li class="notification active">
 
@@ -147,8 +188,7 @@
           </li></a>
         `;    
             notifications.html(newNotificationHtml + existingNotifications);
-            notificationsCount += 1;
-            updateNotificationCount();
+
         }
         @endauth
 

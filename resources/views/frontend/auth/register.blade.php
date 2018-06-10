@@ -5,10 +5,10 @@
 @section('content')
     <div class="row justify-content-center align-items-center">
         <div class="col col-sm-8 align-self-center">
-            <div class="card">
-                <div class="card-header">
-                    <strong>
-                        {{ __('labels.frontend.auth.register_box_title') }}
+            <div class="card w-75 m-auto bg-light">
+                <div class="card-header font-weight-bold bg-white">
+                    <strong class="float-right">
+                        {{ __('انشاء حساب جديد') }}
                     </strong>
                 </div><!--card-header-->
 
@@ -17,22 +17,22 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                    {{ html()->label(__('validation.attributes.frontend.first_name'))->for('first_name') }}
+                                    {{ html()->label(__('الاسم الأول'))->for('first_name')-> class('float-right') }}
 
                                     {{ html()->text('first_name')
                                         ->class('form-control')
-                                        ->placeholder(__('validation.attributes.frontend.first_name'))
+                                        ->placeholder(__(''))
                                         ->attribute('maxlength', 191) }}
                                 </div><!--col-->
                             </div><!--row-->
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                    {{ html()->label(__('validation.attributes.frontend.last_name'))->for('last_name') }}
+                                    {{ html()->label(__('اسم العائلة'))->for('last_name')->class('float-right') }}
 
                                     {{ html()->text('last_name')
                                         ->class('form-control')
-                                        ->placeholder(__('validation.attributes.frontend.last_name'))
+                                        ->placeholder(__(''))
                                         ->attribute('maxlength', 191) }}
                                 </div><!--form-group-->
                             </div><!--col-->
@@ -41,11 +41,11 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    {{ html()->label(__('validation.attributes.frontend.email'))->for('email') }}
+                                    {{ html()->label(__('البريد الالكتروني'))->for('email')->class('float-right') }}
 
                                     {{ html()->email('email')
                                         ->class('form-control')
-                                        ->placeholder(__('validation.attributes.frontend.email'))
+                                        ->placeholder(__(''))
                                         ->attribute('maxlength', 191)
                                         ->required() }}
                                 </div><!--form-group-->
@@ -55,11 +55,13 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    {{ html()->label(__('Phone Number'))->for('phone_no') }}
+                                    {{ html()->label(__('رقم الهاتف'))->for('phone_no')->class('float-right') }}
 
                                     {{ html()->text('phone_no')
                                         ->class('form-control')
-                                        ->placeholder(__('Phone Number'))
+
+                                        ->placeholder(__(''))
+                                        ->attribute('maxlength', 191)
                                         ->required() }}
                                 </div><!--form-group-->
                             </div><!--col-->
@@ -68,7 +70,7 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                    {{ html()->label(__('City'))->for('city') }}
+                                    {{ html()->label(__('المدينة'))->for('city')->class('float-right') }}
 
                                     {{ html()->text('city')
                                         ->class('form-control')
@@ -78,7 +80,7 @@
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                {{ html()->label(__('Area'))->for('area') }}
+                                {{ html()->label(__('المنطقة'))->for('area')->class('float-right') }}
 
                                 {{ html()->text('area')
                                     ->class('form-control')
@@ -91,11 +93,12 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                {{ html()->label(__('Gender'))->for('gender') }}
-
+                                {{ html()->label(__('النوع'))->for('gender')->class('float-right ml-4') }}
+                                
                                     <div>
-                                        <input type="radio" name="gender" value="0"  /> Male
-                                        <input type="radio" name="gender" value="1"  /> Female
+                                        <input type="radio" name="gender" value="0" class="float-right" /><span class="float-right mr-2 ml-3">ذكر</span> 
+                                        <input type="radio" name="gender" value="1" class="float-right"  /> 
+                                        <span class="float-right mr-2">أنثي </span>
                                     </div> 
                                 </div><!--form-group-->
                             </div><!--col-->
@@ -107,11 +110,11 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    {{ html()->label(__('validation.attributes.frontend.password'))->for('password') }}
+                                    {{ html()->label(__('كلمة المرور'))->for('password')->class('float-right') }}
 
                                     {{ html()->password('password')
                                         ->class('form-control')
-                                        ->placeholder(__('validation.attributes.frontend.password'))
+                                        ->placeholder(__(''))
                                         ->required() }}
                                 </div><!--form-group-->
                             </div><!--col-->
@@ -120,11 +123,11 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    {{ html()->label(__('validation.attributes.frontend.password_confirmation'))->for('password_confirmation') }}
+                                    {{ html()->label(__('validation.attributes.frontend.password_confirmation'))->for('password_confirmation')->class('float-right') }}
 
                                     {{ html()->password('password_confirmation')
                                         ->class('form-control')
-                                        ->placeholder(__('validation.attributes.frontend.password_confirmation'))
+                                        ->placeholder(__(''))
                                         ->required() }}
                                 </div><!--form-group-->
                             </div><!--col-->
@@ -142,19 +145,14 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group mb-0 clearfix">
-                                    {{ form_submit(__('labels.frontend.auth.register_button')) }}
+<!--                                    {{ form_submit(__('labels.frontend.auth.register_button')) }}-->
+                                     <input type="submit" class="btn btn-warning btn-lg btn-block text-white font-weight-bold" value="انشاء حساب جديد">
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->
                     {{ html()->form()->close() }}
 
-                    <div class="row">
-                        <div class="col">
-                            <div class="text-center">
-                                {!! $socialiteLinks !!}
-                            </div>
-                        </div><!--/ .col -->
-                    </div><!-- / .row -->
+              
                     
                 </div><!-- card-body -->
             </div><!-- card -->

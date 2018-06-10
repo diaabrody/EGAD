@@ -12,7 +12,7 @@
     bottom: 0;
     margin: auto;
     animation: round 2s linear infinite;
-
+    z-index: 1;
 }
 
 @keyframes round {
