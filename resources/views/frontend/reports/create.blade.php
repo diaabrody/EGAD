@@ -72,7 +72,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOukh8jofbCBMBKRE6XhSKwTUtmgF7Wp0&libraries=places&callback=initAutocomplete"
             async defer></script>
 
-<link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
+<link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.cssody7') }}" />
 
 
 
