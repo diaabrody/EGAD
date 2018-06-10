@@ -1,5 +1,6 @@
+@extends('frontend.index')
 
-
+@section('my-map')
 <div class="search" >
     <form action="/map" method="get">
     <input type="search"  name="search" placeholder="input location...">
@@ -21,6 +22,7 @@
 </div>
 
 
-<div style="margin: auto; width: 1228px; height: 500px;">
+<div style="margin: auto; width: auto; height: 500px;">
     {!! Mapper::render() !!}
 </div>
+@endsection

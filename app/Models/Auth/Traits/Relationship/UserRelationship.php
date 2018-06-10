@@ -52,5 +52,4 @@ trait UserRelationship
         return $this->hasMany(Comment::class);
     }
     
-
 }

@@ -59,8 +59,12 @@
 
                                     {{ html()->text('phone_no')
                                         ->class('form-control')
+<<<<<<< HEAD
                                         ->placeholder(__(''))
                                         ->attribute('maxlength', 191)
+=======
+                                        ->placeholder(__('Phone Number'))
+>>>>>>> 6cb2b1c4cfb8f6661e4f659292ab5cd665be3b4e
                                         ->required() }}
                                 </div><!--form-group-->
                             </div><!--col-->

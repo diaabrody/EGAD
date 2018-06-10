@@ -108,7 +108,15 @@ class LoginController extends Controller
             resolve(UserSessionRepository::class)->clearSessionExceptCurrent($user);
         }
 
-        return redirect()->intended($this->redirectPath());
+        if($user->email!='guest@ejad.com'){
+            return redirect()->intended($this->redirectPath());
+        }
+        else{
+            return redirect()->route('frontend.user.account')->withFlashSuccess(
+                __('please edit your email and password and complete your information')); 
+        }
+
+        
     }
 
     /**

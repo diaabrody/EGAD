@@ -1,6 +1,9 @@
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
+// Variables
+@import "variables";
+
 // Bootstrap
 @import "../../../../node_modules/bootstrap/scss/bootstrap";
 
@@ -9,8 +12,12 @@
 
 // Pages
 @import "pages/dashboard";
+@import "pages/home/home_base";
+@import "pages/show";
 
 // Bootstrap Overrides
 @import "custom";
 
 // Plugins
+// 
+// 

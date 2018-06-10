@@ -1,0 +1,30 @@
+.how-to-help {
+	.card {
+		background-color: $primary;
+		.card-body {
+			color: #fff;
+			#found-text {
+				display: inline-block;
+				float: right;
+				.card-title {
+					font-size: 18px;
+					text-align: right;
+				}
+				.card-text {
+					font-size: 14px;
+					text-align: right;
+					// text-align: right;
+				}
+			}
+			#found-btn {
+				padding-top: 5px;
+				a {	clear: both;
+					color: #fff;
+					font-size: 16px;
+					display: block;
+					padding: 10px 0;
+				}
+			}
+		}
+	}
+}

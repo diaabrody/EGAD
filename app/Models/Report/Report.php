@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
 use App\Models\Report\Traits\Relationship\ReportRelationship;
 use App\Models\Report\Traits\Attribute\ReportAttribute;
+use Laravel\Scout\Searchable;
 
 class Report extends Model
 {
     use ReportRelationship;
     use ReportAttribute;
     use SpatialTrait;
+    use Searchable;
 
     protected $fillable = [
         'user_id',
@@ -31,7 +33,8 @@ class Report extends Model
         'is_found',
         'reporter_phone_number',
         'type',
-        'location'
+        'location',
+        'face_id'
     ];
 
     protected $spatialFields = [
@@ -41,6 +44,7 @@ class Report extends Model
     public function setPhotoAttribute($value)
     {
         if($value == "")
+
           $this->attributes['photo'] = "/storage/children/default.png";
         else
           $this->attributes['photo'] = "/storage".str_replace("public", "", $value);

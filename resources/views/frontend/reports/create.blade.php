@@ -1,26 +1,20 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-   
-<!--<div class="card">-->
+
+  <div id="loading" style="display: none" ></div>
+ 
+
 <form method="post" enctype="multipart/form-data" action="/report/save" class="w-75 m-auto px-0 border p-4 bg-light" >
+
     {{ csrf_field() }}
  <div class="col-lg-8 float-right">
     <div class="form-group">
 <label for="name" class="float-right">اسم المفقود</label>
     <input type="text" name="name" class="form-control" placeholder="ادخل اسم المفقود">
-</div>
-
-<!--
-<div class="form-group">
-    <label for="gender">نوع</label>
-    <select name="gender">
-        <option value="1">ذكر</option>
-        <option value="0">انثى</option>
-    </select>
 
 </div>
--->
+
                 <div class="row">
                             <div class="col">
                                 <div class="form-group">
@@ -35,6 +29,8 @@
                             </div><!--col-->
                         </div><!--row-->
 
+
+
 <div class="form-group">
     <label for="age" class="float-right">العمر</label>
     <input type="number" name="age" class="form-control" min="1" placeholder="ادخل العمر">
@@ -43,14 +39,15 @@
 <div class="form-group">
     <label for="location" class="float-right">اين فقد</label>
     <input type="text" name="location" class="form-control" placeholder="ادخل المنطقه والمحافظه">
+
 </div>
+
 
     @if ($status == "normal" || $status == "quick")
     <div class="form-group">
         <label for="lost_since" class="float-right">منذ متي فقد</label>
         <input type="date"  name="lost_since" class="form-control" placeholder="منذ متي فقد">
     </div>
-   
     @endif
 
 
@@ -66,8 +63,8 @@
 </div>
 
     <input type="hidden" value="{{$status}}" name="status">
-      <button type="button" class="btn btn-warning btn-lg btn-block text-white font-weight-bold">انشر بلاغ</button>
-<!--<button type="submit" class="btn btn-success">انشر بلاغ</button>-->
+      <button type="submit" class="btn btn-warning btn-lg btn-block text-white font-weight-bold" id="report-create">انشر بلاغ</button>
+
 
 </div>
     
@@ -75,18 +72,19 @@
     <div class="form-control" style="height:200px">
         <img src="{{asset('img/frontend/profileImage.png')}}" id="image" class="h-100 d-block mx-auto">
 
+
     </div>
     <div class="form-group">
         <label for="photo" class="float-right">صوره المفقود</label>
         <input type="file" name="photo" class="form-control" placeholder="ادخل الصوره" onchange="readURL(this);">
-<!--        <button type="button" class="btn btn-warning btn-lg btn-block text-white font-weight-bold">ارفع صورة</button>-->
+
     </div>
 
 </div>   
     <div style="clear:both"></div>
 </form>
 
-<!--</div>-->
+
     <script type="text/javascript">
         function readURL(input) {
             if (input.files && input.files[0]) {
@@ -98,11 +96,13 @@
                         .width(221)
                         .height(200);
                 };
+</script>
+<script type="text/javascript" src="{{ URL::asset('js/location-spinner.js') }}"></script>
 
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOukh8jofbCBMBKRE6XhSKwTUtmgF7Wp0&libraries=places&callback=initAutocomplete"
+            async defer></script>
+
+<link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
 
 
-@stop
+@endsection

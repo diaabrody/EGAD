@@ -157,7 +157,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Grimzy\LaravelMysqlSpatial\SpatialServiceProvider::class,
         /*
          * Package Service Providers that aren't auto-discover...
          */
@@ -177,6 +177,10 @@ return [
         App\Providers\ObserverServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Cornford\Googlmapper\MapperServiceProvider::class,
+        Thujohn\Twitter\TwitterServiceProvider::class,
+        Stevebauman\Location\LocationServiceProvider::class,
+        \Torann\GeoIP\GeoIPServiceProvider::class,
+
 
 
     ],
@@ -235,6 +239,10 @@ return [
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Mapper'    => Cornford\Googlmapper\Facades\MapperFacade::class,
+        'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
+        'Location' => Stevebauman\Location\Facades\Location::class,
+        'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
+
 
 
     ],

@@ -19,6 +19,8 @@ class CommentsonReport implements ShouldBroadcast
     
 
     public $comment;
+    public $message;
+    
 
 
     /**
@@ -29,11 +31,15 @@ class CommentsonReport implements ShouldBroadcast
     public function __construct(Comment $comment)
     {
         $this->comment = $comment;
+       
+        $this->message="{$comment->user->name} Commented On your Report";
 
         Notification::create([
           'user_id'=>$comment->commentable->user_id,
-          'comment_id'=>$comment->id,
+          'report_id'=>$comment->commentable_id,
+          'photo' =>$comment->user->picture,
           'message'=>"{$comment->user->name} Commented On your Report",
+          'is_seen'=>0,
           'type'=>'Comments',
         ]);
     }
