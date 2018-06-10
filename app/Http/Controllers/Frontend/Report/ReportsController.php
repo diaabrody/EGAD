@@ -107,7 +107,7 @@ class ReportsController extends Controller
         $image = $request->file('photo')->path();  // your base64 encoded
         $base64 = base64_encode(file_get_contents($image));
 
-        $gallery_name = 'newbranch7';
+        $gallery_name = 'newbranch8';
         $argumentArray =  [
             "image" => $base64 ,
             "gallery_name" => $gallery_name
@@ -170,7 +170,10 @@ class ReportsController extends Controller
             'found_since'   => $request->found_since,
             'last_seen_at' => $request->location,
             'location' => new Point($lat, $lng),
-            'face_id' =>$this->face_id
+            'face_id' =>$this->face_id ,
+            'city' => $request->city ,
+            'area' => $request->area
+
 
         ]);
 
