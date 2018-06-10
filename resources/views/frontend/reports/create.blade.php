@@ -38,7 +38,7 @@
 
 <div class="form-group">
     <label for="location" class="float-right">اين فقد</label>
-    <input type="text" name="location" class="form-control" placeholder="ادخل المنطقه والمحافظه">
+    <input type="text" name="location" class="form-control" placeholder="ادخل المنطقه والمحافظه" id="autocomplete">
 
 </div>
 

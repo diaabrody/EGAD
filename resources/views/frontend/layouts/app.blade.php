@@ -29,27 +29,8 @@
         @stack('after-styles')
     </head>
     <body>
-<<<<<<< HEAD
-        <div id="app">
-            @include('includes.partials.logged-in-as')
-            @include('frontend.includes.nav')
 
-            <div class="container">
-                @include('includes.partials.messages')
-                @yield('content')
-             
-            </div><!-- container -->
-        </div><!-- #app -->
-
-        <!-- Scripts -->
-        @stack('before-scripts')
-        {!! script(mix('js/frontend.js')) !!}
-        @stack('after-scripts')
-
-        @include('includes.partials.ga')
-         <script src="//code.jquery.com/jquery.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-=======
+    
     <div id="app">
         @include('includes.partials.logged-in-as')
         @include('frontend.includes.nav')
@@ -68,7 +49,7 @@
     @include('includes.partials.ga')
     <script src="//code.jquery.com/jquery.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
->>>>>>> 6cb2b1c4cfb8f6661e4f659292ab5cd665be3b4e
+
     <script src="//js.pusher.com/3.1/pusher.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript">
