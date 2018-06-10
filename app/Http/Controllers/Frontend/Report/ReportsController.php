@@ -107,7 +107,7 @@ class ReportsController extends Controller
         $image = $request->file('photo')->path();  // your base64 encoded
         $base64 = base64_encode(file_get_contents($image));
 
-        $gallery_name = 'newbranch8';
+        $gallery_name = 'newbranch9';
         $argumentArray =  [
             "image" => $base64 ,
             "gallery_name" => $gallery_name
@@ -116,7 +116,7 @@ class ReportsController extends Controller
         if($request->status == "quick" || $request->status == "normal" )
         {
 
-            $this->checkImageByAI($argumentArray);
+            $this->checkImageByAI($argumentArray , "store");
 
             if($this->not_contain_face)
             {
@@ -139,7 +139,7 @@ class ReportsController extends Controller
         }
         else
         {
-            $this->checkImageByAI($argumentArray);
+            $this->checkImageByAI($argumentArray , "store");
 
             if($this->not_contain_face)
             {
@@ -241,6 +241,18 @@ class ReportsController extends Controller
         {
             $path = $request->file('photo')->store('public/children');
             $input['photo']=$path;
+
+            $image = $request->file('photo')->path();  // your base64 encoded
+            $base64 = base64_encode(file_get_contents($image));
+
+            $gallery_name = 'newbranch9';
+            $argumentArray =  [
+                "image" => $base64 ,
+                "gallery_name" => $gallery_name
+            ];
+            $this->checkImageByAI($argumentArray , "update");
+
+
         }
 
         else{
@@ -304,7 +316,7 @@ class ReportsController extends Controller
 
 
 
-    private  function checkImageByAI($argumentArray)
+    private  function checkImageByAI($argumentArray , $type_status)
     {
 
 
@@ -350,6 +362,12 @@ class ReportsController extends Controller
             $response = json_decode($response);
             $this->face_id=$response->face_id;
 
+            if($type_status == "update")
+            {
+                dd('hi image update message');
+
+            }
+
 
         }
 
@@ -369,6 +387,12 @@ class ReportsController extends Controller
                 $response   = $this->Kairosobj->enroll($argumentArray);
                 $response = json_decode($response);
                 $this->face_id=$response->face_id;
+
+                if($type_status == "update")
+                {
+                    dd('hi image update message');
+
+                }
 
             }
 
