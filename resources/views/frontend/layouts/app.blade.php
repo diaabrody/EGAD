@@ -29,6 +29,8 @@
         @stack('after-styles')
     </head>
     <body>
+
+    
     <div id="app">
         @include('includes.partials.logged-in-as')
         @include('frontend.includes.nav')
@@ -47,8 +49,57 @@
     @include('includes.partials.ga')
     <script src="//code.jquery.com/jquery.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
     <script src="//js.pusher.com/3.1/pusher.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.js"></script>
+    <script type="text/html" id="hit-template">
+        <div class="hit">
+          <div class="hit-image">
+            <img src="@{{{photo}}}" alt="@{{{name}}}">
+          </div>
+          <div class="hit-content">
+            <h3 class="hit-price">@{{{age}}}</h3>
+            <h2 class="hit-name">@{{{_highlightResult.name.value}}}</h2>
+            <p class="hit-description">@{{{_highlightResult.last_seen_at.value}}}</p>
+          </div>
+        </div>
+      </script>
+    <script>
+        var search = instantsearch({
+        // Replace with your own values
+        appId: 'N02M6ZG9Q3',
+        apiKey: '32b6ab474f65d442d7ec4242d1ef410d', // search only API key, no ADMIN key
+        indexName: 'reports',
+        urlSync: true,
+        searchParameters: {
+            hitsPerPage: 10
+        }
+        });
+
+         search.addWidget(
+        instantsearch.widgets.searchBox({
+            container: '#search-input'
+        })
+        );
+
+        search.addWidget(
+        instantsearch.widgets.hits({
+            container: '#hits',
+            templates: {
+            item: document.getElementById('hit-template').innerHTML,
+            empty: "We didn't find any results for the search "
+            }
+        })
+        );
+        search.addWidget(
+  instantsearch.widgets.pagination({
+    container: '#pagination'
+  })
+);
+search.start();
+    </script>
+   
     <script type="text/javascript">
 
       @auth
