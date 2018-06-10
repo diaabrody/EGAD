@@ -1,5 +1,5 @@
-{{ html()->modelForm($logged_in_user, 'PATCH', route('frontend.user.profile.update'))->class('form-horizontal')->attribute('enctype', 'multipart/form-data')->open() }}
-    <div class="row">
+,{{ html()->modelForm($logged_in_user, 'PATCH', route('frontend.user.profile.update'))->class('form-horizontal')->attribute('enctype', 'multipart/form-data')->open() }}
+    <div class="row ">
         <div class="col">
             <div class="form-group">
                 {{ html()->label(__('validation.attributes.frontend.avatar'))->for('avatar') }}
@@ -25,11 +25,11 @@
     <div class="row">
         <div class="col">
             <div class="form-group">
-                {{ html()->label(__('validation.attributes.frontend.first_name'))->for('first_name') }}
+                {{ html()->label(__('الاسم الأول'))->for('first_name')->class('float-right') }}
 
                 {{ html()->text('first_name')
                     ->class('form-control')
-                    ->placeholder(__('validation.attributes.frontend.first_name'))
+                    ->placeholder(__(''))
                     ->attribute('maxlength', 191)
                     ->required()
                     ->autofocus() }}
@@ -40,11 +40,11 @@
     <div class="row">
         <div class="col">
             <div class="form-group">
-                {{ html()->label(__('validation.attributes.frontend.last_name'))->for('last_name') }}
+                {{ html()->label(__('اسم العائلة'))->for('last_name')->class('float-right') }}
 
                 {{ html()->text('last_name')
                     ->class('form-control')
-                    ->placeholder(__('validation.attributes.frontend.last_name'))
+                    ->placeholder(__(''))
                     ->attribute('maxlength', 191)
                     ->required() }}
             </div><!--form-group-->
@@ -54,7 +54,7 @@
     <div class="row">
         <div class="col">
             <div class="form-group">
-                {{ html()->label(__('Date Of Birth'))->for('date_of_birth') }}
+                {{ html()->label(__('تاريخ الميلاد'))->for('date_of_birth')->class('float-right') }}
 
                 {{ html()->date('date_of_birth')
                     ->class('form-control') }}
@@ -85,7 +85,7 @@
     <div class="row">
         <div class="col">
             <div class="form-group">
-                {{ html()->label(__('validation.attributes.frontend.timezone'))->for('timezone') }}
+                {{ html()->label(__('timezone'))->for('timezone')->class('float-right') }}
 
                 <select name="timezone" id="timezone" class="form-control" required="required">
                     @foreach (timezone_identifiers_list() as $timezone)
@@ -99,7 +99,8 @@
     <div class="row">
         <div class="col">
             <div class="form-group mb-0 clearfix">
-                {{ form_submit(__('labels.general.buttons.update')) }}
+<!--                {{ form_submit(__('labels.general.buttons.update')) }}-->
+                <input type="submit" class="btn btn-warning btn-lg btn-block text-white font-weight-bold" value="احفظ التعديلات">
             </div><!--form-group-->
         </div><!--col-->
     </div><!--row-->
