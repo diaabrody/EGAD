@@ -55,7 +55,7 @@
         var notificationsWrapper   = $('.dropdown-notifications');
         var notificationsToggle    = notificationsWrapper.find('a[data-toggle]');
         var notificationsCountElem = notificationsToggle.find('i[data-count]');
-        //var notificationsCount     = parseInt(notificationsCountElem.data('count'));
+        var notificationsCount     = parseInt(notificationsCountElem.data('count'));
         var notifications          = notificationsWrapper.find('ul.dropdown-menu');
 
         // Enable pusher logging - don't include this in production
@@ -74,18 +74,7 @@
         }
                 
       
-        $(document).ready(function(){
-            $.ajax({
-                type: "GET",
-                url: '/notifications/count' ,
-                dataType: "json",
-                success: function(data) {
-                    console.log(data);
-                    notificationsCount=data.count;
-                    updateNotificationCount();
-                }
-            });
-        });
+
 
         // Subscribe to the channel we specified in our Laravel Event
         var commentChannel = pusher.subscribe('report_{{ Auth::user()->id }}');
@@ -104,6 +93,18 @@
             DrawHtml(data);
         });
 
+    $(document).ready(function(){
+            $.ajax({
+                type: "GET",
+                url: '/notifications/count' ,
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                    notificationsCount=data.count;
+                    updateNotificationCount();
+                }
+            });
+        });
     function myFunction(data){ 
        
            $.ajax({
