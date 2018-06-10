@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Frontend;
-use Stevebauman\Location\Facades\Location;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
 use App\Http\Controllers\Controller;

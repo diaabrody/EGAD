@@ -27,11 +27,12 @@ class UpdateProfileRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
+    {  
         return [
             'first_name'  => 'required|max:191',
             'last_name'  => 'required|max:191',
             'email' => 'sometimes|required|email|max:191',
+            'phone_no' => ['required', 'regex:/(01)[0-9]{9}/', Rule::unique('users')->ignore($this->phone_no, 'phone_no')],
             'timezone' => 'required|max:191',
             'avatar_type' => ['required', 'max:191', Rule::in(array_merge(['gravatar', 'storage'], (new Socialite)->getAcceptedProviders()))],
             'avatar_location' => 'sometimes|image|max:191',

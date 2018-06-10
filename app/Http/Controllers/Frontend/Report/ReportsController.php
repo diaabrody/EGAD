@@ -191,13 +191,21 @@ class ReportsController extends Controller
         $users = User::where('area', 'like', $report_like->last_seen_at)-> get();
 
         foreach ($users as $user){
+            if(($user->id) != (Auth::user()->id) ){
             event(new SameAreaReport($user,$report_like));
+            }
         }
 
 
+        if($request->status == "quick"){
+            auth()->logout();
 
-        return redirect ('/reports/');
-
+            return redirect()->route('frontend.auth.login')->withFlashInfo(__('Your report has been published successfully '));
+        }
+        else{
+            return redirect ('/reports/');
+        }
+       
     }
 
 

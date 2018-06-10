@@ -1,29 +1,24 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
-    <a href="{{ route('frontend.index') }}" class="navbar-brand"><img id="nav-logo" src="/images/logo.png" alt="logo"></a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5" style="height: 120px;">
+    <a href="{{ route('frontend.index') }}" class="navbar-brand"><img id="nav-logo" style="width: 90px; margin-top: -55px;" src="{{asset('img/frontend/logo1.png')}}" alt="logo"></a>
 
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('labels.general.toggle_navigation') }}">
         <span class="navbar-toggler-icon"></span>
     </button>
     @auth
+    @if(Auth::user()->email!="guest@ejad.com")
   <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="nav-item dropdown dropdown-notifications">
-              <a href="#notifications-panel" class="nav-link dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+          <ul class="nav navbar-nav"> 
+            <li class="nav-item dropdown dropdown-notifications" >
+              <a href="#notifications-panel" onclick="myFunction()" class="nav-link dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
                 <i data-count="0" class="glyphicon glyphicon-bell notification-icon"></i>
               </a>
 
               <div class="dropdown-container">
                 <div class="dropdown-toolbar">
-                  <div class="dropdown-toolbar-actions">
-                    <a href="#">Mark all as read</a>
-                  </div>
-                  <h3 class="dropdown-toolbar-title">Notifications (<span class="notif-count">0</span>)</h3>
+                  <h3 class="dropdown-toolbar-title" >Notifications (<span id='number' class="notif-count">0</span>)</h3>
                 </div>
                 <ul class="dropdown-menu">
                 </ul>
-                <div class="dropdown-footer text-center">
-                  <a href="#">View All</a>
-                </div>
               </div>
             </li>
             <div id="app">
@@ -65,10 +60,12 @@
            </li>
           </ul>
         </div>
+        @endif
         @endauth
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
-            
+         @auth
+         @if(Auth::user()->email!="guest@ejad.com")
             <li class="nav-item"><a href="/report/create/normal" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">إنشر بلاغ</a></li>
             <li class="nav-item"><a href="/report/create/found" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">وجدت مفقود</a></li>
             <li class="nav-item"><a href="/reports" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">كل المفقودين</a></li>
@@ -76,9 +73,12 @@
 
             <li class="nav-item"><a href="{{route('frontend.contact')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.contact')) }}">إتصل بنا</a></li>
 
-             @auth
+            
+           
                 <li class="nav-item"><a href="{{route('frontend.user.dashboard')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.user.dashboard')) }}">{{ __('navs.frontend.dashboard') }}</a></li>
-        @endauth
+            @endif
+            @endauth
+            
             @guest
                 <li class="nav-item"><a href="{{route('frontend.auth.login')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.login')) }}">{{ __('navs.frontend.login') }}</a></li>
 
