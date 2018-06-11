@@ -197,14 +197,9 @@ class ReportsController extends Controller
         }
 
 
-        if($request->status == "quick"){
-            auth()->logout();
-
-            return redirect()->route('frontend.auth.login')->withFlashInfo(__('Your report has been published successfully '));
-        }
-        else{
+        
             return redirect ('/reports/');
-        }
+        
        
     }
 
