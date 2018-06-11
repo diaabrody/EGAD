@@ -13080,7 +13080,7 @@ base-chart.chart {
   padding: 0.5rem 1rem;
   margin-right: 0;
   background-color: #fff;
-  background-image: url(/images/logo-symbol.png?01fb1da17b77e9ca7f9e946a4b0dd92c);
+  background-image: url(/images/logo-symbol.png?5cd884e67efe0a747007f96130e50c64);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 70px auto;
@@ -13225,7 +13225,7 @@ base-chart.chart {
   .brand-minimized .app-header.navbar .navbar-brand {
     width: 50px;
     background-color: #fff;
-    background-image: url(/images/logo-symbol.png?01fb1da17b77e9ca7f9e946a4b0dd92c);
+    background-image: url(/images/logo-symbol.png?5cd884e67efe0a747007f96130e50c64);
     background-size: 24px;
     border-bottom: 1px solid #a4b7c1;
   }

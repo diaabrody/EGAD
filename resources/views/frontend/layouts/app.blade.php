@@ -29,6 +29,8 @@
         @stack('after-styles')
     </head>
     <body>
+
+    
     <div id="app">
         @include('includes.partials.logged-in-as')
         @include('frontend.includes.nav')
@@ -47,15 +49,115 @@
     @include('includes.partials.ga')
     <script src="//code.jquery.com/jquery.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
     <script src="//js.pusher.com/3.1/pusher.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.js"></script>
+    <script type="text/html" id="hit-template">
+        
+          
+
+        <div class="hit">
+                <div class="hit-image">
+                  <img src="@{{{photo}}}" alt="@{{{name}}}">
+                </div>
+                <div class="hit-content">
+                  <h3 class="hit-age">@{{{age}}}</h3>
+                  <h2 class="hit-name">@{{{_highlightResult.name.value}}}</h2>
+                  <p class="hit-area">@{{{_highlightResult.area.value}}}</p>
+                </div>
+              </div>
+
+       
+      </script>
+    <script>
+        var search = instantsearch({
+       
+        appId: 'N02M6ZG9Q3',
+        apiKey: '32b6ab474f65d442d7ec4242d1ef410d',
+        indexName: 'reports',
+        urlSync: true,
+        searchParameters: {
+            hitsPerPage: 10
+        }
+        });
+
+         search.addWidget(
+        instantsearch.widgets.searchBox({
+            container: '#search-input',
+           magnifier: false,
+           reset: false
+        })
+        );
+
+        search.addWidget(
+        instantsearch.widgets.hits({
+            container: '#hits',
+            templates: {
+            item: document.getElementById('hit-template').innerHTML,
+            empty: "We didn't find any results for the search "
+            }
+        })
+        );
+        search.addWidget(
+  instantsearch.widgets.pagination({
+    container: '#pagination'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.refinementList({
+    container: '#gender',
+    attributeName: 'gender',
+    operator: 'or',
+    limit: 10,
+    templates: {
+      header: 'Gender',
+    }
+  })
+);
+search.addWidget(
+  instantsearch.widgets.refinementList({
+    container: '#city',
+    attributeName: 'city',
+    operator: 'or',
+    limit: 10,
+    templates: {
+      header: 'City',
+    }
+  })
+);
+
+search.addWidget(
+  instantsearch.widgets.refinementList({
+    container: '#area',
+    attributeName: 'area',
+    operator: 'or',
+    limit: 10,
+    templates: {
+      header: 'Area',
+    }
+  })
+);
+search.addWidget(
+  instantsearch.widgets.refinementList({
+    container: '#calendar',
+    attributeName: 'lost_since',
+    templates: {
+      header: 'Lost Since'
+    }
+  })
+);
+search.start();
+    </script>
+   
     <script type="text/javascript">
+
       @auth
 
         var notificationsWrapper   = $('.dropdown-notifications');
         var notificationsToggle    = notificationsWrapper.find('a[data-toggle]');
         var notificationsCountElem = notificationsToggle.find('i[data-count]');
-        //var notificationsCount     = parseInt(notificationsCountElem.data('count'));
+        var notificationsCount = {{ $notificationsCount }};
         var notifications          = notificationsWrapper.find('ul.dropdown-menu');
 
         // Enable pusher logging - don't include this in production
@@ -74,18 +176,7 @@
         }
                 
       
-        $(document).ready(function(){
-            $.ajax({
-                type: "GET",
-                url: '/notifications/count' ,
-                dataType: "json",
-                success: function(data) {
-                    console.log(data);
-                    notificationsCount=data.count;
-                    updateNotificationCount();
-                }
-            });
-        });
+
 
         // Subscribe to the channel we specified in our Laravel Event
         var commentChannel = pusher.subscribe('report_{{ Auth::user()->id }}');
@@ -98,14 +189,18 @@
             
         commentChannel.bind('App\\Events\\CommentsonReport', function(data) {
             DrawHtml(data);
+            notificationsCount += 1;
+            updateNotificationCount();
         });
 
         sameAreaChannel.bind('App\\Events\\SameAreaReport', function(data) {
             DrawHtml(data);
+            notificationsCount += 1;
+            updateNotificationCount();
         });
 
+      
     function myFunction(data){ 
-       
            $.ajax({
             type: 'post',
             url: '/notifications/edit',
@@ -113,21 +208,17 @@
                 '_token':'{{csrf_token()}}',
             },
 			success:function(resp){
-                
                 notificationsCount=0;
                 updateNotificationCount();
 			}
-        })        
-
+        });
        } 
 
         function DrawHtml(data) {
             // Bind a function to a Event (the full Laravel class)
             var existingNotifications = notifications.html();
             var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
-           
-            console.log(data)
-
+           // console.log(data)
             var newNotificationHtml = `<a href="/reports/`+data.report_id+`">
           <li class="notification active">
 
@@ -145,14 +236,20 @@
                 </div>
               </div>
           </li></a>
-        `;    
+        `;
             notifications.html(newNotificationHtml + existingNotifications);
-            notificationsCount += 1;
-            updateNotificationCount();
+
         }
         @endauth
 
     </script>
+
+    <script type="text/javascript" src="{{ URL::asset('js/location-spinner.js') }}"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOukh8jofbCBMBKRE6XhSKwTUtmgF7Wp0&libraries=places&callback=initAutocomplete"
+            async defer></script>
+
+    <link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
     
     </body>
     </html>

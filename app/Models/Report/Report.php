@@ -34,20 +34,21 @@ class Report extends Model
         'reporter_phone_number',
         'type',
         'location',
-        'face_id'
+        'face_id',
+        'city',
+        'area'
     ];
 
     protected $spatialFields = [
         'location'        
     ];
 
-    public function setPhotoAttribute($value)
-    {
-        if($value == "")
-
-          $this->attributes['photo'] = "/storage/children/default.png";
-        else
-          $this->attributes['photo'] = "/storage".str_replace("public", "", $value);
-    }
+   public function setPhotoAttribute($value)
+   {
+       if($value == "")
+         $this->attributes['photo'] = "/storage/children/default.png";
+       else
+         $this->attributes['photo'] = "/storage".str_replace("public", "", $value);
+   }
 
 }

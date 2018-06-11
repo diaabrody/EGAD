@@ -42,7 +42,24 @@ function fillInAddress() {
 
 
 
-document.getElementById("report-create").onclick = function() {
+document.getElementById("report").onclick = function() {
 
     document.getElementById('loading').style.display = "block";
+
 };
+
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $("#image")
+                .attr('src', e.target.result)
+                .width(150)
+                .height(200);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}

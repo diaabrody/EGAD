@@ -4,7 +4,7 @@
 
         @foreach ($childs as $clid)
             <div class="card" style="width:300px">
-                <a href="{{route('frontend.report.show' , [$clid->id] )}}"><img src="{{ '/storage/childs/'.$clid->photo}}" alt="Avatar" style="height:200px"> </a>
+                <a href="{{route('frontend.report.show' , [$clid->id] )}}"><img src="{{$clid->photo}}" alt="Avatar" style="height:200px"> </a>
                 <div class="container">
                     <h3>{{$clid->name}}</h3>
                     <br>
