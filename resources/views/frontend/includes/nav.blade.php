@@ -54,7 +54,6 @@
 
 
 </ais-index> --}}
-<input id="search-input" placeholder="Search for products">
             
            </li>
           </ul>
