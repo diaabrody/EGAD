@@ -13,7 +13,8 @@
         <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="/css/bootstrap-notifications.min.css">
-        
+        <link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
+
        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>   
         @yield('meta')
@@ -160,8 +161,6 @@ search.start();
         var notificationsCount = {{ $notificationsCount }};
         var notifications          = notificationsWrapper.find('ul.dropdown-menu');
 
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
 
         var pusher = new Pusher('aacacc0492d009aa482e', {
             authTransport: 'ajax',
@@ -249,7 +248,7 @@ search.start();
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOukh8jofbCBMBKRE6XhSKwTUtmgF7Wp0&libraries=places&callback=initAutocomplete"
             async defer></script>
 
-    <link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
+   
     
     </body>
     </html>
