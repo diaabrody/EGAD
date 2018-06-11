@@ -161,7 +161,7 @@ search.start();
         var notificationsCount = {{ $notificationsCount }};
         var notifications          = notificationsWrapper.find('ul.dropdown-menu');
 
-
+       
         var pusher = new Pusher('aacacc0492d009aa482e', {
             authTransport: 'ajax',
             cluster: 'eu',
