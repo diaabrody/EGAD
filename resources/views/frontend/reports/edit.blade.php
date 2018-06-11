@@ -37,7 +37,7 @@
             <label for="photo">صوره المفقود</label>
             <input type="file" id="profile-img" name="photo" class="form-control" placeholder="ادخل الصوره" >
         </div>
-        
+
 
 
         <div class="form-group">
