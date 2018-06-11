@@ -36,6 +36,7 @@
             </li>
               
               <br>
+
           </ul>
         </div>
         @endif
@@ -49,6 +50,7 @@
                     <li class="nav-item"><a href="{{route('frontend.auth.urgentregister')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.register')) }}">{{ __('Report Now') }}</a></li>
                 @endif
             @else
+
              <li class="nav-item">
             {{-- <ais-index app-id="N02M6ZG9Q3"
                 api-key="32b6ab474f65d442d7ec4242d1ef410d"
@@ -84,6 +86,7 @@
 </ais-index> --}}
             
            </li>
+
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuUser" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">{{ $logged_in_user->name }}</a>
