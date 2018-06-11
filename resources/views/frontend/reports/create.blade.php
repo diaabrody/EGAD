@@ -3,7 +3,7 @@
 @section('content')
 
   <div id="loading" style="display: none" ></div>
- 
+
 
 <form method="post" enctype="multipart/form-data" action="/report/save" class="w-75 m-auto px-0 border p-4 bg-light" >
 
@@ -19,12 +19,12 @@
                             <div class="col">
                                 <div class="form-group">
                                 {{ html()->label(__('النوع'))->for('gender')->class('float-right ml-4') }}
-                                
+
                                     <div>
-                                        <input type="radio" name="gender" value="0" class="float-right" /><span class="float-right mr-2 ml-3">ذكر</span> 
-                                        <input type="radio" name="gender" value="1" class="float-right"  /> 
+                                        <input type="radio" name="gender" value="0" class="float-right" /><span class="float-right mr-2 ml-3">ذكر</span>
+                                        <input type="radio" name="gender" value="1" class="float-right"  />
                                         <span class="float-right mr-2">أنثي </span>
-                                    </div> 
+                                    </div>
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->
@@ -36,9 +36,23 @@
     <input type="number" name="age" class="form-control" min="1" placeholder="ادخل العمر">
 </div>
 
-<div class="form-group">
-    <label for="location" class="float-right">اين فقد</label>
-    <input type="text" name="location" class="form-control" placeholder="ادخل المنطقه والمحافظه" id="autocomplete">
+ <div class="form-group">
+     <label for="location" class="float-right">المدينه</label>
+     <input type="text" name="city" class="form-control" placeholder="ادخل المدينه " >
+
+ </div>
+
+ <div class="form-group">
+      <label for="location" class="float-right">الحي</label>
+       <input type="text" name="area" class="form-control" placeholder="ادخل الحي" >
+
+</div>
+
+
+
+     <div class="form-group">
+    <label for="location" class="float-right">العنوان</label>
+    <input type="text" name="location" class="form-control" placeholder="ادخل المنطقه" id="autocomplete">
 
 </div>
 
@@ -63,11 +77,11 @@
 </div>
 
     <input type="hidden" value="{{$status}}" name="status">
-      <button type="submit" class="btn btn-warning btn-lg btn-block text-white font-weight-bold" id="report-create">انشر بلاغ</button>
+      <button type="submit" class="btn btn-warning btn-lg btn-block text-white font-weight-bold" id="report">انشر بلاغ</button>
 
 
 </div>
-    
+
 <div class="col-lg-4">
     <div class="form-control" style="height:200px">
         <img src="{{asset('img/frontend/profileImage.png')}}" id="image" class="h-100 d-block mx-auto">
@@ -80,29 +94,14 @@
 
     </div>
 
-</div>   
+</div>
+
     <div style="clear:both"></div>
 </form>
 
 
-    <script type="text/javascript">
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $("#image")
-                        .attr('src', e.target.result)
-                        .width(221)
-                        .height(200);
-                };
-</script>
-<script type="text/javascript" src="{{ URL::asset('js/location-spinner.js') }}"></script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOukh8jofbCBMBKRE6XhSKwTUtmgF7Wp0&libraries=places&callback=initAutocomplete"
-            async defer></script>
-
-<link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
 
 
 @endsection

@@ -65,13 +65,16 @@ class AppServiceProvider extends ServiceProvider
    
         view()->composer('*', function ($view) 
         {
+            if(Auth::user())
+            {
             $notifications = Notification :: where([
                 ['is_seen','=',0],
                 ['user_id', '=', Auth::user()->id],
             ])->count();
     
             //...with this variable
-            $view->with('notificationsCount', $notifications);    
+            $view->with('notificationsCount', $notifications);  
+            }  
         });  
     }
 

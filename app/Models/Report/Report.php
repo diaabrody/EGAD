@@ -34,7 +34,9 @@ class Report extends Model
         'reporter_phone_number',
         'type',
         'location',
-        'face_id'
+        'face_id',
+        'city',
+        'area'
     ];
 
     protected $spatialFields = [
