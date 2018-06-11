@@ -110,9 +110,7 @@ search.start();
         var notificationsCount = {{ $notificationsCount }};
         var notifications          = notificationsWrapper.find('ul.dropdown-menu');
 
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
-
+       
         var pusher = new Pusher('aacacc0492d009aa482e', {
             authTransport: 'ajax',
             cluster: 'eu',
