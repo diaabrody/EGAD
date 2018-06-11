@@ -64,7 +64,9 @@ class AppServiceProvider extends ServiceProvider
         \Illuminate\Pagination\AbstractPaginator::defaultSimpleView('pagination::simple-bootstrap-4');
    
         view()->composer('*', function ($view) 
-        {  if(Auth::user()){
+        {
+            if(Auth::user())
+            {
             $notifications = Notification :: where([
                 ['is_seen','=',0],
                 ['user_id', '=', Auth::user()->id],
@@ -72,7 +74,7 @@ class AppServiceProvider extends ServiceProvider
     
             //...with this variable
             $view->with('notificationsCount', $notifications);  
-        }  
+            }  
         });  
     }
 

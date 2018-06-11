@@ -213,7 +213,7 @@ header img {
   background: none;
 }
 
-  
+
 
 /* FACETS */
 .facet {
