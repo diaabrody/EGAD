@@ -77,7 +77,7 @@
 </div>
 
     <input type="hidden" value="{{$status}}" name="status">
-      <button type="submit" class="btn btn-warning btn-lg btn-block text-white font-weight-bold" id="report">انشر بلاغ</button>
+      <button type="submit" class="btn btn-warning btn-lg btn-block text-white font-weight-bold" id="report" onclick="displayloading()">انشر بلاغ</button>
 
 
 </div>
