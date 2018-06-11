@@ -55,6 +55,15 @@ class ReportRepository extends BaseRepository
 
     }
 
+    public function selectFaceSubject($id)
+
+    {
+        $report = $this->model->where('id','=',$id)->first();
+        return $report->face_subject_id;
+
+    }
+
+
 
 
 
