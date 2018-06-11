@@ -4,28 +4,7 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('labels.general.toggle_navigation') }}">
         <span class="navbar-toggler-icon"></span>
     </button>
-    @auth
-    @if(Auth::user()->email!="guest@ejad.com")
-  <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav"> 
-            <li class="nav-item dropdown dropdown-notifications" >
-              <a href="#notifications-panel" onclick="myFunction()" class="nav-link dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
-                <i data-count="{{ $notificationsCount }}" class="glyphicon glyphicon-bell notification-icon"></i>
-              </a>
 
-              <div class="dropdown-container">
-                <div class="dropdown-toolbar">
-                  <h3 class="dropdown-toolbar-title" >Notifications (<span id='number' class="notif-count">{{ $notificationsCount }}</span>)</h3>
-                </div>
-                <ul class="dropdown-menu">
-                </ul>
-              </div>
-            </li>
-           
-          </ul>
-        </div>
-        @endif
-        @endauth
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
          @auth
@@ -40,6 +19,28 @@
             <li class="nav-item"><a href="{{route('frontend.user.dashboard')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.user.dashboard')) }}">{{ __('navs.frontend.dashboard') }}</a></li>
             @endif
             @endauth
+                @auth
+    @if(Auth::user()->email!="guest@ejad.com")
+  <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav"> 
+            <li class="nav-item dropdown dropdown-notifications" >
+              <a href="#notifications-panel" onclick="myFunction()" class="nav-link dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+                <i data-count="{{ $notificationsCount }}" class="glyphicon glyphicon-bell notification-icon"></i>
+              </a>
+
+              <div class="dropdown-container">
+                <div class="dropdown-toolbar">
+                  <h3 class="dropdown-toolbar-title" >Notifications (<span id='number' class="notif-count">{{ $notificationsCount }}</span>)</h3>
+                </div>
+                <ul class="dropdown-menu ">
+                </ul>
+              </div>
+            </li>
+           
+          </ul>
+        </div>
+        @endif
+        @endauth
             
             @guest
                 <li class="nav-item"><a href="{{route('frontend.auth.login')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.login')) }}">{{ __('navs.frontend.login') }}</a></li>
