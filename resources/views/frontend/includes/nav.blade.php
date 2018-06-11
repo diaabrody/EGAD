@@ -25,21 +25,31 @@
           <ul class="nav navbar-nav"> 
             <li class="nav-item dropdown dropdown-notifications" >
               <a href="#notifications-panel" onclick="myFunction()" class="nav-link dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
-                <i data-count="{{ $notificationsCount }}" class="glyphicon glyphicon-bell notification-icon"></i>
+                <i data-count="{{ $notificationsCount }}" class="glyphicon glyphicon-bell notification-icon">
+                </i>
               </a>
-
-              <div class="dropdown-container">
-                <div class="dropdown-toolbar">
-                  <h3 class="dropdown-toolbar-title" >Notifications (<span id='number' class="notif-count">{{ $notificationsCount }}</span>)</h3>
-                </div>
+                
+              <div class="dropdown-container dropdown-notifications ">
                 <ul class="dropdown-menu ">
                 </ul>
               </div>
             </li>
               
               <br>
-              
-           <li class="nav-item">
+          </ul>
+        </div>
+        @endif
+        @endauth
+            
+            @guest
+                <li class="nav-item"><a href="{{route('frontend.auth.login')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.login')) }}">{{ __('navs.frontend.login') }}</a></li>
+
+                @if (config('access.registration'))
+                    <li class="nav-item"><a href="{{route('frontend.auth.register')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.register')) }}">{{ __('navs.frontend.register') }}</a></li>
+                    <li class="nav-item"><a href="{{route('frontend.auth.urgentregister')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.register')) }}">{{ __('Report Now') }}</a></li>
+                @endif
+            @else
+             <li class="nav-item">
             {{-- <ais-index app-id="N02M6ZG9Q3"
                 api-key="32b6ab474f65d442d7ec4242d1ef410d"
                  index-name="reports"
@@ -74,19 +84,6 @@
 </ais-index> --}}
             
            </li>
-          </ul>
-        </div>
-        @endif
-        @endauth
-            
-            @guest
-                <li class="nav-item"><a href="{{route('frontend.auth.login')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.login')) }}">{{ __('navs.frontend.login') }}</a></li>
-
-                @if (config('access.registration'))
-                    <li class="nav-item"><a href="{{route('frontend.auth.register')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.register')) }}">{{ __('navs.frontend.register') }}</a></li>
-                    <li class="nav-item"><a href="{{route('frontend.auth.urgentregister')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.register')) }}">{{ __('Report Now') }}</a></li>
-                @endif
-            @else
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuUser" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">{{ $logged_in_user->name }}</a>
