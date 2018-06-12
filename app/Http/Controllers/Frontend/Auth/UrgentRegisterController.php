@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\Auth\UrgentRegisterRequest;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Hash;
 use App\Repositories\Frontend\Auth\UserRepository;
 
 
@@ -45,13 +46,14 @@ class UrgentRegisterController extends Controller
 
 
     public function register(UrgentRegisterRequest $request){
+        $password= str_random(8);
 
-        event(new Registered( $user = $this->userRepository->urgentcreate($request->only('phone_no'))));
+        event(new Registered( $user = $this->userRepository->urgentcreate($request->only('phone_no'),$password)));
 
         $this->guard()->login($user);
        
         return redirect('/report/create/quick')->withFlashSuccess(
-                __('Your email is guest@ejad.com and password is 123456 and you can change them in the next time you login to your profile') 
+                __('Your password is ' . $password . ' and you can change them in the next time you login to your profile') 
         );
 
     }

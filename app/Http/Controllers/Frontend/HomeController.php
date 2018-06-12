@@ -33,16 +33,18 @@ class HomeController extends Controller
         $loc = geoip()->getLocation($request->getClientIp());
 
 
-        $search = $request->search ? $request->search : $loc->city;
+        $search = $request->search ? $request->search : "Alexandria";
         $locations = $this->reportRepository->all();
 
-        Mapper::location($search)->map(['clusters' => ['size' => 10, 'center' => true, 'zoom' => 20], 'marker' => true]);
+        Mapper::location($search)->map(['cluster'=> true, 'marker' => true]);
 
         foreach ($locations as $location) {
-            Mapper::marker($location->location->getLat(), $location->location->getLng(), ['symbol' => 'circle',
-                'scale' => 1000,
-                'animation'=>'DROP',
-                'eventClick'=>'window.location ="reports/' . $location->id . '"' ]);
+            Mapper::marker($location->location->getLat(), $location->location->getLng(),
+                [
+                    'symbol' => 'circle',
+                    'scale' => 1000,
+                    'animation'=>'DROP',
+                    'eventClick'=>'window.location ="reports/' . $location->id . '"' ]);
 
         }
 

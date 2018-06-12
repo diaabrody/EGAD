@@ -146,7 +146,7 @@
                             <div class="col">
                                 <div class="form-group mb-0 clearfix">
 <!--                                    {{ form_submit(__('labels.frontend.auth.register_button')) }}-->
-                                     <input type="submit" class="btn btn-warning btn-lg btn-block text-white font-weight-bold" value="انشاء حساب جديد">
+                                     <input type="submit" class="btn btn-secondary btn-lg btn-block text-white font-weight-bold" value="انشاء حساب جديد">
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->

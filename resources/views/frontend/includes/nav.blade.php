@@ -4,24 +4,54 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('labels.general.toggle_navigation') }}">
         <span class="navbar-toggler-icon"></span>
     </button>
-    @auth
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+         @auth
+         @if(Auth::user()->email!="guest@ejad.com")
+            <li class="nav-item"><a href="/report/create/normal" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">إنشر بلاغ</a></li>
+            <li class="nav-item"><a href="/report/create/found" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">وجدت مفقود</a></li>
+            <li class="nav-item"><a href="/reports" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">كل المفقودين</a></li>
+            <li class="nav-item"><a href="" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">قصص النجاح</a></li>
+
+            <li class="nav-item"><a href="{{route('frontend.contact')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.contact')) }}">إتصل بنا</a></li>
+       
+            <li class="nav-item"><a href="{{route('frontend.user.dashboard')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.user.dashboard')) }}">{{ __('navs.frontend.dashboard') }}</a></li>
+            @endif
+            @endauth
+                @auth
     @if(Auth::user()->email!="guest@ejad.com")
   <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav"> 
             <li class="nav-item dropdown dropdown-notifications" >
               <a href="#notifications-panel" onclick="myFunction()" class="nav-link dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
-                <i data-count="{{ $notificationsCount }}" class="glyphicon glyphicon-bell notification-icon"></i>
+                <i data-count="{{ $notificationsCount }}" class="glyphicon glyphicon-bell notification-icon">
+                </i>
               </a>
-
-              <div class="dropdown-container">
-                <div class="dropdown-toolbar">
-                  <h3 class="dropdown-toolbar-title" >Notifications (<span id='number' class="notif-count">{{ $notificationsCount }}</span>)</h3>
-                </div>
-                <ul class="dropdown-menu">
+                
+              <div class="dropdown-container dropdown-notifications ">
+                <ul class="dropdown-menu ">
                 </ul>
               </div>
             </li>
-           <li class="nav-item">
+              
+              <br>
+
+          </ul>
+        </div>
+        @endif
+        @endauth
+            
+            @guest
+                <li class="nav-item"><a href="{{route('frontend.auth.login')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.login')) }}">{{ __('navs.frontend.login') }}</a></li>
+
+                @if (config('access.registration'))
+                    <li class="nav-item"><a href="{{route('frontend.auth.register')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.register')) }}">{{ __('navs.frontend.register') }}</a></li>
+                    <li class="nav-item"><a href="{{route('frontend.auth.urgentregister')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.register')) }}">{{ __('Report Now') }}</a></li>
+                @endif
+            @else
+
+             <li class="nav-item">
             {{-- <ais-index app-id="N02M6ZG9Q3"
                 api-key="32b6ab474f65d442d7ec4242d1ef410d"
                  index-name="reports"
@@ -54,36 +84,9 @@
 
 
 </ais-index> --}}
-<input id="search-input" placeholder="Search for products">
             
            </li>
-          </ul>
-        </div>
-        @endif
-        @endauth
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-         @auth
-         @if(Auth::user()->email!="guest@ejad.com")
-            <li class="nav-item"><a href="/report/create/normal" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">إنشر بلاغ</a></li>
-            <li class="nav-item"><a href="/report/create/found" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">وجدت مفقود</a></li>
-            <li class="nav-item"><a href="/reports" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">كل المفقودين</a></li>
-            <li class="nav-item"><a href="" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">قصص النجاح</a></li>
 
-            <li class="nav-item"><a href="{{route('frontend.contact')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.contact')) }}">إتصل بنا</a></li>
-       
-            <li class="nav-item"><a href="{{route('frontend.user.dashboard')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.user.dashboard')) }}">{{ __('navs.frontend.dashboard') }}</a></li>
-            @endif
-            @endauth
-            
-            @guest
-                <li class="nav-item"><a href="{{route('frontend.auth.login')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.login')) }}">{{ __('navs.frontend.login') }}</a></li>
-
-                @if (config('access.registration'))
-                    <li class="nav-item"><a href="{{route('frontend.auth.register')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.register')) }}">{{ __('navs.frontend.register') }}</a></li>
-                    <li class="nav-item"><a href="{{route('frontend.auth.urgentregister')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.register')) }}">{{ __('Report Now') }}</a></li>
-                @endif
-            @else
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuUser" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">{{ $logged_in_user->name }}</a>

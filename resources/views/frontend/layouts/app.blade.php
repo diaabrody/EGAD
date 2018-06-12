@@ -13,7 +13,8 @@
         <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="/css/bootstrap-notifications.min.css">
-        
+        <link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
+
        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>   
         @yield('meta')
@@ -54,22 +55,27 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.js"></script>
     <script type="text/html" id="hit-template">
+        
+          
+
         <div class="hit">
-          <div class="hit-image">
-            <img src="@{{{photo}}}" alt="@{{{name}}}">
-          </div>
-          <div class="hit-content">
-            <h3 class="hit-price">@{{{age}}}</h3>
-            <h2 class="hit-name">@{{{_highlightResult.name.value}}}</h2>
-            <p class="hit-description">@{{{_highlightResult.last_seen_at.value}}}</p>
-          </div>
-        </div>
+                <div class="hit-image">
+                  <img src="@{{{photo}}}" alt="@{{{name}}}">
+                </div>
+                <div class="hit-content">
+                  <h3 class="hit-age">@{{{age}}}</h3>
+                  <h2 class="hit-name">@{{{_highlightResult.name.value}}}</h2>
+                  <p class="hit-area">@{{{_highlightResult.area.value}}}</p>
+                </div>
+              </div>
+
+       
       </script>
     <script>
         var search = instantsearch({
-        // Replace with your own values
+       
         appId: 'N02M6ZG9Q3',
-        apiKey: '32b6ab474f65d442d7ec4242d1ef410d', // search only API key, no ADMIN key
+        apiKey: '32b6ab474f65d442d7ec4242d1ef410d',
         indexName: 'reports',
         urlSync: true,
         searchParameters: {
@@ -79,7 +85,9 @@
 
          search.addWidget(
         instantsearch.widgets.searchBox({
-            container: '#search-input'
+            container: '#search-input',
+           magnifier: false,
+           reset: false
         })
         );
 
@@ -97,6 +105,49 @@
     container: '#pagination'
   })
 );
+search.addWidget(
+  instantsearch.widgets.refinementList({
+    container: '#gender',
+    attributeName: 'gender',
+    operator: 'or',
+    limit: 10,
+    templates: {
+      header: 'Gender',
+    }
+  })
+);
+search.addWidget(
+  instantsearch.widgets.refinementList({
+    container: '#city',
+    attributeName: 'city',
+    operator: 'or',
+    limit: 10,
+    templates: {
+      header: 'City',
+    }
+  })
+);
+
+search.addWidget(
+  instantsearch.widgets.refinementList({
+    container: '#area',
+    attributeName: 'area',
+    operator: 'or',
+    limit: 10,
+    templates: {
+      header: 'Area',
+    }
+  })
+);
+search.addWidget(
+  instantsearch.widgets.refinementList({
+    container: '#calendar',
+    attributeName: 'lost_since',
+    templates: {
+      header: 'Lost Since'
+    }
+  })
+);
 search.start();
     </script>
    
@@ -110,9 +161,7 @@ search.start();
         var notificationsCount = {{ $notificationsCount }};
         var notifications          = notificationsWrapper.find('ul.dropdown-menu');
 
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
-
+       
         var pusher = new Pusher('aacacc0492d009aa482e', {
             authTransport: 'ajax',
             cluster: 'eu',
@@ -199,7 +248,7 @@ search.start();
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOukh8jofbCBMBKRE6XhSKwTUtmgF7Wp0&libraries=places&callback=initAutocomplete"
             async defer></script>
 
-    <link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
+   
     
     </body>
     </html>

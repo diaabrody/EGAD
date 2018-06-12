@@ -108,7 +108,7 @@ class ReportsController extends Controller
         $image = $request->file('photo')->path();  // your base64 encoded
         $base64 = base64_encode(file_get_contents($image));
 
-        $gallery_name = 'newbranch15';
+        $gallery_name = 'newbranch103';
         $argumentArray =  [
             "image" => $base64 ,
             "gallery_name" => $gallery_name
@@ -148,7 +148,7 @@ class ReportsController extends Controller
             }
 
 
-            $request->lost_since = Null;
+
 
             $lat=0;
             $lng=0;
@@ -202,14 +202,9 @@ class ReportsController extends Controller
         }
 
 
-        if($request->status == "quick"){
-            auth()->logout();
-
-            return redirect()->route('frontend.auth.login')->withFlashInfo(__('Your report has been published successfully '));
-        }
-        else{
+        
             return redirect ('/reports/');
-        }
+        
        
     }
 
@@ -247,7 +242,7 @@ class ReportsController extends Controller
             $image = $request->file('photo')->path();  // your base64 encoded
             $base64 = base64_encode(file_get_contents($image));
 
-            $gallery_name = 'newbranch15';
+            $gallery_name = 'newbranch103';
             $argumentArray =  [
                 "image" => $base64 ,
                 "gallery_name" => $gallery_name
@@ -297,7 +292,6 @@ class ReportsController extends Controller
 
 
 
-
         $this->reportRepository->updateById($id,[
             'name'=>$request->name,
             'age'=>$request->age,
@@ -313,8 +307,25 @@ class ReportsController extends Controller
             'hair_color'   => $request->hair_color,
             'last_seen_at' => $request->location,
             'location' => new Point($lat, $lng),
+            'face_id' =>$this->face_id ,
+            'city' => $request->city ,
+            'area' => $request->area ,
+            'face_subject_id' => $this->subject_id
+
 
         ]);
+
+        if(count($this->found_childs) > 0)
+        {
+            $foundchilds=json_encode($this->found_childs);
+            Session::put('childs', $foundchilds);
+            return Redirect::route('frontend.report.founded');
+
+            //  return view("frontend.reports.founded")->with(['childs' => $this->found_childs] );
+
+
+        }
+
 
         return redirect ('/reports/');
 
@@ -409,7 +420,7 @@ class ReportsController extends Controller
                         "gallery_name" => $argumentArray['gallery_name']
                     ]);
 
-                    dd($result);
+
                     //dd('hi image update message');
 
                 }

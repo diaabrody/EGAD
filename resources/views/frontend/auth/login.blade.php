@@ -56,7 +56,7 @@
                     <div class="col">
                         <div class="form-group clearfix ">
 <!--                            {{ form_submit(__('تسجيل دخول')) }}-->
-                    <input type="submit" class="btn btn-warning btn-lg btn-block text-white font-weight-bold" value="تسجيل دخول">
+                    <input type="submit" class="btn btn-secondary btn-lg btn-block text-white font-weight-bold" value="تسجيل دخول">
                             
                         </div><!--form-group-->
                     </div><!--col-->
