@@ -235,7 +235,32 @@
                 </script>
 
                 <script type="text/javascript" src="{{ URL::asset('js/location-spinner.js') }}"></script>
-
+                <script type="text/javascript">
+                        $('#city').on('change',function(){
+                        var cityID = $(this).val();    
+                        if(cityID){
+                                $.ajax({
+                                type:"GET",
+                                url:"{{url('getregionlist')}}?city_id="+cityID,
+                                success:function(res){               
+                                if(res){
+                                        $("#region").empty();
+                                        $.each(res,function(key,value){
+                                                console.log(value)
+                                        $("#region").append('<option value="'+value.id+'">'+value.name+'</option>');
+                                        });
+                                
+                                }else{
+                                $("#region").empty();
+                                }
+                                }
+                                });
+                        }else{
+                                $("#city").empty();
+                        }
+                                
+                        });
+                </script>
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOukh8jofbCBMBKRE6XhSKwTUtmgF7Wp0&libraries=places&callback=initAutocomplete"
                 async defer></script>
 

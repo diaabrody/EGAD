@@ -70,21 +70,26 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                    {{ html()->label(__('المدينة'))->for('city')->class('float-right') }}
+                                    {{ html()->label(__('المدينة'))->for('city_id')->class('float-right') }}
 
-                                    {{ html()->text('city')
-                                        ->class('form-control')
-                                        ->required() }}
+                                    
+                                    <select class="form-control" name="city_id" id="city" >
+                                    <option > اختر المدينة</option>
+                                        @foreach ($cities as $city)
+                                            <option value="{{ $city->id }}">{{ $city->name}}</option>
+                                        @endforeach
+                                    </select>
+
                                 </div><!--col-->
                             </div><!--row-->
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                {{ html()->label(__('المنطقة'))->for('area')->class('float-right') }}
+                                {{ html()->label(__('المنطقة'))->for('region_id')->class('float-right') }}
 
-                                {{ html()->text('area')
-                                    ->class('form-control')
-                                    ->required()}}
+                                <select name="region_id" id="region" class="form-control" >
+                               
+                                </select>
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->
@@ -123,7 +128,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    {{ html()->label(__('validation.attributes.frontend.password_confirmation'))->for('password_confirmation')->class('float-right') }}
+                                    {{ html()->label(__('تأكيد كلمة المرور'))->for('password_confirmation')->class('float-right') }}
 
                                     {{ html()->password('password_confirmation')
                                         ->class('form-control')
@@ -161,6 +166,7 @@
 @endsection
 
 @push('after-scripts')
+
     @if (config('access.captcha.registration'))
         {!! Captcha::script() !!}
     @endif
