@@ -239,5 +239,7 @@
                 @include('frontend.includes.footer')
 
             </div><!-- #app -->
+
+            
         </body>
     </html>
