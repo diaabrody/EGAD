@@ -7,6 +7,8 @@ use App\Repositories\Frontend\Report\ReportRepository;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
+
 use Cornford\Googlmapper\Exceptions\MapperSearchResultException;
 
 /**
@@ -24,9 +26,10 @@ class HomeController extends Controller
         $this->reportRepository = $reportRepository;
     }
 
-/**
+    /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Cornford\Googlmapper\Facades\MapperException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function index(Request $request)
     {
@@ -47,6 +50,22 @@ class HomeController extends Controller
                     'eventClick'=>'window.location ="reports/' . $location->id . '"' ]);
 
         }
+//        $client = new Client();
+//
+//
+//          $apiRequest = $client->request('POST',
+//              'https://api.clxcommunications.com/xms/v1/itiel12/batches',
+//              [
+//                  'headers' => ['Authorization' => 'Bearer 69ebcb008c3b4cfc8ad333ae8f2c01ed',
+//                                 'Content-type' => "application/json",
+//                  ],
+//
+//                      'json' => [  "from" => "12345",
+//                                    "to" => [ "1200013895" ],
+//                                    "body" => "Hi there! How are you?"
+//                      ],
+//              ]);
+//          dd($apiRequest->getStatusCode());
 
 
         return view('frontend.index');
