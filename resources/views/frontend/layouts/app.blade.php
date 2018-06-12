@@ -261,6 +261,16 @@
                                 
                         });
                 </script>
+                <script type="text/javascript">
+                        $('#editForm').on('submit',function(e){
+                                if($('#email').val() == "guest@ejad.com"){
+                                        e.preventDefault();
+                                        alert("you must change your email");
+                                        window.location.reload(true)
+                                }
+                              
+                        });
+                </script>
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOukh8jofbCBMBKRE6XhSKwTUtmgF7Wp0&libraries=places&callback=initAutocomplete"
                 async defer></script>
 
