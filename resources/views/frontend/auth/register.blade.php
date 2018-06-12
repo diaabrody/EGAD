@@ -157,7 +157,13 @@
                         </div><!--row-->
                     {{ html()->form()->close() }}
 
-              
+              <div class="row">
+                        <div class="col">
+                            <div class="text-center">
+                                {!! $socialiteLinks !!}
+                            </div>
+                        </div><!--/ .col -->
+                    </div><!-- / .row -->
                     
                 </div><!-- card-body -->
             </div><!-- card -->
