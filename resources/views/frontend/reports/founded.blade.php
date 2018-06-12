@@ -1,6 +1,12 @@
 @extends('frontend.layouts.app')
 @section('content')
+    <div class="alert alert-success">
+        هولاء الاطفال يشبهونك طفلك
+    </div>
     <div class="row">
+
+
+
 
         @foreach ($childs as $clid)
             <div class="card" style="width:300px">

@@ -13,10 +13,9 @@
             <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
             <link rel="stylesheet" type="text/css" href="/css/bootstrap-notifications.min.css">
-            <link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
 
             <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>   
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
             @yield('meta')
 
 
@@ -206,7 +205,7 @@
                     // Bind a function to a Event (the full Laravel class)
                     var existingNotifications = notifications.html();
                     var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
-                   
+
                     var newNotificationHtml = `<a href="/reports/` + data.report_id + `">
                       <li class="notification active">
 
@@ -231,13 +230,18 @@
 
                 </script>
 
+                <link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
+
+
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYVW_rowUinMY8YXgw9GIfEjcirRJPzQA&libraries=places&callback=initAutocomplete"
+                        async defer></script>
+
                 <script type="text/javascript" src="{{ URL::asset('js/location-spinner.js') }}"></script>
 
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOukh8jofbCBMBKRE6XhSKwTUtmgF7Wp0&libraries=places&callback=initAutocomplete"
-                async defer></script>
 
                 @include('frontend.includes.footer')
 
             </div><!-- #app -->
+
         </body>
     </html>

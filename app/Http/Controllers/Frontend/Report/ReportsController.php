@@ -183,7 +183,7 @@ class ReportsController extends Controller
         {
             $foundchilds=json_encode($this->found_childs);
             Session::put('childs', $foundchilds);
-            return Redirect::route('frontend.report.founded');
+            return redirect()->route('frontend.report.founded');
 
             //  return view("frontend.reports.founded")->with(['childs' => $this->found_childs] );
 
@@ -319,7 +319,7 @@ class ReportsController extends Controller
         {
             $foundchilds=json_encode($this->found_childs);
             Session::put('childs', $foundchilds);
-            return Redirect::route('frontend.report.founded');
+            return redirect()->route('frontend.report.founded');
 
             //  return view("frontend.reports.founded")->with(['childs' => $this->found_childs] );
 
