@@ -34,6 +34,7 @@ class ReportsController extends Controller
     protected  $report_id;
     protected  $found_childs = [];
     protected  $not_contain_face ;
+    protected $subject_id;
 
 
 
@@ -107,7 +108,7 @@ class ReportsController extends Controller
         $image = $request->file('photo')->path();  // your base64 encoded
         $base64 = base64_encode(file_get_contents($image));
 
-        $gallery_name = 'newbranch8';
+        $gallery_name = 'newbranch103';
         $argumentArray =  [
             "image" => $base64 ,
             "gallery_name" => $gallery_name
@@ -116,7 +117,7 @@ class ReportsController extends Controller
         if($request->status == "quick" || $request->status == "normal" )
         {
 
-            $this->checkImageByAI($argumentArray);
+            $this->checkImageByAI($argumentArray , "store");
 
             if($this->not_contain_face)
             {
@@ -139,7 +140,7 @@ class ReportsController extends Controller
         }
         else
         {
-            $this->checkImageByAI($argumentArray);
+            $this->checkImageByAI($argumentArray , "store");
 
             if($this->not_contain_face)
             {
@@ -147,7 +148,7 @@ class ReportsController extends Controller
             }
 
 
-            $request->lost_since = Null;
+
 
             $lat=0;
             $lng=0;
@@ -172,7 +173,8 @@ class ReportsController extends Controller
             'location' => new Point($lat, $lng),
             'face_id' =>$this->face_id ,
             'city' => $request->city ,
-            'area' => $request->area
+            'area' => $request->area ,
+            'face_subject_id' => $this->subject_id
 
 
         ]);
@@ -236,10 +238,27 @@ class ReportsController extends Controller
         {
             $path = $request->file('photo')->store('public/children');
             $input['photo']=$path;
+
+            $image = $request->file('photo')->path();  // your base64 encoded
+            $base64 = base64_encode(file_get_contents($image));
+
+            $gallery_name = 'newbranch103';
+            $argumentArray =  [
+                "image" => $base64 ,
+                "gallery_name" => $gallery_name
+            ];
+
+
+            $this->checkImageByAI($argumentArray , "update" , $report->face_subject_id);
+
         }
 
         else{
-            $input['photo']=$report->photo;
+
+            $photo=str_replace('/storage' , '',$report->photo);
+            $input['photo']=$photo;
+
+
 
         }
 
@@ -273,7 +292,6 @@ class ReportsController extends Controller
 
 
 
-
         $this->reportRepository->updateById($id,[
             'name'=>$request->name,
             'age'=>$request->age,
@@ -289,8 +307,25 @@ class ReportsController extends Controller
             'hair_color'   => $request->hair_color,
             'last_seen_at' => $request->location,
             'location' => new Point($lat, $lng),
+            'face_id' =>$this->face_id ,
+            'city' => $request->city ,
+            'area' => $request->area ,
+            'face_subject_id' => $this->subject_id
+
 
         ]);
+
+        if(count($this->found_childs) > 0)
+        {
+            $foundchilds=json_encode($this->found_childs);
+            Session::put('childs', $foundchilds);
+            return Redirect::route('frontend.report.founded');
+
+            //  return view("frontend.reports.founded")->with(['childs' => $this->found_childs] );
+
+
+        }
+
 
         return redirect ('/reports/');
 
@@ -299,7 +334,7 @@ class ReportsController extends Controller
 
 
 
-    private  function checkImageByAI($argumentArray)
+    private  function checkImageByAI($argumentArray , $type_status , $face_subject = null)
     {
 
 
@@ -319,6 +354,7 @@ class ReportsController extends Controller
 
         if($image_status == "success")
         {
+
 
             $candidates= $response->images[0]->candidates;
 
@@ -344,6 +380,18 @@ class ReportsController extends Controller
             $response   = $this->Kairosobj->enroll($argumentArray);
             $response = json_decode($response);
             $this->face_id=$response->face_id;
+            $this->subject_id=$subject_id ;
+
+            if($type_status == "update")
+            {
+
+                $result=$this->Kairosobj->removeSubjectFromGallery([
+                    "subject_id"=>strval($face_subject),
+                    "gallery_name" => $argumentArray['gallery_name']
+                ]);
+
+
+            }
 
 
         }
@@ -364,6 +412,18 @@ class ReportsController extends Controller
                 $response   = $this->Kairosobj->enroll($argumentArray);
                 $response = json_decode($response);
                 $this->face_id=$response->face_id;
+                $this->subject_id=$subject_id ;
+                if($type_status == "update")
+                {
+                    $result=$this->Kairosobj->removeSubjectFromGallery([
+                        "subject_id"=>strval($face_subject),
+                        "gallery_name" => $argumentArray['gallery_name']
+                    ]);
+
+
+                    //dd('hi image update message');
+
+                }
 
             }
 

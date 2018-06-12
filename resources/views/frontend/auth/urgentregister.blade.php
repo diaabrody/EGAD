@@ -34,7 +34,7 @@
                             <div class="col">
                                 <div class="form-group mb-0 clearfix">
 <!--                                    {{ form_submit(__('Report Now'))->class('btn btn-warning btn-lg btn-block text-white font-weight-bold') }}-->
-                                    <input  class="btn btn-warning btn-lg btn-block text-white font-weight-bold" type="submit" value= "تسجيل دخول">
+                                    <input  class="btn btn-secondary btn-lg w-25 text-white font-weight-bold" type="submit" value= "تسجيل دخول">
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->

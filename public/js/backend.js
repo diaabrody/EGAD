@@ -54844,6 +54844,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fortawesome_fontawesome_free_brands__ = __webpack_require__("./node_modules/@fortawesome/fontawesome-free-brands/index.es.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_laravel_echo__ = __webpack_require__("./node_modules/laravel-echo/dist/echo.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_laravel_echo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_laravel_echo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_pusher_js__ = __webpack_require__("./node_modules/pusher-js/dist/web/pusher.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_pusher_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_pusher_js__);
 /**
  * This bootstrap file is used for both frontend and backend
  */
@@ -54912,7 +54914,6 @@ if (token) {
 
 
 
-window.Pusher = __webpack_require__("./node_modules/pusher-js/dist/web/pusher.js");
 
 window.Echo = new __WEBPACK_IMPORTED_MODULE_5_laravel_echo___default.a({
   broadcaster: 'pusher',

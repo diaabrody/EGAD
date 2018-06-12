@@ -42,11 +42,17 @@ function fillInAddress() {
 
 
 
-document.getElementById("report").onclick = function() {
+function displayloading()
+{
 
     document.getElementById('loading').style.display = "block";
 
-};
+
+}
+
+
+
+
 
 
 function readURL(input) {

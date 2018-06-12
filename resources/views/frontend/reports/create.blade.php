@@ -35,18 +35,28 @@
     <label for="age" class="float-right">العمر</label>
     <input type="number" name="age" class="form-control" min="1" placeholder="ادخل العمر">
 </div>
+     
+<div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    {{ html()->label(__('المدينة'))->for('location')->class('float-right') }}
 
- <div class="form-group">
-     <label for="location" class="float-right">المدينه</label>
-     <input type="text" name="city" class="form-control" placeholder="ادخل المدينه " >
+                                    {{ html()->text('city')
+                                        ->class('form-control')
+                                         }}
+                                </div><!--col-->
+                            </div><!--row-->
 
- </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                {{ html()->label(__('الحي'))->for('location')->class('float-right') }}
 
- <div class="form-group">
-      <label for="location" class="float-right">الحي</label>
-       <input type="text" name="area" class="form-control" placeholder="ادخل الحي" >
-
-</div>
+                                {{ html()->text('area')
+                                    ->class('form-control')
+                                    }}
+                                </div><!--form-group-->
+                            </div><!--col-->
+                        </div><!--row-->     
 
 
 
@@ -62,6 +72,11 @@
         <label for="lost_since" class="float-right">منذ متي فقد</label>
         <input type="date"  name="lost_since" class="form-control" placeholder="منذ متي فقد">
     </div>
+     @else
+         <div class="form-group">
+             <label for="lost_since" class="float-right">منذ متي وجد </label>
+             <input type="date"  name="lost_since" class="form-control" placeholder="منذ متي وجد">
+         </div>
     @endif
 
 
@@ -77,7 +92,9 @@
 </div>
 
     <input type="hidden" value="{{$status}}" name="status">
-      <button type="submit" class="btn btn-warning btn-lg btn-block text-white font-weight-bold" id="report">انشر بلاغ</button>
+
+      <button type="submit" class="btn btn-warning btn-lg btn-block text-white font-weight-bold" id="report" onclick="displayloading()">انشر بلاغ</button>
+
 
 
 </div>
