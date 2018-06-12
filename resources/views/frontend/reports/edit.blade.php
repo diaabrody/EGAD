@@ -1,6 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+    <div id="loading" style="display: none" ></div>
     <form method="post" enctype="multipart/form-data" action="/report/update/{{$report->id}}" class="w-75 m-auto px-0 border p-4 bg-light">
         {{ csrf_field() }}
 
@@ -18,34 +19,23 @@
                                 {{ html()->label(__('النوع'))->for('gender')->class('float-right ml-4') }}
 
                                     <div>
-                                        <input type="radio" name="gender" value="0" class="float-right" /><span class="float-right mr-2 ml-3">ذكر</span>
+                                        @if($report->gender == 0)
+                                        <input type="radio" name="gender" value="0" class="float-right" checked="checked"  /><span class="float-right mr-2 ml-3">ذكر</span>
                                         <input type="radio" name="gender" value="1" class="float-right"  />
                                         <span class="float-right mr-2">أنثي </span>
+                                            @else
+                                            <input type="radio" name="gender" value="0" class="float-right"   /><span class="float-right mr-2 ml-3">ذكر</span>
+                                            <input type="radio" name="gender" value="1" class="float-right" checked="checked"  />
+                                            <span class="float-right mr-2">أنثي </span>
+                                            @endif
                                     </div>
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->
 
-<!--
-        <div class="form-group">
-            <label for="gender">نوع</label>
-            <select name="gender" >
-                @if($report->gender == 1)
-                    <option value="0">ذكر</option>
-                    <option value="1" selected>انثى</option>
-
-                @else
-                    <option value="0" selected>ذكر</option>
-                    <option value="1" >انثى</option>
-                  @endif
-
-
-            </select>
-
-        </div>
--->
 
         <div class="form-group">
+
             <label for="age" class="float-right">العمر</label>
             <input type="number" name="age" class="form-control" min="1" placeholder="" value="{{$report->age}}">
         </div>
@@ -54,9 +44,7 @@
                                 <div class="form-group">
                                     {{ html()->label(__('المدينة'))->for('city')->class('float-right') }}
 
-                                    {{ html()->text('city')
-                                        ->class('form-control')
-                                        ->required() }}
+                                <input name="city" class="form-control" placeholder="city" value="{{$report->city}}">
                                 </div><!--col-->
                             </div><!--row-->
 
@@ -64,15 +52,14 @@
                                 <div class="form-group">
                                 {{ html()->label(__('المنطقة'))->for('area')->class('float-right') }}
 
-                                {{ html()->text('area')
-                                    ->class('form-control')
-                                    ->required()}}
+                                    <input name="area" class="form-control" placeholder="area" value="{{$report->area}}">
+
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->
         <div class="form-group">
-            <label for="location" class="float-right">اين فقد</label>
-            <input type="text" name="location" class="form-control" placeholder=""  value="{{$report->last_seen_at}}">
+            <label for="location" class="float-right">العنوان</label>
+            <input type="text" name="location" class="form-control" placeholder="العنوان" id="autocomplete" value="{{$report->last_seen_at}}">
         </div>
 
         @if ($report->type == "normal" || $report->type  == "quick")
@@ -83,7 +70,7 @@
         @else
             <div class="form-group">
                 <label for="found_since" class="float-right">منذ متي وجد </label>
-                <input type="date"  name="found_since" class="form-control" placeholder="" value="{{$report->found_since}}">
+                <input type="date"  name="lost_since" class="form-control" placeholder="" value="{{$report->found_since}}">
             </div>
         @endif
 
@@ -101,26 +88,26 @@
 
         <div class="form-group">
             <label for="hair_color" class="float-right">لون الشعر</label>
-            <input type="text" name="hair_color" class="form-control" placeholder="" value="{{$report->hair_color}}" >
+            <input type="text" name="hair_color" class="form-control" placeholder="لون الشعر" value="{{$report->hair_color}}" >
         </div>
 
         <div class="form-group">
             <label for="eye_color" class="float-right">لون العين</label>
-            <input type="text" name="eye_color" class="form-control" placeholder="" value="{{$report->eye_color}}">
+            <input type="text" name="eye_color" class="form-control" placeholder="لون العين" value="{{$report->eye_color}}">
         </div>
 
         <div class="form-group">
             <label for="height" class="float-right">طول القامه</label>
-            <input type="number" name="height" class="form-control" placeholder="" value="{{$report->height}}">
+            <input type="number" name="height" class="form-control" placeholder="طول القامه" value="{{$report->height}}">
         </div>
 
         <div class="form-group">
             <label for="weight" class="float-right">الوزن</label>
-            <input type="number" name="weight" class="form-control" placeholder=" " value="{{$report->weight}}">
+            <input type="number" name="weight" class="form-control" placeholder=" الوزن" value="{{$report->weight}}">
         </div>
 
 
-        <button type="submit" class="btn btn-secondary btn-lg btn-block text-white font-weight-bold">تعديل البلاغ</button>
+        <button type="submit" class="btn btn-secondary btn-lg btn-block text-white font-weight-bold" onclick="displayloading()" >تعديل البلاغ</button>
     
     
 <!--       btn-lg btn-block "-->
@@ -133,7 +120,7 @@
 
           <div class="form-group">
             <label for="photo" class="float-right">صوره المفقود</label>
-            <input type="file" id="profile-img" name="photo" class="form-control" placeholder="ادخل الصوره" >
+            <input type="file" id="profile-img" name="photo" class="form-control" placeholder="ادخل الصوره" onchange="readURL(this)">
           </div>
 
         

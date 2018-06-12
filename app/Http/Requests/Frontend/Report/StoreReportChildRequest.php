@@ -25,7 +25,7 @@ class StoreReportChildRequest extends FormRequest
             'gender.required' => 'من فضلك ادخل النوع',
             'reporter_phone_number.required' => 'من فضلك ادخل رقم موبايل المبلغ',
             'reporter_phone_number.regex' => 'رقم موبايل المبلغ غير صحيح',
-            'location.required' =>  "من فضلك ادخل حقل اين فقد",
+            'location.required' =>  "من فضلك ادخل العنوان",
             'area.required' =>  "من فضلك ادخل الحي",
             'city.required' =>  "من فضلك ادخل المنطقه",
 
