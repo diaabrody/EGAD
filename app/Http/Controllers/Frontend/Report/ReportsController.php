@@ -60,6 +60,13 @@ class ReportsController extends Controller
             'reports' => $reports
         ]);
     }
+    public function near()
+    {
+        $reports=$this->reportRepository->retriveNear();
+        return view('frontend.index',[
+            'reports' => $reports
+        ]);
+    }
 
     public function show($id)
     {
@@ -191,9 +198,10 @@ class ReportsController extends Controller
         }
 
 
-
-
-        $users = User::where('area', 'like', $report_like->last_seen_at)-> get();
+        $users = User::where([
+             ['city_id','like',$report_like->city]
+            ,['region_id','like',$report_like->area]
+            ])-> get();
 
         foreach ($users as $user){
             if(($user->id) != (Auth::user()->id) ){
