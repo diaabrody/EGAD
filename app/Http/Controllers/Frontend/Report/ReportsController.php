@@ -60,6 +60,13 @@ class ReportsController extends Controller
             'reports' => $reports
         ]);
     }
+    public function near()
+    {
+        $reports=$this->reportRepository->retriveNear();
+        return view('frontend.index',[
+            'reports' => $reports
+        ]);
+    }
 
     public function show($id)
     {
