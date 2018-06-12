@@ -40,6 +40,7 @@
                     @include('includes.partials.messages')
                     @yield('content')
                 </div><!-- container -->
+               
 
 
 
@@ -47,10 +48,12 @@
                 @stack('before-scripts')
                 {!! script(mix('js/frontend.js')) !!}
                 @stack('after-scripts')
+                
+                @include('frontend.includes.footer')
+               </div><!-- #app -->
 
                 @include('includes.partials.ga')
 
-                <script src="//code.jquery.com/jquery.js"></script>
                 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
                 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -236,10 +239,6 @@
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOukh8jofbCBMBKRE6XhSKwTUtmgF7Wp0&libraries=places&callback=initAutocomplete"
                 async defer></script>
 
-                @include('frontend.includes.footer')
-
-            </div><!-- #app -->
-
-            
+              
         </body>
     </html>
