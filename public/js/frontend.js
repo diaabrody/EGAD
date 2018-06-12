@@ -54100,7 +54100,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-47bc71e1\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/frontend/components/ExampleComponent.vue":
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4a45238e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/frontend/components/ExampleComponent.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -54131,7 +54131,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-47bc71e1", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-4a45238e", module.exports)
   }
 }
 
@@ -65174,6 +65174,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fortawesome_fontawesome_free_brands__ = __webpack_require__("./node_modules/@fortawesome/fontawesome-free-brands/index.es.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_laravel_echo__ = __webpack_require__("./node_modules/laravel-echo/dist/echo.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_laravel_echo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_laravel_echo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_pusher_js__ = __webpack_require__("./node_modules/pusher-js/dist/web/pusher.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_pusher_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_pusher_js__);
 /**
  * This bootstrap file is used for both frontend and backend
  */
@@ -65242,7 +65244,6 @@ if (token) {
 
 
 
-window.Pusher = __webpack_require__("./node_modules/pusher-js/dist/web/pusher.js");
 
 window.Echo = new __WEBPACK_IMPORTED_MODULE_5_laravel_echo___default.a({
   broadcaster: 'pusher',
@@ -65289,7 +65290,7 @@ var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/comp
 /* script */
 var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/frontend/components/ExampleComponent.vue")
 /* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-47bc71e1\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/frontend/components/ExampleComponent.vue")
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4a45238e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/frontend/components/ExampleComponent.vue")
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -65306,7 +65307,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/frontend/components/ExampleComponent.vue"
+Component.options.__file = "resources\\assets\\js\\frontend\\components\\ExampleComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -65315,9 +65316,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-47bc71e1", Component.options)
+    hotAPI.createRecord("data-v-4a45238e", Component.options)
   } else {
-    hotAPI.reload("data-v-47bc71e1", Component.options)
+    hotAPI.reload("data-v-4a45238e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
