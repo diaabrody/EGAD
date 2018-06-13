@@ -59,17 +59,17 @@
                 <script type="text/html" id="hit-template">
 
 
-
-                    <div class="hit">
-                        <div class="hit-image">
-                            <img src="@{{{photo}}}" alt="@{{{name}}}">
-                        </div>
-                        <div class="hit-content">
-                            <h3 class="hit-age">@{{{age}}}</h3>
-                            <h2 class="hit-name">@{{{_highlightResult.name.value}}}</h2>
-                            <p class="hit-area">@{{{_highlightResult.area.value}}}</p>
+                        <div class="col-lg-4 col-md-12 col-sm-6 mb-5">
+                        <div class="card">
+                            <img  class="card-img-top" src="@{{{photo}}}" alt="@{{{name}}}">
+                        
+                            <div class="card-body">
+                                <p class="card-text">الإسم: @{{{_highlightResult.name.value}}}</p>
+                                <p class="card-text">السن: @{{{age}}}</h2>
+                                <a href="/reports/@{{{id}}}" class="btn btn-secondary">المزيد</a>
                         </div>
                     </div>
+                </div>
 
 
                 </script>
