@@ -13,8 +13,7 @@
             <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
             <link rel="stylesheet" type="text/css" href="/css/bootstrap-notifications.min.css">
-            <script type="text/javascript" src="{{ URL::asset('js/jquery-3.3.1.js') }}"></script>
-
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
             <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
             @yield('meta')
@@ -54,7 +53,6 @@
 
                 @include('includes.partials.ga')
 
-                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
                 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
                 <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.js"></script>
@@ -234,15 +232,10 @@
 
                 </script>
 
-                <link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
 
 
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYVW_rowUinMY8YXgw9GIfEjcirRJPzQA&libraries=places&callback=initAutocomplete"
-                        async defer></script>
 
-                <script type="text/javascript" src="{{ URL::asset('js/location-spinner.js') }}"></script>
-
-                <script type="text/javascript">
+            <script type="text/javascript">
                         $('#city').on('change',function(){
                         var cityID = $(this).val();    
                         if(cityID){
