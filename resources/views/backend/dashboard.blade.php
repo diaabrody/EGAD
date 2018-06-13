@@ -166,7 +166,7 @@ Highcharts.chart('lineChart', {
         }
     },
     series: [{
-        name: 'Revenue',
+        name: 'Month/Year',
         data:[
               @foreach($lostPerYear as $lpy)
     {{ $lpy->id }},

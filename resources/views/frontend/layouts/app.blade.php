@@ -49,12 +49,12 @@
                 @stack('after-scripts')
                 
                 @include('frontend.includes.footer')
-               </div><!-- #app -->
+                </div><!-- #app -->
 
                 @include('includes.partials.ga')
 
 
-                <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+                
                 <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.js"></script>
                 <script type="text/html" id="hit-template">
 
