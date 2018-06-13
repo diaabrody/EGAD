@@ -39,7 +39,7 @@
 <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                    {{ html()->label(__('المدينة'))->for('location')->class('float-right') }}
+                                    {{ html()->label(__('المدينة'))->for('city')->class('float-right') }}
 
                                      <select class="form-control" name="city" id="city" >
                                     <option > اختر المدينة</option>
@@ -52,7 +52,7 @@
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                {{ html()->label(__('الحي'))->for('location')->class('float-right') }}
+                                {{ html()->label(__('الحي'))->for('area')->class('float-right') }}
 
                                 <select name="area" id="region" class="form-control" >
                                

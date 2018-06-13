@@ -20,6 +20,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Events\SameAreaReport;
 use App\Models\Auth\User;
 use  App\Models\City\City;
+use  App\Models\Region\Region;
 
 
 use App\Classes\Kairos;
@@ -229,8 +230,12 @@ class ReportsController extends Controller
     {
 
         $report=$this->reportRepository->findByid($id);
-
-        return view("frontend.reports.edit")->with('report', $report);
+        $cities = City::all();
+        $regions = Region::all();
+        return view("frontend.reports.edit",[
+            'cities' => $cities,
+            'regions' => $regions
+        ])->with('report', $report);
 
     }
 
@@ -326,6 +331,18 @@ class ReportsController extends Controller
 
 
         ]);
+
+        $users = User::where([
+            ['city','=',$report_like->city]
+           ,['region','=',$report_like->area]
+           ])-> get();
+        
+       foreach ($users as $user){
+           if(($user->id) != (Auth::user()->id) ){
+           event(new SameAreaReport($user,$report_like));
+           }
+       }
+
 
         if(count($this->found_childs) > 0)
         {
