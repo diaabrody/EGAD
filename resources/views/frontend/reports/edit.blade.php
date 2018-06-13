@@ -140,10 +140,9 @@
 
 
     <link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
+    <script type="text/javascript" src="{{ URL::asset('js/location-spinner.js') }}"></script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdGzflHLWnvZh1Ed3eHeW17SmIF2FUoe0&libraries=places&callback=initAutocomplete"
             async defer></script>
-    <script type="text/javascript" src="{{ URL::asset('js/location-spinner.js') }}"></script>
-
 
 @endsection

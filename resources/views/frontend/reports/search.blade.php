@@ -59,7 +59,7 @@
                         console.log(data);
 
                         for (i = 0; i < data.length; i++) {
-                   var div=$("<div class='col-lg-4 col-md-6 col-sm-6 mb-5' id='div1'></div>");
+                   var div=$("<div class='' id='div1'></div>");
                      $(".row").prepend(div);
                     var div2=$("<div class='card'></div>");
                     $("#div1").prepend(div2);
@@ -71,7 +71,7 @@
                      var div4= "<p class='card-text' id='card1'></p>";
                       var div5= "<p class='card-text' id='card2'></p>";
                      $("#card1").html(data[i].name + "الاسم :");
-                      $("#card2").html(data[i].reporter_phone_number + "الاسم :");
+                      $("#card2").html(data[i].reporter_phone_number + "رقم تليفون المبلغ :");
                        $(".card-body").prepend(div4);
                        $(".card-body").prepend(div5);
 
