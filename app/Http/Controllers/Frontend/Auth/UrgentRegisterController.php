@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use App\Repositories\Frontend\Auth\UserRepository;
-
+use Nexmo\Laravel\Facade\Nexmo;
 
 /**
  * Class UrgentRegisterController.
@@ -52,8 +52,14 @@ class UrgentRegisterController extends Controller
 
         $this->guard()->login($user);
        
+        Nexmo::message()->send([
+            'to'   => '201225365069',
+            'from' => 'EJAD',
+            'text' => 'Hello and Welcome to Ejad website your password is '. $password .' and you can change it in the next time you login to your profile'
+        ]);
+
         return redirect('/report/create/quick')->withFlashSuccess(
-                __('Your password is ' . $password . ' and you can change them in the next time you login to your profile') 
+                __('you will receieve SMS contains your password and you can change it in the next time you login to your profile') 
         );
 
     }

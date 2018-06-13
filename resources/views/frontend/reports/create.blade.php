@@ -62,7 +62,7 @@
 
      <div class="form-group">
     <label for="location" class="float-right">العنوان</label>
-    <input type="text" name="location" class="form-control" placeholder="ادخل المنطقه" id="autocomplete">
+    <input type="text" name="location" class="form-control" placeholder="ادخل المنطقه" id="autocomplete" autocomplete="off"  >
 
 </div>
 
@@ -115,7 +115,6 @@
 
     <div style="clear:both"></div>
 </form>
-
 
 
 

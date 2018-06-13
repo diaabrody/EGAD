@@ -33,6 +33,9 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        
+        $reports=$this->reportRepository->retriveNear();
+       
         $loc = geoip()->getLocation($request->getClientIp());
 
 
@@ -68,6 +71,8 @@ class HomeController extends Controller
 //          dd($apiRequest->getStatusCode());
 
 
-        return view('frontend.index');
+        return view('frontend.index',[
+            'reports' => $reports
+        ]);
     }
 }

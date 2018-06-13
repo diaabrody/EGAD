@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Frontend\Report\ReportRepository;
 use Cornford\Googlmapper\Exceptions\MapperSearchResultException;
+use Nexmo\Laravel\Facade\Nexmo;
+
 
 
 class MapController extends Controller
@@ -72,6 +74,17 @@ class MapController extends Controller
 
         return redirect('map')->with('message', 'Marker Dropped Successfully');
 
+    }
+
+    public function sms()
+    {
+       $nex =   Nexmo::message()->send([
+            'to'   => '201225365069',
+            'from' => 'EJAD',
+            'text' => 'Hello and Welcome to Ejad platform'
+        ]);
+
+       dd($nex);
     }
 
 

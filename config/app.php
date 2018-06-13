@@ -242,6 +242,7 @@ return [
         'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
         'Location' => Stevebauman\Location\Facades\Location::class,
         'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
+        'Nexmo' => Nexmo\Laravel\Facade\Nexmo::class,
 
 
 

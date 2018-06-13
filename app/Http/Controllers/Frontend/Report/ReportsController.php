@@ -35,7 +35,8 @@ class ReportsController extends Controller
     protected  $found_childs = [];
     protected  $not_contain_face ;
     protected $subject_id;
-
+    protected  $search_childs = [];
+    protected  $search_no_face ;
 
 
 
@@ -57,6 +58,13 @@ class ReportsController extends Controller
 
         $reports=$this->reportRepository->retriveAll();
         return view('frontend.reports.index',[
+            'reports' => $reports
+        ]);
+    }
+    public function near()
+    {
+        $reports=$this->reportRepository->retriveNear();
+        return view('frontend.index',[
             'reports' => $reports
         ]);
     }
@@ -183,7 +191,7 @@ class ReportsController extends Controller
         {
             $foundchilds=json_encode($this->found_childs);
             Session::put('childs', $foundchilds);
-            return Redirect::route('frontend.report.founded');
+            return redirect()->route('frontend.report.founded');
 
             //  return view("frontend.reports.founded")->with(['childs' => $this->found_childs] );
 
@@ -191,9 +199,10 @@ class ReportsController extends Controller
         }
 
 
-
-
-        $users = User::where('area', 'like', $report_like->last_seen_at)-> get();
+        $users = User::where([
+             ['city_id','like',$report_like->city]
+            ,['region_id','like',$report_like->area]
+            ])-> get();
 
         foreach ($users as $user){
             if(($user->id) != (Auth::user()->id) ){
@@ -202,10 +211,10 @@ class ReportsController extends Controller
         }
 
 
-        
+
             return redirect ('/reports/');
-        
-       
+
+
     }
 
 
@@ -319,7 +328,7 @@ class ReportsController extends Controller
         {
             $foundchilds=json_encode($this->found_childs);
             Session::put('childs', $foundchilds);
-            return Redirect::route('frontend.report.founded');
+            return redirect()->route('frontend.report.founded');
 
             //  return view("frontend.reports.founded")->with(['childs' => $this->found_childs] );
 
@@ -450,6 +459,131 @@ class ReportsController extends Controller
 
 
     }
+
+
+
+
+
+
+
+
+
+
+
+    private  function  searchImageByAi($argumentArray)
+    {
+
+
+        $response   = $this->Kairosobj->recognize($argumentArray);
+        $response = json_decode($response);
+        if(!isset($response->images[0]))
+        {
+            $image_status ="failure";
+        }
+
+        else
+        {
+            $image_status=$response->images[0]->transaction->status;
+
+        }
+
+
+        if($image_status == "success") {
+
+
+            $candidates = $response->images[0]->candidates;
+
+
+            foreach ($candidates as $candidate) {
+
+                $report_found = $this->reportRepository->selectByFaceID($candidate->face_id);
+
+                if ($report_found && $report_found->id && $report_found->user_id != Auth::user()->id) {
+                    //  $this->found_child_id=$report_found->id;
+                    array_push($this->search_childs, $report_found);
+
+
+                }
+
+            }
+
+        }
+
+        else
+        {
+            if(isset($response->Errors[0])&&$response->Errors[0]->ErrCode == 5002)
+            {
+
+                $this->search_no_face=true;
+
+
+            }
+        }
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+    public function getsearchpage()
+    {
+        return view('frontend.reports.search');
+    }
+
+
+
+
+    public function  search(Request $request)
+    {
+
+
+
+
+        $image = $request->file('photo')->path();
+        $base64 = base64_encode(file_get_contents($image));
+
+        $gallery_name = 'newbranch103';
+        $argumentArray =  [
+            "image" => $base64 ,
+            "gallery_name" => $gallery_name
+        ];
+
+            $this->searchImageByAi($argumentArray);
+
+
+            if ($this->search_no_face) {
+                // return Redirect::back()->withErrors(['هذه الصوره لا تحتوي علي اشخاص ']);
+            }
+
+            if (count($this->search_childs) > 0) {
+
+
+                return response()->json($this->search_childs, 200);
+
+
+            } else {
+                return response()->json(array('msg' => 'no'), 200);
+
+
+            }
+
+
+        }
+
+
+
+
+
+
+
+
 
 
 
