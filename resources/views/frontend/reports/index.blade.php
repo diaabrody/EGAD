@@ -9,7 +9,9 @@
 <div class="row">
 
 
-  <div id="hits"></div>
+  <div id="hits">
+    
+  </div>
  
   
 </div>
