@@ -237,17 +237,16 @@
                 <script type="text/javascript" src="{{ URL::asset('js/location-spinner.js') }}"></script>
                 <script type="text/javascript">
                         $('#city').on('change',function(){
-                        var cityID = $(this).val();    
-                        if(cityID){
+                        var cityName = $(this).val();    
+                        if(cityName){
                                 $.ajax({
                                 type:"GET",
-                                url:"{{url('getregionlist')}}?city_id="+cityID,
+                                url:"{{url('getregionlist')}}?city_name="+cityName,
                                 success:function(res){               
                                 if(res){
                                         $("#region").empty();
                                         $.each(res,function(key,value){
-                                                console.log(value)
-                                        $("#region").append('<option value="'+value.id+'">'+value.name+'</option>');
+                                                $("#region").append('<option value="'+value.name+'">'+value.name+'</option>');
                                         });
                                 
                                 }else{

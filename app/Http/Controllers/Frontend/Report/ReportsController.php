@@ -19,6 +19,8 @@ use Grimzy\LaravelMysqlSpatial\Types\Point;
 use Illuminate\Http\RedirectResponse;
 use App\Events\SameAreaReport;
 use App\Models\Auth\User;
+use  App\Models\City\City;
+
 
 use App\Classes\Kairos;
 ini_set('max_execution_time', 300);
@@ -89,7 +91,10 @@ class ReportsController extends Controller
 
         if($status == "quick" || $status=="found" || $status=="normal")
         {
-            return view("frontend.reports.create")->with('status', $status);
+            $cities = City::all();
+            return view("frontend.reports.create",[
+                'cities' => $cities
+            ])->with('status', $status);
 
         }
 
@@ -186,6 +191,18 @@ class ReportsController extends Controller
 
         ]);
 
+        
+        $users = User::where([
+             ['city','=',$report_like->city]
+            ,['region','=',$report_like->area]
+            ])-> get();
+         
+        foreach ($users as $user){
+            if(($user->id) != (Auth::user()->id) ){
+            event(new SameAreaReport($user,$report_like));
+            }
+        }
+
         if(count($this->found_childs) > 0)
         {
             $foundchilds=json_encode($this->found_childs);
@@ -196,20 +213,6 @@ class ReportsController extends Controller
 
 
         }
-
-
-        $users = User::where([
-             ['city_id','like',$report_like->city]
-            ,['region_id','like',$report_like->area]
-            ])-> get();
-
-        foreach ($users as $user){
-            if(($user->id) != (Auth::user()->id) ){
-            event(new SameAreaReport($user,$report_like));
-            }
-        }
-
-
         
             return redirect ('/reports/');
         

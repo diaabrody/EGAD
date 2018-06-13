@@ -41,9 +41,12 @@
                                 <div class="form-group">
                                     {{ html()->label(__('المدينة'))->for('location')->class('float-right') }}
 
-                                    {{ html()->text('city')
-                                        ->class('form-control')
-                                         }}
+                                     <select class="form-control" name="city" id="city" >
+                                    <option > اختر المدينة</option>
+                                        @foreach ($cities as $city)
+                                            <option value="{{ $city->name }}">{{ $city->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div><!--col-->
                             </div><!--row-->
 
@@ -51,9 +54,9 @@
                                 <div class="form-group">
                                 {{ html()->label(__('الحي'))->for('location')->class('float-right') }}
 
-                                {{ html()->text('area')
-                                    ->class('form-control')
-                                    }}
+                                <select name="area" id="region" class="form-control" >
+                               
+                               </select>
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->     

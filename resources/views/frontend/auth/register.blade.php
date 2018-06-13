@@ -70,13 +70,13 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                    {{ html()->label(__('المدينة'))->for('city_id')->class('float-right') }}
+                                    {{ html()->label(__('المدينة'))->for('city')->class('float-right') }}
 
                                     
-                                    <select class="form-control" name="city_id" id="city" >
+                                    <select class="form-control" name="city" id="city" >
                                     <option > اختر المدينة</option>
                                         @foreach ($cities as $city)
-                                            <option value="{{ $city->id }}">{{ $city->name}}</option>
+                                            <option value="{{ $city->name }}">{{ $city->name}}</option>
                                         @endforeach
                                     </select>
 
@@ -85,9 +85,9 @@
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                {{ html()->label(__('المنطقة'))->for('region_id')->class('float-right') }}
+                                {{ html()->label(__('المنطقة'))->for('region')->class('float-right') }}
 
-                                <select name="region_id" id="region" class="form-control" >
+                                <select name="region" id="region" class="form-control" >
                                
                                 </select>
                                 </div><!--form-group-->
