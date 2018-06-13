@@ -22,7 +22,23 @@
     <div class="col-lg-8 col-md-12 col-s-12 all-missing">
         <h1>المفقودين بالقرب منك</h1>
         <div class="row">
+       @if (is_array($reports) || is_object($reports))
+        @foreach ($reports as $report)
             <div class="col-lg-4 col-md-12 col-sm-6 mb-5">
+                        <div class="card">
+                          <img class="card-img-top" src="images/missing-girl.jpg" alt="Card image cap">
+                          <div class="card-body">
+                            <p class="card-text">الاسم:{{ $report->name }} </p>
+                            <p class="card-text">السن:{{ $report->age }} </p>
+                            <a href="/reports/{{ $report->id }}" class="btn btn-secondary">المزيد</a>
+                          </div>
+                        </div>
+            </div>
+        @endforeach
+       @endif
+
+
+           <div class="col-lg-4 col-md-12 col-sm-6 mb-5">
                         <div class="card">
                           <img class="card-img-top" src="images/missing-girl.jpg" alt="Card image cap">
                           <div class="card-body">

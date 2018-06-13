@@ -28,6 +28,19 @@ class ReportRepository extends BaseRepository
          $reports=$this->model->all();
          return $reports;
     }
+
+    public function retriveNear()
+    {
+        if (Auth::user())
+        {
+        $user= Auth::user();
+        $reports=$this->model->where([
+             ['city','=',$user->city],['area','=',$user->area] ]);
+             return $reports;
+        }
+        
+    }
+
     public function retriveUser_reports()
     {
          $user= Auth::user(); 

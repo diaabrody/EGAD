@@ -21,6 +21,7 @@
         "laravel/scout": "^4.0",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
+        "nexmo/laravel": "^1.1",
         "pusher/pusher-php-server": "~3.0",
         "spatie/laravel-html": "^2.4",
         "spatie/laravel-permission": "^2.5",

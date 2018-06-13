@@ -5,8 +5,10 @@ namespace App\Models\Auth\Traits\Relationship;
 use App\Models\System\Session;
 use App\Models\Auth\SocialAccount;
 use App\Models\Auth\PasswordHistory;
-use  App\Models\Report\Report;
-use  App\Models\Comment\Comment;
+use App\Models\Report\Report;
+use App\Models\Comment\Comment;
+use App\Models\City\City;
+use App\Models\Region\Region;
 use App\Models\Notification\Notification;
 
 /**
@@ -50,6 +52,16 @@ trait UserRelationship
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class,'city_id');
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class,'region_id');
     }
     
 }
