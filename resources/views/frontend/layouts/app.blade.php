@@ -13,10 +13,9 @@
             <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
             <link rel="stylesheet" type="text/css" href="/css/bootstrap-notifications.min.css">
-            <link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
-
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
             <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>   
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
             @yield('meta')
 
 
@@ -54,24 +53,23 @@
 
                 @include('includes.partials.ga')
 
-                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
                 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
                 <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.js"></script>
                 <script type="text/html" id="hit-template">
 
 
-
-                    <div class="hit">
-                        <div class="hit-image">
-                            <img src="@{{{photo}}}" alt="@{{{name}}}">
-                        </div>
-                        <div class="hit-content">
-                            <h3 class="hit-age">@{{{age}}}</h3>
-                            <h2 class="hit-name">@{{{_highlightResult.name.value}}}</h2>
-                            <p class="hit-area">@{{{_highlightResult.area.value}}}</p>
+                        <div class="col-lg-4 col-md-12 col-sm-6 mb-5">
+                        <div class="card">
+                            <img  class="card-img-top" src="@{{{photo}}}" alt="@{{{name}}}">
+                        
+                            <div class="card-body">
+                                <p class="card-text">الإسم: @{{{_highlightResult.name.value}}}</p>
+                                <p class="card-text">السن: @{{{age}}}</h2>
+                                <a href="/reports/@{{{id}}}" class="btn btn-secondary">المزيد</a>
                         </div>
                     </div>
+                </div>
 
 
                 </script>
@@ -209,7 +207,7 @@
                     // Bind a function to a Event (the full Laravel class)
                     var existingNotifications = notifications.html();
                     var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
-                   
+
                     var newNotificationHtml = `<a href="/reports/` + data.report_id + `">
                       <li class="notification active">
 
@@ -234,8 +232,10 @@
 
                 </script>
 
-                <script type="text/javascript" src="{{ URL::asset('js/location-spinner.js') }}"></script>
-                <script type="text/javascript">
+
+
+
+            <script type="text/javascript">
                         $('#city').on('change',function(){
                         var cityName = $(this).val();    
                         if(cityName){
@@ -270,8 +270,7 @@
                               
                         });
                 </script>
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOukh8jofbCBMBKRE6XhSKwTUtmgF7Wp0&libraries=places&callback=initAutocomplete"
-                async defer></script>
+
 
               
         </body>

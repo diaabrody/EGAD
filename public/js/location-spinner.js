@@ -18,11 +18,17 @@ function initAutocomplete() {
     // When the user selects an address from the dropdown, populate the address
     // fields in the form.
     autocomplete.addListener('place_changed', fillInAddress);
+    google.maps.event.addDomListener(window, 'load', initAutocomplete);
+
+
 }
+
+
 
 function fillInAddress() {
     // Get the place details from the autocomplete object.
     var place = autocomplete.getPlace();
+
 
     for (var component in componentForm) {
         document.getElementById(component).value = '';
@@ -69,3 +75,5 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+
