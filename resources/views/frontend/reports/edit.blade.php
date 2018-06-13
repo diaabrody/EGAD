@@ -49,7 +49,7 @@
                                             <option value="{{ $city->name }}" {{ $report->city == $city->name ? 'selected="selected"' : '' }}>{{ $city->name}}</option>
                                         @endforeach
                                     </select>
-                               
+                                    </div><!--form-group-->
                                 </div><!--col-->
                             </div><!--row-->
 

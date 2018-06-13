@@ -195,6 +195,8 @@ class UserRepository extends BaseRepository
         $user->last_name = $input['last_name'];
         $user->phone_no = $input['phone_no'];
         $user->date_of_birth = $input['date_of_birth'];
+        $user->city = $input['city'];
+        $user->region= $input['region'];
         $user->timezone = $input['timezone'];
         $user->avatar_type = $input['avatar_type'];
 
