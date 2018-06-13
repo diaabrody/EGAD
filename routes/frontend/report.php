@@ -8,6 +8,15 @@ Route::post("/report/save/" , "ReportsController@store");
 Route::get("/report/{id}/edit" , "ReportsController@edit");
 Route::put("/report/update/{id}" , "ReportsController@update");
 Route::get("/report/childs/found" , "ReportsController@childFound")->name('founded');
+Route::get("/report/childs/search" , "ReportsController@getsearchpage");
+Route::post("/report/childs/searchfound" , "ReportsController@search");
+Route::post("/report/childs/testsearchfound" , "ReportsController@search");
+
+    Route::get('/testajax',function (){
+return view('frontend.reports.testsearch');
+    });
+
+//Route::post("/report/childs/test" , "ReportsController@test");
 
 
 });
