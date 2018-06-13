@@ -390,21 +390,21 @@ class ReportsController extends Controller
             $subject_id = time();
             $argumentArray["subject_id"]=strval($subject_id);
             $response   = $this->Kairosobj->enroll($argumentArray);
-            $response = json_decode($response);
-            $this->face_id=$response->face_id;
-            $this->subject_id=$subject_id ;
+            if($response) {
+                $response = json_decode($response);
+                $this->face_id = $response->face_id;
+                $this->subject_id = $subject_id;
 
-            if($type_status == "update")
-            {
+                if ($type_status == "update") {
 
-                $result=$this->Kairosobj->removeSubjectFromGallery([
-                    "subject_id"=>strval($face_subject),
-                    "gallery_name" => $argumentArray['gallery_name']
-                ]);
+                    $result = $this->Kairosobj->removeSubjectFromGallery([
+                        "subject_id" => strval($face_subject),
+                        "gallery_name" => $argumentArray['gallery_name']
+                    ]);
 
 
+                }
             }
-
 
         }
 
@@ -417,26 +417,27 @@ class ReportsController extends Controller
 
 
             }
-            else{
+            else {
 
                 $subject_id = time();
-                $argumentArray["subject_id"]=strval($subject_id);
-                $response   = $this->Kairosobj->enroll($argumentArray);
-                $response = json_decode($response);
-                $this->face_id=$response->face_id;
-                $this->subject_id=$subject_id ;
-                if($type_status == "update")
-                {
-                    $result=$this->Kairosobj->removeSubjectFromGallery([
-                        "subject_id"=>strval($face_subject),
-                        "gallery_name" => $argumentArray['gallery_name']
-                    ]);
+                $argumentArray["subject_id"] = strval($subject_id);
+                $response = $this->Kairosobj->enroll($argumentArray);
+                if ($response) {
+                    $response = json_decode($response);
+                    $this->face_id = $response->face_id;
+                    $this->subject_id = $subject_id;
+                    if ($type_status == "update") {
+                        $result = $this->Kairosobj->removeSubjectFromGallery([
+                            "subject_id" => strval($face_subject),
+                            "gallery_name" => $argumentArray['gallery_name']
+                        ]);
 
 
-                    //dd('hi image update message');
+                        //dd('hi image update message');
+
+                    }
 
                 }
-
             }
 
 
@@ -444,7 +445,6 @@ class ReportsController extends Controller
 
 
         }
-
 
     }
 
