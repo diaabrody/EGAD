@@ -1,5 +1,4 @@
 <footer>
-<script src="https://js.pusher.com/3.1/pusher.min.js"></script>
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-12">
@@ -27,4 +26,5 @@
             </div>            
         </div>
     </div>
+    <script src="https://js.pusher.com/3.1/pusher.min.js"></script>
 </footer>
