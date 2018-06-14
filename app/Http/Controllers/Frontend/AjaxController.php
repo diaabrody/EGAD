@@ -15,8 +15,9 @@ class AjaxController extends Controller
 
     public function getRegionList(Request $request)
     {
-        $regions = Region::where("city_id",$request->city_id)-> get();
-               
+        $city = City::where("name",$request->city_name)->first();
+        $regions = Region::where("city_id",$city->id)->get();
+              
         return response()->json($regions);
     }
    

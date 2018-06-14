@@ -44,15 +44,24 @@
                                 <div class="form-group">
                                     {{ html()->label(__('المدينة'))->for('city')->class('float-right') }}
 
-                                <input name="city" class="form-control" placeholder="city" value="{{$report->city}}">
+                                 <select class="form-control" name="city" id="city" >
+                                        @foreach ($cities as $city)
+                                            <option value="{{ $city->name }}" {{ $report->city == $city->name ? 'selected="selected"' : '' }}>{{ $city->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    </div><!--form-group-->
                                 </div><!--col-->
                             </div><!--row-->
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                 {{ html()->label(__('المنطقة'))->for('area')->class('float-right') }}
-
-                                    <input name="area" class="form-control" placeholder="area" value="{{$report->area}}">
+                                <select name="area" id="region" class="form-control" >
+                                    @foreach ($regions as $region)
+                                            <option value="{{ $region->name }}" {{ $report->area == $region->name ? 'selected="selected"' : '' }}>{{ $region->name}}</option>
+                                    @endforeach
+                               </select>
+                                    
 
                                 </div><!--form-group-->
                             </div><!--col-->
@@ -130,6 +139,10 @@
     </form>
 
 
+    <link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
+    <script type="text/javascript" src="{{ URL::asset('js/location-spinner.js') }}"></script>
 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdGzflHLWnvZh1Ed3eHeW17SmIF2FUoe0&libraries=places&callback=initAutocomplete"
+            async defer></script>
 
 @endsection

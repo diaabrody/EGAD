@@ -89,25 +89,35 @@
         </div><!--col-->
     </div><!--row-->
 
-    @if ($logged_in_user->canChangeEmail())
-        <div class="row">
-            <div class="col">
-                <div class="alert alert-info">
-                    <i class="fas fa-info-circle"></i> {{  __('strings.frontend.user.change_email_notice') }}
-                </div>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                {{ html()->label(__('المدينة'))->for('city')->class('float-right') }}
 
-                <div class="form-group">
-                    {{ html()->label(__('validation.attributes.frontend.email'))->for('email') }}
+                <select class="form-control" name="city" id="city" >
+                    @foreach ($cities as $city)
+                        <option value="{{ $city->name }}" {{ $logged_in_user->city == $city->name ? 'selected="selected"' : '' }}>{{ $city->name}}</option>
+                    @endforeach
+                </select>
+            </div><!--form-group-->                  
+        </div><!--col-->
+    
 
-                    {{ html()->email('email')
-                        ->class('form-control')
-                        ->placeholder(__('validation.attributes.frontend.email'))
-                        ->attribute('maxlength', 191)
-                        ->required() }}
-                </div><!--form-group-->
-            </div><!--col-->
-        </div><!--row-->
-    @endif
+    
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                {{ html()->label(__('المنطقة'))->for('area')->class('float-right') }}
+                
+                <select name="region" id="region" class="form-control" >
+                    @foreach ($regions as $region)
+                        <option value="{{ $region->name }}" {{ $logged_in_user->region == $region->name ? 'selected="selected"' : '' }}>{{ $region->name}}</option>
+                    @endforeach
+                </select>
+                                    
+
+            </div><!--form-group-->
+        </div><!--col-->
+    </div><!--row-->
 
     <div class="row">
         <div class="col">

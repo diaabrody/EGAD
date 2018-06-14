@@ -19,6 +19,9 @@ use Grimzy\LaravelMysqlSpatial\Types\Point;
 use Illuminate\Http\RedirectResponse;
 use App\Events\SameAreaReport;
 use App\Models\Auth\User;
+use  App\Models\City\City;
+use  App\Models\Region\Region;
+
 
 use App\Classes\Kairos;
 ini_set('max_execution_time', 300);
@@ -90,7 +93,10 @@ class ReportsController extends Controller
 
         if($status == "quick" || $status=="found" || $status=="normal")
         {
-            return view("frontend.reports.create")->with('status', $status);
+            $cities = City::all();
+            return view("frontend.reports.create",[
+                'cities' => $cities
+            ])->with('status', $status);
 
         }
 
@@ -187,6 +193,18 @@ class ReportsController extends Controller
 
         ]);
 
+        
+        $users = User::where([
+             ['city','=',$report_like->city]
+            ,['region','=',$report_like->area]
+            ])-> get();
+         
+        foreach ($users as $user){
+            if(($user->id) != (Auth::user()->id) ){
+            event(new SameAreaReport($user,$report_like));
+            }
+        }
+
         if(count($this->found_childs) > 0)
         {
             $foundchilds=json_encode($this->found_childs);
@@ -197,21 +215,7 @@ class ReportsController extends Controller
 
 
         }
-
-
-        $users = User::where([
-             ['city_id','like',$report_like->city]
-            ,['region_id','like',$report_like->area]
-            ])-> get();
-
-        foreach ($users as $user){
-            if(($user->id) != (Auth::user()->id) ){
-            event(new SameAreaReport($user,$report_like));
-            }
-        }
-
-
-
+        
             return redirect ('/reports/');
 
 
@@ -226,8 +230,12 @@ class ReportsController extends Controller
     {
 
         $report=$this->reportRepository->findByid($id);
-
-        return view("frontend.reports.edit")->with('report', $report);
+        $cities = City::all();
+        $regions = Region::all();
+        return view("frontend.reports.edit",[
+            'cities' => $cities,
+            'regions' => $regions
+        ])->with('report', $report);
 
     }
 
@@ -324,6 +332,18 @@ class ReportsController extends Controller
 
         ]);
 
+        $users = User::where([
+            ['city','=',$report_like->city]
+           ,['region','=',$report_like->area]
+           ])-> get();
+        
+       foreach ($users as $user){
+           if(($user->id) != (Auth::user()->id) ){
+           event(new SameAreaReport($user,$report_like));
+           }
+       }
+
+
         if(count($this->found_childs) > 0)
         {
             $foundchilds=json_encode($this->found_childs);
@@ -387,21 +407,21 @@ class ReportsController extends Controller
             $subject_id = time();
             $argumentArray["subject_id"]=strval($subject_id);
             $response   = $this->Kairosobj->enroll($argumentArray);
-            $response = json_decode($response);
-            $this->face_id=$response->face_id;
-            $this->subject_id=$subject_id ;
+            if($response) {
+                $response = json_decode($response);
+                $this->face_id = $response->face_id;
+                $this->subject_id = $subject_id;
 
-            if($type_status == "update")
-            {
+                if ($type_status == "update") {
 
-                $result=$this->Kairosobj->removeSubjectFromGallery([
-                    "subject_id"=>strval($face_subject),
-                    "gallery_name" => $argumentArray['gallery_name']
-                ]);
+                    $result = $this->Kairosobj->removeSubjectFromGallery([
+                        "subject_id" => strval($face_subject),
+                        "gallery_name" => $argumentArray['gallery_name']
+                    ]);
 
 
+                }
             }
-
 
         }
 
@@ -414,26 +434,27 @@ class ReportsController extends Controller
 
 
             }
-            else{
+            else {
 
                 $subject_id = time();
-                $argumentArray["subject_id"]=strval($subject_id);
-                $response   = $this->Kairosobj->enroll($argumentArray);
-                $response = json_decode($response);
-                $this->face_id=$response->face_id;
-                $this->subject_id=$subject_id ;
-                if($type_status == "update")
-                {
-                    $result=$this->Kairosobj->removeSubjectFromGallery([
-                        "subject_id"=>strval($face_subject),
-                        "gallery_name" => $argumentArray['gallery_name']
-                    ]);
+                $argumentArray["subject_id"] = strval($subject_id);
+                $response = $this->Kairosobj->enroll($argumentArray);
+                if ($response) {
+                    $response = json_decode($response);
+                    $this->face_id = $response->face_id;
+                    $this->subject_id = $subject_id;
+                    if ($type_status == "update") {
+                        $result = $this->Kairosobj->removeSubjectFromGallery([
+                            "subject_id" => strval($face_subject),
+                            "gallery_name" => $argumentArray['gallery_name']
+                        ]);
 
 
-                    //dd('hi image update message');
+                        //dd('hi image update message');
+
+                    }
 
                 }
-
             }
 
 
@@ -441,7 +462,6 @@ class ReportsController extends Controller
 
 
         }
-
 
     }
 

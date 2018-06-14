@@ -26,7 +26,7 @@
         @foreach ($reports as $report)
             <div class="col-lg-4 col-md-12 col-sm-6 mb-5">
                         <div class="card">
-                          <img class="card-img-top" src="images/missing-girl.jpg" alt="Card image cap">
+                          <img class="card-img-top" src="{{ $report->photo }}" alt="Card image cap">
                           <div class="card-body">
                             <p class="card-text">الاسم:{{ $report->name }} </p>
                             <p class="card-text">السن:{{ $report->age }} </p>
@@ -38,36 +38,7 @@
        @endif
 
 
-           <div class="col-lg-4 col-md-12 col-sm-6 mb-5">
-                        <div class="card">
-                          <img class="card-img-top" src="images/missing-girl.jpg" alt="Card image cap">
-                          <div class="card-body">
-                            <p class="card-text">الاسم: منى علاء الدين</p>
-                            <p class="card-text">السن: عشر سنوات</p>
-                            <a href="#" class="btn btn-secondary">المزيد</a>
-                          </div>
-                        </div>
-            </div>
-            <div class="col-lg-4 col-md-12 col-sm-6 mb-5">
-                        <div class="card">
-                          <img class="card-img-top" src="images/missing-girl.jpg" alt="Card image cap">
-                          <div class="card-body">
-                            <p class="card-text">الاسم: منى علاء الدين</p>
-                            <p class="card-text">السن: عشر سنوات</p>
-                            <a href="#" class="btn btn-secondary">المزيد</a>
-                          </div>
-                        </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
-                        <div class="card">
-                          <img class="card-img-top" src="images/missing-girl.jpg" alt="Card image cap">
-                          <div class="card-body">
-                            <p class="card-text">الاسم: منى علاء الدين</p>
-                            <p class="card-text">السن: عشر سنوات</p>
-                            <a href="#" class="btn btn-secondary">المزيد</a>
-                          </div>
-                        </div>
-            </div>
+          
         </div>
     </div>
 </div>

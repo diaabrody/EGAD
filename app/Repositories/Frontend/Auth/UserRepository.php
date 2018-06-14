@@ -98,8 +98,8 @@ class UserRepository extends BaseRepository
                 'email'             => $data['email'],
                 'phone_no'          => $data['phone_no'],
                 'gender'            => $data['gender'],
-                'city_id'           => $data['city_id'],
-                'region_id'         => $data['region_id'],
+                'city'              => $data['city'],
+                'region'            => $data['region'],
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'active'            => 1,
                 'password'          => $data['password'],
@@ -195,6 +195,8 @@ class UserRepository extends BaseRepository
         $user->last_name = $input['last_name'];
         $user->phone_no = $input['phone_no'];
         $user->date_of_birth = $input['date_of_birth'];
+        $user->city = $input['city'];
+        $user->region= $input['region'];
         $user->timezone = $input['timezone'];
         $user->avatar_type = $input['avatar_type'];
 

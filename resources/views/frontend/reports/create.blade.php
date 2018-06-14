@@ -39,21 +39,24 @@
 <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                    {{ html()->label(__('المدينة'))->for('location')->class('float-right') }}
+                                    {{ html()->label(__('المدينة'))->for('city')->class('float-right') }}
 
-                                    {{ html()->text('city')
-                                        ->class('form-control')
-                                         }}
+                                     <select class="form-control" name="city" id="city" >
+                                    <option > اختر المدينة</option>
+                                        @foreach ($cities as $city)
+                                            <option value="{{ $city->name }}">{{ $city->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div><!--col-->
                             </div><!--row-->
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                {{ html()->label(__('الحي'))->for('location')->class('float-right') }}
+                                {{ html()->label(__('الحي'))->for('area')->class('float-right') }}
 
-                                {{ html()->text('area')
-                                    ->class('form-control')
-                                    }}
+                                <select name="area" id="region" class="form-control" >
+                               
+                               </select>
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->     
@@ -117,7 +120,12 @@
 </form>
 
 
+  {{--location-spinner--}}
+  <link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
+  <script type="text/javascript" src="{{ URL::asset('js/location-spinner.js') }}"></script>
 
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdGzflHLWnvZh1Ed3eHeW17SmIF2FUoe0&libraries=places&callback=initAutocomplete"
+          async defer></script>
 
 
 @endsection
