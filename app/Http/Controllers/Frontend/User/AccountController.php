@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend\User;
 
 use App\Http\Controllers\Controller;
+use  App\Models\City\City;
+use  App\Models\Region\Region;
 
 /**
  * Class AccountController.
@@ -14,6 +16,11 @@ class AccountController extends Controller
      */
     public function index()
     {
-        return view('frontend.user.account');
+        $cities = City::all();
+        $regions = Region::all();
+        return view('frontend.user.account',[
+            'cities' => $cities,
+            'regions' => $regions
+        ]);
     }
 }

@@ -42,14 +42,14 @@
                
 
 
-
+                @include('frontend.includes.footer')
                 <!-- Scripts -->
                 @stack('before-scripts')
                 {!! script(mix('js/frontend.js')) !!}
                 @stack('after-scripts')
                 
-                @include('frontend.includes.footer')
-                </div><!-- #app -->
+                
+               </div><!-- #app -->
 
                 @include('includes.partials.ga')
 
