@@ -35,7 +35,10 @@ class ReportRepository extends BaseRepository
         {
         $user= Auth::user();
         $reports=$this->model->where([
-             ['city','=',$user->city],['area','=',$user->area] ]);
+             ['city','=',$user->city],
+             ['area','=',$user->region] 
+            ])->get();
+
              return $reports;
         }
         

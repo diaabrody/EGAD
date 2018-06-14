@@ -108,7 +108,7 @@
             <div class="form-group">
                 {{ html()->label(__('المنطقة'))->for('area')->class('float-right') }}
                 
-                <select name="area" id="region" class="form-control" >
+                <select name="region" id="region" class="form-control" >
                     @foreach ($regions as $region)
                         <option value="{{ $region->name }}" {{ $logged_in_user->region == $region->name ? 'selected="selected"' : '' }}>{{ $region->name}}</option>
                     @endforeach
