@@ -69,7 +69,7 @@
                                 <a href="/reports/@{{{id}}}" class="btn btn-secondary">المزيد</a>
                         </div>
                     </div>
-                </div>
+                         </div>
 
 
                 </script>
@@ -81,7 +81,7 @@
                     indexName: 'reports',
                     urlSync: true,
                     searchParameters: {
-                    hitsPerPage: 10
+                    hitsPerPage: 9
                     }
             });
             search.addWidget(
