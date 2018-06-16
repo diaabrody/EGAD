@@ -1,4 +1,21 @@
-,{{ html()->modelForm($logged_in_user, 'PATCH', route('frontend.user.profile.update'))->id('editForm')->class('form-horizontal')->attribute('enctype', 'multipart/form-data')->open() }}
+@extends('frontend.layouts.app')
+
+@section('content')
+<div class="row justify-content-center align-items-center mb-3">
+        <div class="col col-sm-10 align-self-center">
+        
+            <div class="card">
+            
+                <div class="card-header font-weight-bold">
+                @include('frontend.user.account')
+                    <strong class="float-right">
+                        {{ __('تعديل البيانات') }}
+                    </strong>
+                </div>
+                <div class="card-body px-5">
+               
+                <br>
+{{ html()->modelForm($logged_in_user, 'PATCH', route('frontend.user.profile.update'))->id('editForm')->class('form-horizontal')->attribute('enctype', 'multipart/form-data')->open() }}
     <div class="row ">
         <div class="col">
             <div class="form-group">
@@ -8,15 +25,11 @@
                     <input type="radio" name="avatar_type" value="gravatar" {{ $logged_in_user->avatar_type == 'gravatar' ? 'checked' : '' }} /> Gravatar
                     <input type="radio" name="avatar_type" value="storage" {{ $logged_in_user->avatar_type == 'storage' ? 'checked' : '' }} /> Upload
 
-                    @foreach ($logged_in_user->providers as $provider)
-                        @if (strlen($provider->avatar))
-                            <input type="radio" name="avatar_type" value="{{ $provider->provider }}" {{ $logged_in_user->avatar_type == $provider->provider ? 'checked' : '' }} /> {{ ucfirst($provider->provider) }}
-                        @endif
-                    @endforeach
+                       
                 </div>
             </div><!--form-group-->
 
-            <div class="form-group hidden" id="avatar_location">
+            <div class="form-group" id="avatar_location">
                 {{ html()->file('avatar_location')->class('form-control') }}
             </div><!--form-group-->
         </div><!--col-->
@@ -142,6 +155,12 @@
         </div><!--col-->
     </div><!--row-->
 {{ html()->closeModelForm() }}
+</div><!--card body-->
+            </div><!-- card -->
+        </div><!-- col-xs-12 -->
+    </div><!-- row -->
+
+@endsection
 
 @push('after-scripts')
     <script>
@@ -160,6 +179,15 @@
                 } else {
                     avatar_location.hide();
                 }
+            });
+
+            $('#editForm').on('submit',function(e){
+                if($('#email').val() == "guest@ejad.com"){
+                    e.preventDefault();
+                    alert("you must change your email");
+                    window.location.reload(true)
+                }
+                              
             });
         });
     </script>

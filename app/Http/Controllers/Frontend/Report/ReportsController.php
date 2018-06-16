@@ -122,7 +122,7 @@ class ReportsController extends Controller
         $image = $request->file('photo')->path();  // your base64 encoded
         $base64 = base64_encode(file_get_contents($image));
 
-        $gallery_name = 'newbranch103';
+        $gallery_name = 'newbranch1023';
         $argumentArray =  [
             "image" => $base64 ,
             "gallery_name" => $gallery_name
@@ -259,7 +259,7 @@ class ReportsController extends Controller
             $image = $request->file('photo')->path();  // your base64 encoded
             $base64 = base64_encode(file_get_contents($image));
 
-            $gallery_name = 'newbranch103';
+            $gallery_name = 'newbranch1023';
             $argumentArray =  [
                 "image" => $base64 ,
                 "gallery_name" => $gallery_name
@@ -569,7 +569,7 @@ class ReportsController extends Controller
         $image = $request->file('photo')->path();
         $base64 = base64_encode(file_get_contents($image));
 
-        $gallery_name = 'newbranch103';
+        $gallery_name = 'newbranch1023';
         $argumentArray =  [
             "image" => $base64 ,
             "gallery_name" => $gallery_name
@@ -579,7 +579,7 @@ class ReportsController extends Controller
 
 
             if ($this->search_no_face) {
-                // return Redirect::back()->withErrors(['هذه الصوره لا تحتوي علي اشخاص ']);
+                return response()->json('0', 200);
             }
 
             if (count($this->search_childs) > 0) {
@@ -589,7 +589,7 @@ class ReportsController extends Controller
 
 
             } else {
-                return response()->json(array('msg' => 'no'), 200);
+                return response()->json('1', 200);
 
 
             }
