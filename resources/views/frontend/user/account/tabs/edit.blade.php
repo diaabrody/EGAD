@@ -1,4 +1,21 @@
-,{{ html()->modelForm($logged_in_user, 'PATCH', route('frontend.user.profile.update'))->id('editForm')->class('form-horizontal')->attribute('enctype', 'multipart/form-data')->open() }}
+@extends('frontend.layouts.app')
+
+@section('content')
+<div class="row justify-content-center align-items-center mb-3">
+        <div class="col col-sm-10 align-self-center">
+        
+            <div class="card">
+            
+                <div class="card-header font-weight-bold">
+                @include('frontend.user.account')
+                    <strong class="float-right">
+                        {{ __('تعديل البيانات') }}
+                    </strong>
+                </div>
+                <div class="card-body px-5">
+               
+                <br>
+{{ html()->modelForm($logged_in_user, 'PATCH', route('frontend.user.profile.update'))->id('editForm')->class('form-horizontal')->attribute('enctype', 'multipart/form-data')->open() }}
     <div class="row ">
         <div class="col">
             <div class="form-group">
@@ -142,6 +159,12 @@
         </div><!--col-->
     </div><!--row-->
 {{ html()->closeModelForm() }}
+</div><!--card body-->
+            </div><!-- card -->
+        </div><!-- col-xs-12 -->
+    </div><!-- row -->
+
+@endsection
 
 @push('after-scripts')
     <script>

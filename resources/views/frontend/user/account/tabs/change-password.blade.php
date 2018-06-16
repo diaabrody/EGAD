@@ -1,3 +1,18 @@
+@extends('frontend.layouts.app')
+
+@section('content')
+    <div class="row justify-content-center align-items-center mb-3">
+        <div class="col col-sm-10 align-self-center">
+            <div class="card">
+                <div class="card-header font-weight-bold">
+                @include('frontend.user.account')
+                    <strong class="float-right">
+                        {{ __('تغيير كلمة المرور') }}
+                    </strong>
+                </div>
+
+                <div class="card-body px-5">
+                
 {{ html()->form('PATCH', route('frontend.auth.password.update'))->class('form-horizontal')->open() }}
     <div class="row">
         <div class="col">
@@ -48,3 +63,9 @@
         </div><!--col-->
     </div><!--row-->
 {{ html()->form()->close() }}
+
+</div><!--card body-->
+            </div><!-- card -->
+        </div><!-- col-xs-12 -->
+    </div><!-- row -->
+@endsection

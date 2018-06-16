@@ -43,18 +43,20 @@
                     @include('includes.partials.messages')
                     @yield('content')
                 </div><!-- container -->
-  
+
+                
+                </div><!-- #app -->
+                @include('frontend.includes.footer')
+          
+
+               
                 <!-- Scripts -->
                 @stack('before-scripts')
                 {!! script(mix('js/frontend.js')) !!}
                 @stack('after-scripts')
-                
-                @include('frontend.includes.footer')
-           </div><!-- #app -->
 
-                @include('includes.partials.ga')
+                 @include('includes.partials.ga')
 
-                
                 <script type="text/html" id="hit-template">
 
 
