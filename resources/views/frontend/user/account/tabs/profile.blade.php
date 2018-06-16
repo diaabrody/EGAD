@@ -17,7 +17,7 @@
     
  <div class="col-lg-4">
     <div class="form-control mb-3" style="height:200px">
-        <img src="{ $logged_in_user->picture)}}" id="image"  class="user-profile-image" class="h-100 d-block mx-auto img-fluid">
+        <img src="{{ $logged_in_user->picture }}" id="image"  class="h-100 d-block mx-auto img-fluid">
     </div>
     <div class="form-group text-center">
            <p>{{ $logged_in_user->name }}</p>

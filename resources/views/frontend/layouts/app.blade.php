@@ -261,16 +261,7 @@
                                 
                         });
                 </script>
-                <script type="text/javascript">
-                        $('#editForm').on('submit',function(e){
-                                if($('#email').val() == "guest@ejad.com"){
-                                        e.preventDefault();
-                                        alert("you must change your email");
-                                        window.location.reload(true)
-                                }
-                              
-                        });
-                </script>
+                
 
 
               

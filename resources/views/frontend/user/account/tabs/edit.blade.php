@@ -25,15 +25,11 @@
                     <input type="radio" name="avatar_type" value="gravatar" {{ $logged_in_user->avatar_type == 'gravatar' ? 'checked' : '' }} /> Gravatar
                     <input type="radio" name="avatar_type" value="storage" {{ $logged_in_user->avatar_type == 'storage' ? 'checked' : '' }} /> Upload
 
-                    @foreach ($logged_in_user->providers as $provider)
-                        @if (strlen($provider->avatar))
-                            <input type="radio" name="avatar_type" value="{{ $provider->provider }}" {{ $logged_in_user->avatar_type == $provider->provider ? 'checked' : '' }} /> {{ ucfirst($provider->provider) }}
-                        @endif
-                    @endforeach
+                       
                 </div>
             </div><!--form-group-->
 
-            <div class="form-group hidden" id="avatar_location">
+            <div class="form-group" id="avatar_location">
                 {{ html()->file('avatar_location')->class('form-control') }}
             </div><!--form-group-->
         </div><!--col-->
@@ -183,6 +179,15 @@
                 } else {
                     avatar_location.hide();
                 }
+            });
+
+            $('#editForm').on('submit',function(e){
+                if($('#email').val() == "guest@ejad.com"){
+                    e.preventDefault();
+                    alert("you must change your email");
+                    window.location.reload(true)
+                }
+                              
             });
         });
     </script>
