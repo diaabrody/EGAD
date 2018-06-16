@@ -29,8 +29,8 @@ class EditReportsTable extends Migration
 
             $table->string('city')->nullable();
             $table->string('area')->nullable();            
-            $table->dateTime('lost_since')->nullable();
-            $table->dateTime('found_since')->nullable();
+            $table->date('lost_since')->nullable();
+            $table->date('found_since')->nullable();
             $table->string('last_seen_at')->nullable();
 
             $table->point('location')->nullable();

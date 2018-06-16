@@ -16,7 +16,7 @@
             <link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
 
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+           
             <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.js"></script>
             <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -70,7 +70,7 @@
                                 <a href="/reports/@{{{id}}}" class="btn btn-secondary">المزيد</a>
                         </div>
                     </div>
-                </div>
+                         </div>
 
 
                 </script>
@@ -82,7 +82,7 @@
                     indexName: 'reports',
                     urlSync: true,
                     searchParameters: {
-                    hitsPerPage: 10
+                    hitsPerPage: 9
                     }
             });
             search.addWidget(
