@@ -58,7 +58,7 @@ class UrgentRegisterController extends Controller
             'text' => 'Hello and Welcome to Ejad website your password is '. $password .' and you can change it in the next time you login to your profile'
         ]);
 
-        return redirect('/report/create/quick')->withFlashSuccess(
+        return redirect('/reports/create/quick')->withFlashSuccess(
                 __('سوف تصلك رسالة نصية تحتوى كلمة المرور الخاصه بك و يمكن تغييرها من خلال تعديل بياناتك و يجب تغيير بريدك اﻹلكترونى') 
         );
 
