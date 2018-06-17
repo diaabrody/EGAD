@@ -62,7 +62,7 @@
                 $.ajax({
 
                     type:"POST",
-                    url:'/report/childreen/searchfound',
+                    url:'/report/children/searchfound',
                     data:new FormData($(this)[0]),
                     processData: false ,
                     contentType:false ,
@@ -79,9 +79,9 @@
                                 var cart = "<div class='card' id='cart'></div>";
                                 $('.col-lg-4:last').prepend(cart);
 
-                               // var linkimage = "<a href=''  id='linkimage' class='linkimage'></a>";
-                                //$('.cart:last').prepend(linkimage);
-                                //$('.linkimage:last').attr("href", '/reports/' + data[i].id);
+                               var linkimage = "<a href=''  id='linkimage' class='linkimage'></a>";
+                                $('.cart:last').prepend(linkimage);
+                                $('.linkimage:last').attr("href", '/reports/' + data[i].id);
                                 var image = "<img  class='card-img-top' width='200' height='200' id='img'>";
                                 $('.card:last').prepend(image);
 
