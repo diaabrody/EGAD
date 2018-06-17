@@ -20,7 +20,22 @@
                 <th>{{ __('labels.backend.access.users.tabs.content.overview.status') }}</th>
                 <td>{!! $user->status_label !!}</td>
             </tr>
-
+            <tr>
+                    <th>Phone</th>
+                    <td>{{ $user->phone_no }}</td>
+                </tr>
+                <tr>
+                        <th>Gender</th>
+                        <td>{{ $user->gender }}</td>
+                 </tr>
+                 <tr>
+                        <th>City</th>
+                        <td>{{ $user->city }}</td>
+                    </tr>
+                    <tr>
+                            <th>Area</th>
+                            <td>{{ $user->region }}</td>
+                        </tr>
             <tr>
                 <th>{{ __('labels.backend.access.users.tabs.content.overview.confirmed') }}</th>
                 <td>{!! $user->confirmed_label !!}</td>

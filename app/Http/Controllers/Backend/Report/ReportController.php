@@ -8,7 +8,8 @@ use App\Models\Report\Report;
 use App\Repositories\Backend\Report\ReportRepository;
 use App\Http\Requests\Backend\Report\StoreReportRequest;
 use App\Http\Requests\Backend\Report\UpdateReportRequest;
-
+use  App\Models\City\City;
+use  App\Models\Region\Region;
 
 
 class ReportController extends Controller
@@ -47,8 +48,8 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('backend.report.create');
+    {   $cities = City::all();
+        return view('backend.report.create',compact('cities'));
     }
 
     /**
@@ -73,6 +74,8 @@ class ReportController extends Controller
             'found_since',
             'last_seen_at',
             'last_seen_on',
+            'city',
+            'area',
             'type',
             'reporter_phone_number',
             'is_found'
@@ -100,8 +103,10 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Report $report)
-    {
-        return view('backend.report.edit')
+    {   
+         $cities = City::all();
+        $regions = Region::all();
+        return view('backend.report.edit',compact('cities','regions'))
         ->withReport($report);
     }
 
@@ -128,6 +133,8 @@ class ReportController extends Controller
             'found_since',
             'last_seen_at',
             'last_seen_on',
+            'city',
+            'area',
             'type',
             'reporter_phone_number',
             'is_found'
