@@ -8,13 +8,7 @@ namespace App\Models\Comment\Traits\Attribute;
 trait CommentAttribute
 {
 
-     /**
-     * @return string
-     */
-    public function getShowButtonAttribute()
-    {
-        return '<a href="'.route('admin.comment.comment.show', $this).'" class="btn btn-info"><i class="fas fa-eye" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.view').'"></i></a>';
-    }
+   
 
     /**
      * @return string
@@ -44,7 +38,7 @@ trait CommentAttribute
     {
         
         return '<div class="btn-group btn-group-sm" comment="group" aria-label="comment Actions">
-                 '.$this->show_button.'
+                
                 '.$this->edit_button.'
               '.$this->delete_button.'
 			</div>';
