@@ -28,6 +28,7 @@
         "stevebauman/location": "^3.0",
         "thujohn/twitter": "^2.2",
         "torann/geoip": "^1.0",
+        "tymon/jwt-auth": "^0.5.12",
         "webpatser/laravel-uuid": "^3.0"
     },
     "require-dev": {

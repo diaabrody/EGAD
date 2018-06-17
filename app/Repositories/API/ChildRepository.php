@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Frontend\Child;
+namespace App\Repositories\API;
 
 use Carbon\Carbon;
 use App\Models\Report\Report;
