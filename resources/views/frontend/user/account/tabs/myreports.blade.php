@@ -31,7 +31,7 @@
                                             <br>
                                             
                                             <a href="/reports/{{ $report->id }}" class="btn btn-warning btn-lg btn-block text-white font-weight-bold" > قراءة المزيد </a>
-                                            <a href="/report/{{ $report->id }}/edit" class="btn btn-warning btn-lg btn-block text-white font-weight-bold"> تعديل البلاغ </a>
+                                            <a href="/reports/{{ $report->id }}/edit" class="btn btn-warning btn-lg btn-block text-white font-weight-bold"> تعديل البلاغ </a>
                                         </div><!--card-body-->
                                     </div><!--card-->
                                @endforeach

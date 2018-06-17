@@ -8,8 +8,8 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
          @auth
-            <li class="nav-item"><a href="/report/create/normal" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">إنشر بلاغ</a></li>
-            <li class="nav-item"><a href="/report/create/found" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">وجدت مفقود</a></li>
+            <li class="nav-item"><a href="/reports/create/normal" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">إنشر بلاغ</a></li>
+            <li class="nav-item"><a href="/reports/create/found" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">وجدت مفقود</a></li>
             <li class="nav-item"><a href="/reports" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">كل المفقودين</a></li>
             <li class="nav-item"><a href="" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">قصص النجاح</a></li>
             @endauth
