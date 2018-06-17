@@ -2,7 +2,7 @@
 
 @section('content')
     <div id="loading" style="display: none" ></div>
-    <form method="post" enctype="multipart/form-data" action="/report/update/{{$report->id}}" class="w-75 m-auto px-0 border p-4 bg-light">
+    <form method="post" enctype="multipart/form-data" action="/reports/{{$report->id}}" class="w-75 m-auto px-0 border p-4 bg-light">
         {{ csrf_field() }}
 
         {{ method_field('PUT') }}

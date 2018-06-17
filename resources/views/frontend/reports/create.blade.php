@@ -5,7 +5,7 @@
   <div id="loading" style="display: none" ></div>
 
 
-<form method="post" enctype="multipart/form-data" action="/report/save" class="w-75 m-auto px-0 border p-4 bg-light" >
+<form method="post" enctype="multipart/form-data" action="/reports" class="w-75 m-auto px-0 border p-4 bg-light" >
 
     {{ csrf_field() }}
  <div class="col-lg-8 float-right">

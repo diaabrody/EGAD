@@ -12,9 +12,9 @@
 
         <input type="hidden" name="_token" value="{{ csrf_token()}}">
 
-        <input type="file" name="photo" id="photo" required  class="form-control" onchange="readURL(this);">
+        <input type="file" name="photo" id="photo" required  class="form-control h-100" onchange="readURL(this);">
 
-       <center><button class="btn btn-lg btn-success"  type="submit" id="serach" style="margin-top: 20px"  onclick="displayloading()"  >Search</button></center>
+       <button class="btn btn-lg btn-success center-block d-block"  type="submit" id="serach" style="margin-top: 20px"  onclick="displayloading()"  >Search</button>
 
         {{--<div class="form-control" style="height:200px ; margin-top: 20px">--}}
             {{--<img src="{{asset('img/frontend/profileImage.png')}}" id="image" class="h-100 d-block mx-auto">--}}
@@ -62,7 +62,7 @@
                 $.ajax({
 
                     type:"POST",
-                    url:'/report/childs/searchfound',
+                    url:'/report/childreen/searchfound',
                     data:new FormData($(this)[0]),
                     processData: false ,
                     contentType:false ,
