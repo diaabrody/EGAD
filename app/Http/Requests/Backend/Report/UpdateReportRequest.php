@@ -30,7 +30,8 @@ class UpdateReportRequest extends FormRequest
             'photo'=>'mimes:jpeg,png',
             'type'=> 'required',
             'last_seen_at'=>'required',
-            'last_seen_on'=>'required',
+            'city'=>'required',
+            'area'=>'required',
         ];
     }
 }

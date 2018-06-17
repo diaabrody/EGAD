@@ -10,8 +10,8 @@
                 <div class="row">
                     <div class="col-sm-5">
                         <h4 class="card-title mb-0">
-                            {{ __('labels.backend.access.users.management') }}
-                            <small class="text-muted">{{ __('labels.backend.access.users.create') }}</small>
+                                Report Management
+                            <small class="text-muted">Create  Report</small>
                         </h4>
                     </div><!--col-->
                 </div><!--row-->
@@ -25,7 +25,7 @@
         
                                     <div class="col-md-10">
                                             {{ html()->select('type')
-                                            ->options([''=> "Select Report Type", 'Urgent' => 'Urgent', 'Normal' => 'Normal', 'Child Found'=>'Child Found'])
+                                            ->options([''=> "Select Report Type", 'quick' => 'quick', 'normal' => 'normal', 'found'=>'found'])
                                             ->class('form-control')->required() }}
         
                                     </div><!--col-->
@@ -138,6 +138,26 @@
                                             </div><!--col-->
                                         </div><!--form-group-->
                                         <div class="form-group row">
+                                                {{ html()->label('City')->for('city')->class('col-md-2 form-control-label') }}
+                                                <div class="col-md-10">                                            
+                                                 <select class="form-control" name="city" id="city" >
+                                                <option > select city</option>
+                                                    @foreach ($cities as $city)
+                                                        <option value="{{ $city->name }}">{{ $city->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div><!--col-->
+                                        </div><!--form-group-->
+
+                                        <div class="form-group row">
+                                                {{ html()->label('Area')->for('area')->class('col-md-2 form-control-label') }}
+                                                <div class="col-md-10">                                            
+                                                        <select name="area" id="region" class="form-control" >
+                               
+                                                            </select>
+                                            </div><!--col-->
+                                        </div><!--form-group-->
+                                        <div class="form-group row">
                                             {{ html()->label('Lost Since')->class('col-md-2 form-control-label')->for('lost_since') }}
                 
                                             <div class="col-md-10">
@@ -214,4 +234,8 @@
             </div><!--card-footer-->
         </div><!--card-->
     {{ html()->form()->close() }}
+
+
+
+    
 @endsection

@@ -75,6 +75,8 @@ class ReportRepository extends BaseRepository
                 'found_since' => $data['found_since'],
                 'last_seen_at' => $data['last_seen_at'],
                 'last_seen_on' => $data['last_seen_on'],
+                'city' => $data['city'],
+                'area' => $data['area'],
                 'is_found' => isset($data['is_found']) && $data['is_found'] == '1' ? 1 : 0,
                 'location'=>new Point($lat, $lng),
                 
@@ -122,8 +124,9 @@ class ReportRepository extends BaseRepository
            $path= Input::file('photo')->store('public/children');
         }
         else
-        {
-            $path=$report->photo;
+        {  
+            $path=str_replace('/storage' , '',$report->photo);
+            
         }
         return DB::transaction(function () use ($report,$data,$path) {
             
@@ -142,6 +145,8 @@ class ReportRepository extends BaseRepository
                 'lost_since' => $data['lost_since'],
                 'found_since' => $data['found_since'],
                 'last_seen_at' => $data['last_seen_at'],
+                'city' => $data['city'],
+                'area' => $data['area'],
                 'last_seen_on' => $data['last_seen_on'],
                 'is_found' => isset($data['is_found']) && $data['is_found'] == '1' ? 1 : 0,
                 

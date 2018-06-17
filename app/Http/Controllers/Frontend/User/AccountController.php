@@ -27,12 +27,38 @@ class AccountController extends Controller
      */
     public function index()
     {
+        return view('frontend.user.account.tabs.profile');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit()
+    {
         $cities = City::all();
         $regions = Region::all();
-        $reports=$this->reportRepository->retriveUser_reports();
-        return view('frontend.user.account',[
+    
+        return view('frontend.user.account.tabs.edit',[
             'cities' => $cities,
             'regions' => $regions,
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function editPassword()
+    {
+        return view('frontend.user.account.tabs.change-password');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function myReports()
+    {
+        $reports=$this->reportRepository->retriveUser_reports();
+        return view('frontend.user.account.tabs.myreports',[
             'reports' => $reports
         ]);
     }

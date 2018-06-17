@@ -19,7 +19,7 @@
             <div class="col">
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-expanded="true"><i class="fa fa-newspaper-o"></i> {{ __('labels.backend.access.users.tabs.titles.overview') }}</a>
+                        <a class="nav-link active" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-expanded="true"> {{ __('labels.backend.access.users.tabs.titles.overview') }}</a>
                     </li>
                 </ul>
 

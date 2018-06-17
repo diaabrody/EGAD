@@ -43,18 +43,20 @@
                     @include('includes.partials.messages')
                     @yield('content')
                 </div><!-- container -->
-  
+
+                
+                </div><!-- #app -->
+                @include('frontend.includes.footer')
+          
+
+               
                 <!-- Scripts -->
                 @stack('before-scripts')
                 {!! script(mix('js/frontend.js')) !!}
                 @stack('after-scripts')
-                
-                @include('frontend.includes.footer')
-           </div><!-- #app -->
 
-                @include('includes.partials.ga')
+                 @include('includes.partials.ga')
 
-                
                 <script type="text/html" id="hit-template">
 
 
@@ -64,7 +66,7 @@
                         
                             <div class="card-body">
                                 <p class="card-text">الإسم: @{{{_highlightResult.name.value}}}</p>
-                                <p class="card-text">السن: @{{{age}}}</h2>
+                                <p class="card-text">السن: @{{{age}}}</h2></br>
                                 <a href="/reports/@{{{id}}}" class="btn btn-secondary">المزيد</a>
                         </div>
                     </div>
@@ -72,6 +74,12 @@
 
 
                 </script>
+                <script type="text/html" id="no-results-template">
+                        <div id="no-results-message">
+                          <p>لم نجد اي نتائج لهذا البحث <em>"@{{{query}}}"</em>.</p>
+                          <a href="/reports" class='clear-all'>Clear search</a>
+                        </div>
+                      </script>
                 <script>
             var search = instantsearch({
 
@@ -85,9 +93,10 @@
             });
             search.addWidget(
                     instantsearch.widgets.searchBox({
-                    container: '#search-input',
-                            magnifier: false,
-                            reset: false
+                        container: '#search-input',
+                        placeholder: 'ابحث عن الاطفال عن طريق الاسم او المنطقة ',
+                        magnifier: false,
+                        reset: false
                     })
                     );
             search.addWidget(
@@ -95,13 +104,15 @@
                     container: '#hits',
                             templates: {
                             item: document.getElementById('hit-template').innerHTML,
-                                    empty: "We didn't find any results for the search "
+                            empty: document.getElementById('no-results-template').innerHTML,
                             }
                     })
                     );
+
             search.addWidget(
                     instantsearch.widgets.pagination({
-                    container: '#pagination'
+                    container: '#pagination',
+                    scrollTo: '#search-input',
                     })
                     );
             search.addWidget(
@@ -111,7 +122,7 @@
                             operator: 'or',
                             limit: 10,
                             templates: {
-                            header: 'Gender',
+                            header: '<h5>النوع</h5>',
                             }
                     })
                     );
@@ -122,7 +133,7 @@
                             operator: 'or',
                             limit: 10,
                             templates: {
-                            header: 'City',
+                            header: '<h5>المدينة</h5>',
                             }
                     })
                     );
@@ -133,7 +144,7 @@
                             operator: 'or',
                             limit: 10,
                             templates: {
-                            header: 'Area',
+                            header: '<h5>المنطقة</h5>',
                             }
                     })
                     );
@@ -142,11 +153,17 @@
                     container: '#calendar',
                             attributeName: 'lost_since',
                             templates: {
-                            header: 'Lost Since'
+                            header: '<h5>مفقود منذ</h5>'
                             }
                     })
                     );
+                        search.addWidget(
+                        instantsearch.widgets.stats({
+                        container: '#stats',
+                        })
+                        );
             search.start();
+
                 </script>
 
                 <script type="text/javascript">
@@ -259,16 +276,7 @@
                                 
                         });
                 </script>
-                <script type="text/javascript">
-                        $('#editForm').on('submit',function(e){
-                                if($('#email').val() == "guest@ejad.com"){
-                                        e.preventDefault();
-                                        alert("you must change your email");
-                                        window.location.reload(true)
-                                }
-                              
-                        });
-                </script>
+                
 
 
               

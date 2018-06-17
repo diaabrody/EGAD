@@ -59,15 +59,24 @@
                 <td>{{ $report->lost_since }}</td>
             </tr>
            
+            <tr>
+                    <th>City</th>
+                    <td>{{ $report->city }}</td>
+                </tr>
+                <tr>
+                        <th>Area</th>
+                        <td>{{ $report->area }}</td>
+                    </tr>
+                    <tr>
+                            <th>Address</th>
+                            <td>{{ $report->last_seen_at }}</td>
+                 </tr>
                     <th>Last Seen On</th>
                     <td>{{ $report->last_seen_on }}</td>
                 </tr>
 
 
-                <tr>
-                        <th>Last Seen at</th>
-                        <td>{{ $report->last_seen_at }}</td>
-             </tr>
+                
              <tr>
                     <th>Found?</th>
                     <td>{{ $report->is_found == '1' ? 'Yes' : 'No' }}</td>

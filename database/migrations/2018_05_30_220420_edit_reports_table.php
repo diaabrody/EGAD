@@ -35,7 +35,7 @@ class EditReportsTable extends Migration
 
             $table->point('location')->nullable();
 
-            $table->dateTime('last_seen_on')->nullable();
+            $table->date('last_seen_on')->nullable();
             $table->boolean('is_found')->default(false);
         });
     }
