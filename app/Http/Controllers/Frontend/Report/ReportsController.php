@@ -333,16 +333,18 @@ class ReportsController extends Controller
 
         ]);
 
-        $users = User::where([
-            ['city','=',$report_like->city]
-           ,['region','=',$report_like->area]
-           ])-> get();
+        if($report->city != $report_like->city || $report->area != $report_like->area ){
+            $users = User::where([
+                ['city','=',$report_like->city],
+                ['region','=',$report_like->area]
+                ])-> get();
         
-       foreach ($users as $user){
-           if(($user->id) != (Auth::user()->id) ){
-           event(new SameAreaReport($user,$report_like));
-           }
-       }
+            foreach ($users as $user){
+                if(($user->id) != (Auth::user()->id) ){
+                event(new SameAreaReport($user,$report_like));
+                }
+            }
+        }
 
 
         if(count($this->found_childs) > 0)
