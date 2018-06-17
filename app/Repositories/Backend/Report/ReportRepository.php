@@ -124,8 +124,9 @@ class ReportRepository extends BaseRepository
            $path= Input::file('photo')->store('public/children');
         }
         else
-        {
-            $path=$report->photo;
+        {  
+            $path=str_replace('/storage' , '',$report->photo);
+            
         }
         return DB::transaction(function () use ($report,$data,$path) {
             
