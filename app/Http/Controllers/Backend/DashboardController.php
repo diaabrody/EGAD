@@ -18,6 +18,7 @@ class DashboardController extends Controller
     {
         $maleCount=Report::where('gender',0)->count();
         $femaleCount=Report::where('gender',1)->count();
+
         $youngerThanOneYear=Report::whereBetween('age', [0, 1])->count();
         $from1To5=Report::whereBetween('age', [1, 5])->count();
         $from6To10=Report::whereBetween('age', [6, 10])->count();
@@ -28,8 +29,15 @@ class DashboardController extends Controller
         ->select(DB::raw('MONTH(created_at) as month, YEAR(created_at) as year, COUNT(id) as id'))
         ->groupBy(DB::raw('MONTH(created_at) ASC, YEAR(created_at) ASC'))->get()->toArray();
 
+        $foundCount=Report::where('is_found',1)->count();
+        $lostCount=Report::where('is_found',0)->count();
+
+        $lostPerCity=DB::table('reports')
+        ->select(DB::raw('city, area, COUNT(id) as id'))
+        ->groupBy(DB::raw('city ASC, area ASC'))->get()->toArray();
 
 
-        return view('backend.dashboard',['lostPerYear'=>$lostPerYear,'male' => $maleCount,'female' => $femaleCount,'youngerThanOneYear'=>$youngerThanOneYear,'from1To5'=>$from1To5,'from6To10'=>$from6To10,'from11To20'=>$from11To20,'biggerThanTwentyYear'=>$biggerThanTwentyYear]);
+
+        return view('backend.dashboard',['lostPerCity'=>$lostPerCity,'found'=>$foundCount,'lost' => $lostCount,'lostPerYear'=>$lostPerYear,'male' => $maleCount,'female' => $femaleCount,'youngerThanOneYear'=>$youngerThanOneYear,'from1To5'=>$from1To5,'from6To10'=>$from6To10,'from11To20'=>$from11To20,'biggerThanTwentyYear'=>$biggerThanTwentyYear]);
     }
 }

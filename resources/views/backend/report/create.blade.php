@@ -38,6 +38,7 @@
                                                     ->class('form-control')
                                                     ->placeholder('Cotact Phone Number')
                                                     ->attribute('maxlength', 11)
+                                                    ->required()
                                                      }}
                                             </div><!--col-->
                                         </div><!--form-group-->
@@ -49,7 +50,6 @@
                                     ->class('form-control')
                                     ->placeholder('Child Name')
                                     ->attribute('maxlength', 191)
-                                    ->required()
                                     ->autofocus() }}
                             </div><!--col-->
                         </div><!--form-group-->
@@ -62,6 +62,7 @@
                                     ->class('form-control')
                                     ->placeholder('Child age')
                                     ->attribute('maxlength', 2)
+                                    ->required()
                                      }}
                             </div><!--col-->
                         </div><!--form-group-->
@@ -117,30 +118,32 @@
                                     </div><!--col-->
                                 </div><!--form-group-->
                                 <div class="form-group row">
-                                        {{ html()->label('Eye Color')->class('col-md-2 form-control-label')->for('eye_color') }}
+                                    {{ html()->label('Eye Color')->class('col-md-2 form-control-label')->for('eye_color') }}
+        
+                                    <div class="col-md-10">
+                                        {{ html()->text('eye_color')
+                                        ->class('form-control')
+                                        ->placeholder('Eye Color')
+                                            
+                                            }}
+                                    </div><!--col-->
+                                </div><!--form-group-->
+
+                                <div class="form-group row">
+                                        {{ html()->label('Hair Color')->class('col-md-2 form-control-label')->for('hair_color') }}
             
                                         <div class="col-md-10">
-                                            {{ html()->select('eye_color')->options([ '' => "Select Eye Color",'black' => 'black', 'brown' => 'brown','blue'=>'blue','green'=>'green','gray'=>'gray','hazal'=>'hazal'])
-                                                ->class('form-control')
+                                            {{ html()->text('hair_color')
+                                            ->class('form-control')
+                                        ->placeholder('Hair Color')
                                                 
                                                 }}
                                         </div><!--col-->
                                     </div><!--form-group-->
-
-                                    <div class="form-group row">
-                                            {{ html()->label('Hair Color')->class('col-md-2 form-control-label')->for('hair_color') }}
-                
-                                            <div class="col-md-10">
-                                                {{ html()->select('hair_color')->options([ '' => "Select hair Color",'black' => 'black', 'brown' => 'brown','blue'=>'blue','green'=>'green','gray'=>'gray','hazal'=>'hazal'])
-                                                    ->class('form-control')
-                                                    
-                                                    }}
-                                            </div><!--col-->
-                                        </div><!--form-group-->
                                         <div class="form-group row">
                                                 {{ html()->label('City')->for('city')->class('col-md-2 form-control-label') }}
                                                 <div class="col-md-10">                                            
-                                                 <select class="form-control" name="city" id="city" >
+                                                 <select class="form-control" name="city" id="city" required>
                                                 <option > select city</option>
                                                     @foreach ($cities as $city)
                                                         <option value="{{ $city->name }}">{{ $city->name}}</option>
@@ -152,7 +155,7 @@
                                         <div class="form-group row">
                                                 {{ html()->label('Area')->for('area')->class('col-md-2 form-control-label') }}
                                                 <div class="col-md-10">                                            
-                                                        <select name="area" id="region" class="form-control" >
+                                                        <select name="area" id="region" class="form-control" required >
                                
                                                             </select>
                                             </div><!--col-->
@@ -163,7 +166,7 @@
                                             <div class="col-md-10">
                                                 {{ html()->date('lost_since')
                                                     ->class('form-control')
-                                                    ->required()
+                                                    
                                                     
                                                     }}
                                             </div><!--col-->

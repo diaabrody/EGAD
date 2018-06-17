@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\Child;
+namespace App\Http\Controllers\API;
 
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Frontend\Child\ChildRepository;
+use App\Repositories\API\ChildRepository;
 use Response;
 
 

@@ -2,13 +2,11 @@
 
 @section('content')
     <div class="row justify-content-center align-items-center mb-3">
-        <div class="col col-sm-10 align-self-center">
+        <div class="col col-sm-10 align-self-center mb-4">
             <div class="card">
                 <div class="card-header font-weight-bold">
                 @include('frontend.user.account')
-                    <strong class="float-right">
-                        {{ __('تغيير كلمة المرور') }}
-                    </strong>
+                 
                 </div>
 
                 <div class="card-body px-5">

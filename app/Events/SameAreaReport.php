@@ -29,12 +29,12 @@ class SameAreaReport implements ShouldBroadcast
     {
         $this->user = $user;
         $this->report = $report;
-        $this->message = "a child has been lost in your area";
+        $this->message = "فُقد طفل فى منطقتك";
         
         $notify= Notification::create([
             'user_id'=>$user->id,
             'report_id'=>$report->id,
-            'message'=>"a child has been lost in your area",
+            'message'=>"فُقد طفل فى منطقتك",
             'photo' =>$report->photo,
             'is_seen'=>0,
             'type'=>'same area',

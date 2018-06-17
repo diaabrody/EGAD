@@ -19,6 +19,7 @@
             <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/form.min.css" rel="stylesheet">
             <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/button.min.css" rel="stylesheet">
             <link href="{{ asset('/vendor/laravelLikeComment/css/style.css') }}" rel="stylesheet">
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
            
             <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.js"></script>
@@ -65,17 +66,28 @@
                 <script type="text/html" id="hit-template">
 
 
-                        <div class="col-lg-4 col-md-12 col-sm-6 mb-5">
-                        <div class="card">
-                            <img  class="card-img-top" src="@{{{photo}}}" alt="@{{{name}}}">
+                        <div class="col-lg-4 col-md-4 col-sm-6 mb-5">
+                            <div class="card" style="height: 380px !important;">
+                            <img  class="card-img-top img-thumbnail" src="@{{{photo}}}" alt="@{{{name}}}">
                         
                             <div class="card-body">
-                                <p class="card-text">الإسم: @{{{_highlightResult.name.value}}}</p>
-                                <p class="card-text">السن: @{{{age}}}</h2></br>
-                                <a href="/reports/@{{{id}}}" class="btn btn-secondary">المزيد</a>
+                                <h2 class="card-text ">
+                                    <i class="fas fa-user ml-2"></i>
+
+                                    @{{{_highlightResult.name.value}}}
+
+                                   </h2>
+                                <div class="card-text">
+
+                                      <b style="font-size: 28px;">  <sup style="font-size: 12px">العمر  </sup>   @{{{age}}}  </b>
+
+
+                                    </div>
+                                <a href="/reports/@{{{id}}}" class="btn btn-primary btn-block">المزيد</a>
                         </div>
                     </div>
-                         </div>
+                        </div>
+
 
 
                 </script>
@@ -99,7 +111,7 @@
             search.addWidget(
                     instantsearch.widgets.searchBox({
                         container: '#search-input',
-                        placeholder: 'ابحث عن الاطفال عن طريق الاسم او المنطقة ',
+                        placeholder: ' ابحث عن الاطفال عن طريق الاسم او المنطقة ',
                         magnifier: false,
                         reset: false
                     })
@@ -257,7 +269,8 @@
 
                 </script>
 
-                
+
+       
 
 
             <script type="text/javascript">
