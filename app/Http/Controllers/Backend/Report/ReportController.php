@@ -8,6 +8,8 @@ use App\Models\Report\Report;
 use App\Repositories\Backend\Report\ReportRepository;
 use App\Http\Requests\Backend\Report\StoreReportRequest;
 use App\Http\Requests\Backend\Report\UpdateReportRequest;
+use App\Events\SameAreaReport;
+use App\Models\Auth\User;
 use  App\Models\City\City;
 use  App\Models\Region\Region;
 
@@ -60,26 +62,37 @@ class ReportController extends Controller
      */
     public function store(StoreReportRequest $request)
     {
-        $this->reportRepository->create($request->only(
-            'name',
-            'age',
-            'photo',
-            'gender',
-            'special_sign',
-            'height',
-            'weight',
-            'eye_color',
-            'hair_color',
-            'lost_since',
-            'found_since',
-            'last_seen_at',
-            'last_seen_on',
-            'city',
-            'area',
-            'type',
-            'reporter_phone_number',
-            'is_found'
-        ));
+      $report =  $this->reportRepository->create($request->only(
+                    'name',
+                    'age',
+                    'photo',
+                    'gender',
+                    'special_sign',
+                    'height',
+                    'weight',
+                    'eye_color',
+                    'hair_color',
+                    'lost_since',
+                    'found_since',
+                    'last_seen_at',
+                    'last_seen_on',
+                    'city',
+                    'area',
+                    'type',
+                    'reporter_phone_number',
+                    'is_found'
+                ));
+        
+                $users = User::where([
+                    ['city','=',$report->city]
+                   ,['region','=',$report->area]
+                   ])-> get();
+                
+               foreach ($users as $user){
+                   if(($user->id) != (Auth::user()->id) ){
+                   event(new SameAreaReport($user,$report));
+                   }
+               }        
 
         return redirect()->route('admin.report.report.index')->withFlashSuccess('Report Created Succesfuly');
     }
