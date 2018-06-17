@@ -15,7 +15,7 @@
               {{-- <img class="card-img-top" src="http://placehold.it/500x500" alt="Card image cap"> --}}
               <img src="images/question.svg">
               <div class="card-body">
-                <a href="/report/create/quick" class="btn btn-secondary">بلاغ سريع</a>
+                <a href="/reports/create/quick" class="btn btn-secondary">بلاغ سريع</a>
               </div>
             </div>
     </div>
