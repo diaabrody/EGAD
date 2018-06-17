@@ -28,12 +28,12 @@ class SameAreaReport
     {
         $this->user = $user;
         $this->report = $report;
-        $this->message = "a child has been lost in your area";
+        $this->message = "فُقد طفل فى منطقتك";
         
         Notification::create([
             'user_id'=>$user->id,
             'report_id'=>$report->id,
-            'message'=>"a child has been lost in your area",
+            'message'=>"فُقد طفل فى منطقتك",
             'photo' =>$report->photo,
             'is_seen'=>0,
             'type'=>'same area',
@@ -48,6 +48,6 @@ class SameAreaReport
      */
     public function broadcastOn()
     {
-        return ['sameArea_'.$this->user->id];
+        return ['users.'.$this->user->id];
     }
 }
