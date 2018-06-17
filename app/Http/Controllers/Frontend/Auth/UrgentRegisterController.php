@@ -52,14 +52,14 @@ class UrgentRegisterController extends Controller
 
         $this->guard()->login($user);
        
-        Nexmo::message()->send([
+       Nexmo::message()->send([
             'to'   => '201225365069',
             'from' => 'EJAD',
             'text' => 'Hello and Welcome to Ejad website your password is '. $password .' and you can change it in the next time you login to your profile'
         ]);
 
         return redirect('/report/create/quick')->withFlashSuccess(
-                __('you will receieve SMS contains your password and you can change it in the next time you login to your profile') 
+                __('سوف تصلك رسالة نصية تحتوى كلمة المرور الخاصه بك و يمكن تغييرها من خلال تعديل بياناتك و يجب تغيير بريدك الإلكترونى') 
         );
 
     }
