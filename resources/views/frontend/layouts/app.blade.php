@@ -14,7 +14,11 @@
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
             <link rel="stylesheet" type="text/css" href="/css/bootstrap-notifications.min.css">
             <link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
-
+            <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/icon.min.css" rel="stylesheet">
+            <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/comment.min.css" rel="stylesheet">
+            <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/form.min.css" rel="stylesheet">
+            <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/button.min.css" rel="stylesheet">
+            <link href="{{ asset('/vendor/laravelLikeComment/css/style.css') }}" rel="stylesheet">
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
            
             <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.js"></script>
@@ -56,7 +60,8 @@
                 @stack('after-scripts')
 
                  @include('includes.partials.ga')
-
+                
+                <script src="{{ asset('/vendor/laravelLikeComment/js/script.js') }}" type="text/javascript"></script>
                 <script type="text/html" id="hit-template">
 
 
@@ -193,15 +198,15 @@
                     var commentChannel = pusher.subscribe('report_{{ Auth::user()->id }}');
                     var sameAreaChannel = pusher.subscribe('users.{{ Auth::user()->id }}');
                     $.each({!! json_encode(Auth::user() -> notification -> toArray()) !!}, function(i, data) {
-                    DrawHtml(data);
+                    DrawHtml(data,1);
                     });
                     commentChannel.bind('App\\Events\\CommentsonReport', function(data) {
-                    DrawHtml(data);
+                    DrawHtml(data,1);
                     notificationsCount += 1;
                     updateNotificationCount();
                     });
                     sameAreaChannel.bind('App\\Events\\SameAreaReport', function(data) {
-                    DrawHtml(data);
+                    DrawHtml(data,1);
                     notificationsCount += 1;
                     updateNotificationCount();
                     });
@@ -219,10 +224,14 @@
                     });
                     }
 
-                    function DrawHtml(data) {
+                    function DrawHtml(data,realNotificaion) {
                     // Bind a function to a Event (the full Laravel class)
                     var existingNotifications = notifications.html();
                     var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
+                    if(realNotificaion)
+                    {
+                            data=data.notify;
+                    }
 
                     var newNotificationHtml = `<a href="/reports/` + data.report_id + `">
                       <li class="notification active">

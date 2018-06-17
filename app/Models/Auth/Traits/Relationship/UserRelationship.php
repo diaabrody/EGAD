@@ -6,7 +6,7 @@ use App\Models\System\Session;
 use App\Models\Auth\SocialAccount;
 use App\Models\Auth\PasswordHistory;
 use App\Models\Report\Report;
-use App\Models\Comment\Comment;
+
 use App\Models\Notification\Notification;
 
 /**
@@ -47,10 +47,7 @@ trait UserRelationship
     {
         return $this->hasMany(Report::class);
     }
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
+  
 
     
 }

@@ -164,6 +164,7 @@ return [
         Appstract\BladeDirectives\BladeDirectivesServiceProvider::class,
         Creativeorange\Gravatar\GravatarServiceProvider::class,
         HieuLe\Active\ActiveServiceProvider::class,
+        risul\LaravelLikeComment\LikeCommentServiceProvider::class,
 
         /*
          * Application Service Providers...
