@@ -1,4 +1,4 @@
-<ul class="nav nav-tabs">
+<ul class="nav">
     <li class="nav-item">
         <a class="nav-link" href="/account">بياناتى</a>
     </li>
@@ -13,3 +13,4 @@
     </li>
 
 </ul>
+

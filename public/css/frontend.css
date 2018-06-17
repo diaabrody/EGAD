@@ -10029,6 +10029,14 @@ a.text-dark:focus {
   padding: 5px 20px;
 }
 
+.form-header {
+  font-size: 20 px;
+}
+
+.form-text {
+  font-size: 16 px;
+}
+
 .profile-picture {
   max-height: 90px;
 }

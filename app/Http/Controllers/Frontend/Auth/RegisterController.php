@@ -41,7 +41,7 @@ class RegisterController extends Controller
      */
     public function redirectPath()
     {
-        return route(home_route());
+        return route('frontend.index');
     }
 
     /**

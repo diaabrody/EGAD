@@ -7,8 +7,8 @@
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <ul>
                     <li><a href="/">الرئيسية</a></li>
-                    <li><a href="/report/create/normal">إنشر بلاغ</a></li>
-                    <li><a href="/report/create/found">وجدت مفقود</a></li>
+                    <li><a href="/reports/create/normal">إنشر بلاغ</a></li>
+                    <li><a href="/reports/create/found">وجدت مفقود</a></li>
                 </ul>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12">
@@ -20,8 +20,8 @@
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <ul>
                     <li><a href="/">الرئيسية</a></li>
-                    <li><a href="/report/create/normal">إنشر بلاغ</a></li>
-                    <li><a href="/report/create/found">وجدت مفقود</a></li>
+                    <li><a href="/reports/create/normal">إنشر بلاغ</a></li>
+                    <li><a href="/reports/create/found">وجدت مفقود</a></li>
                 </ul>
             </div>            
         </div>
