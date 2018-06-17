@@ -11,7 +11,7 @@
 <div id="search-input-icon"></div>
 </header>
 <div  class="row">
-<div  class="col-sm-10">
+<div  class="col-md-10">
   <div id="stats"></div>
   <div id="hits"></div>
 </div>
@@ -64,7 +64,7 @@
 }
 #search-input-icon:before {
   position: absolute;
-  right: 0;
+  left: 20%;
   bottom: 15px;
   width: 20px;
   height: 20px;
@@ -202,7 +202,7 @@
 .ais-star-rating--count,
 .ais-toggle--count {
   position: relative;
-  top: 3px;
+  top: -1px;
   float: right;
   color: #999;
 }
@@ -272,4 +272,31 @@ a.clear-all:hover {
 .ais-current-refined-values {
   position: relative;
 }
+
+   .ais-refinement-list--checkbox {
+    float: left !important;
+    left:2px;
+
+  }
+
+
+  .ais-refinement-list--checkbox:after {
+    clear:both;
+
+
+  }
+  .ais-refinement-list--count{
+    border : 1px solid transparent;
+    border-radius : 50%;
+    background-color: rgba(18, 162, 237, 0.25);
+    color : black;
+    margin-left: 8px;
+    padding: 0 4px;
+  }
+
+  .ais-refinement-list--label{
+    display: block;
+    margin:5px;
+  }
+
     </style>
