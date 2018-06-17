@@ -216,7 +216,8 @@ class ReportsController extends Controller
 
         }
         
-            return redirect ('/reports/');
+           return redirect ('/reports/'.$report_like->id);
+
 
 
     }
@@ -309,7 +310,7 @@ class ReportsController extends Controller
 
 
 
-        $this->reportRepository->updateById($id,[
+        $report_like=$this->reportRepository->updateById($id,[
             'name'=>$request->name,
             'age'=>$request->age,
             'gender'=>$request->gender,
@@ -356,7 +357,8 @@ class ReportsController extends Controller
         }
 
 
-        return redirect ('/reports/');
+        return redirect ('/reports/'.$report_like->id);
+
 
 
     }
@@ -518,7 +520,7 @@ class ReportsController extends Controller
 
                 $report_found = $this->reportRepository->selectByFaceID($candidate->face_id);
 
-                if ($report_found && $report_found->id && $report_found->user_id != Auth::user()->id) {
+                if ($report_found && $report_found->id ) {
                     //  $this->found_child_id=$report_found->id;
                     array_push($this->search_childs, $report_found);
 
