@@ -51,9 +51,8 @@
                                     </select>
                                     </div><!--form-group-->
                                 </div><!--col-->
-                            </div><!--row-->
-
-                            <div class="col-12 col-md-6">
+            
+            <div class="col-12 col-md-6">
                                 <div class="form-group">
                                 {{ html()->label(__('المنطقة'))->for('area')->class('float-right') }}
                                 <select name="area" id="region" class="form-control" >
@@ -65,7 +64,10 @@
 
                                 </div><!--form-group-->
                             </div><!--col-->
-                        </div><!--row-->
+                            </div><!--row-->
+
+                            
+                       
         <div class="form-group">
             <label for="location" class="float-right">العنوان</label>
             <input type="text" name="location" class="form-control" placeholder="العنوان" id="autocomplete" value="{{$report->last_seen_at}}">
@@ -118,10 +120,10 @@
 
         <button type="submit" class="btn btn-secondary btn-lg btn-block text-white font-weight-bold" onclick="displayloading()" >تعديل البلاغ</button>
     
-    
+     </div><!--row-->
 <!--       btn-lg btn-block "-->
     
-        </div>
+       
         <div class="col-lg-4">
           <div class="form-group" style="height:200px">
             <img src="{{$report->photo}}"  id="image" class="h-100 w-100 d-block mx-auto">

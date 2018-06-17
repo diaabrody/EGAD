@@ -6,7 +6,7 @@
 <div class="row justify-content-center align-items-center">
     <div class="col col-sm-8 align-self-center">
         <div class="card w-75 m-auto bg-light">
-            <div class="card-header bg-white font-weight-bold">
+            <div class="card-header bg-white font-weight-bold form-header">
                 <strong class="float-right">
                     {{ __('تسجيل دخول') }}
                 </strong>
@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                        {{ html()->label(__('البريد الالكتروني او رقم الهاتف'))->for('email')->class('float-right') }}
+                        {{ html()->label(__('البريد الالكتروني او رقم الهاتف'))->for('email')->class('float-right form-text') }}
                             
                         {{ html()->text('email')
                                         ->class('form-control')
@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            {{ html()->label(__('كلمة المرور'))->for('password')->class('float-right') }}
+                            {{ html()->label(__('كلمة المرور'))->for('password')->class('float-right form-header') }}
 
                             {{ html()->password('password')
                                 ->class('form-control')

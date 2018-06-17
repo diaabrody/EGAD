@@ -4,13 +4,11 @@
 <div class="row justify-content-center align-items-center mb-3">
         <div class="col col-sm-10 align-self-center">
         
-            <div class="card">
+            <div class="card mb-4">
             
                 <div class="card-header font-weight-bold">
                 @include('frontend.user.account')
-                    <strong class="float-right">
-                        {{ __('تعديل البيانات') }}
-                    </strong>
+                
                 </div>
                 <div class="card-body px-5">
                
@@ -18,12 +16,12 @@
 {{ html()->modelForm($logged_in_user, 'PATCH', route('frontend.user.profile.update'))->id('editForm')->class('form-horizontal')->attribute('enctype', 'multipart/form-data')->open() }}
     <div class="row ">
         <div class="col">
-            <div class="form-group">
-                {{ html()->label(__('validation.attributes.frontend.avatar'))->for('avatar') }}
+            <div class="form-group float-right">
+                {{ html()->label(__('الصورة الشخصية'))->for('avatar')->class('float-right') }} <br>
 
-                <div>
-                    <input type="radio" name="avatar_type" value="gravatar" {{ $logged_in_user->avatar_type == 'gravatar' ? 'checked' : '' }} /> Gravatar
-                    <input type="radio" name="avatar_type" value="storage" {{ $logged_in_user->avatar_type == 'storage' ? 'checked' : '' }} /> Upload
+                <div class="float-right">
+                    <input type="radio" name="avatar_type" value="gravatar" {{ $logged_in_user->avatar_type == 'gravatar' ? 'checked' : '' }} />  بدون صورة 
+                    <input type="radio" class="mr-4" name="avatar_type" value="storage" {{ $logged_in_user->avatar_type == 'storage' ? 'checked' : '' }} /> ارفع صورة
 
                        
                 </div>
@@ -67,7 +65,7 @@
      <div class="row">
         <div class="col">
             <div class="form-group">
-                {{ html()->label(__('validation.attributes.frontend.email'))->for('email') }}
+                {{ html()->label(__('validation.attributes.frontend.email'))->for('email')->class('float-right') }}
 
                 {{ html()->email('email')
                     ->class('form-control')
@@ -81,7 +79,7 @@
     <div class="row">
         <div class="col">
             <div class="form-group">
-                {{ html()->label(__('Phone Number'))->for('phone_no') }}
+                {{ html()->label(__('رقم الهاتف'))->for('phone_no')->class('float-right') }}
 
                 {{ html()->text('phone_no')
                 ->class('form-control')
