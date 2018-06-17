@@ -26,12 +26,14 @@
                                             <br>
                                             <b>بتاريخ :{{ $report-> created_at}}</b>
                                             <br>
+
                                            <div class="d-flex"> 
                                             <div class="col-lg-6">   
                                             <a href="/reports/{{ $report->id }}" class="btn btn-outline-secondary  font-weight-bold" > قراءة المزيد </a></div>
                                             <div class="col-lg-6">   
                                             <a href="/report/{{ $report->id }}/edit" class="btn  btn-outline-secondary font-weight-bold"> تعديل البلاغ </a></div>
                                             </div>   
+
                                         </div><!--card-body-->
                                     </div><!--card-->
                                @endforeach

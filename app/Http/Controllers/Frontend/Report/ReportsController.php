@@ -216,7 +216,8 @@ class ReportsController extends Controller
 
         }
         
-            return redirect ('/reports/');
+           return redirect ('/reports/'.$report_like->id);
+
 
 
     }
@@ -309,7 +310,7 @@ class ReportsController extends Controller
 
 
 
-        $this->reportRepository->updateById($id,[
+        $report_like=$this->reportRepository->updateById($id,[
             'name'=>$request->name,
             'age'=>$request->age,
             'gender'=>$request->gender,
@@ -332,16 +333,18 @@ class ReportsController extends Controller
 
         ]);
 
-        $users = User::where([
-            ['city','=',$report_like->city]
-           ,['region','=',$report_like->area]
-           ])-> get();
+        if($report->city != $report_like->city || $report->area != $report_like->area ){
+            $users = User::where([
+                ['city','=',$report_like->city],
+                ['region','=',$report_like->area]
+                ])-> get();
         
-       foreach ($users as $user){
-           if(($user->id) != (Auth::user()->id) ){
-           event(new SameAreaReport($user,$report_like));
-           }
-       }
+            foreach ($users as $user){
+                if(($user->id) != (Auth::user()->id) ){
+                event(new SameAreaReport($user,$report_like));
+                }
+            }
+        }
 
 
         if(count($this->found_childs) > 0)
@@ -356,7 +359,8 @@ class ReportsController extends Controller
         }
 
 
-        return redirect ('/reports/');
+        return redirect ('/reports/'.$report_like->id);
+
 
 
     }
@@ -518,7 +522,7 @@ class ReportsController extends Controller
 
                 $report_found = $this->reportRepository->selectByFaceID($candidate->face_id);
 
-                if ($report_found && $report_found->id && $report_found->user_id != Auth::user()->id) {
+                if ($report_found && $report_found->id ) {
                     //  $this->found_child_id=$report_found->id;
                     array_push($this->search_childs, $report_found);
 
