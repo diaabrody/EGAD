@@ -113,7 +113,7 @@ class LoginController extends Controller
         }
         else{
             return redirect()->route('frontend.user.account')->withFlashSuccess(
-                __('please edit your email and password and complete your information')); 
+                __('يجب ادخال بريدك اﻹلكترونى الصحيح و اكمال بياناتك')); 
         }
 
         
