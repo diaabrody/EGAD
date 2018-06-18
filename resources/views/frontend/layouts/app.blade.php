@@ -20,6 +20,7 @@
             <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/button.min.css" rel="stylesheet">
             <link href="{{ asset('/vendor/laravelLikeComment/css/style.css') }}" rel="stylesheet">
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
             @yield('meta')
 
@@ -205,7 +206,6 @@
                     // Subscribe to the channel we specified in our Laravel Event
                     var commentChannel = pusher.subscribe('report_{{ Auth::user()->id }}');
                     var sameAreaChannel = pusher.subscribe('users.{{ Auth::user()->id }}');
-
                     $.each({!! json_encode(Auth::user() -> notification -> toArray()) !!}, function(i, data) {
                     DrawHtml(data,0);
                     });
@@ -218,6 +218,7 @@
                     
                     sameAreaChannel.bind('App\\Events\\SameAreaReport', function(data) {
                     DrawHtml(data,1);
+
                     notificationsCount += 1;
                     updateNotificationCount(notificationsCount);
                     });
