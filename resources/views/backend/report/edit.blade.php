@@ -71,7 +71,7 @@
                             {{ html()->label('Gender')->class('col-md-2 form-control-label')->for('gender') }}
 
                             <div class="col-md-10">
-                                    {{ html()->select('gender')->options(['' => "Select Gender", '0' => 'male', '1' => 'female'])->class('form-control')->required() }}
+                                    {{ html()->select('gender')->options(['' => "Select Gender", 'male' => 'male', 'female' => 'female'])->class('form-control')->required() }}
 
                             </div><!--col-->
                         </div><!--form-group-->

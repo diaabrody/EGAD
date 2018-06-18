@@ -40,12 +40,12 @@
                         </li>
                         <li class="nav-item">
                                 <a class="nav-link {{ active_class(Active::checkUriPattern('admin/report*')) }}" href="{{ route('admin.report.report.index') }}">
-                                    Report Management
+                                    ادارة البلاغات
                                 </a>
                             </li>
                             <li class="nav-item">
                                     <a class="nav-link {{ active_class(Active::checkUriPattern('admin/comment*')) }}" href="{{ route('admin.comment.comment.index') }}">
-                                        Comment Management
+                                    ادارة التعليقات
                                     </a>
                                 </li>
                     </ul>

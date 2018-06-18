@@ -21,8 +21,8 @@
                                 {{ html()->label(__('النوع'))->for('gender')->class('float-right ml-4') }}
 
                                     <div>
-                                        <input type="radio" name="gender" value="0" class="float-right" /><span class="float-right mr-2 ml-3">ذكر</span>
-                                        <input type="radio" name="gender" value="1" class="float-right"  />
+                                        <input type="radio" name="gender" value="male" class="float-right" /><span class="float-right mr-2 ml-3">ذكر</span>
+                                        <input type="radio" name="gender" value="female" class="float-right"  />
                                         <span class="float-right mr-2">أنثي </span>
                                     </div>
                                 </div><!--form-group-->

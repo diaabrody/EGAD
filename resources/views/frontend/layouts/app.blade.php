@@ -278,7 +278,22 @@
 
                 </script>
 
+<script>
+  // Get the container element
+var ulContainer = document.getElementById("myUl");
 
+// Get all buttons with class="btn" inside the container
+var anchors = ulContainer.getElementsByClassName("nav-link");
+
+// Loop through the buttons and add the active class to the current/clicked button
+for (var i = 0; i < anchors.length; i++) {
+  anchors[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}            
+</script>
        
             <script type="text/javascript">
                         $('#city').on('change',function(){
