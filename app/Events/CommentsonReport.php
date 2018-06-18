@@ -9,7 +9,6 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use App\Models\Comment\Comment;
 use  App\Models\Notification\Notification;
 
 class CommentsonReport implements ShouldBroadcast
@@ -20,7 +19,7 @@ class CommentsonReport implements ShouldBroadcast
 
     public $comment;
     public $message;
-    
+    public $notify;
 
 
     /**
@@ -32,16 +31,17 @@ class CommentsonReport implements ShouldBroadcast
     {
         $this->comment = $comment;
        
-        $this->message="{$comment->user->name} Commented On your Report";
+        $this->message=" على البلاغ الخاص بك{$comment->user->name} علق";
 
-        Notification::create([
+        $notify=Notification::create([
           'user_id'=>$comment->commentable->user_id,
           'report_id'=>$comment->commentable_id,
           'photo' =>$comment->user->picture,
-          'message'=>"{$comment->user->name} Commented On your Report",
+          'message'=>" على البلاغ الخاص بك{$comment->user->name} علق",
           'is_seen'=>0,
           'type'=>'Comments',
         ]);
+        $this->notify=$notify;
     }
 
     /**

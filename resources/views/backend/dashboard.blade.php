@@ -38,6 +38,34 @@
         </div><!--card-->
       </div> 
   </div><!--row-->
+
+
+
+
+  <div class="row">
+      <div class="col-md-6">
+          <div class="card">
+              <div class="card-header">
+                  <strong><center>Found/Lost Children Ratio</center></strong>
+              </div><!--card-header-->
+              <div class="card-block">
+                  <div id="pieChart3" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>   
+              </div><!--card-block-->
+          </div><!--card-->
+      </div><!--col-->
+      <div class="col-md-6">
+          <div class="card">
+              <div class="card-header">
+                  <strong><center>Kidnap/Lost Per Area/City</center></strong>
+              </div><!--card-header-->
+              <div class="card-block">
+                  <div id="barChart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>   
+              </div><!--card-block-->
+          </div><!--card-->
+    </div><!--col-->
+  </div><!--row-->
+
+
     
     <script>
 Highcharts.chart('pieChart1', {
@@ -155,7 +183,8 @@ Highcharts.chart('lineChart', {
     yAxis: {
         title: {
             text: 'Lost Numbers'
-        }
+        },
+        allowDecimals: false
     },
     plotOptions: {
         line: {
@@ -175,5 +204,104 @@ Highcharts.chart('lineChart', {
         ]
     }]
 });
+
+Highcharts.chart('pieChart3', {
+  chart: {
+    plotBackgroundColor: null,
+    plotBorderWidth: null,
+    plotShadow: false,
+    type: 'pie'
+  },
+  title: {
+    text: ''
+  },
+  tooltip: {
+    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+  },
+  plotOptions: {
+    pie: {
+      allowPointSelect: true,
+      cursor: 'pointer',
+      dataLabels: {
+        enabled: true,
+        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+        style: {
+          color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+        }
+      }
+    }
+  },
+  series: [{
+    name: 'Brands',
+    colorByPoint: true,
+    data: [{
+      name: 'Found Children',
+      y: parseInt(<?php echo $found; ?>),
+      sliced: true,
+      selected: true
+    },{
+      name: 'Lost Children',
+      y: parseInt(<?php echo $lost; ?>)
+    },]
+  }]
+});
+
+
+
+
+Highcharts.chart('barChart', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: ''
+    },
+    subtitle: {
+        text: ''
+    },
+    xAxis: {
+      categories: [   
+          @foreach($lostPerCity as $lpc)
+    
+      '{{ $lpc->city }}/{{ $lpc->area }}',
+
+    @endforeach
+
+],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+          text: 'Lost Numbers'
+        },
+        allowDecimals: false
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'City/Area',
+        data:[
+              @foreach($lostPerCity as $lpc)
+    {{ $lpc->id }},
+    @endforeach
+
+        ]
+    }]
+});
+
+
     </script>
 @endsection
