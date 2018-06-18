@@ -21,7 +21,7 @@ class AccountController extends Controller
 
     }
 
-    
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -37,8 +37,8 @@ class AccountController extends Controller
     {
         $cities = City::all();
         $regions = Region::all();
-    
-        return view('frontend.user.account.tabs.edit',[
+
+        return view('frontend.user.account.tabs.edit', [
             'cities' => $cities,
             'regions' => $regions,
         ]);
@@ -57,9 +57,24 @@ class AccountController extends Controller
      */
     public function myReports()
     {
-        $reports=$this->reportRepository->retriveUser_reports();
-        return view('frontend.user.account.tabs.myreports',[
+        $reports = $this->reportRepository->retriveUser_reports();
+        return view('frontend.user.account.tabs.myreports', [
             'reports' => $reports
         ]);
+    }
+
+    public function profile()
+    {
+        $cities = City::all();
+        $regions = Region::all();
+        $reports = $this->reportRepository->retriveUser_reports();
+
+        return view('frontend.user.account.myAccount', [
+
+            'cities' => $cities,
+            'regions' => $regions,
+            'reports' => $reports
+        ]);
+
     }
 }
