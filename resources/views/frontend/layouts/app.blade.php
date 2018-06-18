@@ -24,9 +24,12 @@
            
             <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.js"></script>
             <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+            
+            <script src="{{asset('js/custom.js')}}"></script>
+            
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
             @yield('meta')
-
+            
 
             {{-- See https://laravel.com/docs/5.5/blade#stacks for usage --}}
             @stack('before-styles')
@@ -269,22 +272,7 @@
 
                 </script>
 
-<script>
-  // Get the container element
-var ulContainer = document.getElementById("myUl");
 
-// Get all buttons with class="btn" inside the container
-var anchors = ulContainer.getElementsByClassName("nav-link");
-
-// Loop through the buttons and add the active class to the current/clicked button
-for (var i = 0; i < anchors.length; i++) {
-  anchors[i].addEventListener("click", function() {
-    var current = document.getElementsByClassName("active");
-    current[0].className = current[0].className.replace(" active", "");
-    this.className += " active";
-  });
-}            
-</script>
        
 
 

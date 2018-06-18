@@ -13,9 +13,9 @@
                 
                  
     
- <div class="col-lg-4" style="height:200px">
+ <div class="col-lg-4" style="height:150px">
 <!--    <div class="form-control mb-3" style="height:200px">-->
-        <img src="{{ $logged_in_user->picture }}" id="image"  class="h-100 d-block mx-auto img-fluid">
+        <img src="{{ $logged_in_user->picture }}" id="image"  class="h-75 d-block mx-auto img-fluid">
 <!--    </div>-->
 
   </div> 
