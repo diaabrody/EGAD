@@ -2,15 +2,15 @@
 
 @section('content')
 <div class="row justify-content-center align-items-center mb-3">
-        <div class="col col-sm-10 align-self-center">
+        <div class="col col-lg-6 align-self-center">
         
             <div class="card mb-4">
             
-                <div class="card-header font-weight-bold">
+                <div class="card-header font-weight-bold bg-white">
                 @include('frontend.user.account')
                 
                 </div>
-                <div class="card-body px-5">
+                <div class="card-body px-5 bg-light">
                
                 <br>
 {{ html()->modelForm($logged_in_user, 'PATCH', route('frontend.user.profile.update'))->id('editForm')->class('form-horizontal')->attribute('enctype', 'multipart/form-data')->open() }}

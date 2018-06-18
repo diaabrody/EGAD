@@ -2,14 +2,14 @@
 
 @section('content')
     <div class="row justify-content-center align-items-center mb-3">
-        <div class="col col-sm-10 align-self-center mb-4">
-            <div class="card">
-                <div class="card-header font-weight-bold">
+        <div class="col col-lg-6 align-self-center mb-4">
+            <div class="card" >
+                <div class="card-header font-weight-bold bg-white">
                 @include('frontend.user.account')
                  
                 </div>
 
-                <div class="card-body px-5">
+                <div class="card-body px-5 bg-light">
                 
 {{ html()->form('PATCH', route('frontend.auth.password.update'))->class('form-horizontal')->open() }}
     <div class="row">
