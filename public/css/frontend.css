@@ -10188,6 +10188,7 @@ footer ul li a:hover {
 
 .details-card .card img {
   max-height: 400px;
+  max-width: 30px;
 }
 
 .comments {

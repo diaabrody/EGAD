@@ -15,6 +15,7 @@
             <a class="nav-link" id="password-tab" data-toggle="tab" href="#password" role="tab" aria-controls="password" aria-selected="false">تغيير كلمة المرور</a>
         </li>
     </ul>
+
     <div class="tab-content mt-5 " id="myTabContent">
         <div class="tab-pane fade show active w-25 mx-auto mb-5 border-0" id="home" role="tabpanel" aria-labelledby="home-tab">
            
@@ -31,9 +32,7 @@
              
   </div>
 </div>
-            
-            
-        </div>
+        </div>        
         
         
         

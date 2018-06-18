@@ -72,7 +72,9 @@ class HomeController extends Controller
 
 
         return view('frontend.index',[
-            'reports' => $reports
+            'reports' => $reports,
+             'map' => Mapper::render(),
+
         ]);
     }
 }

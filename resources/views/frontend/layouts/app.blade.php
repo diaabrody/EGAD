@@ -24,11 +24,13 @@
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
            
             <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.js"></script>
+            
             <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
             
            
             
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
             @yield('meta')
             
 
@@ -197,35 +199,40 @@
                     var notificationsCount = {{ $notificationsCount }};
                     var notifications = notificationsWrapper.find('ul.dropdown-menu');
                     var pusher = new Pusher('aacacc0492d009aa482e', {
-                    authTransport: 'ajax',
+                            authTransport: 'ajax',
                             cluster: 'eu',
                             encrypted: false,
                     });
-                    function updateNotificationCount(){
-                    notificationsCountElem.attr('data-count', notificationsCount);
-                    notificationsWrapper.find('.notif-count').text(notificationsCount);
+                   
+
+                    function updateNotificationCount(count){
+                    notificationsCountElem.attr('data-count', count);
+                    notificationsWrapper.find('.notif-count').text(count);
                     notificationsWrapper.show();
                     }
-
-
 
 
                     // Subscribe to the channel we specified in our Laravel Event
                     var commentChannel = pusher.subscribe('report_{{ Auth::user()->id }}');
                     var sameAreaChannel = pusher.subscribe('users.{{ Auth::user()->id }}');
                     $.each({!! json_encode(Auth::user() -> notification -> toArray()) !!}, function(i, data) {
-                    DrawHtml(data,1);
+                    DrawHtml(data,0);
                     });
+
                     commentChannel.bind('App\\Events\\CommentsonReport', function(data) {
-                    DrawHtml(data,1);
                     notificationsCount += 1;
-                    updateNotificationCount();
+                    updateNotificationCount(notificationsCount);
+                    DrawHtml(data,1);
                     });
+                    
                     sameAreaChannel.bind('App\\Events\\SameAreaReport', function(data) {
                     DrawHtml(data,1);
+
                     notificationsCount += 1;
-                    updateNotificationCount();
+                    updateNotificationCount(notificationsCount);
                     });
+
+                   
                     function myFunction(data){
                     $.ajax({
                     type: 'post',
@@ -235,7 +242,7 @@
                             },
                             success:function(resp){
                             notificationsCount = 0;
-                            updateNotificationCount();
+                            updateNotificationCount(notificationsCount);
                             }
                     });
                     }
@@ -243,10 +250,11 @@
                     function DrawHtml(data,realNotificaion) {
                     // Bind a function to a Event (the full Laravel class)
                     var existingNotifications = notifications.html();
+                    console.log(existingNotifications);
                     var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
-                    if(realNotificaion)
+                    if(realNotificaion == 1)
                     {
-                            data=data.notify;
+                        data=data.notify;     
                     }
 
                     var newNotificationHtml = `<a href="/reports/` + data.report_id + `">
@@ -275,8 +283,6 @@
 
 
        
-
-
             <script type="text/javascript">
                         $('#city').on('change',function(){
                         var cityName = $(this).val();    
