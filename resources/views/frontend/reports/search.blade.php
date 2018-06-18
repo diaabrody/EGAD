@@ -26,16 +26,16 @@
     </form>
 
 
-    <div class="col-lg-8 col-md-12 col-s-12 all-missing">
+
+
+</div>
+
+    <div class="col-lg-12 all-missing">
         <div class="row" id="row">
 
 
         </div>
     </div>
-
-
-</div>
-
 
 
 
@@ -62,7 +62,7 @@
                 $.ajax({
 
                     type:"POST",
-                    url:'/report/childreen/searchfound',
+                    url:'/report/children/searchfound',
                     data:new FormData($(this)[0]),
                     processData: false ,
                     contentType:false ,
@@ -76,20 +76,20 @@
 
                                 var parentdev = "<div class='col-lg-4 col-md-12 col-sm-6 mb-5' style='width:300px' id='parentdev'></div>";
                                 $("#row").append(parentdev);
-                                var cart = "<div class='cart' id='cart'></div>";
+                                var cart = "<div class='card' id='cart'></div>";
                                 $('.col-lg-4:last').prepend(cart);
 
-                                var linkimage = "<a href=''  id='linkimage' class='linkimage'></a>";
+                               var linkimage = "<a href=''  id='linkimage' class='linkimage'></a>";
                                 $('.cart:last').prepend(linkimage);
                                 $('.linkimage:last').attr("href", '/reports/' + data[i].id);
                                 var image = "<img  class='card-img-top' width='200' height='200' id='img'>";
-                                $('.linkimage:last').prepend(image);
+                                $('.card:last').prepend(image);
 
                                 $('.card-img-top:last').attr('src', data[i].photo);
 
 
                                 var cartbody = "<div class='card-body' id='body'></div>";
-                                $('.cart:last').append(cartbody);
+                                $('.card:last').append(cartbody);
 
                                 var name = "<p class='card-text name' ></p>";
                                 var phone = "<p class='card-text phone' ></p>";

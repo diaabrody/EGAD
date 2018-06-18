@@ -1,51 +1,47 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+
+    
+<!-- form   -->
 <div class="row justify-content-center align-items-center mb-3">
-        <div class="col col-sm-10 align-self-center">
+        <div class="col col-lg-8 align-self-center">
             <div class="card">
-                <div class="card-header font-weight-bold">
+                <div class="card-header font-weight-bold mb-5 bg-white">
                 @include('frontend.user.account')
-                </div>
+                </div>    
+    
+    @foreach ($reports as $report)
+    <form class="w-100 m-auto  p-4 bg-light mb-3" >
+       <b class="float-right mb-0">بتاريخ :{{ $report-> created_at}}</b>
+        <br>
+<div class="row mt-3">  
+ <div class="col-lg-12 float-right">
+     
+     <div class="bg-white p-4">
+         
+     <div class="media align-items-center">
+        <img class="ml-3 float-right " src="{{ $report->photo }}" alt="Avatar" style="width:70px;height:70px"> 
+      <div class="media-body">
+        <h5 class="mt-0  float-right mt-3"> {{ $report->name }}</h5><br><br>
+        <a href="/report/{{ $report->id }}/edit" class="btn  btn-primary font-weight-bold mt-2  float-right"> تعديل البلاغ </a> 
+      </div>
+        
+        <a href="/reports/{{ $report->id }}" class="text-warning  mt-auto font-weight-bold">  قراءة المزيد</a>
+         
+    </div>
+    </div>
+     
+ </div>
+    
+    
+</div> 
+    <div style="clear:both"></div>
+</form>
 
-                <div class="card-body px-5">
+@endforeach  
                 
-
-                 <div class="col-md-6 order-2 order-sm-1">
-                           
-                           
-                               <div class="col">
-                               @foreach ($reports as $report)
-                                  
-                               <div class="card mb-4">
-                                        <div class="card-header">
-                                        {{ $report->name }}
-                                        </div><!--card-header-->
-                                        <div class="card-body">
-                                            <img src="{{ $report->photo }}" alt="Avatar" style="height:200px">
-                                            <br>
-                                            <b>بتاريخ :{{ $report-> created_at}}</b>
-                                            <br>
-
-                                           <div class="d-flex"> 
-                                            <div class="col-lg-6">   
-                                            <a href="/reports/{{ $report->id }}" class="btn btn-outline-secondary  font-weight-bold" > قراءة المزيد </a></div>
-                                            <div class="col-lg-6">   
-                                            <a href="/report/{{ $report->id }}/edit" class="btn  btn-outline-secondary font-weight-bold"> تعديل البلاغ </a></div>
-                                            </div>   
-
-                                        </div><!--card-body-->
-                                    </div><!--card-->
-                               @endforeach
-                               
-                               </div><!--col-md-4-->
-                               
-                           
-
-
-                </div><!--card body-->
-            </div><!-- card -->
-        </div><!-- col-xs-12 -->
-    </div><!-- row -->
-
-@endsection
+    </div><!-- card -->
+  </div><!-- col-xs-12 -->
+</div><!-- row -->   
+@endsection    

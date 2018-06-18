@@ -50,7 +50,7 @@ return [
     | Perform the loading and rendering of Googlmapper map asynchronously.
     |
     */
-    'async' => true,
+    'async' => false,
 
     /*
     |--------------------------------------------------------------------------

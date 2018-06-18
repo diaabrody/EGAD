@@ -10029,12 +10029,18 @@ a.text-dark:focus {
   padding: 5px 20px;
 }
 
-.form-header {
+body .form-header {
   font-size: 20 px;
 }
 
-.form-text {
+body.form-text {
   font-size: 16 px;
+}
+
+.active,
+.card-header ul li a:hover {
+  background-color: palegreen;
+  border: 2px solid;
 }
 
 .profile-picture {
@@ -10186,6 +10192,7 @@ footer ul li a:hover {
 
 .details-card .card img {
   max-height: 400px;
+  max-width: 30px;
 }
 
 .comments {

@@ -20,12 +20,12 @@
 
                                     <div>
                                         @if($report->gender == 0)
-                                        <input type="radio" name="gender" value="0" class="float-right" checked="checked"  /><span class="float-right mr-2 ml-3">ذكر</span>
-                                        <input type="radio" name="gender" value="1" class="float-right"  />
+                                        <input type="radio" name="gender" value="male" class="float-right" checked="checked"  /><span class="float-right mr-2 ml-3">ذكر</span>
+                                        <input type="radio" name="gender" value="female" class="float-right"  />
                                         <span class="float-right mr-2">أنثي </span>
                                             @else
-                                            <input type="radio" name="gender" value="0" class="float-right"   /><span class="float-right mr-2 ml-3">ذكر</span>
-                                            <input type="radio" name="gender" value="1" class="float-right" checked="checked"  />
+                                            <input type="radio" name="gender" value="male" class="float-right"   /><span class="float-right mr-2 ml-3">ذكر</span>
+                                            <input type="radio" name="gender" value="female" class="float-right" checked="checked"  />
                                             <span class="float-right mr-2">أنثي </span>
                                             @endif
                                     </div>
@@ -72,7 +72,7 @@
             <label for="location" class="float-right">العنوان</label>
             <input type="text" name="location" class="form-control" placeholder="العنوان" id="autocomplete" value="{{$report->last_seen_at}}">
         </div>
-
+s
         @if ($report->type == "normal" || $report->type  == "quick")
             <div class="form-group">
                 <label for="lost_since" class="float-right">منذ متي فقد</label>
