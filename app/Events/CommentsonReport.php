@@ -18,6 +18,7 @@ class CommentsonReport implements ShouldBroadcast
     
 
     public $comment;
+    public $report_user;
     public $message;
     public $notify;
 
@@ -27,20 +28,23 @@ class CommentsonReport implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct(Comment $comment)
+    public function __construct($comment,$report_user,$user)
     {
+      
         $this->comment = $comment;
-       
-        $this->message=" على البلاغ الخاص بك{$comment->user->name} علق";
+        $this->report_user = $report_user;
+
+        $this->message=" على البلاغ الخاص بك{$user['name']} علق";
 
         $notify=Notification::create([
-          'user_id'=>$comment->commentable->user_id,
-          'report_id'=>$comment->commentable_id,
-          'photo' =>$comment->user->picture,
-          'message'=>" على البلاغ الخاص بك{$comment->user->name} علق",
+          'user_id'=>$report_user->id,
+          'report_id'=>$comment->item_id,
+          'photo' =>$report_user->picture,
+          'message'=>" على البلاغ الخاص بك {$user['name']} علق",
           'is_seen'=>0,
           'type'=>'Comments',
         ]);
+
         $this->notify=$notify;
     }
 
@@ -51,9 +55,7 @@ class CommentsonReport implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-       
-        return ['report_'.$this->comment->commentable->user_id];
-       
+        return ['report_'.$this->report_user->id];  
     }
     
 }
