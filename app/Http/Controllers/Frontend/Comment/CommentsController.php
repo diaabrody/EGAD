@@ -55,6 +55,32 @@ class CommentsController extends CommentController
     	return response()->json(['flag' => 1, 'id' => $id, 'comment' => $commentBody, 'item_id' => $itemId, 'userName' => $user['name'], 'userPic' => $userPic]);
 
     }
+
+    /**
+     *
+     * @return void
+     * @author 
+     **/
+    public static function getComments($itemId){
+        $comments = Comment::where('item_id', $itemId)->orderBy('parent_id', 'asc')->get();
+
+        foreach ($comments as $comment){
+            $userId = $comment->user_id;
+            $user = self::getUser($userId);
+            $comment->name = $user['name'];
+            $comment->email = $user['email'];
+            $comment->url = $user['url'];
+            if($user['avatar'] == 'gravatar'){
+                $hash = md5(strtolower(trim($user['email'])));
+                $comment->avatar = "http://www.gravatar.com/avatar/$hash?d=identicon";
+            }
+            else{
+                $comment->avatar =$user['avatar'];
+            }
+        }
+
+        return $comments;
+    }
    
 }
 

@@ -61,7 +61,7 @@ function dfs($comments, $comment){
     echo "</div>";
 }
 
-$comments = \risul\LaravelLikeComment\Controllers\CommentController::getComments($comment_item_id);
+$comments = \App\Http\Controllers\Frontend\Comment\CommentsController::getComments($comment_item_id);
 foreach ($comments as $comment) {
     if(!isset($GLOBALS['commentVisit'][$comment->id])){
         dfs($comments, $comment);
