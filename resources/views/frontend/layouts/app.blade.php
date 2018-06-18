@@ -197,6 +197,9 @@
                             cluster: 'eu',
                             encrypted: false,
                     });
+
+                    Pusher.logToConsole = true;
+
                     function updateNotificationCount(){
                     notificationsCountElem.attr('data-count', notificationsCount);
                     notificationsWrapper.find('.notif-count').text(notificationsCount);
@@ -209,6 +212,7 @@
                     // Subscribe to the channel we specified in our Laravel Event
                     var commentChannel = pusher.subscribe('report_{{ Auth::user()->id }}');
                     var sameAreaChannel = pusher.subscribe('users.{{ Auth::user()->id }}');
+                  
                     $.each({!! json_encode(Auth::user() -> notification -> toArray()) !!}, function(i, data) {
                     DrawHtml(data,1);
                     });
@@ -217,8 +221,10 @@
                     notificationsCount += 1;
                     updateNotificationCount();
                     });
+
                     sameAreaChannel.bind('App\\Events\\SameAreaReport', function(data) {
                     DrawHtml(data,1);
+
                     notificationsCount += 1;
                     updateNotificationCount();
                     });
@@ -238,6 +244,7 @@
 
                     function DrawHtml(data,realNotificaion) {
                     // Bind a function to a Event (the full Laravel class)
+                    console.log(data);
                     var existingNotifications = notifications.html();
                     var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
                     if(realNotificaion)
