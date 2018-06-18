@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Report;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Report\Report;
 use App\Repositories\Backend\Report\ReportRepository;
@@ -132,26 +133,39 @@ class ReportController extends Controller
      */
     public function update(UpdateReportRequest $request, Report $report)
     {
-        $this->reportRepository->update($report,$request->only(
-            'name',
-            'age',
-            'photo',
-            'gender',
-            'special_sign',
-            'height',
-            'weight',
-            'eye_color',
-            'hair_color',
-            'lost_since',
-            'found_since',
-            'last_seen_at',
-            'last_seen_on',
-            'city',
-            'area',
-            'type',
-            'reporter_phone_number',
-            'is_found'
-        ));
+        $updated_report = $this->reportRepository->update($report,$request->only(
+                            'name',
+                            'age',
+                            'photo',
+                            'gender',
+                            'special_sign',
+                            'height',
+                            'weight',
+                            'eye_color',
+                            'hair_color',
+                            'lost_since',
+                            'found_since',
+                            'last_seen_at',
+                            'last_seen_on',
+                            'city',
+                            'area',
+                            'type',
+                            'reporter_phone_number',
+                            'is_found'
+                        ));
+
+        if($report->city != $updated_report->city || $report->area !=  $updated_report->area ){
+            $users = User::where([
+                        ['city','=', $updated_report->city],
+                        ['region','=', $updated_report->area]
+                        ])-> get();
+        
+            foreach ($users as $user){
+                if(($user->id) != (Auth::user()->id) ){
+                    event(new SameAreaReport($user, $updated_report));
+                    }
+            }
+        }
 
         return redirect()->route('admin.report.report.index')->withFlashSuccess('Report Updated Succesfuly');
     }
