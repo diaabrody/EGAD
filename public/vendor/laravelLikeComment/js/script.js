@@ -77,6 +77,8 @@ $(document).on('click', '#showComment', function(){
 
 
 $(document).on('click', '#write-comment', function(){
-    $($(this).data("form")).show();
+  $($(this).data("form")).show();
+  $("form input").attr('disabled', false);
+
 });
 
