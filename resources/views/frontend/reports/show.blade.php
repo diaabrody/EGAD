@@ -24,15 +24,11 @@
     </div>
           <img src="{{ $report->photo }}" alt="avatar" class="img-fluid mb-3">
   </div>
-    
-     
   </div>
 </div>
     </div>
 </div>
-@include('laravelLikeComment::like', ['like_item_id' => 'image_31'])
-
-@include('laravelLikeComment::comment', ['comment_item_id' => 'video_12'])
-
+@include('laravelLikeComment::like', ['like_item_id' => $report->id])
+@include('laravelLikeComment::comment', ['comment_item_id' =>  $report->id ])
 
 @endsection
