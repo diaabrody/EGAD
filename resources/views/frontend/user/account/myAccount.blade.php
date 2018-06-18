@@ -19,11 +19,15 @@
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
             <div class="col-lg-4" style="height:200px">
+
                 <!--    <div class="form-control mb-3" style="height:200px">-->
+
                 <img src="{{ $logged_in_user->picture }}" id="image"  class="h-100 d-block mx-auto img-fluid">
-                <!--    </div>-->
+
+                <!--    </div>   -->
 
             </div>
+
             <div class="col-lg-8">
                 <div class="form-group float-right">
                     <p>{{ $logged_in_user->name }}</p>
