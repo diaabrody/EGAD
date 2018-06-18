@@ -19,5 +19,11 @@ class DatabaseSeeder extends Seeder
         $this->call(AuthTableSeeder::class);
 
         Model::reguard();
+
+        $this->call([
+            cities_table_seeder::class,
+            regions_table_seeder::class,
+           
+        ]);
     }
 }

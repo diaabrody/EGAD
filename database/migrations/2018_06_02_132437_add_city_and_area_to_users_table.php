@@ -15,7 +15,7 @@ class AddCityAndAreaToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('city')->nullable();
-            $table->string('area')->nullable();
+            $table->string('region')->nullable();
         });
     }
 

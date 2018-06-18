@@ -91,7 +91,7 @@ return [
     |
     */
 
-    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
+    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'ar'),
 
     /*
     |--------------------------------------------------------------------------
@@ -102,7 +102,7 @@ return [
     | by the Carbon library when setting Carbon's localization.
     |
     */
-    'locale_php' => env('APP_LOCALE_PHP', 'en_US'),
+    'locale_php' => env('APP_LOCALE_PHP', 'ar'),
 
     /*
     |--------------------------------------------------------------------------
@@ -158,12 +158,14 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Grimzy\LaravelMysqlSpatial\SpatialServiceProvider::class,
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         /*
          * Package Service Providers that aren't auto-discover...
          */
         Appstract\BladeDirectives\BladeDirectivesServiceProvider::class,
         Creativeorange\Gravatar\GravatarServiceProvider::class,
         HieuLe\Active\ActiveServiceProvider::class,
+        risul\LaravelLikeComment\LikeCommentServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -231,6 +233,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
 
         /*
          * Package Aliases
@@ -242,6 +246,7 @@ return [
         'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
         'Location' => Stevebauman\Location\Facades\Location::class,
         'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
+        'Nexmo' => Nexmo\Laravel\Facade\Nexmo::class,
 
 
 

@@ -34,8 +34,8 @@
                         @foreach ($comments as $comment)
                             <tr>
                                 <td> {{$comment->commentable_type}}</td>
-                                <td> {{$comment->user->first_name}}</td>
-                                <td> {{$comment->commentable_id}}</td>
+                                <td><a href="/admin/auth/user/{{$comment->user->id}}"> {{$comment->user->first_name}}</a></td>
+                                <td> <a href="/admin/report/{{$comment->commentable_id}}">{{$comment->commentable_id}}</a></td>
                                 <td> {{$comment->text}}</td>
                                 <td>{!! $comment->action_buttons !!}</td>
                             </tr>

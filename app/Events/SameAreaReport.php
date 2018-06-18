@@ -11,13 +11,14 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use  App\Models\Notification\Notification;
 
-class SameAreaReport
+class SameAreaReport implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $user;
     public $message;
     public $report;
+    public $notify;
 
     /**
      * Create a new event instance.
@@ -28,14 +29,18 @@ class SameAreaReport
     {
         $this->user = $user;
         $this->report = $report;
-        $this->message = "a child has been lost in your area";
+        $this->message = "فُقد طفل فى منطقتك";
         
-        Notification::create([
+        $notify= Notification::create([
             'user_id'=>$user->id,
             'report_id'=>$report->id,
-            'message'=>"a child has been lost in your area",
+            'message'=>"فُقد طفل فى منطقتك",
+            'photo' =>$report->photo,
+            'is_seen'=>0,
             'type'=>'same area',
           ]);
+
+          $this->notify=$notify;
 
     }
 
@@ -46,6 +51,6 @@ class SameAreaReport
      */
     public function broadcastOn()
     {
-        return ['sameArea_'.$this->user->id];
+        return ['users.'.$this->user->id];
     }
 }

@@ -5,10 +5,10 @@
 @section('content')
 <div class="row justify-content-center align-items-center">
     <div class="col col-sm-8 align-self-center">
-        <div class="card">
-            <div class="card-header">
-                <strong>
-                    {{ __('labels.frontend.auth.login_box_title') }}
+        <div class="card w-75 m-auto bg-light">
+            <div class="card-header bg-white font-weight-bold form-header">
+                <strong class="float-right">
+                    {{ __('تسجيل دخول') }}
                 </strong>
             </div><!--card-header-->
 
@@ -18,11 +18,11 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                        {{ html()->label(__('Email or Phone'))->for('email') }}
+                        {{ html()->label(__('البريد الالكتروني او رقم الهاتف'))->for('email')->class('float-right form-text') }}
                             
                         {{ html()->text('email')
                                         ->class('form-control')
-                                        ->placeholder(__('Email or Phone'))
+                                        ->placeholder(__(''))
                                         ->attribute('maxlength', 191)
                                         ->required() }}
                         </div><!--form-group-->
@@ -32,11 +32,11 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            {{ html()->label(__('validation.attributes.frontend.password'))->for('password') }}
+                            {{ html()->label(__('كلمة المرور'))->for('password')->class('float-right form-header') }}
 
                             {{ html()->password('password')
                                 ->class('form-control')
-                                ->placeholder(__('validation.attributes.frontend.password'))
+                                ->placeholder(__(''))
                                 ->required() }}
                         </div><!--form-group-->
                     </div><!--col-->
@@ -45,38 +45,34 @@
                <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <div class="checkbox">
-                                 {{ html()->label(html()->checkbox('remember', true, 1) . ' ' . __('labels.frontend.auth.remember_me'))->for('remember') }}
-                            </div>
+<!--                            <div class="checkbox">-->
+                                 {{ html()->label(html()->checkbox('remember', true, 1) . ' ' . __('تذكر بياناتي'))->for('remember')->class('float-right') }}
+<!--                            </div>-->
                         </div><!--form-group-->
                     </div><!--col-->
                 </div><!--row-->
 
                 <div class="row">
                     <div class="col">
-                        <div class="form-group clearfix">
-                            {{ form_submit(__('labels.frontend.auth.login_button')) }}
+                        <div class="form-group clearfix ">
+<!--                            {{ form_submit(__('تسجيل دخول')) }}-->
+                    <input type="submit" class="btn btn-secondary btn-lg btn-block text-white font-weight-bold" value="تسجيل دخول">
+                            
                         </div><!--form-group-->
                     </div><!--col-->
                 </div><!--row-->
 
                 <div class="row">
                     <div class="col">
-                        <div class="form-group text-right">
-                            <a href="{{ route('frontend.auth.password.reset') }}">{{ __('labels.frontend.passwords.forgot_password') }}</a>
+                        <div class="form-group text-center">
+                            <a href="{{ route('frontend.auth.password.reset') }}">{{ __('هل نسيت كلمة المرور؟') }}</a>
                         </div><!--form-group-->
                     </div><!--col-->
                 </div><!--row-->
                 {{ html()->form()->close() }}
 
 
-            <div class="row">
-                <div class="col">
-                    <div class="text-center">
-                         {!! $socialiteLinks !!}
-                    </div>
-                </div><!--col-->
-            </div><!--row-->
+         
             </div><!--card body-->
             </div><!--card-->
         </div><!-- col-md-8 -->

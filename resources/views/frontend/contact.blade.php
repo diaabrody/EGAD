@@ -7,8 +7,8 @@
         <div class="col col-sm-8 align-self-center">
             <div class="card">
                 <div class="card-header">
-                    <strong>
-                        {{ __('labels.frontend.contact.box_title') }}
+                    <strong class="float-right">
+                        {{ __('تواصل معنا') }}
                     </strong>
                 </div><!--card-header-->
 
@@ -17,11 +17,11 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    {{ html()->label(__('validation.attributes.frontend.name'))->for('name') }}
+                                    {{ html()->label(__('validation.attributes.frontend.name'))->for('name')->class('float-right') }}
 
                                     {{ html()->text('name')
                                         ->class('form-control')
-                                        ->placeholder(__('validation.attributes.frontend.name'))
+                                        ->placeholder(__(''))
                                         ->attribute('maxlength', 191)
                                         ->required()
                                         ->autofocus() }}
@@ -32,11 +32,11 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    {{ html()->label(__('validation.attributes.frontend.email'))->for('email') }}
+                                    {{ html()->label(__('validation.attributes.frontend.email'))->for('email')->class('float-right') }}
 
                                     {{ html()->email('email')
                                         ->class('form-control')
-                                        ->placeholder(__('validation.attributes.frontend.email'))
+                                        ->placeholder(__(''))
                                         ->attribute('maxlength', 191)
                                         ->required() }}
                                 </div><!--form-group-->
@@ -46,11 +46,11 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    {{ html()->label(__('validation.attributes.frontend.phone'))->for('phone') }}
+                                    {{ html()->label(__('رقم الهاتف'))->for('phone')->class('float-right') }}
 
                                     {{ html()->text('phone')
                                         ->class('form-control')
-                                        ->placeholder(__('validation.attributes.frontend.phone'))
+                                        ->placeholder(__(''))
                                         ->attribute('maxlength', 191)
                                         ->required() }}
                                 </div><!--form-group-->
@@ -60,11 +60,11 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    {{ html()->label(__('validation.attributes.frontend.message'))->for('message') }}
+                                    {{ html()->label(__('الرسالة'))->for('message')->class('float-right') }}
 
                                     {{ html()->textarea('message')
                                         ->class('form-control')
-                                        ->placeholder(__('validation.attributes.frontend.message'))
+                                        ->placeholder(__(''))
                                         ->attribute('rows', 3) }}
                                 </div><!--form-group-->
                             </div><!--col-->
@@ -73,7 +73,8 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group mb-0 clearfix">
-                                    {{ form_submit(__('labels.frontend.contact.button')) }}
+                            <input type="submit" class="btn btn-secondary btn-lg w-25 text-white font-weight-bold" value="ارسال">                
+<!--                                    {{ form_submit(__('labels.frontend.contact.button')) }}-->
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->

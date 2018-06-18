@@ -9,8 +9,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\Auth\UrgentRegisterRequest;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Hash;
 use App\Repositories\Frontend\Auth\UserRepository;
-
+use Nexmo\Laravel\Facade\Nexmo;
 
 /**
  * Class UrgentRegisterController.
@@ -45,13 +46,20 @@ class UrgentRegisterController extends Controller
 
 
     public function register(UrgentRegisterRequest $request){
+        $password= str_random(8);
 
-        event(new Registered( $user = $this->userRepository->urgentcreate($request->only('phone_no'))));
+        event(new Registered( $user = $this->userRepository->urgentcreate($request->only('phone_no'),$password)));
 
         $this->guard()->login($user);
        
-        return redirect('/report/create')->withFlashSuccess(
-                __('Your password will be sent in SMS') 
+       Nexmo::message()->send([
+            'to'   => '201225365069',
+            'from' => 'EJAD',
+            'text' => 'Hello and Welcome to Ejad website your password is '. $password .' and you can change it in the next time you login to your profile'
+        ]);
+
+        return redirect('/reports/create/quick')->withFlashSuccess(
+                __('سوف تصلك رسالة نصية تحتوى كلمة المرور الخاصه بك و يمكن تغييرها من خلال تعديل بياناتك و يجب تغيير بريدك اﻹلكترونى') 
         );
 
     }

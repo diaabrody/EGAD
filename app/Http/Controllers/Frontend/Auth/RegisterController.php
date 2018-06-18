@@ -9,6 +9,8 @@ use App\Helpers\Frontend\Auth\Socialite;
 use App\Events\Frontend\Auth\UserRegistered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Repositories\Frontend\Auth\UserRepository;
+use  App\Models\City\City;
+
 
 /**
  * Class RegisterController.
@@ -39,7 +41,7 @@ class RegisterController extends Controller
      */
     public function redirectPath()
     {
-        return route(home_route());
+        return route('frontend.index');
     }
 
     /**
@@ -49,10 +51,12 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
+        $cities = City::all();
         abort_unless(config('access.registration'), 404);
 
-        return view('frontend.auth.register')
-            ->withSocialiteLinks((new Socialite)->getSocialLinks());
+        return view('frontend.auth.register',[
+            'cities' => $cities
+        ])->withSocialiteLinks((new Socialite)->getSocialLinks());
     }
 
     /**
@@ -63,7 +67,7 @@ class RegisterController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        $user = $this->userRepository->create($request->only('first_name', 'last_name', 'email', 'phone_no', 'gender', 'city', 'area', 'password'));
+        $user = $this->userRepository->create($request->only('first_name', 'last_name', 'email', 'phone_no', 'gender', 'city', 'region', 'password'));
 
         // If the user must confirm their email or their account requires approval,
         // create the account but don't log them in.
@@ -84,5 +88,6 @@ class RegisterController extends Controller
         }
     }
 
+    
    
 }

@@ -6,24 +6,24 @@
     <div class="row justify-content-center align-items-center">
         <div class="col col-sm-8 align-self-center">
             <div class="card">
-                <div class="card-header">
-                    <strong>
-                        {{ __('labels.frontend.auth.register_box_title') }}
+                <div class="card-header font-weight-bold bg-white">
+                    <strong class="float-right ">
+                        {{ __('تسجيل سريع') }}
                     </strong>
                 </div><!--card-header-->
 
-                <div class="card-body">
+                <div class="card-body bg-light">
                     {{ html()->form('POST', route('frontend.auth.urgentregister.post'))->open() }}
                         
 
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    {{ html()->label(__('Phone Number'))->for('phone_no') }}
+                                    {{ html()->label(__('رقم الهاتف'))->for('phone_no')->class('float-right') }}
 
                                     {{ html()->text('phone_no')
                                         ->class('form-control')
-                                        ->placeholder(__('Phone Number'))
+                                        ->placeholder(__(''))
                                         ->attribute('maxlength', 191)
                                         ->required() }}
                                 </div><!--form-group-->
@@ -33,7 +33,8 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group mb-0 clearfix">
-                                    {{ form_submit(__('Report Now')) }}
+<!--                                    {{ form_submit(__('Report Now'))->class('btn btn-warning btn-lg btn-block text-white font-weight-bold') }}-->
+                                    <input  class="btn btn-secondary btn-lg w-25 text-white font-weight-bold" type="submit" value= "تسجيل دخول">
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->

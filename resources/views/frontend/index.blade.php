@@ -4,6 +4,8 @@
 @section('title', app_name() . ' | '.__('navs.general.home'))
 
 @section('content')
+
+
 <div class="row">
     <div class="col-lg-4 col-md-12 col-sm-12 report-fast mb-3">
             <div class="card">
@@ -13,43 +15,30 @@
               {{-- <img class="card-img-top" src="http://placehold.it/500x500" alt="Card image cap"> --}}
               <img src="images/question.svg">
               <div class="card-body">
-                <a href="/report/create/quick" class="btn btn-secondary">بلاغ سريع</a>
+                <a href="/reports/create/quick" class="btn btn-secondary">بلاغ سريع</a>
               </div>
             </div>
     </div>
     <div class="col-lg-8 col-md-12 col-s-12 all-missing">
         <h1>المفقودين بالقرب منك</h1>
         <div class="row">
+       @if (is_array($reports) || is_object($reports))
+        @foreach ($reports as $report)
             <div class="col-lg-4 col-md-12 col-sm-6 mb-5">
                         <div class="card">
-                          <img class="card-img-top" src="images/missing-girl.jpg" alt="Card image cap">
+                          <img class="card-img-top" src="{{ $report->photo }}" alt="Card image cap">
                           <div class="card-body">
-                            <p class="card-text">الاسم: منى علاء الدين</p>
-                            <p class="card-text">السن: عشر سنوات</p>
-                            <a href="#" class="btn btn-secondary">المزيد</a>
+                            <p class="card-text">الاسم:{{ $report->name }} </p>
+                            <p class="card-text">السن:{{ $report->age }} </p>
+                            <a href="/reports/{{ $report->id }}" class="btn btn-secondary">المزيد</a>
                           </div>
                         </div>
             </div>
-            <div class="col-lg-4 col-md-12 col-sm-6 mb-5">
-                        <div class="card">
-                          <img class="card-img-top" src="images/missing-girl.jpg" alt="Card image cap">
-                          <div class="card-body">
-                            <p class="card-text">الاسم: منى علاء الدين</p>
-                            <p class="card-text">السن: عشر سنوات</p>
-                            <a href="#" class="btn btn-secondary">المزيد</a>
-                          </div>
-                        </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
-                        <div class="card">
-                          <img class="card-img-top" src="images/missing-girl.jpg" alt="Card image cap">
-                          <div class="card-body">
-                            <p class="card-text">الاسم: منى علاء الدين</p>
-                            <p class="card-text">السن: عشر سنوات</p>
-                            <a href="#" class="btn btn-secondary">المزيد</a>
-                          </div>
-                        </div>
-            </div>
+        @endforeach
+       @endif
+
+
+          
         </div>
     </div>
 </div>
@@ -72,7 +61,9 @@
 
 <div class="row">
     <div class="col-12">
-        @yield('my-map')
+        <div style="margin: auto; width: auto; height: 500px;">
+            {!! Mapper::render() !!}
+        </div>
     </div>
 </div>
 <div class="row ">

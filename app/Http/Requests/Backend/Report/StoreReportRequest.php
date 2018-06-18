@@ -24,13 +24,14 @@ class StoreReportRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3',
+            'name' => 'min:3',
             'reporter_phone_number'=>'required|regex:/(01)[0-9]{9}/',
             'gender'=>'required',
             'photo'=>'mimes:jpeg,png',
             'type'=> 'required',
             'last_seen_at'=>'required',
-            'last_seen_on'=>'required',
+            'city'=>'required',
+            'area'=>'required',
         ];
     }
 }

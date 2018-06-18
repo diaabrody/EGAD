@@ -65,8 +65,7 @@ if (token) {
  */
 
 import Echo from 'laravel-echo'
-
-window.Pusher = require('pusher-js');
+import Pusher from 'pusher-js'
 
 window.Echo = new Echo({
     broadcaster: 'pusher',

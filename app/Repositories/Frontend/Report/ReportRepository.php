@@ -28,6 +28,22 @@ class ReportRepository extends BaseRepository
          $reports=$this->model->all();
          return $reports;
     }
+
+    public function retriveNear()
+    {
+        if (Auth::user())
+        {
+        $user= Auth::user();
+        $reports=$this->model->where([
+             ['city','=',$user->city],
+             ['area','=',$user->region] 
+            ])->get();
+
+             return $reports;
+        }
+        
+    }
+
     public function retriveUser_reports()
     {
          $user= Auth::user(); 
@@ -44,6 +60,23 @@ class ReportRepository extends BaseRepository
             return $report;
         }
         
+    }
+
+    public function selectByFaceID($face_id)
+    {
+
+        $report=$this->model->Where('face_id','=',$face_id)->first();
+            return $report;
+
+
+    }
+
+    public function selectFaceSubject($id)
+
+    {
+        $report = $this->model->where('id','=',$id)->first();
+        return $report->face_subject_id;
+
     }
 
 

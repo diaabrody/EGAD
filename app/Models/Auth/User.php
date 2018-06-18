@@ -49,10 +49,27 @@ class User extends Authenticatable
         'timezone',
         'date_of_birth',
         'city',
-        'area',
+        'region',
         'phone_no',
         'gender'
     ];
+    /**
+     * Return the user attributes.
+
+     * @return array
+     */
+    public static function getAuthor($id)
+    {
+        $user = self::find($id);
+        return [
+            'id'     => $user->id,
+            'name'   => $user->name,
+            'email'  => $user->email,
+            'url'    => '',  // Optional
+            'avatar' => $user->picture, 
+            'admin'  => $user->role === 'admin', // bool
+        ];
+    }
 
 
     /**
