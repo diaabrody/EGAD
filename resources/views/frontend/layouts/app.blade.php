@@ -194,7 +194,7 @@
                             cluster: 'eu',
                             encrypted: false,
                     });
-                    Pusher.logToConsole = true;
+                   
 
                     function updateNotificationCount(count){
                     notificationsCountElem.attr('data-count', count);
@@ -240,7 +240,6 @@
 
                     function DrawHtml(data,realNotificaion) {
                     // Bind a function to a Event (the full Laravel class)
-                    
                     var existingNotifications = notifications.html();
                     console.log(existingNotifications);
                     var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
@@ -269,8 +268,6 @@
                     `;
                     notifications.html(newNotificationHtml + existingNotifications);
                     }
-
-                 
                     @endauth
 
                 </script>
