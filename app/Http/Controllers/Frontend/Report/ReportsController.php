@@ -282,21 +282,26 @@ class ReportsController extends Controller
         if($report->type == "quick" || $report->type == "normal" )
 
         {
-
-
-
             $marker = $request->location;
+            if($marker != $report->last_seen_at ) {
 
 
-            try {
-                $lat = Mapper::location($marker)->getLatitude();
-                $lng = Mapper::location($marker)->getLongitude();
-            } catch (MapperSearchResultException $exception) {
-                return redirect('map')->with('message', $exception->getMessage());
+                try {
+                    $lat = Mapper::location($marker)->getLatitude();
+                    $lng = Mapper::location($marker)->getLongitude();
+                    $location=new Point($lat, $lng);
+                } catch (MapperSearchResultException $exception) {
+                    return redirect('map')->with('message', $exception->getMessage());
+                }
+
+
             }
 
+            else
+            {
+                $location=$report->location ;
 
-
+            }
         }
 
         else
@@ -304,6 +309,7 @@ class ReportsController extends Controller
 
             $lat=0;
             $lng=0;
+            $location=new Point($lat, $lng);
 
         }
 
@@ -323,7 +329,7 @@ class ReportsController extends Controller
             'eye_color'   => $request->eye_color,
             'hair_color'   => $request->hair_color,
             'last_seen_at' => $request->location,
-            'location' => new Point($lat, $lng),
+            'location' => $location,
             'face_id' =>$this->face_id ,
             'city' => $request->city ,
             'area' => $request->area ,
@@ -599,14 +605,6 @@ class ReportsController extends Controller
 
 
         }
-
-
-
-
-
-
-
-
 
 
 
