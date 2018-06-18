@@ -30,27 +30,9 @@
 </div>
     </div>
 </div>
+@include('laravelLikeComment::like', ['like_item_id' => 'image_31'])
+
+@include('laravelLikeComment::comment', ['comment_item_id' => 'video_12'])
 
 
-<div class="row">
-    <div class="col-sm-10 comments">
-    @if (Auth::user())
-<form role="form"  method="post" action="/reports/comment/{{$report->id}}">
-     {{ csrf_field() }}
-     <label>إكتب تعليق:</label>
-     <textarea type="text" name="text" class="form-control" rows="5" placeholder="إكتب تعليقك هنا"></textarea>
-     <br> 
-     <input type="submit" class="btn btn-secondary" value="إرسال التعليق"/>
-</form>
-@endif
-
-<hr>  
-<h1>التعليقات</h1>
-@foreach ($report->comments as $comment) 
-   {{  $comment->text  }}
-   {{  $comment->user->name }}
-   <br>
-@endforeach
-    </div>
-</div>
 @endsection

@@ -38,6 +38,7 @@
                                                     ->class('form-control')
                                                     ->placeholder('Cotact Phone Number')
                                                     ->attribute('maxlength', 11)
+                                                    ->required()
                                                      }}
                                             </div><!--col-->
                                         </div><!--form-group-->
@@ -49,7 +50,6 @@
                                     ->class('form-control')
                                     ->placeholder('Child Name')
                                     ->attribute('maxlength', 191)
-                                    ->required()
                                     ->autofocus() }}
                             </div><!--col-->
                         </div><!--form-group-->
@@ -62,6 +62,7 @@
                                     ->class('form-control')
                                     ->placeholder('Child age')
                                     ->attribute('maxlength', 2)
+                                    ->required()
                                      }}
                             </div><!--col-->
                         </div><!--form-group-->
@@ -70,7 +71,7 @@
                             {{ html()->label('Gender')->class('col-md-2 form-control-label')->for('gender') }}
 
                             <div class="col-md-10">
-                                    {{ html()->select('gender')->options(['' => "Select Gender", '0' => 'male', '1' => 'female'])->class('form-control')->required() }}
+                                    {{ html()->select('gender')->options(['' => "Select Gender", 'male' => 'male', 'female' => 'female'])->class('form-control')->required() }}
 
                             </div><!--col-->
                         </div><!--form-group-->
@@ -120,8 +121,9 @@
                                         {{ html()->label('Eye Color')->class('col-md-2 form-control-label')->for('eye_color') }}
             
                                         <div class="col-md-10">
-                                            {{ html()->select('eye_color')->options([ '' => "Select Eye Color",'black' => 'black', 'brown' => 'brown','blue'=>'blue','green'=>'green','gray'=>'gray','hazal'=>'hazal'])
-                                                ->class('form-control')
+                                            {{ html()->text('eye_color')
+                                            ->class('form-control')
+                                            ->placeholder('Eye Color')
                                                 
                                                 }}
                                         </div><!--col-->
@@ -131,8 +133,9 @@
                                             {{ html()->label('Hair Color')->class('col-md-2 form-control-label')->for('hair_color') }}
                 
                                             <div class="col-md-10">
-                                                {{ html()->select('hair_color')->options([ '' => "Select hair Color",'black' => 'black', 'brown' => 'brown','blue'=>'blue','green'=>'green','gray'=>'gray','hazal'=>'hazal'])
-                                                    ->class('form-control')
+                                                {{ html()->text('hair_color')
+                                                ->class('form-control')
+                                            ->placeholder('Hair Color')
                                                     
                                                     }}
                                             </div><!--col-->
