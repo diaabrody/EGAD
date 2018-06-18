@@ -34,7 +34,8 @@
 </div> 
                 </div><!--card body-->
             </div><!-- card -->
-        </div><!-- col-xs-12 -->
+        </div>
+<!-- col-xs-12 -->
  
 
 @endsection
