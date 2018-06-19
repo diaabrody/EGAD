@@ -10194,6 +10194,7 @@ button {
   width: 100%;
   height: 311px;
   background-size: cover;
+  background-position: center center;
 }
 
 #sec2 .card a {
@@ -10318,27 +10319,51 @@ button {
   margin-bottom: 50px;
 }
 
+#sec7 {
+  padding: 50px;
+  background-image: url("/img/frontend/sec2.png");
+  background-size: cover;
+  width: 100%;
+  text-align: center;
+}
+
+#sec7 h1 {
+  font-family: "Mirza Semibold";
+  font-size: 48px;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 50px;
+}
+
 html,
 body {
   height: 100%;
 }
 
 #wrap {
-  min-height: calc(100vh - 260px);
+  min-height: calc(100vh - 300px);
   height: auto;
 }
 
 footer {
-  background-color: #00749f;
+  background-color: #67676a;
   padding: 50px 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  height: 200px;
-  text-align: center;
+  text-align: right;
 }
 
 footer #footer-logo {
   width: 100px;
+  margin-bottom: 20px;
+}
+
+footer p {
+  text-align: right;
+  color: #fff;
+  font-size: 18px;
+  font-family: "Mirza Regular";
+  padding-left: 50px;
 }
 
 footer ul {

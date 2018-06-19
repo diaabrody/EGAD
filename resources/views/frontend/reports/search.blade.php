@@ -6,14 +6,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
-<div class="container" id="cont">
+<div class="container pt-5 pb-5" id="cont">
 
     <form method="post" enctype="multipart/form-data" id="upload_form"  role="form">
+        <input type="hidden" name="_token" value="{{ csrf_token()}}" >
      <div class="d-flex justify-content-center mb-5">   
         <div class=" custInputfield border p-3 w-50" style="height:40px">
-        <p class="float-right">ابحث بالصورة</p>
-        <input type="hidden" name="_token" value="{{ csrf_token()}}" >
+<label for="photo">
          <i class="fas fa-camera" style="font-size:20px"></i>
+</label>
         <input type="file" name="photo" id="photo" required  class="form-control h-100 border-0" onchange="readURL(this);">
         </div> 
         
@@ -24,31 +25,26 @@
        
        <div class="m-auto" style="width:635px">
           <h5 class="text-muted float-right"> نتيجة البحث: 0</h5><br><br>
-          <img src="http://placehold.it/100x100" class="float-right"> 
-          <div style="height:500px">
-          {{--<div class="form-control" style="height:200px ; margin-top: 20px">--}}
-            {{--<img src="{{asset('img/frontend/profileImage.png')}}" id="image" class="h-100 d-block mx-auto">--}}
-  
 
-        {{--</div>--}}
-        </div>
        </div>
-        
 
+        <div class="col-lg-8 col-md-12 col-s-12 all-missing">
+            <div class="row" id="row">
+
+
+            </div>
+        </div>
 
     </form>
 
 
 
 
+
+
 </div>
 
-    <div class="col-lg-12 all-missing">
-        <div class="row" id="row">
 
-
-        </div>
-    </div>
 
 
 
@@ -139,6 +135,8 @@
                         document.getElementById('loading').style.display = "none";
 
                         $("#serach").attr("disabled", false);
+
+                        $(".text-muted").html('نتيجة البحث: '+data.length);
                     },
                     error: function(data){
                         document.getElementById('loading').style.display = "none";

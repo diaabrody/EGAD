@@ -26,6 +26,7 @@ class StoreReportChildRequest extends FormRequest
             'location.required' =>  "من فضلك ادخل العنوان",
             'area.required' =>  "من فضلك ادخل الحي",
             'city.required' =>  "من فضلك ادخل المنطقه",
+            'reporter_phone_number.regex' => 'برجاء ادخال رقم موبايل صحيح',
 
 
         ];
@@ -45,8 +46,8 @@ class StoreReportChildRequest extends FormRequest
             'gender'=>'required',
             'location'=>'required' ,
             'area'=>'required' ,
-            'city'=>'required'
-
+            'city'=>'required',
+      'reporter_phone_number'=>'regex:/(01)[0-9]{9}/'
 
         ];
     }

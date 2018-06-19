@@ -23,7 +23,7 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th> Commentable Type </th>
+                           
                             <th> Commented By </th>
                             <th> Report Id </th>
                             <th> Comment </th>
@@ -33,13 +33,20 @@
                         <tbody>
                         @foreach ($comments as $comment)
                             <tr>
-                                <td> {{$comment->commentable_type}}</td>
-                                <td><a href="/admin/auth/user/{{$comment->user->id}}"> {{$comment->user->first_name}}</a></td>
-                                <td> <a href="/admin/report/{{$comment->commentable_id}}">{{$comment->commentable_id}}</a></td>
-                                <td> {{$comment->text}}</td>
-                                <td>{!! $comment->action_buttons !!}</td>
+                                <td><a href="/admin/auth/user/{{$comment->user_id}}"> {{ $userModel::getAuthor($comment->user_id)['name']}}</a></td>
+                                <td> <a href="/admin/report/{{$comment->item_id}}">{{$comment->item_id}}</a></td>
+                                <td> {{$comment->comment}}</td>
+                                <td><div class="btn-group btn-group-sm" report="group" aria-label="Report Actions">
+                                        <a href="/admin/comment/{{$comment->id}}/edit" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="{{__('buttons.general.crud.edit')}}"></i></a>
+                                        <a href="/admin/comment/{{$comment->id}}/destroy"
+			 data-method="delete"
+			 data-trans-button-cancel="{{__('buttons.general.cancel')}}"
+			 data-trans-button-confirm="{{__('buttons.general.crud.delete')}}"
+			 data-trans-title="{{__('strings.backend.general.are_you_sure')}}"
+			 class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="{{__('buttons.general.crud.delete')}}"></i></a> 
+                                </div></td>
                             </tr>
-                        @endforeach
+                        @endforeach 
                         </tbody>
                     </table>
                 </div>
@@ -54,7 +61,7 @@
 
             <div class="col-5">
                     <div class="float-right">
-                        {!! $comments->render() !!}
+                        
                     </div>
                 </div><!--col-->
         </div><!--row-->

@@ -10,6 +10,7 @@ Route::put("/reports/{id}" , "ReportsController@update");
 Route::get("/report/children/found" , "ReportsController@childFound")->name('founded')->middleware('auth');
 Route::get("/report/children/search" , "ReportsController@getsearchpage")->middleware('auth');
 Route::post("/report/children/searchfound" , "ReportsController@search");
+Route::get("/report/markfound/{id}" , "ReportsController@markFound");
 
 
 

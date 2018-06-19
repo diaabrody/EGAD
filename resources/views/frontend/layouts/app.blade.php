@@ -182,11 +182,7 @@
                             }
                     })
                     );
-                        search.addWidget(
-                        instantsearch.widgets.stats({
-                        container: '#stats',
-                        })
-                        );
+                        
             search.start();
 
                 </script>
