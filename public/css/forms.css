@@ -1,9 +1,16 @@
-/* .form-header{
+ .form-header{
     font-size: 20px !important;
 }
 
 .form-text{
     font-size: 16px !important;
+}
+.btnfSize{
+    font-size: 20px !important;
+}
+.formStyle{
+    border-radius:20px ; 
+    box-shadow: 0px 0px 8px #888888;
 }
 .bckgroundImage{
     background-image: 
@@ -14,4 +21,4 @@
 }
 .custInputfield input{
     display: none;
-} */
+} 

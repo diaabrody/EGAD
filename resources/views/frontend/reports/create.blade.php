@@ -5,19 +5,33 @@
   <div id="loading" style="display: none" ></div>
 
 
-<form method="post" enctype="multipart/form-data" action="/reports" class="w-75 m-auto px-0 border p-4 bg-light" >
+<form method="post" enctype="multipart/form-data" action="/reports" class="w-75 m-auto px-0 border p-4 bg-light formStyle" >
 
     {{ csrf_field() }}
- <div class="col-lg-8 float-right">
-    <div class="form-group">
-<label for="name" class="float-right">اسم المفقود</label>
-    <input type="text" name="name" class="form-control" placeholder="ادخل اسم المفقود">
+<div class="row p-4 text-secondary">
+  
+      <div class="col-lg-4 col-md-6 col-sm-8">
+  <div class="form-control" style="height:200px">
+      <img src="{{asset('img/frontend/profileImage.png')}}" id="image" class=" d-block mx-auto w-100">
 
-</div>
+
+  </div>
+  <h4 class="form-group">
+      <label for="photo" class="float-right py-2">صوره المفقود</label>
+      <input type="file" name="photo" class="form-control" placeholder="ادخل الصوره" onchange="readURL(this);">
+
+  </h4>
+
+</div>    
+ <div class="col-lg-8 float-right">
+    <h4 class="form-group">
+      <label for="name" class="float-right">اسم المفقود</label>
+      <input type="text" name="name" class="form-control" placeholder="ادخل اسم المفقود">
+    </h4>
 
                 <div class="row">
-                            <div class="col">
-                                <div class="form-group">
+                            <div class="col mb-2">
+                                <h4 class="form-group">
                                 {{ html()->label(__('النوع'))->for('gender')->class('float-right ml-4') }}
 
                                     <div>
@@ -25,21 +39,21 @@
                                         <input type="radio" name="gender" value="female" class="float-right"  />
                                         <span class="float-right mr-2">أنثي </span>
                                     </div>
-                                </div><!--form-group-->
+                                </h4><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->
 
 
 
 
-<div class="form-group">
+<h4 class="form-group">
     <label for="age" class="float-right">العمر</label>
     <input type="number" name="age" class="form-control" min="1" placeholder="ادخل العمر">
-</div>
+</h4>
      
 <div class="row">
                             <div class="col-12 col-md-6">
-                                <div class="form-group">
+                                <h4 class="form-group">
                                     {{ html()->label(__('المدينة'))->for('city')->class('float-right') }}
 
                                      <select class="form-control" name="city" id="city" >
@@ -48,78 +62,67 @@
                                             <option value="{{ $city->name }}">{{ $city->name}}</option>
                                         @endforeach
                                     </select>
-                                </div><!--col-->
+                                </h4><!--col-->
                             </div><!--row-->
 
                             <div class="col-12 col-md-6">
-                                <div class="form-group">
+                                <h4 class="form-group">
                                 {{ html()->label(__('الحي'))->for('area')->class('float-right') }}
 
                                 <select name="area" id="region" class="form-control" >
                                
                                </select>
-                                </div><!--form-group-->
+                                </h4><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->     
 
 
 
-     <div class="form-group">
+  <h4 class="form-group">
     <label for="location" class="float-right">العنوان</label>
     <input type="text" name="location" class="form-control" placeholder="ادخل المنطقه" id="autocomplete" autocomplete="off"  >
-
-</div>
+  </h4>
 
 
     @if ($status == "normal" )
-    <div class="form-group">
+    <h4 class="form-group">
         <label for="lost_since" class="float-right">منذ متي فقد</label>
         <input type="date"  name="lost_since" class="form-control" placeholder="منذ متي فقد">
-    </div>
+    </h4>
      @elseif($status == "found" )
-         <div class="form-group">
+         <h4 class="form-group">
              <label for="lost_since" class="float-right">منذ متي وجد </label>
              <input type="date"  name="lost_since" class="form-control" placeholder="منذ متي وجد">
-         </div>
+         </h4>
     @endif
 
      @if ($status != "quick")
-<div class="form-group">
+<h4 class="form-group">
     <label for="special_sign" class="float-right">علامات مميزة</label>
     <textarea  name="special_sign" class="form-control" placeholder="ادخل علامات مميزة"></textarea>
-</div>
+</h4>
 
 
-<div class="form-group">
+<h4 class="form-group">
   <label for="reporter_phone_number" class="float-right">رقم تليفون المبلغ</label>
   <input type="text" name="reporter_phone_number" class="form-control" placeholder="ادخل رقم تليفون المبلغ">
-</div>
+</h4>
 
      @endif
   <input type="hidden" value="{{$status}}" name="status">
 
-    <button type="submit" class="btn btn-primary btn-lg btn-block text-white font-weight-bold" id="report" onclick="displayloading()">انشر بلاغ</button>
+    <button type="submit" class="btn btn-primary btn-lg btn-block text-white font-weight-bold btnfSize" id="report" onclick="displayloading()">انشر بلاغ</button>
 
 
 
 </div>
 
-<div class="col-lg-4">
-  <div class="form-control" style="height:200px">
-      <img src="{{asset('img/frontend/profileImage.png')}}" id="image" class="h-100 d-block mx-auto">
 
-
-  </div>
-  <div class="form-group">
-      <label for="photo" class="float-right">صوره المفقود</label>
-      <input type="file" name="photo" class="form-control" placeholder="ادخل الصوره" onchange="readURL(this);">
-
-  </div>
-
-</div>
 
   <div style="clear:both"></div>
+  </div>
 </form>
+
 </div>
 
 {{--location-spinner--}}

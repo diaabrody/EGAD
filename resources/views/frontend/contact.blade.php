@@ -4,20 +4,20 @@
 
 @section('content')
 <div class="container pt-5 pb-5">
-    <div class="row justify-content-center">
-        <div class="col col-sm-8 align-self-center">
-            <div class="card">
-                <div class="card-header">
-                    <strong class="float-right">
+    <div class="row justify-content-center text-secondary " >
+        <div class="col-lg-6 align-self-center">
+            <div class="card formStyle" >
+                <div class="card-header p-4 bg-white text-center font-weight-bold text-primary">
+                   <h2> <strong>
                         {{ __('تواصل معنا') }}
-                    </strong>
+                    </strong></h2>
                 </div><!--card-header-->
 
-                <div class="card-body">
+                <div class="card-body p-4 bg-light">
                     {{ html()->form('POST', route('frontend.contact.send'))->open() }}
                         <div class="row">
                             <div class="col">
-                                <div class="form-group">
+                                <h4 class="form-group">
                                     {{ html()->label(__('validation.attributes.frontend.name'))->for('name')->class('float-right') }}
 
                                     {{ html()->text('name')
@@ -26,13 +26,13 @@
                                         ->attribute('maxlength', 191)
                                         ->required()
                                         ->autofocus() }}
-                                </div><!--form-group-->
+                                </h4><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->
 
                         <div class="row">
                             <div class="col">
-                                <div class="form-group">
+                                <h4 class="form-group">
                                     {{ html()->label(__('validation.attributes.frontend.email'))->for('email')->class('float-right') }}
 
                                     {{ html()->email('email')
@@ -40,13 +40,13 @@
                                         ->placeholder(__(''))
                                         ->attribute('maxlength', 191)
                                         ->required() }}
-                                </div><!--form-group-->
+                                </h4><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->
 
                         <div class="row">
                             <div class="col">
-                                <div class="form-group">
+                                <h4 class="form-group">
                                     {{ html()->label(__('رقم الهاتف'))->for('phone')->class('float-right') }}
 
                                     {{ html()->text('phone')
@@ -54,27 +54,27 @@
                                         ->placeholder(__(''))
                                         ->attribute('maxlength', 191)
                                         ->required() }}
-                                </div><!--form-group-->
+                                </h4><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->
 
                         <div class="row">
                             <div class="col">
-                                <div class="form-group">
+                                <h4 class="form-group">
                                     {{ html()->label(__('الرسالة'))->for('message')->class('float-right') }}
 
                                     {{ html()->textarea('message')
                                         ->class('form-control')
                                         ->placeholder(__(''))
                                         ->attribute('rows', 3) }}
-                                </div><!--form-group-->
+                                </h4><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->
 
                         <div class="row">
                             <div class="col">
                                 <div class="form-group mb-0 clearfix">
-                            <input type="submit" class="btn btn-secondary btn-lg w-25 text-white font-weight-bold" value="ارسال">                
+                            <input type="submit" class="btn btn-primary btn-lg w-25 text-white font-weight-bold btnfSize" value="ارسال">                
 <!--                                    {{ form_submit(__('labels.frontend.contact.button')) }}-->
                                 </div><!--form-group-->
                             </div><!--col-->

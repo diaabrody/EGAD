@@ -67,9 +67,9 @@ function readURL(input) {
 
         reader.onload = function (e) {
             $("#image")
-                .attr('src', e.target.result);
-//                .width(150)
-//                .height(200);
+                .attr('src', e.target.result)
+//                .width(228)
+                .height(192);
         };
 
         reader.readAsDataURL(input.files[0]);

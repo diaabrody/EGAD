@@ -148,7 +148,7 @@
         <div class="col">
             <div class="form-group mb-0 clearfix">
 <!--                {{ form_submit(__('labels.general.buttons.update')) }}-->
-                <input type="submit" class="btn btn-warning btn-lg btn-block text-white font-weight-bold" value="احفظ التعديلات">
+                <input type="submit" class="btn btn-warning btn-lg btn-block text-white font-weight-bold " value="احفظ التعديلات">
             </div><!--form-group-->
         </div><!--col-->
     </div><!--row-->
