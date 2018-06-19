@@ -207,7 +207,7 @@
     <div class="row">
     <div class="col-12">
         <div style="margin: auto; width: auto; height: 500px;">
-            {!! Mapper::render() !!}
+            {!! $map !!}
         </div>
     </div>
 </div>

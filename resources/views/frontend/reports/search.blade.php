@@ -9,18 +9,31 @@
 <div class="container" id="cont">
 
     <form method="post" enctype="multipart/form-data" id="upload_form"  role="form">
+     <div class="d-flex justify-content-center mb-5">   
+        <div class=" custInputfield border p-3 w-50" style="height:40px">
+        <p class="float-right">ابحث بالصورة</p>
+        <input type="hidden" name="_token" value="{{ csrf_token()}}" >
+         <i class="fas fa-camera" style="font-size:20px"></i>
+        <input type="file" name="photo" id="photo" required  class="form-control h-100 border-0" onchange="readURL(this);">
+        </div> 
+        
 
-        <input type="hidden" name="_token" value="{{ csrf_token()}}">
+       <button class=" btn btn-secondary m-0 mr-2 text-white font-weight-bold form-text"  type="submit" id="serach" style="margin-top:20px;height:40px;width:90px"  onclick="displayloading()"  >بحث</button>
 
-        <input type="file" name="photo" id="photo" required  class="form-control h-100" onchange="readURL(this);">
-
-       <button class="btn btn-lg btn-success center-block d-block"  type="submit" id="serach" style="margin-top: 20px"  onclick="displayloading()"  >Search</button>
-
-        {{--<div class="form-control" style="height:200px ; margin-top: 20px">--}}
+       </div>
+       
+       <div class="m-auto" style="width:635px">
+          <h5 class="text-muted float-right"> نتيجة البحث: 0</h5><br><br>
+          <img src="http://placehold.it/100x100" class="float-right"> 
+          <div style="height:500px">
+          {{--<div class="form-control" style="height:200px ; margin-top: 20px">--}}
             {{--<img src="{{asset('img/frontend/profileImage.png')}}" id="image" class="h-100 d-block mx-auto">--}}
-
+  
 
         {{--</div>--}}
+        </div>
+       </div>
+        
 
 
     </form>

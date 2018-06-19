@@ -24,12 +24,12 @@
                 <div class="row mt-4 mb-4">
                     <div class="col">
                         <div class="form-group row">
-                            {{ html()->label(__('validation.attributes.backend.access.users.first_name'))->class('col-md-2 form-control-label')->for('first_name') }}
+                            {{ html()->label("First name")->class('col-md-2 form-control-label')->for('first_name') }}
 
                             <div class="col-md-10">
                                 {{ html()->text('first_name')
                                     ->class('form-control')
-                                    ->placeholder(__('validation.attributes.backend.access.users.first_name'))
+                                    ->placeholder("First name")
                                     ->attribute('maxlength', 191)
                                     ->required()
                                     ->autofocus() }}
@@ -37,12 +37,12 @@
                         </div><!--form-group-->
 
                         <div class="form-group row">
-                        {{ html()->label(__('validation.attributes.backend.access.users.last_name'))->class('col-md-2 form-control-label')->for('last_name') }}
+                        {{ html()->label("Last name")->class('col-md-2 form-control-label')->for('last_name') }}
 
                             <div class="col-md-10">
                                 {{ html()->text('last_name')
                                     ->class('form-control')
-                                    ->placeholder(__('validation.attributes.backend.access.users.last_name'))
+                                    ->placeholder("Last name")
                                     ->attribute('maxlength', 191)
                                     ->required() }}
                             </div><!--col-->
@@ -81,41 +81,41 @@
                                                     </div><!--col-->
                                                 </div><!--form-group-->
                         <div class="form-group row">
-                            {{ html()->label(__('validation.attributes.backend.access.users.email'))->class('col-md-2 form-control-label')->for('email') }}
+                            {{ html()->label("Email")->class('col-md-2 form-control-label')->for('email') }}
 
                             <div class="col-md-10">
                                 {{ html()->email('email')
                                     ->class('form-control')
-                                    ->placeholder(__('validation.attributes.backend.access.users.email'))
+                                    ->placeholder("Email")
                                     ->attribute('maxlength', 191)
                                     ->required() }}
                             </div><!--col-->
                         </div><!--form-group-->
 
                         <div class="form-group row">
-                            {{ html()->label(__('validation.attributes.backend.access.users.password'))->class('col-md-2 form-control-label')->for('password') }}
+                            {{ html()->label("Password")->class('col-md-2 form-control-label')->for('password') }}
 
                             <div class="col-md-10">
                                 {{ html()->password('password')
                                     ->class('form-control')
-                                    ->placeholder(__('validation.attributes.backend.access.users.password'))
+                                    ->placeholder("Password")
                                     ->required() }}
                             </div><!--col-->
                         </div><!--form-group-->
 
                         <div class="form-group row">
-                            {{ html()->label(__('validation.attributes.backend.access.users.password_confirmation'))->class('col-md-2 form-control-label')->for('password_confirmation') }}
+                            {{ html()->label("Confirm Password")->class('col-md-2 form-control-label')->for('password_confirmation') }}
 
                             <div class="col-md-10">
                                 {{ html()->password('password_confirmation')
                                     ->class('form-control')
-                                    ->placeholder(__('validation.attributes.backend.access.users.password_confirmation'))
+                                    ->placeholder("Confirm Password")
                                     ->required() }}
                             </div><!--col-->
                         </div><!--form-group-->
 
                         <div class="form-group row">
-                            {{ html()->label(__('validation.attributes.backend.access.users.timezone'))->class('col-md-2 form-control-label')->for('timezone') }}
+                            {{ html()->label("Timezone")->class('col-md-2 form-control-label')->for('timezone') }}
 
                             <div class="col-md-10">
                                 <select name="timezone" id="timezone" class="form-control" required="required">
@@ -127,7 +127,7 @@
                         </div><!--form-group-->
 
                         <div class="form-group row">
-                            {{ html()->label(__('validation.attributes.backend.access.users.active'))->class('col-md-2 form-control-label')->for('active') }}
+                            {{ html()->label("Active")->class('col-md-2 form-control-label')->for('active') }}
 
                             <div class="col-md-10">
                                 <label class="switch switch-3d switch-primary">
@@ -139,7 +139,7 @@
                         </div><!--form-group-->
 
                         <div class="form-group row">
-                            {{ html()->label(__('validation.attributes.backend.access.users.confirmed'))->class('col-md-2 form-control-label')->for('confirmed') }}
+                            {{ html()->label("Confirmed")->class('col-md-2 form-control-label')->for('confirmed') }}
 
                             <div class="col-md-10">
                                 <label class="switch switch-3d switch-primary">
@@ -152,7 +152,7 @@
 
                         @if (! config('access.users.requires_approval'))
                             <div class="form-group row">
-                                {{ html()->label(__('validation.attributes.backend.access.users.send_confirmation_email') . '<br/>' . '<small>' .  __('strings.backend.access.users.if_confirmed_off') . '</small>')->class('col-md-2 form-control-label')->for('confirmation_email') }}
+                                {{ html()->label('Send Confirmation E-mail' . '<br/>' . '<small>' . 'if confirmed is off' . '</small>')->class('col-md-2 form-control-label')->for('confirmation_email') }}
 
                                 <div class="col-md-10">
                                     <label class="switch switch-3d switch-primary">

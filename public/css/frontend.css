@@ -10454,11 +10454,7 @@ body.form-text {
   font-size: 16 px;
 }
 
-.active,
-.card-header ul li a:hover {
-  background-color: palegreen;
-  border: 2px solid;
-}
+
 
 .profile-picture {
   max-height: 90px;

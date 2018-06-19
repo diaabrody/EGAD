@@ -15,29 +15,28 @@
             <a class="nav-link" id="password-tab" data-toggle="tab" href="#password" role="tab" aria-controls="password" aria-selected="false">تغيير كلمة المرور</a>
         </li>
     </ul>
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-            <div class="col-lg-4" style="height:200px">
-                <!--    <div class="form-control mb-3" style="height:200px">-->
-                <img src="{{ $logged_in_user->picture }}" id="image"  class="h-100 d-block mx-auto img-fluid">
-                <!--    </div>-->
-
-            </div>
-            <div class="col-lg-8">
-                <div class="form-group float-right">
-                    <p>{{ $logged_in_user->name }}</p>
-                    <p>{{ $logged_in_user->email }}</p>
-                    <p>{{ $logged_in_user->phone_no }}</p>
-                    <p>{{ $logged_in_user->date_of_birth }}</p>
-                    <p>{{ $logged_in_user->city}}</p>
-                    <p>{{ $logged_in_user->region}}</p>
-
-
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="tab-content mt-5 " id="myTabContent">
+        <div class="tab-pane fade show active w-25 mx-auto mb-5 border-0" id="home" role="tabpanel" aria-labelledby="home-tab">
+           
+           <div class="card mb-3 border-0">
+  <img class="card-img-top img-thumbnail w-50 m-auto" src="{{ $logged_in_user->picture }}" id="image" style="border-radius:50%; height:140px;z-index:1;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+  <div class="card-body bg-light border px-4 pb-4  text-muted" style="height:155px;margin-top:-22px;padding-top:40px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    
+                    <h5 class="float-right card-text mb-0"><i class="fas fa-user ml-3"></i>{{ $logged_in_user->name }}</h5><br>
+                    <h5 class="float-right mb-0 py-2"><i class="fas fa-envelope ml-3"></i>{{ $logged_in_user->email }}</h5><br><br>
+                    <h5 class="float-right mb-0"><i class="fas fa-mobile ml-4"></i>{{ $logged_in_user->phone_no }}</h5><br>
+                    <h5 class="float-right mb-0">{{ $logged_in_user->date_of_birth }}</h5>
+                    <h5 class="float-right mb-0 pt-2"><i class="fas fa-thumbtack ml-4"></i>{{ $logged_in_user->city}},{{ $logged_in_user->region}}</h5><br>
+<!--                    <h5 class="float-right mb-0 mr-5"></h5>-->
+             
+  </div>
+</div>
+        </div>        
+        
+        
+        
+        <div class="tab-pane fade border w-75 mx-auto mb-5" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
             @foreach ($reports as $report)
                 <form class="w-100 m-auto  p-4 bg-light mb-3" >
@@ -49,7 +48,7 @@
                             <div class="bg-white p-4">
 
                                 <div class="media align-items-center">
-                                    <img class="ml-3 float-right " src="{{ $report->photo }}" alt="Avatar" style="width:70px;height:70px">
+                                    <img class="ml-3 float-right img-thumbnail" src="{{ $report->photo }}" alt="Avatar" style="width:70px;height:70px">
                                     <div class="media-body">
                                         <h5 class="mt-0  float-right mt-3"> {{ $report->name }}</h5><br><br>
                                         <a href="/report/{{ $report->id }}/edit" class="btn  btn-primary font-weight-bold mt-2  float-right"> تعديل البلاغ </a>
@@ -68,10 +67,11 @@
                 </form>
 
             @endforeach
-
-
         </div>
-        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        
+        
+        
+        <div class="tab-pane fade w-75 mx-auto mb-5" id="contact" role="tabpanel" aria-labelledby="contact-tab">
             {{ html()->modelForm($logged_in_user, 'PATCH', route('frontend.user.profile.update'))->id('editForm')->class('form-horizontal')->attribute('enctype', 'multipart/form-data')->open() }}
             <div class="row ">
                 <div class="col">
@@ -207,17 +207,19 @@
                 <div class="col">
                     <div class="form-group mb-0 clearfix">
                     <!--                {{ form_submit(__('labels.general.buttons.update')) }}-->
-                        <input type="submit" class="btn btn-warning btn-lg btn-block text-white font-weight-bold" value="احفظ التعديلات">
+                        <input type="submit" class="btn btn-warning btn-lg  text-white font-weight-bold" value="احفظ التعديلات">
                     </div><!--form-group-->
                 </div><!--col-->
             </div><!--row-->
             {{ html()->closeModelForm() }}
         </div>
-        <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
-
-
+        
+        
+        
+        
+        <div class="tab-pane fade w-75 mx-auto mb-5" id="password" role="tabpanel" aria-labelledby="password-tab">
             {{ html()->form('PATCH', route('frontend.auth.password.update'))->class('form-horizontal')->open() }}
-            <div class="row">
+            <div class="row ">
                 <div class="col">
                     <div class="form-group">
                         {{ html()->label(__('validation.attributes.frontend.old_password'))->for('old_password')->class('float-right') }}
@@ -261,7 +263,7 @@
                 <div class="col">
                     <div class="form-group mb-0 clearfix">
                     <!--                {{ form_submit(__('labels.general.buttons.update') . ' ' . __('validation.attributes.frontend.password')) }}-->
-                        <input type="submit" class="btn btn-warning btn-lg btn-block text-white font-weight-bold" value="تحديث كلمة المرور">
+                        <input type="submit" class="btn btn-secondary btn-lg text-white font-weight-bold" value="تحديث كلمة المرور">
                     </div><!--form-group-->
                 </div><!--col-->
             </div><!--row-->

@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5" style="height: 120px;">
     <a href="{{ route('frontend.index') }}" class="navbar-brand"><img id="nav-logo" style="width: 90px; margin-top: -55px;" src="{{asset('img/frontend/logo.png')}}" alt="logo"></a>
+=======
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5" style="height: 80px;">
+    <a href="{{ route('frontend.index') }}" class="navbar-brand"><img id="nav-logo" style="width: 90px;" src="{{asset('images/logo(1).png')}}" alt="logo"></a>
+>>>>>>> eff5052f145cb073cecf2f69e8edf2af0460756c
 
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('labels.general.toggle_navigation') }}">
         <span class="navbar-toggler-icon"></span>
@@ -58,7 +63,7 @@
                             <a href="{{ route('admin.dashboard') }}" class="dropdown-item">{{ __('navs.frontend.user.administration') }}</a>
                         @endcan
 
-                        <a href="{{ route('frontend.user.account') }}" class="dropdown-item {{ active_class(Active::checkRoute('frontend.user.account')) }}">{{ __('navs.frontend.user.account') }}</a>
+                        <a href="/account" class="dropdown-item {{ active_class(Active::checkRoute('frontend.user.account')) }}">{{ __('navs.frontend.user.account') }}</a>
                         <a href="{{ route('frontend.auth.logout') }}" class="dropdown-item">{{ __('navs.general.logout') }}</a>
                     </div>
                 </li>

@@ -62,6 +62,7 @@ return [
                 'permissions'         => 'صلاحيات',
 
                 'table' => [
+                    'first_name'      => 'الاسم الاول',                    
                     'confirmed'      => 'مؤكد',
                     'created'        => 'تم الإنشاء',
                     'email'          => 'البريد الإلكتروني',
@@ -73,6 +74,7 @@ return [
                     'roles'          => 'الأدوار',
                     'social' => 'Social',
                     'total'          => 'مجموع المستخدم|مجموع المستخدمين',
+                    'permissions' => 'الادوار الاخري'
                 ],
 
                 'tabs' => [
