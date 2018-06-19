@@ -1,0 +1,28 @@
+header {
+    height: 100%;
+    width: 100%;
+    background-image: url("/img/frontend/header.png");
+    background-size: cover;
+
+}
+
+.navbar-nav {
+    padding: 8px 10px;
+    .nav-item {
+        font-size: 18px;
+        font-family: "Mirza Semibold";
+        .nav-link {
+            color: $white;
+            padding: 0;
+            margin-left: 16px;
+            @include hover-focus {
+              color: $primary;
+            }
+
+            
+          }
+          .nav-link:active {
+              color: $primary;
+          }
+    }
+}

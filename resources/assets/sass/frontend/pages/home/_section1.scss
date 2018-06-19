@@ -26,3 +26,19 @@
 	}
 }
 
+#sec1 {
+	background-image: url("/img/frontend/sec1.png");
+	background-size: cover;
+	width: 100%;
+	.div-text {
+		padding: 150px 0;
+		h1 {
+			font-size: 48px;
+			color: $secondary;
+		}
+		h2{
+			color: $success;
+		}
+	}
+}
+

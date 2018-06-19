@@ -1,0 +1,42 @@
+#sec5 {
+    background-color: #f4efdd;
+    padding: 105px 0;
+    #social-h1 {
+        font-family: "Mirza Semibold";
+		font-size: 48px;
+		text-align: center;
+		margin-bottom: 60px;
+		color: $secondary;
+    }
+    .div-text {
+        padding: 0;
+        h1 {
+			font-size: 48px;
+			color: $secondary;
+		}
+		h2{
+			color: $success;
+        }
+        .main-btn {
+            background-color: #3b5998;
+            box-shadow: 0 5px #324e8a;
+        }
+    }
+    .card {
+        border-radius: 0;
+        .card-header {
+            background-color: #1dcaff;
+            color: #fff;
+            text-align: right;
+            font-family: "Mirza Semibold";
+            font-size: 24px;
+            padding-top: 0;
+            margin: 0;
+            border-radius: 0;
+        }
+        .card-body {
+            height: 230px;
+            overflow: scroll;
+        }
+    }
+}

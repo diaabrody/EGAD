@@ -1,0 +1,16 @@
+#sec3 {
+    background-image: url("/img/frontend/sec3.png");
+    background-size: cover;
+    padding: 105px;
+    width: 100%;
+    .div-text {
+        padding: 0;
+        h1 {
+			font-size: 48px;
+			color: $secondary;
+		}
+		h2{
+			color: $success;
+		}
+    }
+}

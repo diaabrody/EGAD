@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-12">
-                <img id="footer-logo" src="/images/logo.png" alt="logo">
+                <a href="#"><img id="footer-logo" src="{{asset('img/frontend/logo.png')}}" alt="logo"></a>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <ul>
@@ -19,9 +19,8 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <ul>
-                    <li><a href="/">الرئيسية</a></li>
-                    <li><a href="/reports/create/normal">إنشر بلاغ</a></li>
-                    <li><a href="/reports/create/found">وجدت مفقود</a></li>
+                    <li><a href="/">من نحن</a></li>
+                    <li><a href="/reports/create/normal">تواصل معنا</a></li>
                 </ul>
             </div>            
         </div>
