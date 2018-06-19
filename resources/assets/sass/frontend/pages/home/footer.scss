@@ -1,3 +1,14 @@
+html,body {
+	height: 100%;
+}
+
+#wrap {
+	min-height: calc(100vh - 260px);
+	height: auto;
+	// margin: 0 auto -200px;
+	// padding: 0 0 200px;
+}
+
 footer {
     // position: fixed;
     // left: 0;
@@ -5,6 +16,8 @@ footer {
     // width: 100%;
     background-color: $info;
     padding: 50px 0;
+    box-sizing: border-box;
+    height: 200px;
     text-align: center;
     #footer-logo {
         width: 100px;

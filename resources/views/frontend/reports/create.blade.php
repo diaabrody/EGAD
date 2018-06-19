@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-
+<div class="container pt-5 pb-5">
   <div id="loading" style="display: none" ></div>
 
 
@@ -96,7 +96,7 @@
 
     <input type="hidden" value="{{$status}}" name="status">
 
-      <button type="submit" class="btn btn-warning btn-lg btn-block text-white font-weight-bold" id="report" onclick="displayloading()">انشر بلاغ</button>
+      <button type="submit" class="btn btn-primary btn-lg btn-block text-white font-weight-bold" id="report" onclick="displayloading()">انشر بلاغ</button>
 
 
 
@@ -118,7 +118,7 @@
 
     <div style="clear:both"></div>
 </form>
-
+</div>
 
   {{--location-spinner--}}
   <link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />

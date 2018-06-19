@@ -3,6 +3,8 @@
 @section('title', app_name() . ' | Reports')
 
 @section('content')
+<div class="container pt-5 pb-5">
+  
 <div class="all-missing">
 <h1>كل المفقودين</h1>
 
@@ -27,6 +29,7 @@
 
 </div>
 
+</div>
 @endsection
 
 <style>

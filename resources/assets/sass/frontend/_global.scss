@@ -1,4 +1,10 @@
 // Header Styles
+* {
+	font-family: "Mirza Semibold";
+}
+
+
+
 .logged-in-as {
   margin: 0;
   border-radius: 0;
@@ -32,4 +38,11 @@
 		}
 		}
 	}
+}
+
+button {
+	border-radius: none;
+	padding: 10px 0;
+	box-shadow: 0 5px #d05a22;
+	border: none;
 }

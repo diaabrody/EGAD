@@ -3,6 +3,7 @@
 @section('title', app_name() . ' | Contact Us')
 
 @section('content')
+<div class="container pt-5 pb-5">
     <div class="row justify-content-center">
         <div class="col col-sm-8 align-self-center">
             <div class="card">
@@ -83,4 +84,5 @@
             </div><!--card-->
         </div><!--col-->
     </div><!--row-->
+                                    </div>
 @endsection
