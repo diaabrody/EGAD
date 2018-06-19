@@ -19,11 +19,20 @@
             <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/form.min.css" rel="stylesheet">
             <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/button.min.css" rel="stylesheet">
             <link href="{{ asset('/vendor/laravelLikeComment/css/style.css') }}" rel="stylesheet">
+            <link rel="stylesheet" href="{{asset('css/forms.css')}}">
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+           
+            <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.js"></script>
+            
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+            
+           
+            
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
             @yield('meta')
-
+            
 
             {{-- See https://laravel.com/docs/5.5/blade#stacks for usage --}}
             @stack('before-styles')
@@ -194,7 +203,7 @@
                             cluster: 'eu',
                             encrypted: false,
                     });
-                    Pusher.logToConsole = true;
+                   
 
                     function updateNotificationCount(count){
                     notificationsCountElem.attr('data-count', count);
@@ -240,7 +249,6 @@
 
                     function DrawHtml(data,realNotificaion) {
                     // Bind a function to a Event (the full Laravel class)
-                    
                     var existingNotifications = notifications.html();
                     console.log(existingNotifications);
                     var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
@@ -269,28 +277,11 @@
                     `;
                     notifications.html(newNotificationHtml + existingNotifications);
                     }
-
-                 
                     @endauth
 
                 </script>
 
-<script>
-  // Get the container element
-var ulContainer = document.getElementById("myUl");
 
-// Get all buttons with class="btn" inside the container
-var anchors = ulContainer.getElementsByClassName("nav-link");
-
-// Loop through the buttons and add the active class to the current/clicked button
-for (var i = 0; i < anchors.length; i++) {
-  anchors[i].addEventListener("click", function() {
-    var current = document.getElementsByClassName("active");
-    current[0].className = current[0].className.replace(" active", "");
-    this.className += " active";
-  });
-}            
-</script>
        
             <script type="text/javascript">
                         $('#city').on('change',function(){

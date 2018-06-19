@@ -9,12 +9,14 @@
 <div class="container" id="cont">
 
     <form method="post" enctype="multipart/form-data" id="upload_form"  role="form">
+        <div class="d-flex">
+        <input type="hidden" name="_token" value="{{ csrf_token()}}" >
+         <i class="fas fa-camera" style="font-size:20px"></i>
+        <input type="file" name="photo" id="photo" required  class="form-control h-100 border-0" onchange="readURL(this);">
+        </div> 
+        
 
-        <input type="hidden" name="_token" value="{{ csrf_token()}}">
-
-        <input type="file" name="photo" id="photo" required  class="form-control h-100" onchange="readURL(this);">
-
-       <button class="btn btn-lg btn-success center-block d-block"  type="submit" id="serach" style="margin-top: 20px"  onclick="displayloading()"  >Search</button>
+       <button class="btn btn-lg btn-secondary"  type="submit" id="serach" style="margin-top:20px;width:100px;height:40px"  onclick="displayloading()"  >Search</button>
 
         {{--<div class="form-control" style="height:200px ; margin-top: 20px">--}}
             {{--<img src="{{asset('img/frontend/profileImage.png')}}" id="image" class="h-100 d-block mx-auto">--}}

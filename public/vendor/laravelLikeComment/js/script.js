@@ -50,7 +50,7 @@ $(document).on('submit', '.laravelComment-form', function(){
 
     $.ajax({
          method: "get",
-         url: "/laravellikecomment/comment/add",
+         url: "/laravellikecomment/comment/store",
          data: {parent: parent, comment: comment, item_id: item_id},
          dataType: "json"
       })
