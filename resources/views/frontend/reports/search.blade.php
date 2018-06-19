@@ -8,18 +8,18 @@
 
 <div class="container pt-5 pb-5" id="cont">
 
-    <form method="post" enctype="multipart/form-data" id="upload_form"  role="form">
+    <form method="post" enctype="multipart/form-data" id="upload_form"  role="form" >
         <input type="hidden" name="_token" value="{{ csrf_token()}}" >
      <div class="d-flex justify-content-center mb-5">   
         <div class=" custInputfield border p-3 w-50" style="height:40px">
 <label for="photo">
          <i class="fas fa-camera" style="font-size:20px"></i>
 </label>
-        <input type="file" name="photo" id="photo" required  class="form-control h-100 border-0" onchange="readURL(this);">
-        </div> 
-        
+        <input type="file" name="photo" id="photo"    class="form-control h-100 border-0" required >
+        </div>
 
-       <button class=" btn btn-secondary m-0 mr-2 text-white font-weight-bold form-text"  type="submit" id="serach" style="margin-top:20px;height:40px;width:90px"  onclick="displayloading()"  >بحث</button>
+
+         <button class=" btn btn-secondary m-0 mr-2 text-white font-weight-bold form-text"  type="submit" id="serach" style="margin-top:20px;height:40px;width:90px"  onclick="displayloading()"  >بحث</button>
 
        </div>
        

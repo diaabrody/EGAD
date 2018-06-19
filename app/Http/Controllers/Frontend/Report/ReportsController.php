@@ -122,7 +122,7 @@ class ReportsController extends Controller
         $image = $request->file('photo')->path();  // your base64 encoded
         $base64 = base64_encode(file_get_contents($image));
 
-        $gallery_name = 'newbranch1023';
+        $gallery_name = 'newbranch5001';
         $argumentArray =  [
             "image" => $base64 ,
             "gallery_name" => $gallery_name
@@ -267,7 +267,7 @@ class ReportsController extends Controller
             $image = $request->file('photo')->path();  // your base64 encoded
             $base64 = base64_encode(file_get_contents($image));
 
-            $gallery_name = 'newbranch1023';
+            $gallery_name = 'newbranch5001';
             $argumentArray =  [
                 "image" => $base64 ,
                 "gallery_name" => $gallery_name
@@ -583,7 +583,7 @@ class ReportsController extends Controller
         $image = $request->file('photo')->path();
         $base64 = base64_encode(file_get_contents($image));
 
-        $gallery_name = 'newbranch1023';
+        $gallery_name = 'newbranch5001';
         $argumentArray =  [
             "image" => $base64 ,
             "gallery_name" => $gallery_name
@@ -638,7 +638,7 @@ class ReportsController extends Controller
 
                $result = $this->Kairosobj->removeSubjectFromGallery([
                    "subject_id" => $face_subject_id,
-                   "gallery_name" => "newbranch1023"
+                   "gallery_name" => "newbranch5001"
                ]);
 
 
