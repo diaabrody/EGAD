@@ -24,36 +24,36 @@
             <div class="row mt-4 mb-4">
                 <div class="col">
                     <div class="form-group row">
-                    {{ html()->label(__('validation.attributes.backend.access.users.first_name'))->class('col-md-2 form-control-label')->for('first_name') }}
+                    {{ html()->label("First name")->class('col-md-2 form-control-label')->for('first_name') }}
 
                         <div class="col-md-10">
                             {{ html()->text('first_name')
                                 ->class('form-control')
-                                ->placeholder(__('validation.attributes.backend.access.users.first_name'))
+                                ->placeholder("First name")
                                 ->attribute('maxlength', 191)
                                 ->required() }}
                         </div><!--col-->
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        {{ html()->label(__('validation.attributes.backend.access.users.last_name'))->class('col-md-2 form-control-label')->for('last_name') }}
+                        {{ html()->label("Last name")->class('col-md-2 form-control-label')->for('last_name') }}
 
                         <div class="col-md-10">
                             {{ html()->text('last_name')
                                 ->class('form-control')
-                                ->placeholder(__('validation.attributes.backend.access.users.last_name'))
+                                ->placeholder("Last name")
                                 ->attribute('maxlength', 191)
                                 ->required() }}
                         </div><!--col-->
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        {{ html()->label(__('validation.attributes.backend.access.users.email'))->class('col-md-2 form-control-label')->for('email') }}
+                        {{ html()->label("Email")->class('col-md-2 form-control-label')->for('email') }}
 
                         <div class="col-md-10">
                             {{ html()->email('email')
                                 ->class('form-control')
-                                ->placeholder(__('validation.attributes.backend.access.users.email'))
+                                ->placeholder("Email")
                                 ->attribute('maxlength', 191)
                                 ->required() }}
                         </div><!--col-->
@@ -101,7 +101,7 @@
                                                     </div><!--form-group-->
                             
                     <div class="form-group row">
-                        {{ html()->label(__('validation.attributes.backend.access.users.timezone'))->class('col-md-2 form-control-label')->for('timezone') }}
+                        {{ html()->label("Timezone")->class('col-md-2 form-control-label')->for('timezone') }}
 
                         <div class="col-md-10">
                             <select name="timezone" id="timezone" class="form-control" required="required">
