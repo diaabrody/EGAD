@@ -112,9 +112,7 @@
             <li class="nav-item"><a href="/reports/create/normal" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">إنشر بلاغ</a></li>
             <li class="nav-item"><a href="/reports/create/found" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">وجدت مفقود</a></li>
             <li class="nav-item"><a href="/reports" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">كل المفقودين</a></li>
-            <li class="nav-item"><a href="/reports" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">البحث بالصورة</a></li>
-            <li class="nav-item"><a href="/reports" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">من نحن</a></li>
-            <li class="nav-item"><a href="" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">قصص النجاح</a></li>
+            <li class="nav-item"><a href="/report/children/search" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">البحث بالصورة</a></li>
             @endauth
             <li class="nav-item"><a href="{{route('frontend.contact')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.contact')) }}">تواصل معنا</a></li>
        
@@ -146,14 +144,14 @@
                 </li>
             @endguest
 
-            @if (config('locale.status') && count(config('locale.languages')) > 1)
+            <!-- @if (config('locale.status') && count(config('locale.languages')) > 1)
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownLanguageLink" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">{{ __('menus.language-picker.language') }} ({{ strtoupper(app()->getLocale()) }})</a>
 
                     @include('includes.partials.lang')
                 </li>
-            @endif
+            @endif -->
         </ul>
     </div>
 </nav>
