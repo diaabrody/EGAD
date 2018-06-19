@@ -127,6 +127,12 @@ class ReportsController extends Controller
             "gallery_name" => $gallery_name
         ];
 
+        if($request->status == "quick" || !$request->reporter_phone_number  )
+        {
+            $request->reporter_phone_number = Auth::user()->phone_no;
+        }
+
+
         if($request->status == "quick" || $request->status == "normal" )
         {
 

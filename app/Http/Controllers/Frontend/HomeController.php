@@ -8,7 +8,7 @@ use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-
+use Twitter;
 use Cornford\Googlmapper\Exceptions\MapperSearchResultException;
 
 /**
@@ -33,7 +33,8 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        
+        $tweets1 = Twitter::getSearch(['q' => 'اطفال_مفقودة#', 'count' => '100', 'format' => 'array']);
+        $tweets2 = Twitter::getSearch(['q' => 'اطفال_مخطوفة#', 'count' => '100', 'format' => 'array']);
         $reports=$this->reportRepository->retriveNear();
        
         $loc = geoip()->getLocation($request->getClientIp());
@@ -74,6 +75,8 @@ class HomeController extends Controller
         return view('frontend.index',[
             'reports' => $reports,
              'map' => Mapper::render(),
+             'tweets1' => $tweets1,
+            'tweets2' => $tweets2
 
         ]);
     }
