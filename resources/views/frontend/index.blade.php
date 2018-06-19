@@ -84,14 +84,7 @@
                             </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-12 col-sm-12">
-                        <div class="card">
-                          <div class="card-img-top" style="background-image: url('/img/frontend/boy.jpg')"></div>
-                            <div class="card-body">
-                                <a href="#"><p class="card-text"> أحمد محمد </p></a>
-                            </div>
-                            </div>
-                        </div>
+                       
 
 
 

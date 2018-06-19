@@ -62,7 +62,7 @@ class CommentsController extends CommentController
      * @author 
      **/
     public static function getComments($itemId){
-        $comments = Comment::where('item_id', $itemId)->orderBy('parent_id', 'asc')->get();
+        $comments = Comment::where('item_id', $itemId)->orderBy('parent_id', 'desc')->get();
 
         foreach ($comments as $comment){
             $userId = $comment->user_id;

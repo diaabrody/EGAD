@@ -14,7 +14,7 @@
 </header>
 <div  class="row">
 <div  class="col-md-10">
-  <div id="stats"></div>
+  
   <div id="hits"></div>
 </div>
 <div  class="col-sm-2 facet">
