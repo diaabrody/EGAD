@@ -32,16 +32,17 @@
 
       @if($report->is_found == 0)
 
-
     <div class="center-btn-parent">
         <a href="#" class="btn btn-secondary" id="contact" >للتواصل مع الأهل</a>
     </div>
+      @endif
 
+      @if($report->is_found == 0 && $report->user_id == Auth::user()->id)
       <div class="center-btn-parent">
           <a  reportID="{{$report->id}}" id="markfound" class="btn btn-secondary">لقيته</a>
       </div>
-     @endif
 
+          @endif
     </div>
           <img src="{{ $report->photo }}" alt="avatar" class="img-fluid mb-3">
   </div>

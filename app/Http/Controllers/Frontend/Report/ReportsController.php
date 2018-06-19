@@ -615,6 +615,15 @@ class ReportsController extends Controller
 
         public function markFound($id)
         {
+            $report=$this->reportRepository->selectByID($id);
+
+            if(Auth::user()->id != $report->user_id)
+            {
+               return abort(404);
+
+            }
+
+
            $face_subject_id= $this->reportRepository->selectFaceSubject($id);
 
            if($face_subject_id)
