@@ -39,7 +39,7 @@ class CommentsonReport implements ShouldBroadcast
         $notify=Notification::create([
           'user_id'=>$report_user->id,
           'report_id'=>$comment->item_id,
-          'photo' =>$report_user->picture,
+          'photo' =>$user['avatar'],
           'message'=>" على البلاغ الخاص بك {$user['name']} علق",
           'is_seen'=>0,
           'type'=>'Comments',
