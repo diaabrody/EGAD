@@ -461,14 +461,13 @@ class ReportsController extends Controller
                     $this->face_id = $response->face_id;
                     $this->subject_id = $subject_id;
                     if ($type_status == "update") {
-                        $result = $this->Kairosobj->removeSubjectFromGallery([
-                            "subject_id" => strval($face_subject),
-                            "gallery_name" => $argumentArray['gallery_name']
-                        ]);
+                        if($face_subject) {
+                            $result = $this->Kairosobj->removeSubjectFromGallery([
+                                "subject_id" => strval($face_subject),
+                                "gallery_name" => $argumentArray['gallery_name']
+                            ]);
 
-
-                        //dd('hi image update message');
-
+                        }
                     }
 
                 }
@@ -581,8 +580,6 @@ class ReportsController extends Controller
     {
 
 
-
-
         $image = $request->file('photo')->path();
         $base64 = base64_encode(file_get_contents($image));
 
@@ -613,6 +610,39 @@ class ReportsController extends Controller
 
 
         }
+
+
+
+        public function markFound($id)
+        {
+           $face_subject_id= $this->reportRepository->selectFaceSubject($id);
+
+           if($face_subject_id)
+           {
+
+               $this->reportRepository->updateById($id,[
+                   'is_found'=>1 ,
+                   'found_since'=>date('Y-m-d')
+               ]);
+
+
+
+               $result = $this->Kairosobj->removeSubjectFromGallery([
+                   "subject_id" => $face_subject_id,
+                   "gallery_name" => "newbranch1023"
+               ]);
+
+
+
+
+           }
+
+
+        }
+
+
+
+
 
 
 
