@@ -11,13 +11,12 @@
 @import "global";
 //forms
 
-@import "form";
 
 // Pages
 @import "pages/dashboard";
 @import "pages/home/home_base";
 @import "pages/show";
-
+@import "form";
 // Bootstrap Overrides
 @import "custom";
 @import "extended";

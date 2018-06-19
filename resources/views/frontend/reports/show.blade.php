@@ -3,6 +3,7 @@
 @section('title', app_name() . ' | Reports')
 
 @section('content')
+<div class="container pt-5 pb-5">
 <div class="row mb-5">
     <div class="col-sm-10 details-card">
     <div class="card ">
@@ -27,6 +28,7 @@
   </div>
 </div>
     </div>
+</div>
 </div>
 @include('laravelLikeComment::like', ['like_item_id' => $report->id])
 @include('laravelLikeComment::comment', ['comment_item_id' =>  $report->id ])

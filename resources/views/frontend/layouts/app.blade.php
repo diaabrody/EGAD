@@ -47,17 +47,19 @@
 
 
             <div id="app">
+            
                 @include('includes.partials.logged-in-as')
-                
-               
+                @include('frontend.includes.nav')
                 
                     @include('includes.partials.messages')
+                    <div id="wrap">
                     @yield('content')
+                </div>
                 <!-- container -->
 
-                
-                </div><!-- #app -->
                 @include('frontend.includes.footer')
+                </div><!-- #app -->
+                
           
 
                
