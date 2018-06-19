@@ -111,11 +111,10 @@
          @auth
             <li class="nav-item"><a href="/reports/create/normal" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">إنشر بلاغ</a></li>
             <li class="nav-item"><a href="/reports/create/found" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">وجدت مفقود</a></li>
-            <li class="nav-item"><a href="/reports" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">كل المفقودين</a></li>
-            <li class="nav-item"><a href="/report/children/search" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">البحث بالصورة</a></li>
             @endauth
             <li class="nav-item"><a href="{{route('frontend.contact')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.contact')) }}">تواصل معنا</a></li>
-       
+            <li class="nav-item"><a href="/reports" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">كل المفقودين</a></li>
+            <li class="nav-item"><a href="/report/children/search" class="nav-link {{ active_class(Active::checkRoute('frontend.report.index')) }}">البحث بالصورة</a></li>
             
             
 
