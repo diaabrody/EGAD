@@ -1,5 +1,6 @@
 @extends('frontend.layouts.app')
 @section('content')
+<div class="container pt-5 pb-5">
     <div class="alert alert-success">
        يوجد تطابق بين الشخص الذي ادخلته وهؤهولاء الاشخاص
     </div>
@@ -26,5 +27,6 @@
         @endforeach
     </div>
     </div>
+</div>
 @endsection
 

@@ -1,4 +1,4 @@
-header {
+.main-header {
     height: 100%;
     width: 100%;
     background-image: url("/img/frontend/header.png");
@@ -8,6 +8,7 @@ header {
 
 .navbar-nav {
     padding: 8px 10px;
+    margin-bottom: 0;
     .nav-item {
         font-size: 18px;
         font-family: "Mirza Semibold";

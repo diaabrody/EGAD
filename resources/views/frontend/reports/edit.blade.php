@@ -1,6 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+<div class="container pt-5 pb-5">
     <div id="loading" style="display: none" ></div>
     <form method="post" enctype="multipart/form-data" action="/reports/{{$report->id}}" class="w-75 m-auto px-0 border p-4 bg-light">
         {{ csrf_field() }}
@@ -140,7 +141,7 @@ s
          <div style="clear:both"></div>
     </form>
 
-
+</div>
     <link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />
     <script type="text/javascript" src="{{ URL::asset('js/location-spinner.js') }}"></script>
 
