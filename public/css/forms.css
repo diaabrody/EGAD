@@ -5,7 +5,13 @@
 .form-text{
     font-size: 16px !important;
 }
-
+.bckgroundImage{
+    background-image: 
+        url("/img/frontend/profileImage.png");
+    height: 200px;
+    background-size: cover;
+    width: 100%;
+}
 .custInputfield input{
     display: none;
 }

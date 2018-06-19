@@ -125,8 +125,8 @@ s
     
        
         <div class="col-lg-4">
-          <div class="form-group" style="height:200px">
-            <img src="{{$report->photo}}"  id="image" class="h-100 w-100 d-block mx-auto">
+          <div class="form-group bckgroundImage">
+<!--            <img src="{{$report->photo}}"  id="image" class="h-100 w-100 d-block mx-auto">-->
           </div>
 
           <div class="form-group">
