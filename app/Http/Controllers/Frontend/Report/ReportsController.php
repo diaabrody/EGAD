@@ -90,6 +90,7 @@ class ReportsController extends Controller
     {
 
 
+
         if($status == "quick" || $status=="found" || $status=="normal")
         {
             $cities = City::all();
@@ -127,9 +128,10 @@ class ReportsController extends Controller
             "gallery_name" => $gallery_name
         ];
 
-        if($request->status == "quick" || !$request->reporter_phone_number  )
+        if($request->status == "quick")
         {
             $request->reporter_phone_number = Auth::user()->phone_no;
+            $request->lost_since=date('Y-m-d');
         }
 
 
@@ -459,14 +461,13 @@ class ReportsController extends Controller
                     $this->face_id = $response->face_id;
                     $this->subject_id = $subject_id;
                     if ($type_status == "update") {
-                        $result = $this->Kairosobj->removeSubjectFromGallery([
-                            "subject_id" => strval($face_subject),
-                            "gallery_name" => $argumentArray['gallery_name']
-                        ]);
+                        if($face_subject) {
+                            $result = $this->Kairosobj->removeSubjectFromGallery([
+                                "subject_id" => strval($face_subject),
+                                "gallery_name" => $argumentArray['gallery_name']
+                            ]);
 
-
-                        //dd('hi image update message');
-
+                        }
                     }
 
                 }
@@ -579,8 +580,6 @@ class ReportsController extends Controller
     {
 
 
-
-
         $image = $request->file('photo')->path();
         $base64 = base64_encode(file_get_contents($image));
 
@@ -611,6 +610,48 @@ class ReportsController extends Controller
 
 
         }
+
+
+
+        public function markFound($id)
+        {
+            $report=$this->reportRepository->selectByID($id);
+
+            if(Auth::user()->id != $report->user_id)
+            {
+               return abort(404);
+
+            }
+
+
+           $face_subject_id= $this->reportRepository->selectFaceSubject($id);
+
+           if($face_subject_id)
+           {
+
+               $this->reportRepository->updateById($id,[
+                   'is_found'=>1 ,
+                   'found_since'=>date('Y-m-d')
+               ]);
+
+
+
+               $result = $this->Kairosobj->removeSubjectFromGallery([
+                   "subject_id" => $face_subject_id,
+                   "gallery_name" => "newbranch1023"
+               ]);
+
+
+
+
+           }
+
+
+        }
+
+
+
+
 
 
 

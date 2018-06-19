@@ -80,7 +80,14 @@ class ReportRepository extends BaseRepository
     }
 
 
+    public function selectByID($id)
+    {
 
+        $report=$this->model->Where('id','=',$id)->first();
+        return $report;
+
+
+    }
 
 
 

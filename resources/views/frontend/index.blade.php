@@ -48,16 +48,17 @@
         
     <h1>المفقودين بالقرب منك</h1>
         <div class="row">
-            @if (is_array($reports) || is_object($reports))
+        @if (is_array($reports) || is_object($reports))
         @foreach ($reports as $report)
             <div class="col-lg-3 col-md-12 col-sm-12 mb-3">
                         <div class="card">
                           <div class="card-img-top" style="background-image:url('{{ $report->photo }}')"></div>
                           <div class="card-body">
-                          <a href="/reports/{{ $report->id }}"><p class="card-text">{{ $report->name }} </p></a>
+                            <a href="/reports/{{ $report->id }}"><p class="card-text">{{ $report->name }} </p></a>
                           </div>
                         </div>
             </div>
+        </div>
         @endforeach
        @endif
                     <div class="col-lg-3 col-md-12 col-sm-12">
@@ -68,29 +69,40 @@
                             </div>
                             </div>
                         </div>
+                    
                         <div class="col-lg-3 col-md-12 col-sm-12">
                         <div class="card">
-                          <div class="card-img-top" style="background-image: url('/img/frontend/boy.jpg')"></div>
+                          <div class="card-img-top" style="background-image: url('/img/frontend/girl3.jpg')"></div>
                             <div class="card-body">
-                                <a href="#"><p class="card-text"> أحمد محمد </p></a>
+                                <a href="#"><p class="card-text"> سلمى عادل </p></a>
                             </div>
                             </div>
                         </div>
+                  
                         <div class="col-lg-3 col-md-12 col-sm-12">
                         <div class="card">
-                          <div class="card-img-top" style="background-image: url('/img/frontend/boy.jpg')"></div>
+                          <div class="card-img-top" style="background-image: url('/img/frontend/girl2.jpg')"></div>
                             <div class="card-body">
-                                <a href="#"><p class="card-text"> أحمد محمد </p></a>
+                                <a href="#"><p class="card-text"> نهى مصطفى </p></a>
                             </div>
                             </div>
                         </div>
-                       
+                    
+                        <div class="col-lg-3 col-md-12 col-sm-12">
+                        <div class="card">
+                          <div class="card-img-top" style="background-image: url('/img/frontend/girl1.jpg')"></div>
+                            <div class="card-body">
+                                <a href="#"><p class="card-text"> سعاد ابراهيم </p></a>
+                            </div>
+                            </div>
+                        </div>
+                  
 
 
 
 
                         </div>
-                        <a href="/reports"><button type="button" class="btn btn-primary main-btn"><p>كل المفقودين</p>
+                        <a href="/reports" style="display:block; margin: 0 auto;" ><button type="button" class="btn btn-primary main-btn"><p>كل المفقودين</p>
             </button></a>
                         </div>
                         
@@ -135,7 +147,7 @@
         <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="div-text">
             <h2>لو شفت طفل شكله تايه أو شخص مشرد شكله في <br> غير وعيه, التقط صورة للشخص ده و إنشر بلاغ عنه <br> من هنا.</h2>
-            <a href="/reports/create/found"><button type="button" class="btn btn-primary main-btn"><p>تابعنا على فيسبوك</p>
+            <a href="http://www.facebook.com/ejad.charity/"><button type="button" class="btn btn-primary main-btn"><p>تابعنا على فيسبوك</p>
             </button></a>
         </div>
             </div>
@@ -230,6 +242,16 @@
         </div>
     </div>
         </div>
+    </div>
+</section>
+
+<section id="sec7">
+    <div class="container">
+        <h1>ساهم في دعم إيجاد</h1>
+        <div class="row">
+            <a href="#" style="display:block; margin: 0 auto;" ><button type="button" class="btn btn-primary main-btn"><p>تبرع الان</p>
+            </button></a>
+        </div>                       
     </div>
 </section>
 @endsection
