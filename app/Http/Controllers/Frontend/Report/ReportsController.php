@@ -90,6 +90,7 @@ class ReportsController extends Controller
     {
 
 
+
         if($status == "quick" || $status=="found" || $status=="normal")
         {
             $cities = City::all();
@@ -127,9 +128,10 @@ class ReportsController extends Controller
             "gallery_name" => $gallery_name
         ];
 
-        if($request->status == "quick" || !$request->reporter_phone_number  )
+        if($request->status == "quick")
         {
             $request->reporter_phone_number = Auth::user()->phone_no;
+            $request->lost_since=date('Y-m-d');
         }
 
 
