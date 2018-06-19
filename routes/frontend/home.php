@@ -23,10 +23,6 @@ Route::group(['middleware' => ['auth', 'password_expires']], function () {
          * User Account Specific
          */
         Route::get('account', 'AccountController@index')->name('account');
-        Route::get('account/myreports', 'AccountController@myReports')->name('myreports');
-        Route::get('account/edit', 'AccountController@edit')->name('editaccount');
-        Route::get('account/edit/password', 'AccountController@editPassword')->name('editpassword');
-        Route::get('userprofile', 'AccountController@profile')->name('editpassword');
 
         /*
          * User Profile Specific
