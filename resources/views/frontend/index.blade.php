@@ -48,6 +48,7 @@
     </div>
 </section>
 
+@auth
 <section id="sec2">
     <div class="container">
         
@@ -66,46 +67,7 @@
         </div>
         @endforeach
        @endif
-                    <div class="col-lg-3 col-md-12 col-sm-12">
-                        <div class="card">
-                          <div class="card-img-top" style="background-image: url('/img/frontend/boy.jpg')"></div>
-                            <div class="card-body">
-                                <a href="#"><p class="card-text"> أحمد محمد </p></a>
-                            </div>
-                            </div>
-                        </div>
-                    
-                        <div class="col-lg-3 col-md-12 col-sm-12">
-                        <div class="card">
-                          <div class="card-img-top" style="background-image: url('/img/frontend/girl3.jpg')"></div>
-                            <div class="card-body">
-                                <a href="#"><p class="card-text"> سلمى عادل </p></a>
-                            </div>
-                            </div>
-                        </div>
                   
-                        <div class="col-lg-3 col-md-12 col-sm-12">
-                        <div class="card">
-                          <div class="card-img-top" style="background-image: url('/img/frontend/girl2.jpg')"></div>
-                            <div class="card-body">
-                                <a href="#"><p class="card-text"> نهى مصطفى </p></a>
-                            </div>
-                            </div>
-                        </div>
-                    
-                        <div class="col-lg-3 col-md-12 col-sm-12">
-                        <div class="card">
-                          <div class="card-img-top" style="background-image: url('/img/frontend/girl1.jpg')"></div>
-                            <div class="card-body">
-                                <a href="#"><p class="card-text"> سعاد ابراهيم </p></a>
-                            </div>
-                            </div>
-                        </div>
-                  
-
-
-
-
                         </div>
                         <a href="/reports" style="display:block; margin: 0 auto;" ><button type="button" class="btn btn-primary main-btn"><p>كل المفقودين</p>
             </button></a>
@@ -113,6 +75,7 @@
                         
                         </div>
 </section>
+@endauth
 
 <section id="sec3">
     <div class="container">
