@@ -48,6 +48,7 @@
     </div>
 </section>
 
+@auth
 <section id="sec2">
     <div class="container">
         
@@ -66,46 +67,7 @@
         </div>
         @endforeach
        @endif
-                    <div class="col-lg-3 col-md-12 col-sm-12">
-                        <div class="card">
-                          <div class="card-img-top" style="background-image: url('/img/frontend/boy.jpg')"></div>
-                            <div class="card-body">
-                                <a href="#"><p class="card-text"> أحمد محمد </p></a>
-                            </div>
-                            </div>
-                        </div>
-                    
-                        <div class="col-lg-3 col-md-12 col-sm-12">
-                        <div class="card">
-                          <div class="card-img-top" style="background-image: url('/img/frontend/girl3.jpg')"></div>
-                            <div class="card-body">
-                                <a href="#"><p class="card-text"> سلمى عادل </p></a>
-                            </div>
-                            </div>
-                        </div>
                   
-                        <div class="col-lg-3 col-md-12 col-sm-12">
-                        <div class="card">
-                          <div class="card-img-top" style="background-image: url('/img/frontend/girl2.jpg')"></div>
-                            <div class="card-body">
-                                <a href="#"><p class="card-text"> نهى مصطفى </p></a>
-                            </div>
-                            </div>
-                        </div>
-                    
-                        <div class="col-lg-3 col-md-12 col-sm-12">
-                        <div class="card">
-                          <div class="card-img-top" style="background-image: url('/img/frontend/girl1.jpg')"></div>
-                            <div class="card-body">
-                                <a href="#"><p class="card-text"> سعاد ابراهيم </p></a>
-                            </div>
-                            </div>
-                        </div>
-                  
-
-
-
-
                         </div>
                         <a href="/reports" style="display:block; margin: 0 auto;" ><button type="button" class="btn btn-primary main-btn"><p>كل المفقودين</p>
             </button></a>
@@ -113,6 +75,7 @@
                         
                         </div>
 </section>
+@endauth
 
 <section id="sec3">
     <div class="container">
@@ -123,7 +86,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="div-text">
             <h1>خدمة التعرف على الوجه</h1>
-            <h2>لو شفت طفل شكله تايه أو شخص مشرد شكله في <br> غير وعيه, التقط صورة للشخص ده و إنشر بلاغ عنه <br> من هنا.</h2>
+            <h2>تقدر دلوقتي تدور على الأطفال المفقودين بخدمة البحث بالصورة اللي بتستخدم تقنية التعرف على الوجه و بتجيبلك أقرب النتائج المتواجدة هنا لصورة الطفل المفقود</h2>
             <a href="/report/children/search"><button type="button" class="btn btn-primary main-btn"><p>البحث بالصورة</p>
             </button></a>
         </div>
@@ -151,7 +114,7 @@
         <div class="row">
         <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="div-text">
-            <h2>لو شفت طفل شكله تايه أو شخص مشرد شكله في <br> غير وعيه, التقط صورة للشخص ده و إنشر بلاغ عنه <br> من هنا.</h2>
+            <h2>تواصل معانا على فيسبوك و استخدم هاشتاج #ايجاد أو #ejad على تويتر عشان عشان نقدر نساعد أكبر عدد من الناس</h2>
             <a href="http://www.facebook.com/ejad.charity/"><button type="button" class="btn btn-primary main-btn"><p>تابعنا على فيسبوك</p>
             </button></a>
         </div>
@@ -162,74 +125,56 @@
             من على تويتر
         </div>
         <div class="card-body">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Created At</th>
-                        <th>Tweet</th>
-                        <th>Images</th>
-                        <th>Favorite</th>
-                        <th>Retweet</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if(!empty($tweets1['statuses']) && !empty($tweets2['statuses']) && !empty($tweets3['statuses']))
-                        @foreach($tweets1['statuses'] as $tweet)
-                            <tr>
-                                <td>{{ $tweet['created_at'] }}</td>
-                                <td>{{ $tweet['text'] }}</td>
-                                <td>
-                                    @if(!empty($tweet['extended_entities']['media']))
-                                        @foreach($tweet['extended_entities']['media'] as $v)
-                                            <img src="{{ $v['media_url_https'] }}" style="width:100px;">
-                                        @endforeach
-                                    @endif
-                                </td>
-                                <td>{{ $tweet['favorite_count'] }}</td>
-                                <td>{{ $tweet['retweet_count'] }}</td>
-                            </tr>
-                        @endforeach
+        @if(!empty($tweets1['statuses']) && !empty($tweets2['statuses']))
+            @foreach($tweets1['statuses'] as $tweet)
+            <div class="new-tweet">
+            @if(!empty($tweet['extended_entities']['media']))
+                            @foreach($tweet['extended_entities']['media'] as $v)
+                                <div class="tweet-img" style="background-image: url('{{ $v['media_url_https'] }}');"></div>
+                            @endforeach
+                @endif
+                <div class="tweet-text">
+                    <h6>{{ $tweet['created_at'] }}</h6>
+                    <h1>{{ $tweet['text'] }}</h1>
+                </div>
 
-                        @foreach($tweets3['statuses'] as $tweet)
-                        <tr>
-                            <td>{{ $tweet['created_at'] }}</td>
-                            <td>{{ $tweet['text'] }}</td>
-                            <td>
-                                @if(!empty($tweet['extended_entities']['media']))
-                                    @foreach($tweet['extended_entities']['media'] as $v)
-                                        <img src="{{ $v['media_url_https'] }}" style="width:100px;">
-                                    @endforeach
-                                @endif
-                            </td>
-                            <td>{{ $tweet['favorite_count'] }}</td>
-                            <td>{{ $tweet['retweet_count'] }}</td>
-                        </tr>
-                    @endforeach
+            </div>
+            @endforeach
+            @foreach($tweets2['statuses'] as $tweet)
+            <div class="new-tweet">
+            @if(!empty($tweet['extended_entities']['media']))
+                            @foreach($tweet['extended_entities']['media'] as $v)
+                                <div class="tweet-img" style="background-image: url('{{ $v['media_url_https'] }}');"></div>
+                            @endforeach
+                @endif
+                <div class="tweet-text">
+                    <h6>{{ $tweet['created_at'] }}</h6>
+                    <h1>{{ $tweet['text'] }}</h1>
+                </div>
 
-                        @foreach($tweets2['statuses'] as $tweet)
-                        <tr>
-                            <td>{{ $tweet['created_at'] }}</td>
-                            <td>{{ $tweet['text'] }}</td>
-                            <td>
-                                @if(!empty($tweet['extended_entities']['media']))
-                                    @foreach($tweet['extended_entities']['media'] as $v)
-                                        <img src="{{ $v['media_url_https'] }}" style="width:100px;">
-                                    @endforeach
-                                @endif
-                            </td>
-                            <td>{{ $tweet['favorite_count'] }}</td>
-                            <td>{{ $tweet['retweet_count'] }}</td>
-                        </tr>
-                    @endforeach
-                    @else
-                        <tr>
-                            <td colspan="6">There are no data.</td>
-                        </tr>
-                    @endif
-                </tbody>
-            </table>
+            </div>
+            @endforeach
+            @foreach($tweets3['statuses'] as $tweet)
+            <div class="new-tweet">
+            @if(!empty($tweet['extended_entities']['media']))
+                            @foreach($tweet['extended_entities']['media'] as $v)
+                                <div class="tweet-img" style="background-image: url('{{ $v['media_url_https'] }}');"></div>
+                            @endforeach
+                @endif
+                <div class="tweet-text">
+                    <h6>{{ $tweet['created_at'] }}</h6>
+                    <h1>{{ $tweet['text'] }}</h1>
+                </div>
+
+            </div>
+            @endforeach
+            @else
+                <span>There are no data.</span>
+        @endif
+
         </div>
         </div>
+
         </div>
 
         </div>

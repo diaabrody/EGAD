@@ -98,8 +98,8 @@
 
      @if ($status != "quick")
 <h4 class="form-group">
-    <label for="special_sign" class="float-right">علامات مميزة</label>
-    <textarea  name="special_sign" class="form-control" placeholder="ادخل علامات مميزة"></textarea>
+    <label for="special_sign" class="float-right">مواصفات المفقود</label>
+    <textarea  name="special_sign" class="form-control" placeholder="ادخل مواصفات المفقود"></textarea>
 </h4>
 
 

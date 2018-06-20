@@ -18,7 +18,7 @@
     </ul>
 
     <div class="tab-content mt-5 " id="myTabContent ">
-        <div class="tab-pane fade show active w-25 mx-auto mb-5 border-0" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="tab-pane  show active w-25 mx-auto mb-5 border-0" id="home" role="tabpanel" aria-labelledby="home-tab">
            
            <div class="card mb-3 border-0 text-secondary">
 <!--     <div class="col-lg-12">      -->
@@ -44,7 +44,7 @@
         
         
         
-        <div class="tab-pane fade border w-75 mx-auto mb-5" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="tab-pane  border w-75 mx-auto mb-5" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
             @foreach ($reports as $report)
                 <form class="w-100 m-auto  p-4 bg-light mb-3" >
@@ -79,7 +79,7 @@
         
         
         
-        <div class="tab-pane fade w-75 m-auto mb-5 pb-5 text-secondary " id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="tab-pane w-75 m-auto mb-5 pb-5 text-secondary " id="contact" role="tabpanel" aria-labelledby="contact-tab">
             {{ html()->modelForm($logged_in_user, 'PATCH', route('frontend.user.profile.update'))->id('editForm')->class('form-horizontal')->attribute('enctype', 'multipart/form-data')->open() }}
             <div class="row ">
                 <div class="col">
@@ -225,7 +225,7 @@
         
         
         
-        <div class="tab-pane fade w-75 mx-auto mb-5" id="password" role="tabpanel" aria-labelledby="password-tab">
+        <div class="tab-pane  w-75 mx-auto mb-5" id="password" role="tabpanel" aria-labelledby="password-tab">
             {{ html()->form('PATCH', route('frontend.auth.password.update'))->class('form-horizontal')->open() }}
             <div class="row ">
                 <div class="col">

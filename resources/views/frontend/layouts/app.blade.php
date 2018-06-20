@@ -11,6 +11,7 @@
             <title>@yield('title', app_name())</title>
             <meta name="description" content="@yield('meta_description', 'Laravel 5 Boilerplate')">
             <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
+            <link rel="icon" href="/img/frontend/ejad-icon.png" type="image/gif">
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
             <link rel="stylesheet" type="text/css" href="/css/bootstrap-notifications.min.css">
             <link rel="stylesheet" href="{{ URL::asset('css/loading-spinner.css') }}" />

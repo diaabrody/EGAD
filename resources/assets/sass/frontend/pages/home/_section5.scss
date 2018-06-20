@@ -37,6 +37,30 @@
         .card-body {
             height: 230px;
             overflow: scroll;
+            font-family: "Mirza Regular";
+            .new-tweet {
+                text-align: right;
+                border-bottom: 1px solid #CACACA;
+                padding: 12px;
+                .tweet-img {
+                    width: 90px;
+                    height: 90px;
+                    background-position: center center;
+                    background-size: cover;
+                    display: inline-block;
+                }
+                .tweet-text {
+                    display: inline-block;
+                    h6 {
+                        font-size: 14px;
+                        color: $success;
+                    }
+                    h1 {
+                        font-size: 18px;
+                        color: #000;
+                    }
+                }
+            }
         }
     }
 }
