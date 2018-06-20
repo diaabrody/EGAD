@@ -16,8 +16,13 @@
                 <div class="div-text">
                 <h1>هنساعدك تلاقي المفقود</h1>
                 <h2>لو فقدت حد عزيز عليك ابدأ بنشر بلاغ دلوقتي <br> و هنساعدك تلاقيه</h2>
+                @auth
                 <a href="/reports/create/quick"><button type="button" class="btn btn-primary main-btn"><p>بلاغ سريع</p>
             </button></a>
+            @else
+            <a href="register/urgent"><button type="button" class="btn btn-primary main-btn"><p>بلاغ سريع</p>
+            </button></a>
+            @endauth
             </div>
                 </div>
             </div>
