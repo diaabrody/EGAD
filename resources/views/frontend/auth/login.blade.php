@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-<div class="row justify-content-center align-items-center py-5">
+<div class="row justify-content-center align-items-center text-secondary py-5">
     <div class="col col-sm-8 align-self-center">
         <div class="card w-75 m-auto bg-light formStyle p-4">
             <h2 class="card-header bg-white font-weight-bold text-center text-primary p-4">

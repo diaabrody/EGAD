@@ -4,7 +4,7 @@
 
 @section('content')
    <div class="container">
-    <div class="row justify-content-center align-items-center py-5">
+    <div class="row justify-content-center align-items-center text-secondary py-5">
         <div class="col col-sm-8 align-self-center">
             <div class="card w-75 m-auto bg-light formStyle p-4">
                 <h2 class="card-header font-weight-bold bg-white text-primary text-center p-4">
@@ -96,7 +96,7 @@
                         </div><!--row-->
                 
 
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col">
                                 <h4 class="form-group">
                                 {{ html()->label(__('النوع'))->for('gender')->class('float-right ml-4') }}
@@ -126,7 +126,7 @@
                             </div><!--col-->
                         </div><!--row-->
 
-                        <div class="row">
+                        <div class="row mb-3">
                             <div class="col">
                                 <h4 class="form-group">
                                     {{ html()->label(__('تأكيد كلمة المرور'))->for('password_confirmation')->class('float-right') }}
@@ -148,7 +148,7 @@
                             </div><!--row-->
                         @endif
 
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col">
                                 <div class="form-group mb-0 clearfix">
 <!--                                    {{ form_submit(__('labels.frontend.auth.register_button')) }}-->
@@ -158,13 +158,15 @@
                         </div><!--row-->
                     {{ html()->form()->close() }}
 
+<!--
               <div class="row">
                         <div class="col">
                             <div class="text-center">
                                 {!! $socialiteLinks !!}
                             </div>
-                        </div><!--/ .col -->
-                    </div><!-- / .row -->
+                        </div>
+                    </div>
+-->
                     
                 </div><!-- card-body -->
             </div><!-- card -->

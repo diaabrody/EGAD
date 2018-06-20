@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">   
-    <div class="row justify-content-center align-items-center py-5">
+    <div class="row justify-content-center align-items-center text-secondary py-5">
         <div class="col col-sm-8 align-self-center">
             <div class="card formStyle p-4 bg-light">
                 <h2 class="card-header font-weight-bold bg-white text-center text-primary p-4">
@@ -17,7 +17,7 @@
                     {{ html()->form('POST', route('frontend.auth.urgentregister.post'))->open() }}
                         
 
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col">
                                 <h4 class="form-group">
                                     {{ html()->label(__('رقم الهاتف'))->for('phone_no')->class('float-right') }}

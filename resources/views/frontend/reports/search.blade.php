@@ -12,19 +12,19 @@
         <input type="hidden" name="_token" value="{{ csrf_token()}}" >
      <div class="d-flex justify-content-center mb-5">   
         <div class=" custInputfield border p-3 w-50" style="height:40px">
-<label for="photo">
-         <i class="fas fa-camera" style="font-size:20px"></i>
-</label>
+        <label for="photo">
+            <i class="fas fa-camera text-secondary" style="font-size:20px"></i>
+        </label>
         <input type="file" name="photo" id="photo" required  class="form-control h-100 border-0" onchange="readURL(this);">
         </div> 
         
 
-       <button class=" btn btn-secondary m-0 mr-2 text-white font-weight-bold form-text"  type="submit" id="serach" style="margin-top:20px;height:40px;width:90px"  onclick="displayloading()"  >بحث</button>
+       <button class=" btn btn-primary m-0 mr-2 text-white font-weight-bold form-header"  type="submit" id="serach" style="margin-top:20px;height:35px;width:90px"  onclick="displayloading()"  >بحث</button>
 
        </div>
        
        <div class="m-auto" style="width:635px">
-          <h5 class="text-muted float-right"> نتيجة البحث: 0</h5><br><br>
+          <h3 class="text-success float-right"> نتيجة البحث : 0</h3><br><br>
 
        </div>
 
