@@ -241,6 +241,9 @@
         <h1>قصص نجاح</h1>
         <div class="row">
         <div class="col-sm-12 success-stories">
+        <div class="overlay text-danger text-right"><p class="mb-0">عودة طفلة بعد غياب دام 6 أشهر</p>
+        <p style="font-size:28px;" class="text-danger">والأب يروي قصه ما حدث خلال هذه الفترة </p>
+        </div>
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">

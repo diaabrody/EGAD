@@ -10319,6 +10319,22 @@ button {
   margin-bottom: 50px;
 }
 
+#sec6 .overlay {
+  position: absolute;
+  z-index: 12;
+  font-size: 45px;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  padding-right: 160px;
+}
+
+#sec6 .carousel .carousel-item {
+  height: 400px;
+  background-color: #84837f;
+  z-index: 2;
+}
+
 #sec7 {
   padding: 50px;
   background-image: url("/img/frontend/sec2.png");

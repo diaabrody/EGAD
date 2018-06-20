@@ -10,7 +10,7 @@
     {{ csrf_field() }}
 <div class="row p-4 text-secondary">
   
-      <div class="col-lg-4 col-md-4 col-sm-4">
+      <div class="col-lg-4 col-md-6 col-sm-8 col-xs-10">
   <div class="form-control" style="height:200px">
       <img src="{{asset('img/frontend/profileImage.png')}}" id="image" class=" d-block mx-auto w-100">
 
