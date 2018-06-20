@@ -10917,6 +10917,60 @@ footer ul li a:hover {
   display: none;
 }
 
+.ui.comments {
+  margin: 1.5em 0;
+  max-width: 100%;
+}
+
+.ui.comments .comment {
+  font-size: 18px;
+}
+
+#laravelComment-2 {
+  padding: 30px 0;
+  display: grid;
+  text-align: right;
+  width: 100%;
+  grid-row-gap: 1em;
+}
+
+#laravelComment-2 h3 {
+  font-size: 30px;
+  color: #005175;
+  text-align: right;
+}
+
+#laravelComment-2 #2-comment-0 {
+  text-align: right;
+  font-size: 18px;
+}
+
+#laravelComment-2 .ui.basic.button,
+#laravelComment-2 .ui.basic.buttons .button {
+  width: 125px;
+  margin-bottom: 15px;
+  color: #fff !important;
+  font-size: 14px;
+  font-family: "Mirza Semibold";
+  padding: 10px 0;
+  border-radius: 0;
+  -webkit-box-shadow: 0 5px #d05a22;
+          box-shadow: 0 5px #d05a22;
+  border: none;
+  background-color: #f4783d !important;
+}
+
+#laravelComment-2 .field {
+  color: #67676a;
+  font-family: "Mirza Semibold";
+  font-size: 18px;
+}
+
+.laravel-like {
+  float: right;
+  font-size: 24px;
+}
+
 .div-text {
   padding-top: 200px;
   padding-bottom: 200px;

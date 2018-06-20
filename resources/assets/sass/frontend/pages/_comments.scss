@@ -1,0 +1,48 @@
+.ui.comments {
+    margin: 1.5em 0;
+    max-width: 100%;
+    .comment {
+    font-size: 18px;
+    }
+}
+
+#laravelComment-2 {
+    padding: 30px 0;
+    // justify-content: start;
+    display: grid;
+    text-align: right;
+    width: 100%;
+    grid-row-gap: 1em;
+    h3{
+        font-size: 30px;
+        color: $secondary;
+        text-align: right;
+    }
+    #2-comment-0 {
+        text-align: right;
+        font-size: 18px;
+    }
+    .ui.basic.button, .ui.basic.buttons .button {
+        width: 125px;
+        margin-bottom: 15px;
+        color: #fff!important;
+    font-size: 14px;
+    font-family: "Mirza Semibold";
+    padding: 10px 0;
+    border-radius: 0;
+    // border: 3px solid $primary;
+    box-shadow: 0 5px #d05a22;
+    border: none;
+    background-color: $primary!important;
+    }
+    .field {
+        color: $success;
+        font-family: "Mirza Semibold";
+        font-size: 18px;
+    }
+}
+
+.laravel-like {
+    float: right;
+    font-size: 24px;
+}
