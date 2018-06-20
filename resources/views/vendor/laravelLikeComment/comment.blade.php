@@ -4,10 +4,11 @@ if(!Auth::check())
     $GLOBALS['commentDisabled'] = "disabled";
 $GLOBALS['commentClass'] = -1;
 ?>
+<div class="container">
 <div class="laravelComment" id="laravelComment-{{ $comment_item_id }}">
-    <h3 class="ui dividing header">Comments</h3>
+    <h3 class="ui dividing header">التعليقات</h3>
     <div class="ui threaded comments" id="{{ $comment_item_id }}-comment-0">
-        <button class="ui basic small submit button" id="write-comment" data-form="#{{ $comment_item_id }}-comment-form">اكتب تعليقا</button>
+        <button class="ui basic small submit button my-cmt-btn" id="write-comment" data-form="#{{ $comment_item_id }}-comment-form">اكتب تعليقا</button>
         <form class="ui laravelComment-form form" id="{{ $comment_item_id }}-comment-form" data-parent="0" data-item="{{ $comment_item_id }}" style="display: none;">
             <div class="field">
                 <textarea id="0-textarea" rows="2" {{ $GLOBALS['commentDisabled'] }} required></textarea>
@@ -70,4 +71,5 @@ foreach ($comments as $comment) {
 ?>
     </div>
     <button class="ui basic button" id="showComment" data-show-comment="0" data-item-id="{{ $comment_item_id }}">رؤية كل التعليقات</button>
+</div>
 </div>

@@ -1,6 +1,8 @@
 <?php
 	$data = \risul\LaravelLikeComment\Controllers\LikeController::getLikeViewData($like_item_id);
 ?>
+<div class="container">
+	<div class="row">
 <div class="laravel-like">
 	<i id="{{ $like_item_id }}-like"
 	   class="icon {{ $data[$like_item_id.'likeDisabled'] }} {{ $data[$like_item_id.'likeIconOutlined'] }} laravelLike-icon thumbs up"
@@ -14,4 +16,6 @@
 	   data-vote="-1">
    </i>
    <span id="{{ $like_item_id }}-total-dislike">{{ $data[$like_item_id.'total_dislike'] }}</span>
+</div>
+</div>
 </div>
