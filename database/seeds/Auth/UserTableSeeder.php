@@ -45,7 +45,7 @@ class UserTableSeeder extends Seeder
             'last_name'         => 'User',
             'email'             => 'user@user.com',
             'password'          => 'secret',
-            'phone_no'          => '01225365069',
+            'phone_no'          => '01227683594',
             'confirmation_code' => md5(uniqid(mt_rand(), true)),
             'confirmed'         => true,
         ]);

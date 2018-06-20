@@ -16,7 +16,7 @@ class EditReportsTable extends Migration
     {
         Schema::table('reports', function (Blueprint $table) {
             $table->integer('user_id')->nullable(false)->change();
-            $table->string('name')->nullable();
+            $table->string('name')->nullable()->default('غير معروف');
             $table->string('age')->nullable();
             $table->string('gender')->nullable();
             $table->string('photo')->nullable();

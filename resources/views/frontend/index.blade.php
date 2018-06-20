@@ -16,8 +16,13 @@
                 <div class="div-text">
                 <h1>هنساعدك تلاقي المفقود</h1>
                 <h2>لو فقدت حد عزيز عليك ابدأ بنشر بلاغ دلوقتي <br> و هنساعدك تلاقيه</h2>
+                @auth
                 <a href="/reports/create/quick"><button type="button" class="btn btn-primary main-btn"><p>بلاغ سريع</p>
             </button></a>
+            @else
+            <a href="register/urgent"><button type="button" class="btn btn-primary main-btn"><p>بلاغ سريع</p>
+            </button></a>
+            @endauth
             </div>
                 </div>
             </div>
@@ -168,7 +173,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if(!empty($tweets1['statuses']) && !empty($tweets2['statuses']))
+                    @if(!empty($tweets1['statuses']) && !empty($tweets2['statuses']) && !empty($tweets3['statuses']))
                         @foreach($tweets1['statuses'] as $tweet)
                             <tr>
                                 <td>{{ $tweet['created_at'] }}</td>
@@ -184,6 +189,23 @@
                                 <td>{{ $tweet['retweet_count'] }}</td>
                             </tr>
                         @endforeach
+
+                        @foreach($tweets3['statuses'] as $tweet)
+                        <tr>
+                            <td>{{ $tweet['created_at'] }}</td>
+                            <td>{{ $tweet['text'] }}</td>
+                            <td>
+                                @if(!empty($tweet['extended_entities']['media']))
+                                    @foreach($tweet['extended_entities']['media'] as $v)
+                                        <img src="{{ $v['media_url_https'] }}" style="width:100px;">
+                                    @endforeach
+                                @endif
+                            </td>
+                            <td>{{ $tweet['favorite_count'] }}</td>
+                            <td>{{ $tweet['retweet_count'] }}</td>
+                        </tr>
+                    @endforeach
+
                         @foreach($tweets2['statuses'] as $tweet)
                         <tr>
                             <td>{{ $tweet['created_at'] }}</td>
@@ -249,7 +271,7 @@
     <div class="container">
         <h1>ساهم في دعم إيجاد</h1>
         <div class="row">
-            <a href="#" style="display:block; margin: 0 auto;" ><button type="button" class="btn btn-primary main-btn"><p>تبرع الان</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeBrI-uYjGDkX_z0t8EHXthbSfLETysdW66tdv6w67LKncGIQ/viewform?usp=sf_link" style="display:block; margin: 0 auto;" ><button type="button" class="btn btn-primary main-btn"><p>تبرع الان</p>
             </button></a>
         </div>                       
     </div>

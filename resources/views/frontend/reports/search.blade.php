@@ -8,10 +8,11 @@
 
 <div class="container pt-5 pb-5" id="cont">
 
-    <form method="post" enctype="multipart/form-data" id="upload_form"  role="form">
+    <form method="post" enctype="multipart/form-data" id="upload_form"  role="form" >
         <input type="hidden" name="_token" value="{{ csrf_token()}}" >
      <div class="d-flex justify-content-center mb-5">   
         <div class=" custInputfield border p-3 w-50" style="height:40px">
+
         <label for="photo">
             <i class="fas fa-camera text-secondary" style="font-size:20px"></i>
         </label>

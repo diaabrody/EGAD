@@ -26,7 +26,7 @@
                                     <div class="col-md-10">
                                             <select name="commentable_id" id="commentable_id" class="form-control" required="required">
                                                 @foreach ($reports as $report)
-                                            <option value="{{ $report->id }}" {{ $report->id == $comment->commentable_id ? 'selected' : '' }} {{ $report->id == old('report->id') ? ' selected' : '' }}>{{$report->id}}</option>
+                                            <option value="{{ $report->id }}" {{ $report->id == $comment->item_id ? 'selected' : '' }} {{ $report->id == old('report->id') ? ' selected' : '' }}>{{$report->id}}</option>
                                                 @endforeach
                                             </select>
                                         </div><!--col-->
@@ -37,7 +37,7 @@
                                         <div class="col-md-10">
                                             {{ html()->textarea('text')
                                                 ->class('form-control')
-                                                ->placeholder('comment...')
+                                                ->placeholder('sssss')
                                                 ->required()
                                                 }}
                                         </div><!--col-->
