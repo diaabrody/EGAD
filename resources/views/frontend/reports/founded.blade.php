@@ -2,7 +2,7 @@
 @section('content')
 <div class="container pt-5 pb-5">
     <div class="alert alert-success">
-       يوجد تطابق بين الشخص الذي ادخلته وهؤهولاء الاشخاص
+       يوجد تطابق بين الشخص الذي ادخلته و هؤلاء الاشخاص
     </div>
     <div class="col-lg-8 col-md-12 col-s-12 all-missing">
     <div class="row">

@@ -1,16 +1,20 @@
 .details-card {
     margin: 0 auto;
+    border-radius: 0;
     .card {
         // height: 500px;
+    border-radius: 0;
+    border: none;
+    box-shadow: 5px 5px #e8e0c2;
         background-color: $primary;
         .card-text {
             text-align: right;
             color: #fff;
             font-size: 18px;
-            line-height: 30px;
-            
+            // line-height: 30px;
+            margin-bottom: 15px;
         }
-        .center-btn-parent {
+        .align-btn-parent {
             text-align: center;
             a {
                 // float: right;
@@ -20,7 +24,16 @@
                 padding: 10px 50px;
                 font-size: 18px;
                 text-align: center;
+                margin-bottom: 20px;
+                border-radius: 0;
             }
+            #contact {
+                box-shadow: 0 5px #d05a22;
+            }
+            #markfound {
+                box-shadow: 0 5px #01425e;
+            }
+            
         }
         img {
             max-height: 400px;
@@ -30,7 +43,22 @@
         
     }
 }
-
+#report-contact-info {
+    display: none;
+    margin: 0 auto;
+    padding: 10px 0;
+    background-color: #fff;
+    text-align: center;
+    // box-shadow: 0 5px #f3f3f3;
+    border: 1px solid $secondary;
+    p {
+    margin: 0;
+    text-align: center;
+    color: $secondary;
+    display: inline-block;
+    font-size: 18px;
+    }
+}
 .comments {
     margin: 0 auto;
     label {

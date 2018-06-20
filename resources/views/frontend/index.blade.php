@@ -86,7 +86,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="div-text">
             <h1>خدمة التعرف على الوجه</h1>
-            <h2>لو شفت طفل شكله تايه أو شخص مشرد شكله في <br> غير وعيه, التقط صورة للشخص ده و إنشر بلاغ عنه <br> من هنا.</h2>
+            <h2>تقدر دلوقتي تدور على الأطفال المفقودين بخدمة البحث بالصورة اللي بتستخدم تقنية التعرف على الوجه و بتجيبلك أقرب النتائج المتواجدة هنا لصورة الطفل المفقود</h2>
             <a href="/report/children/search"><button type="button" class="btn btn-primary main-btn"><p>البحث بالصورة</p>
             </button></a>
         </div>
@@ -114,7 +114,7 @@
         <div class="row">
         <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="div-text">
-            <h2>لو شفت طفل شكله تايه أو شخص مشرد شكله في <br> غير وعيه, التقط صورة للشخص ده و إنشر بلاغ عنه <br> من هنا.</h2>
+            <h2>تواصل معانا على فيسبوك و استخدم هاشتاج #ايجاد أو #ejad على تويتر عشان عشان نقدر نساعد أكبر عدد من الناس</h2>
             <a href="http://www.facebook.com/ejad.charity/"><button type="button" class="btn btn-primary main-btn"><p>تابعنا على فيسبوك</p>
             </button></a>
         </div>

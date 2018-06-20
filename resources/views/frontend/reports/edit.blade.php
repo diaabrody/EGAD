@@ -101,7 +101,7 @@
 
 
         <h4 class="form-group">
-            <label for="special_sign" class="float-right">علامات مميزه</label>
+            <label for="special_sign" class="float-right">مواصفات المفقود</label>
             <textarea  name="special_sign" class="form-control" placeholder=" " {{$report->special_sign}}>{{$report->special_sign}}</textarea>
         </h4>
 
