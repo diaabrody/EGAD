@@ -10722,6 +10722,35 @@ button {
 #sec5 .card .card-body {
   height: 230px;
   overflow: scroll;
+  font-family: "Mirza Regular";
+}
+
+#sec5 .card .card-body .new-tweet {
+  text-align: right;
+  border-bottom: 1px solid #CACACA;
+  padding: 12px;
+}
+
+#sec5 .card .card-body .new-tweet .tweet-img {
+  width: 90px;
+  height: 90px;
+  background-position: center center;
+  background-size: cover;
+  display: inline-block;
+}
+
+#sec5 .card .card-body .new-tweet .tweet-text {
+  display: inline-block;
+}
+
+#sec5 .card .card-body .new-tweet .tweet-text h6 {
+  font-size: 14px;
+  color: #67676a;
+}
+
+#sec5 .card .card-body .new-tweet .tweet-text h1 {
+  font-size: 18px;
+  color: #000;
 }
 
 #sec6 {

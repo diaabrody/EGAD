@@ -125,74 +125,56 @@
             من على تويتر
         </div>
         <div class="card-body">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Created At</th>
-                        <th>Tweet</th>
-                        <th>Images</th>
-                        <th>Favorite</th>
-                        <th>Retweet</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if(!empty($tweets1['statuses']) && !empty($tweets2['statuses']) && !empty($tweets3['statuses']))
-                        @foreach($tweets1['statuses'] as $tweet)
-                            <tr>
-                                <td>{{ $tweet['created_at'] }}</td>
-                                <td>{{ $tweet['text'] }}</td>
-                                <td>
-                                    @if(!empty($tweet['extended_entities']['media']))
-                                        @foreach($tweet['extended_entities']['media'] as $v)
-                                            <img src="{{ $v['media_url_https'] }}" style="width:100px;">
-                                        @endforeach
-                                    @endif
-                                </td>
-                                <td>{{ $tweet['favorite_count'] }}</td>
-                                <td>{{ $tweet['retweet_count'] }}</td>
-                            </tr>
-                        @endforeach
+        @if(!empty($tweets1['statuses']) && !empty($tweets2['statuses']))
+            @foreach($tweets1['statuses'] as $tweet)
+            <div class="new-tweet">
+            @if(!empty($tweet['extended_entities']['media']))
+                            @foreach($tweet['extended_entities']['media'] as $v)
+                                <div class="tweet-img" style="background-image: url('{{ $v['media_url_https'] }}');"></div>
+                            @endforeach
+                @endif
+                <div class="tweet-text">
+                    <h6>{{ $tweet['created_at'] }}</h6>
+                    <h1>{{ $tweet['text'] }}</h1>
+                </div>
 
-                        @foreach($tweets3['statuses'] as $tweet)
-                        <tr>
-                            <td>{{ $tweet['created_at'] }}</td>
-                            <td>{{ $tweet['text'] }}</td>
-                            <td>
-                                @if(!empty($tweet['extended_entities']['media']))
-                                    @foreach($tweet['extended_entities']['media'] as $v)
-                                        <img src="{{ $v['media_url_https'] }}" style="width:100px;">
-                                    @endforeach
-                                @endif
-                            </td>
-                            <td>{{ $tweet['favorite_count'] }}</td>
-                            <td>{{ $tweet['retweet_count'] }}</td>
-                        </tr>
-                    @endforeach
+            </div>
+            @endforeach
+            @foreach($tweets2['statuses'] as $tweet)
+            <div class="new-tweet">
+            @if(!empty($tweet['extended_entities']['media']))
+                            @foreach($tweet['extended_entities']['media'] as $v)
+                                <div class="tweet-img" style="background-image: url('{{ $v['media_url_https'] }}');"></div>
+                            @endforeach
+                @endif
+                <div class="tweet-text">
+                    <h6>{{ $tweet['created_at'] }}</h6>
+                    <h1>{{ $tweet['text'] }}</h1>
+                </div>
 
-                        @foreach($tweets2['statuses'] as $tweet)
-                        <tr>
-                            <td>{{ $tweet['created_at'] }}</td>
-                            <td>{{ $tweet['text'] }}</td>
-                            <td>
-                                @if(!empty($tweet['extended_entities']['media']))
-                                    @foreach($tweet['extended_entities']['media'] as $v)
-                                        <img src="{{ $v['media_url_https'] }}" style="width:100px;">
-                                    @endforeach
-                                @endif
-                            </td>
-                            <td>{{ $tweet['favorite_count'] }}</td>
-                            <td>{{ $tweet['retweet_count'] }}</td>
-                        </tr>
-                    @endforeach
-                    @else
-                        <tr>
-                            <td colspan="6">There are no data.</td>
-                        </tr>
-                    @endif
-                </tbody>
-            </table>
+            </div>
+            @endforeach
+            @foreach($tweets3['statuses'] as $tweet)
+            <div class="new-tweet">
+            @if(!empty($tweet['extended_entities']['media']))
+                            @foreach($tweet['extended_entities']['media'] as $v)
+                                <div class="tweet-img" style="background-image: url('{{ $v['media_url_https'] }}');"></div>
+                            @endforeach
+                @endif
+                <div class="tweet-text">
+                    <h6>{{ $tweet['created_at'] }}</h6>
+                    <h1>{{ $tweet['text'] }}</h1>
+                </div>
+
+            </div>
+            @endforeach
+            @else
+                <span>There are no data.</span>
+        @endif
+
         </div>
         </div>
+
         </div>
 
         </div>
