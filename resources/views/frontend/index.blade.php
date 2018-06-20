@@ -254,7 +254,7 @@
     <div class="container">
         <h1>ساهم في دعم إيجاد</h1>
         <div class="row">
-            <a href="#" style="display:block; margin: 0 auto;" ><button type="button" class="btn btn-primary main-btn"><p>تبرع الان</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeBrI-uYjGDkX_z0t8EHXthbSfLETysdW66tdv6w67LKncGIQ/viewform?usp=sf_link" style="display:block; margin: 0 auto;" ><button type="button" class="btn btn-primary main-btn"><p>تبرع الان</p>
             </button></a>
         </div>                       
     </div>

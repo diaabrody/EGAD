@@ -114,10 +114,10 @@ class CommentController extends Controller
     //  * @param  int  $id
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function destroy($id)
-    // {
-    //     $this->commentRepository->deleteById($id);
-    //     return redirect()->route('admin.comment.comment.index')->withFlashSuccess('Comment deleted Succesfuly');
+    public function destroy(Comment $comment)
+    {
+        Comment::destroy($comment);;
+        return redirect()->route('admin.comment.comment.index')->withFlashSuccess('Comment deleted Succesfuly');
         
-    // }
+    }
 }
