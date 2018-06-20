@@ -35,6 +35,7 @@ class HomeController extends Controller
     {
         $tweets1 = Twitter::getSearch(['q' => 'اطفال_مفقودة#', 'count' => '100', 'format' => 'array']);
         $tweets2 = Twitter::getSearch(['q' => 'اطفال_مخطوفة#', 'count' => '100', 'format' => 'array']);
+        $tweets3 = Twitter::getSearch(['q' => 'ايجاد#', 'count' => '100', 'format' => 'array']);        
         $reports=$this->reportRepository->retriveNear();
        
         $loc = geoip()->getLocation($request->getClientIp());
@@ -76,8 +77,9 @@ class HomeController extends Controller
             'reports' => $reports,
              'map' => Mapper::render(),
              'tweets1' => $tweets1,
-            'tweets2' => $tweets2
-
+            'tweets2' => $tweets2,
+            'tweets3' => $tweets3,
+            
         ]);
     }
 }

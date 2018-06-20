@@ -173,7 +173,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if(!empty($tweets1['statuses']) && !empty($tweets2['statuses']))
+                    @if(!empty($tweets1['statuses']) && !empty($tweets2['statuses']) && !empty($tweets3['statuses']))
                         @foreach($tweets1['statuses'] as $tweet)
                             <tr>
                                 <td>{{ $tweet['created_at'] }}</td>
@@ -189,6 +189,23 @@
                                 <td>{{ $tweet['retweet_count'] }}</td>
                             </tr>
                         @endforeach
+
+                        @foreach($tweets3['statuses'] as $tweet)
+                        <tr>
+                            <td>{{ $tweet['created_at'] }}</td>
+                            <td>{{ $tweet['text'] }}</td>
+                            <td>
+                                @if(!empty($tweet['extended_entities']['media']))
+                                    @foreach($tweet['extended_entities']['media'] as $v)
+                                        <img src="{{ $v['media_url_https'] }}" style="width:100px;">
+                                    @endforeach
+                                @endif
+                            </td>
+                            <td>{{ $tweet['favorite_count'] }}</td>
+                            <td>{{ $tweet['retweet_count'] }}</td>
+                        </tr>
+                    @endforeach
+
                         @foreach($tweets2['statuses'] as $tweet)
                         <tr>
                             <td>{{ $tweet['created_at'] }}</td>
