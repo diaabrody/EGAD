@@ -11,13 +11,13 @@
                 <ul>
                     <li><a href="/reports/create/normal">إنشر بلاغ</a></li>
                     <li><a href="/reports/create/found">وجدت مفقود</a></li>
-                    <li><a href="/">البحث بالصورة</a></li>
+                    <li><a href="/report/children/search">البحث بالصورة</a></li>
                 </ul>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <ul>
                     <li><a href="/reports">كل المفقودين</a></li>
-                    <li><a href="/reports/create/normal">تواصل معنا</a></li>
+                    <li><a href="/contact">تواصل معنا</a></li>
                 </ul> 
             </div>           
         </div>
