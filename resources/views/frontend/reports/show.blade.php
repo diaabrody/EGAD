@@ -20,7 +20,7 @@
     <a onclick="toggleInfo()" class="btn btn-primary" id="contact" >للتواصل مع الأهل</a>
 </div>
 <div id="report-contact-info">
-      <p>رقم تليفون المبلغ: 01024314438</p>
+      <p>رقم تليفون المبلغ: {{$report->reporter_phone_number}}</p>
   </div>
   @endif
   
